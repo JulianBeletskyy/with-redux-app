@@ -1,0 +1,111 @@
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Row, Col } from 'react-bootstrap'
+import Cropper from 'react-cropper'
+import { getUserGallery, addToGallery, saveAvatar } from '../../actions/user'
+import { toggleModal } from '../../actions/ui'
+import BtnMain from '../buttons/btn_main'
+import BtnUpload from '../buttons/btn_upload'
+
+class AvatarGallery extends Component {
+
+    constructor(props) {
+        super(props)
+        const { dispatch } = props
+        dispatch(getUserGallery())
+        this.state = {
+        	avatar: props.avatar
+        }
+
+        this.cropData = {}
+    }
+
+    crop = () => {
+        let crop = this.refs.cropper.getData()
+
+        this.cropData = {
+            width: crop.width.toFixed(),
+            height: crop.height.toFixed(),
+            x: crop.x.toFixed(),
+            y: crop.y.toFixed(),
+            avatar: this.state.avatar
+        }
+    }
+
+    handleClick = item => e => {
+    	this.setState({avatar: item.src})
+    }
+
+    cancel = () => {
+    	const { dispatch } = this.props
+    	dispatch(toggleModal(false, 'avatar'))
+    }
+
+    save = () => {
+    	const { dispatch } = this.props
+    	dispatch(saveAvatar(this.cropData)).then(res => {
+    		if (res) {
+    			dispatch(toggleModal(false, 'avatar'))
+    		}
+    	})
+    }
+
+    upload = files => {
+    	const { dispatch } = this.props
+    	dispatch(addToGallery(files[0]))
+    }
+
+    printGallery = (item, i) => {
+		return 	<div key={i} className="message-gallery-item" onClick={this.handleClick(item)}>
+					<img src={item.src} className="img-responsive pointer" alt="" />
+				</div>
+	}
+
+    render() {
+    	const { gallery } = this.props
+        return (
+            <div>
+            	<Row>
+                    <Col sm={4}>
+                    	<Cropper
+                            ref='cropper'
+                            src={this.state.avatar}
+                            style={{ height: '200px', width: '100%', margin: '0 auto' }}
+                            aspectRatio={1 / 1}
+                            guides={false}
+                            background={false}
+                            cropend={this.crop}
+                            ready={this.crop} />
+                    </Col>
+                    <Col sm={8}>
+                    	<div className="message-gallery-wrap">
+		                	{ gallery.map((item, i) => this.printGallery(item, i)) }
+		                </div>
+                    </Col>
+                </Row>
+                <div className="text-right">
+                	<BtnUpload
+                		className="pull-left"
+                        onChange={this.upload}
+                        text="Upload photo" />
+                    <BtnMain
+                        text="Cancel"
+                        onClick={this.cancel} />
+                    <BtnMain
+                        text="Save"
+                        onClick={this.save} />
+                </div>
+            </div>
+        );
+    }
+}
+
+const mapStateToProps = state =>
+	({
+	    gallery: state.user.data.gallery,
+	    avatar: state.user.data.avatar.original
+	})
+
+export default connect(
+    mapStateToProps,
+)(AvatarGallery)
