@@ -5,5 +5,5 @@ const handler = routes.getRequestHandler(app)
 
 const {createServer} = require('http')
 app.prepare().then(() => {
-  createServer(handler).listen(80)
+  createServer(handler).listen(3000)
 })
