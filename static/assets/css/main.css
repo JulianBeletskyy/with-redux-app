@@ -70,6 +70,32 @@ pre {
     float: right;
 }
 
+.testimonials-item-wrap {
+    background-color: #fff;
+    border: 15px solid #fff;
+    margin-bottom: 15px;
+    -webkit-box-shadow: 0 0 20px 1px rgba(0,0,0,.1);
+    box-shadow: 0 0 20px 1px rgba(0,0,0,.1);
+}
+
+.testimonials-item-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.testimonials-item-text {
+    padding-top: 10px;
+    color: #828282;
+}
+
+.testimonials-item-name {
+    padding-top: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: bebas_neue,Helvetica,Arial,sans-serif;
+    letter-spacing: 1px;
+}
+
 .btn-plan button,
 .btn-plan span,
 .value-btn button {

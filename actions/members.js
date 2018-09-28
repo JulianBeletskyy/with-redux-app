@@ -68,6 +68,10 @@ export const searchByProfileId = id => dispatch => {
 	})
 }
 
+export const addViewed = id => dispatch => {
+	return get(`user/view/${id}`)
+}
+
 export const getContactsDetails = id => dispatch => {
 	return get(`client/contacts/${id}`, true)
 }

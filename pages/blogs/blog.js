@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
+import Head from 'next/head'
 import Layout from '../../layouts/blogs'
 import { Router } from '../../routes'
 import { connect } from 'react-redux'
-import { getBlog } from '../../actions/ui'
+import { getBlog, sendComment } from '../../actions/ui'
 import { FormGroup, Col, Row } from 'react-bootstrap'
 import TextField from '../../components/inputs/text_field.js'
 import BtnMain from '../../components/buttons/btn_main.js'
 import Textarea from '../../components/inputs/textarea.js'
+import Validator from '../../validate'
+import { API_URL } from '../../config'
 
 class Blog extends Component {
-	static async getInitialProps({query}) {
-	    return {id: query.slug}
-  	}
-
-  	constructor(props) {
-  		super(props)
-  		const { dispatch } = props
-  		dispatch(getBlog(props.id))
+	static async getInitialProps(app) {
+        const res = await fetch(`${API_URL}/blog/${app.query.slug}`)
+        const json = await res.json()
+        return {blog: json.data}
   	}
 
   	printComments = (comment, i) => {
@@ -32,12 +31,18 @@ class Blog extends Component {
 	}
 
   	setComment = () => {
-  		const data = {
-				name: this.name.value,
-				comment: this.comment.value,
-				post_id: this.props.id
-			}
-		console.log(data)
+        const { dispatch, id } = this.props
+        let error = 1
+        error *= Validator.check(this.name.value, ['required'], 'Name')
+        error *= Validator.check(this.comment.value, ['required'], 'Comment')
+        if (error) {
+            const data = {
+                name: this.name.value,
+                comment: this.comment.value,
+                post_id: this.props.id
+            }
+            dispatch(sendComment(data, id))
+        }
   	}
 
 	render() {
@@ -48,6 +53,11 @@ class Blog extends Component {
         }
 		return (
 			<Layout>
+                <Head>
+                    <title>{blog.title}</title>
+                </Head>
+                <h1 className="font-bebas">Blog</h1>
+                <hr />
 				<div>
                     <FormGroup>
                         <h2>{blog.title}</h2>
@@ -57,7 +67,7 @@ class Blog extends Component {
                         <hr />
                     </FormGroup>
                     <FormGroup>
-                        <div dangerouslySetInnerHTML={{__html: html}} />
+                        {<div dangerouslySetInnerHTML={{__html: html}} />}
                     </FormGroup>
                     <hr />
                     <div>
@@ -95,11 +105,4 @@ class Blog extends Component {
 	}
 }
 
-const mapStateToProps = state =>
-    ({
-        blog: state.ui.blog
-    })
-
-export default connect(
-    mapStateToProps
-)(Blog)
+export default connect()(Blog)

@@ -45,6 +45,8 @@ class Blog extends Component {
 		const { list } = this.props.blogs
 		return (
 			<Layout>
+				<h1 className="font-bebas">Blog</h1>
+                <hr />
 				{ list.map((blog, i) => this.printBlogs(blog, i)) }
 			</Layout>
 		)

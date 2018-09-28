@@ -65,7 +65,7 @@ class MemberGallery extends Component {
         	<div className="member-gallery">
 	            <Slider {...settings}>
 	                { this.props.list.map((item, i) => this.printItems(item, i))}
-                    {/*fakeList.map((item, i) => <div key={i}></div>)*/}
+                    { fakeList.map((item, i) => <div key={i}></div>) }
 	            </Slider>
 			</div>
         );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Layout from '../../layouts'
-import { getMember, toggleInterest, toggleFavorite, getContactsDetails } from '../../actions/members'
+import { getMember, toggleInterest, toggleFavorite, getContactsDetails, addViewed } from '../../actions/members'
 import { toggleModal } from '../../actions/ui'
 import { setReceiverToShop } from '../../actions/shop'
 import { Grid, Row, Col } from 'react-bootstrap'
@@ -83,6 +83,46 @@ class Member extends Component {
         dispatch(toggleModal(true, 'message'))
     }
 
+    checkView = () => {
+        const { dispatch, id } = this.props
+
+        let localStorage = window.localStorage
+        let date = new Date();
+        date = date.getTime() / 1000
+        date = date.toFixed(0)
+        let viewed = localStorage.getItem('viewed')
+        if (! viewed) {
+            let data = [{[id]: date}]
+            localStorage.setItem('viewed', JSON.stringify(data))
+            dispatch(addViewed(id))
+        } else {
+            let data = JSON.parse(localStorage.viewed)
+
+            for (let k in data) {
+                if (data[k][id] < date - 60) {
+                    data.splice(k, 1)
+                }
+            }
+
+            let check = data.some((element, index, array) => {
+                if (id in array[index]) {
+                    return true
+                }
+            })
+            
+            if (! check) {
+                data.push({[id]: date})
+                dispatch(addViewed(id))
+            }
+            
+            localStorage.setItem('viewed', JSON.stringify(data))
+        }
+    }
+
+    componentDidMount() {
+        this.checkView()
+    }
+
 	render() {
         const { member, role, modal } = this.props
 		return (
@@ -127,7 +167,7 @@ class Member extends Component {
                                                     <span className="font-bebas fs-18">From: </span>
                                                 </div>
                                                 <div className="col-xs-7">
-                                                    <div>{member.city}, {member.country}</div>
+                                                    <div>{member.city}, {member.state ? `${member.state}, ` : ''} {member.country}</div>
                                                 </div>
                                             </div>
                                             <div className="row">

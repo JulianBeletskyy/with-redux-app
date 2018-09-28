@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BtnMain from '../buttons/btn_main'
 import { FormGroup } from 'react-bootstrap'
+import { toggleModal } from '../../actions/ui'
 
 class MembershipInfo extends Component {
 	toggleModal = () => {
-
+		const { dispatch } = this.props
+		dispatch(toggleModal(true, 'membership'))
 	}
 
     render() {

@@ -12,8 +12,6 @@ class Blog extends Component {
 		            	<div className="bg-white p-15">
 		            		<Row>
 			            		<Col sm={9}>
-		            			 	<h1 className="font-bebas">Blog</h1>
-	                                <hr />
 				            		{ children }
 		                    	</Col>
 		                    	<Col sm={3}>

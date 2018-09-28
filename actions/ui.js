@@ -1,4 +1,4 @@
-import { get, getMyCountry } from '../api'
+import { get, getMyCountry, post } from '../api'
 import * as types from './types.js'
 import { setSignupDataKey, setSignupKey } from './signup'
 import store from '../store'
@@ -15,6 +15,14 @@ export const getBlog = id => dispatch => {
 	return get(`blog/${id}`).then(res => {
 		if (res.data) {
 			dispatch(setUiKey('blog', res.data))
+		}
+	})
+}
+
+export const sendComment = (data, id) => dispatch => {
+	return post(`comments/create`, true, data).then(res => {
+		if (res.data) {
+			dispatch(getBlog(id))
 		}
 	})
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { toggleFavorite } from '../../actions/members'
 import { Router } from '../../routes'
 
-export class MemberPreview extends Component {
+class MemberPreview extends Component {
 	toggleFavorite = value => e => {
 		e.preventDefault()
 		e.stopPropagation()
@@ -33,7 +33,7 @@ export class MemberPreview extends Component {
 	    		                		<strong className="member-preview-info-name">{member.first_name}</strong>
 	    		            		</div>
 	    		                	<div>{`${member.age} years`}</div>
-	    		                	<div className="ellipsis" title={`${member.country}, ${member.city}`}>{`${member.country}, ${member.city}`}</div>
+	    		                	<div className="ellipsis">{`${member.country}, ${member.state ? `${member.state}, ` : ''} ${member.city}`}</div>
 	    		                </div>
 	    	                </div>
 	                        {
@@ -51,11 +51,4 @@ export class MemberPreview extends Component {
     }
 }
 
-const mapStateToProps = state =>
-	({
-	    
-	})
-
-export default connect(
-    mapStateToProps,
-)(MemberPreview)
+export default connect()(MemberPreview)
