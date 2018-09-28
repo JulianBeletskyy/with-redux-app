@@ -9,6 +9,14 @@ export const getMembers = key => dispatch => {
 	})
 }
 
+export const getAllMembers = () => dispatch => {
+	return get(`user/members`).then(res => {
+		if (res.data) {
+			dispatch(setAllMembers(res.data))
+		}
+	})
+}
+
 export const seeMoreMembers = (link, key) => dispatch => {
 	return get(link).then(res => {
 		if (res.data) {
@@ -79,6 +87,12 @@ export const getContactsDetails = id => dispatch => {
 export const setContacts = data =>
 	({
 		type: types.SET_CONTACTS,
+		data,
+	})
+
+export const setAllMembers = data =>
+	({
+		type: types.SET_ALL_MEMBERS,
 		data,
 	})
 

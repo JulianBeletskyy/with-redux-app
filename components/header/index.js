@@ -10,7 +10,7 @@ import Login from '../forms/login'
 import Recovery from '../forms/recovery'
 import { Router } from '../../routes'
 import { getUnreadMessage } from '../../actions/message'
-
+import { setCart } from '../../actions/shop'
 
 class PublicHeader extends Component {
     constructor(props) {
@@ -23,6 +23,19 @@ class PublicHeader extends Component {
         if (token) {
             dispatch(getUnreadMessage())
         }
+    }
+
+    getCart = id => {
+        const data = window.localStorage.getItem(`cart-${id}`);
+        return JSON.parse(data ? data : '[]');
+    }
+
+    countCart = () => {
+        let count = 0
+        for (let prod of this.props.cart) {
+            count += prod.count
+        }
+        return count
     }
 
     showLogIn = () => e => {
@@ -53,9 +66,17 @@ class PublicHeader extends Component {
         Router.pushRoute(link)
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.userId && nextProps.userId !== this.props.userId) {
+            const { dispatch } = this.props
+            dispatch(setCart(this.getCart(nextProps.userId)))
+        }
+    }
+
     render() {
         const { country } = this.props.signup
-        const { token, support, login, recovery, role, unreadMessage } = this.props
+        const { token, support, login, recovery, role, unreadMessage, cart } = this.props
+        console.log(cart)
         return (
             <div>
                 <Navbar className="title" fixedTop collapseOnSelect={true} onToggle={this.setNavExpanded}>
@@ -120,6 +141,7 @@ class PublicHeader extends Component {
                                 (token && role === 'client') && <li role="presentation">
                                                                     <a href="/shop/cart" onClick={this.goTo('/shop/cart')}>
                                                                     <i className="fas fa-shopping-cart"></i></a>
+                                                                    { cart.length ? <span className="badge-message">{this.countCart()}</span> : null }
                                                                 </li>
                                 
                             }
@@ -159,9 +181,11 @@ const mapStateToProps = state =>
         support: state.ui.modals.support,
         login: state.ui.modals.login,
         recovery: state.ui.modals.recovery,
+        userId: state.user.data.id,
         token: state.user.token,
         role: state.user.data.role,
         unreadMessage: state.user.data.unread_message,
+        cart: state.shop.cart,
     })
 
 export default connect(

@@ -66,6 +66,10 @@ export default function members(members = initialState, action = {}) {
             return Object.assign({}, members, {
                 search: action.data
             })
+        case types.SET_ALL_MEMBERS:
+            return Object.assign({}, members, {
+                list: action.data
+            })
         default:
             return members;
     }

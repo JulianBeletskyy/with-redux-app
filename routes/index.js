@@ -6,6 +6,8 @@ routes.add('success-stories/story', '/success-stories/:slug')
 routes.add('blogs', '/blogs')
 routes.add('blogs/blog', '/blogs/:slug')
 
+routes.add('cart', '/shop/cart', 'shop/cart')
+
 routes.add('index', '/activate/:hash')
 
 routes.add('girls', '/girls', '/')
