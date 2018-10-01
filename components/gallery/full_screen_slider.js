@@ -4,6 +4,8 @@ import { toggleModal } from '../../actions/ui'
 import BtnMain from '../buttons/btn_main'
 import Slider from 'react-slick'
 import { confirmAlert } from 'react-confirm-alert'
+import { PHOTO_PRICE } from '../../config'
+import { buyPhoto } from '../../actions/members'
 
 const NextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -37,22 +39,24 @@ const PrevArrow = (props) => {
 
 class FullScreenSlider extends Component {
 	printItems = (item, i) => {
-		return 	<div key={i} className="text-center" style={{position: 'relative'}} id="backdrop">
+		return 	<div key={i} className="text-center position-relative" id="backdrop">
 					<img src={item.src} className="img-responsive full-screen-slider-img" />
 					{
 						this.getButton(item)
-						&& 	<div className="full-screen-slider-button">
+						? 	<div className="full-screen-slider-button">
 								<BtnMain
 			                        type="button"
 			                        bsStyle="success"
 			                        text="Buy photo"
 			                        onClick = {this.buyPhoto(item)} />
 		                    </div>
+                        :   null
 					}	
 				</div>
 	}
 
 	buyPhoto = item => e => {
+        const { credits, dispatch, memberId } = this.props
 		confirmAlert({
             title: '',
             message: 'You can\'t see this photo',
@@ -62,16 +66,16 @@ class FullScreenSlider extends Component {
                 }, {
                     label: 'Use Credits',
                     onClick: () => {
-                        if (this.props.user.data.credits < 3) {
-                            store.dispatch(toggleModal(true, 'credits'))
+                        if (credits < PHOTO_PRICE) {
+                            dispatch(toggleModal(true, 'credits'))
                         } else {
-                            store.dispatch(buyPhoto(item.id, this.props.user.token, this.props.memberId))
+                            dispatch(buyPhoto(item.id, memberId))
                         }
                     }
                 }, {
                     label: 'Upgrade Membership',
                     onClick: () => {
-                        store.dispatch(toggleModal(true, 'plans'))
+                        dispatch(toggleModal(true, 'membership'))
                     }
                 }
             ]
@@ -79,7 +83,8 @@ class FullScreenSlider extends Component {
 	}
 
 	getButton = item => {
-		if (item.private && ! item.purchased && this.props.user.data.membership.view_photo === 'Limited') {
+        const { membership } = this.props
+		if (item.private && ! item.purchased && membership.view_photo === 'Limited') {
 			return true
 		}
 		return false
@@ -93,6 +98,7 @@ class FullScreenSlider extends Component {
 	}
 
 	render() {
+        const { list } = this.props
 		const settings = {
             slidesToShow: 1,
             dots: false,
@@ -110,7 +116,7 @@ class FullScreenSlider extends Component {
 					<div className="container">
 						<div className="wrap-full-screen-list">
 							<Slider {...settings}>
-				                { this.props.list.map((item, i) => this.printItems(item, i))}
+				                { list.map((item, i) => this.printItems(item, i)) }
 				            </Slider>
 			            </div>
 		            </div>
@@ -118,18 +124,13 @@ class FullScreenSlider extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-    return {
-        user: {
-        	token: state.user.token,
-            data: {
-                role: state.user.data.role,
-                membership: state.user.data.membership,
-                credits: state.user.data.credits
-            }
-        }
-    }
-}
+const mapStateToProps = state =>
+    ({
+        token: state.user.token,
+        role: state.user.data.role,
+        membership: state.user.data.membership,
+        credits: state.user.data.credits,
+    })
 
 export default connect(
     mapStateToProps

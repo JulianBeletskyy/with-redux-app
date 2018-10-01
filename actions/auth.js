@@ -17,12 +17,6 @@ export const login = data => dispatch => {
 }
 
 export const logout = () => dispatch => {
-	console.log('logout')
-	//Cookies.remove('token')
-	/*dispatch({
-        type: types.SET_TOKEN,
-        token: false
-    })*/
     dispatch(removeToken())
     return Promise.resolve(true)
 }

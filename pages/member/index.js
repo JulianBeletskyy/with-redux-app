@@ -143,7 +143,7 @@ class Member extends Component {
                                             {
                                                 member.gallery.length
                                                 ?  <div className="form-group">
-                                                        <MemberGallery list={[...member.gallery]} onClick={this.openMemberImages} />
+                                                        <MemberGallery list={[...member.gallery]} onClick={this.openMemberImages} memberId={member.id} />
                                                     </div>
                                                 :   null
                                             }
@@ -251,14 +251,16 @@ class Member extends Component {
                                                 </div>
                                             </div>
                                                 {
-                                                    role !== 'client' &&    <div className="row">
-                                                                                <div className="col-xs-5">
-                                                                                    <span className="font-bebas fs-18">Ethnicity: </span>
-                                                                                </div>
-                                                                                <div className="col-xs-7">
-                                                                                    <div>{member.ethnicity || 'N/A'}</div>
-                                                                                </div>
-                                                                            </div>
+                                                    role !== 'client'   
+                                                    ?   <div className="row">
+                                                            <div className="col-xs-5">
+                                                                <span className="font-bebas fs-18">Ethnicity: </span>
+                                                            </div>
+                                                            <div className="col-xs-7">
+                                                                <div>{member.ethnicity || 'N/A'}</div>
+                                                            </div>
+                                                        </div>
+                                                    :   null
                                                 }
                                             <div className="row">
                                                 <div className="col-xs-5">
@@ -286,7 +288,7 @@ class Member extends Component {
                                             </div>
                                             {
                                                 member.about_children.length
-                                                &&   <div className="row">
+                                                ?   <div className="row">
                                                         <div className="col-xs-5">
                                                             <span className="font-bebas fs-18">About Children: </span>
                                                         </div>
@@ -294,6 +296,7 @@ class Member extends Component {
                                                             <div>{member.about_children.map((item, i) => <div key={i}><span className="text-capitalize">{item.sex}</span> - {this.getAge(item.birth)}</div>)}</div>
                                                         </div>
                                                     </div>
+                                                :   null
                                             }
                                             <div className="row">
                                                 <div className="col-xs-5">
@@ -345,7 +348,7 @@ class Member extends Component {
                                             </div>
                                             {
                                                 member.languages.length
-                                                &&   <div className="row">
+                                                ?   <div className="row">
                                                         <div className="col-xs-5">
                                                             <span className="font-bebas fs-18">Languages: </span>
                                                         </div>
@@ -353,6 +356,7 @@ class Member extends Component {
                                                             <div>{member.languages.map((item, i) => <div key={i}>{item.name} - {item.level_value}</div>)}</div>
                                                         </div>
                                                     </div>
+                                                :   null
                                             }
                                         </Col>
                                         <Col md={4}>
@@ -383,7 +387,7 @@ class Member extends Component {
                                                 </div>*/}
                                                 {
                                                     role === 'client'
-                                                    &&  <div>
+                                                    ?   <div>
                                                             <div className="col-sm-6 col-lg-6 col-md-12">
                                                                 <LinkIcon 
                                                                     text="Share contact details"
@@ -399,6 +403,7 @@ class Member extends Component {
                                                                     icon="fas fa-gift" />
                                                             </div>
                                                         </div>
+                                                    :   null
                                                 }
                                             </div>
                                             <hr />
@@ -410,7 +415,7 @@ class Member extends Component {
                                             <div>{member.like_to_meet}</div>
                                             {
                                                 role === 'client'
-                                                &&   <div>
+                                                ?   <div>
                                                         <h4 className="text-dark-blue"><strong>More about my leisure time</strong></h4>
                                                         <div>{member.leisure_time}</div>
                                                         <h4 className="text-dark-blue"><strong>About my family</strong></h4>
@@ -418,6 +423,7 @@ class Member extends Component {
                                                         <h4 className="text-dark-blue"><strong>My Future Goals</strong></h4>
                                                         <div>{member.future_goals}</div>
                                                     </div>
+                                                :   null
                                             }
                                         </Col>
                                     </Row>

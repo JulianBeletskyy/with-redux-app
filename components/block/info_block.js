@@ -221,7 +221,7 @@ class Info extends Component {
 	                </div>
 	                <div className="col-sm-6">
                         <h4 className="text-dark-blue"><strong>Interests</strong></h4>
-                        {user.interests_value.length ? user.interests_value.join(', ') : null}
+                         {user.interests_value && user.interests_value.length ? user.interests_value.join(', ') : null}
                         <h4 className="text-dark-blue"><strong>More about me</strong></h4>
                         {user.about_me}
                         <h4 className="text-dark-blue"><strong>The one I would like to meet</strong></h4>

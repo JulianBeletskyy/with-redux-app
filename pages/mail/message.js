@@ -209,7 +209,7 @@ class Message extends Component {
         })
     }
 
-    getText = text => text.replace(new RegExp('&nbsp;', 'g'), ' ')
+    getText = text => text ? text.replace(new RegExp('&nbsp;', 'g'), ' ') : text
 
     render() {
         const { type, id, role, message, newMessage } = this.props
