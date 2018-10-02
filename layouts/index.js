@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Head from 'next/head'
 import Header from '../components/header'
+import Footer from '../components/footer'
 import MainModal from '../components/modal'
 import Credits from '../components/forms/credits'
 import Membership from '../components/forms/membership'
@@ -18,7 +19,7 @@ class Layout extends Component {
 		}
 	}
 	render() {
-		const { children, credits, membership } = this.props
+		const { children, credits, membership, country, token } = this.props
 		return (
 			<div>
 				<header>
@@ -27,6 +28,9 @@ class Layout extends Component {
 			    <main className="main-layout">
 			      { children }
 			    </main>
+			    <footer>
+			    	{ !token && country === 'UA' ? null : <Footer /> }
+			    </footer>
 			    <MainModal
                     body={<Credits />}
                     title="Dibs"
@@ -49,7 +53,8 @@ const mapStateToProps = state =>
     ({
         credits: state.ui.modals.credits,
         membership: state.ui.modals.membership,
-        token: state.user.token
+        token: state.user.token,
+        country: state.signup.country,
     })
 
 export default connect(mapStateToProps)(Layout)

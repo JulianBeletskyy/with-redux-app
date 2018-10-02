@@ -2,18 +2,31 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col, FormGroup, Panel } from 'react-bootstrap'
 import Registration from './registration'
-import BtnMain from '../components/buttons/btn_main.js'
-import { setUiKey } from '../actions/ui'
+import BtnMain from '../components/buttons/btn_main'
+import { setUiKey, getStories, toggleModal } from '../actions/ui'
 import { setSignupKey } from '../actions/signup'
+import MemberBlock from '../components/block/member_block'
+import { Router } from '../routes'
+import { getPublicMembers } from '../actions/members'
+import MainModal from '../components/modal'
 
 class Landing extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.elements = {}
+		this.state = {
+			type: 'popular',
+			advantagesFirst: false,
+			advantagesSecond: false,
+		}
+		const { dispatch } = props
+		dispatch(getPublicMembers(this.state.type))
+		dispatch(getStories())
 	}
 
 	getRegistration = () => {
 		const { dispatch } = this.props
+		window.scrollTo(0,0)
 		dispatch(setUiKey('showRegistration', true))
 	}
 
@@ -23,8 +36,97 @@ class Landing extends Component {
 		dispatch(setSignupKey('step', 0))
 	}
 
+	goToMembers = () => e => {
+		Router.pushRoute('/members')
+	}
+
+	goToTestimonials = e => {
+		e.preventDefault()
+		const { dispatch } = this.props
+		window.scrollTo(0,0)
+		dispatch(toggleModal(false, 'testimonials'))
+		Router.pushRoute('/testimonials')
+	}
+
+	toggleMembers = type => e => {
+		const { dispatch } = this.props
+		dispatch(getPublicMembers(type))
+		this.setState({type})
+	}
+
+	openTestimonial = item => e => {
+		const { dispatch } = this.props
+		this.testimonialImg = item.text_img
+		dispatch(toggleModal(true, 'testimonials'))
+	}
+
+	goToTop = () => {
+		window.scrollTo(0,0);
+	}
+
+	getText = text => text.length > 330 ? text.slice(0, 330) + '...' : text
+
+	printStories = (story, i) => {
+		if (i > 2) { return false }
+        const description = story.story.slice(0, 250)
+        return  <div className="landing-story-wrap" key={i} onClick={() => this.goToStory(story.id)}>
+                    <div className="row">
+                        <div className="col-xs-4">
+                            <img src={story.image} alt={story.client_name} className="img-responsive" />
+                        </div>
+                        <div className="col-sm-8">
+                            <h3 className="{style.carouselName}">
+                                <span>{story.client_name}</span>
+                                &nbsp; & &nbsp;
+                                <span>{story.girl_name}</span>
+                            </h3>
+                            <p>{description}...</p>
+                        </div>
+                    </div>
+                </div>
+	}
+
+	printTestimonials = (item, i) => {
+		const imgStyle = {
+            backgroundImage: `url(${item.img})`,
+            height: 120,
+            backgroundPosition: '50%',
+            width: 120,
+            borderRadius: '50%',
+            margin: '0 auto',
+            backgroundSize: 'cover'
+        }
+        if (i === 2) { return false }
+		return	<Col sm={4} key={i}>
+                    <div className="text-center landing-item-testimonial p-15 pointer" onClick={this.openTestimonial(item)}>
+	                    <div style={imgStyle}></div>
+	                    <div className="landing-testimonial-text">{this.getText(item.text)}</div>
+	                    <div className="landing-testimonial-name">{item.name}</div>
+	                </div>
+                </Col>
+	}
+
+	componentDidMount() {
+		window.addEventListener('scroll', e => {
+			const el = document.getElementById('advantages')
+			const btn = document.getElementById('scroll-btn')
+			if (el && el.scrollHeight >= document.documentElement.scrollTop && ! this.state.advantagesFirst) {
+                this.setState({advantagesFirst: true})
+                setTimeout(() => {this.setState({advantagesSecond: true})}, 300)
+            }
+            if (btn && document.documentElement.scrollTop >= 600) {
+            	if (!btn.classList.contains('active')) {
+            		btn.classList.add('active')
+            	}
+            } else if (btn && btn.classList.contains('active')) {
+				btn.classList.remove('active')
+            }
+		})
+	}
+
 	render() {
-		const { showRegistration, step } = this.props
+		const { showRegistration, step, publicList, stories, testimonials, testimonialsModal, country } = this.props
+
 		let col = 6, active = ''
 		if (showRegistration) {
 			col = 12
@@ -69,12 +171,11 @@ class Landing extends Component {
 			                                        <h2 className="text-white text-center">
 			                                            We are not Gods to predict your future but we have something to make you closer to your dream come true.
 			                                            <br />
-			                                            <a className="joinLink" onClick={this.getRegistration} href="javascript:;"> Join Now</a>
+			                                            <a className="landing-link" onClick={this.getRegistration} href="javascript:;"> Join Now</a>
 			                                        </h2>
 			                                   </div>
 			                                   <div className="btn-login text-center">
 			                                        <BtnMain
-			                                            type="button"
 			                                            bsStyle="success"
 			                                            text="Free Sign Up"
 			                                            onClick={this.getRegistration} />
@@ -86,42 +187,193 @@ class Landing extends Component {
 	                    </div>
 	                </div>
 				</div>
+				{
+					!showRegistration && country !== 'UA'
+					? 	<div>
+							<div id="advantages" className="advantWrap">
+								<h2 className="advantTitle">Competitive <span className="underlineText">Advantages</span></h2>
+								<Row>
+									<Col xs={12} sm={4}>
+										<div ref={ref => this.elements.first = ref} className={`advantItem ${this.state.advantagesFirst ? 'slideInUp animated' : ''}`}>
+											<span><i className="fas fa-clipboard-list fa-3x"></i><br />Free registration with full professional service</span>
+										</div>
+									</Col>
+									<Col xs={12} sm={4}>
+										<div ref={ref => this.elements.second = ref} className={`advantItem ${this.state.advantagesFirst ? 'slideInUp animated' : ''}`}>
+											<span><i className="fas fa-clipboard-list fa-3x"></i><br />All letters from ladies are free to read</span>
+										</div>
+									</Col>
+									<Col xs={12} sm={4}>
+										<div ref={ref => this.elements.third = ref} className={`advantItem ${this.state.advantagesFirst ? 'slideInUp animated' : ''}`}>
+											<span><i className="fas fa-clipboard-list fa-3x"></i><br />All ladies' profiles real and verified</span>
+										</div>
+									</Col>
+									<Col xs={12} sm={4}>
+										<div ref={ref => this.elements.forth = ref} className={`advantItem ${this.state.advantagesSecond ? 'slideInUp animated' : ''}`}>
+											<span><i className="fas fa-clipboard-list fa-3x"></i><br />Upgrade your membership and get access to all additional photos and videos of all ladies</span>
+										</div>
+									</Col>
+									<Col xs={12} sm={4}>
+										<div ref={ref => this.elements.fifth = ref} className={`advantItem ${this.state.advantagesSecond ? 'slideInUp animated' : ''}`}>
+											<span><i className="fas fa-clipboard-list fa-3x"></i><br />Verify your profile and get opportunity to share direct contact with ladies</span>
+										</div>
+									</Col>
+									<Col xs={12} sm={4}>
+										<div ref={ref => this.elements.sixth = ref} className={`advantItem ${this.state.advantagesSecond ? 'slideInUp animated' : ''}`}>
+											<span><i className="fas fa-clipboard-list fa-3x"></i><br />You can find the One among hundreds of beautiful Ukrainian brides</span>
+										</div>
+									</Col>
+								</Row>
+							</div>
+							<div className="landing-member-wrap">
+								<h2 className="landing-title"><span className="underlineText">Girls</span></h2>
+								<Grid>
+			                        <div className="pb-50">
+			                            <Row>
+			                                <Col xs={4} className="text-center">
+			                                    <div className="landing-switch-members" onClick={this.toggleMembers('new')}>
+			                                        <span className={this.state.type === 'new' ? 'underlineText' : ''}>New</span>
+			                                    </div>
+			                                </Col>
+			                                <Col xs={4} className="text-center">
+			                                    <div className="landing-switch-members" onClick={this.toggleMembers('popular')}>
+			                                        <span className={this.state.type === 'popular' ? 'underlineText' : ''}>Popular</span>
+			                                    </div>
+			                                </Col>
+			                                <Col xs={4} className="text-center">
+			                                    <div className="landing-switch-members" onClick={this.goToMembers()}>
+			                                        <span>Show more</span>
+			                                    </div>
+			                                </Col>
+			                            </Row>
+			                        </div>
+			                        <MemberBlock 
+			                			list={publicList}
+			                			stars={false}
+			                			more={false}
+			                			onClickItem={this.getRegistration}
+			                			type="viewed" />
+			                    </Grid>
+							</div>
+							<div className="landing-third-wrap">
+			                    <Grid>
+			                        <h2 className="text-center">
+			                            Hundreds of real verified profiles of Ukrainian Ladies! Say YES to the only one among many ladies waiting for fiance's confess:)
+			                            <br />
+			                            <a className="landing-link" onClick={this.goToMembers()} href="/members"> Search Now!</a>
+			                        </h2>
+			                        <FormGroup className="text-center">
+			                            <BtnMain
+			                                bsStyle="success"
+			                                text="Sign Up"
+			                                onClick={this.getRegistration} />
+			                        </FormGroup>
+			                    </Grid>
+			                </div>
+			                <div className="landing-stories-wrap">
+			                    <h2 className="text-center landing-title">
+			                        <span className="underlineText">Success Stories</span>
+			                    </h2>
 
-				<div id="advantages" className="advantWrap">
-					<h2 className="advantTitle">Competitive <span className="underlineText">Advantages</span></h2>
-					<Row>
-						<Col xs={12} sm={4}>
-							<div ref={ref => this.elements.first = ref} className="advantItem">
-								<span><i className="fas fa-clipboard-list fa-3x"></i><br />Free registration with full professional service</span>
-							</div>
-						</Col>
-						<Col xs={12} sm={4}>
-							<div ref={ref => this.elements.second = ref} className="advantItem">
-								<span><i className="fas fa-clipboard-list fa-3x"></i><br />All letters from ladies are free to read</span>
-							</div>
-						</Col>
-						<Col xs={12} sm={4}>
-							<div ref={ref => this.elements.third = ref} className="advantItem">
-								<span><i className="fas fa-clipboard-list fa-3x"></i><br />All ladies' profiles real and verified</span>
-							</div>
-						</Col>
-						<Col xs={12} sm={4}>
-							<div ref={ref => this.elements.forth = ref} className="advantItem">
-								<span><i className="fas fa-clipboard-list fa-3x"></i><br />Upgrade your membership and get access to all additional photos and videos of all ladies</span>
-							</div>
-						</Col>
-						<Col xs={12} sm={4}>
-							<div ref={ref => this.elements.fifth = ref} className="advantItem">
-								<span><i className="fas fa-clipboard-list fa-3x"></i><br />Verify your profile and get opportunity to share direct contact with ladies</span>
-							</div>
-						</Col>
-						<Col xs={12} sm={4}>
-							<div ref={ref => this.elements.sixth = ref} className="advantItem">
-								<span><i className="fas fa-clipboard-list fa-3x"></i><br />You can find the One among hundreds of beautiful Ukrainian brides</span>
-							</div>
-						</Col>
-					</Row>
+			                    <div className="{style.carouselWrap}">
+			                        <Grid>
+			                            <div className="landing-stoies-title text-center p-15 mb-15">
+			                                <span>So many people found their happiness here. Once made a step for luck. Ready to be Next? Read all successful Stories.</span>
+			                            </div>
+			                            <div className="form-group">
+			                                { stories.map((story, i) => this.printStories(story, i)) }
+			                            </div>
+			                            <div className="form-group text-center">
+			                                <BtnMain
+			                                    bsStyle="success"
+			                                    text="More stories"
+			                                    onClick={this.goToStories} />
+			                            </div>
+			                        </Grid>
+			                    </div>
+			                </div>
+			                <div className="landing-hiw-wrap">
+			                    <Grid>
+				                    <h2 className="text-center landing-title">
+				                        How it <span className="underlineText">works?</span>
+				                    </h2>
+			                        <h2 className="text-center">Brick to brick. Step to step. Your choice is made and you feel great:)</h2>
+			                        <h2 className="text-center">Take 3 Easy Steps to Start Your Story:</h2>
+			                        <div className="landing-steps-wrap">
+			                            <Row>
+			                                <Col xs={4}>
+			                                    <div className="landing-step">
+			                                        <div className="text-center">
+			                                            <i className="fas fa-user fa-4x"></i>
+			                                            <div className="landing-step-desc">
+			                                                <span className="font-arial">Create your profile, add photos</span>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </Col>
+			                                <Col xs={4}>
+			                                    <div className="landing-step">
+			                                        <div className="text-center">
+			                                            <i className="fas fa-images fa-4x"></i>
+			                                            <div className="landing-step-desc">
+			                                                <span className="font-arial">Browse our Gallery</span>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </Col>
+			                                <Col xs={4}>
+			                                    <div className="landing-step">
+			                                        <div className="text-center">
+			                                            <i className="fas fa-comments fa-4x"></i>
+			                                            <div className="landing-step-desc">
+			                                                <span className="font-arial">Start Communication</span>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </Col>
+			                            </Row>
+			                        </div>
+			                        <h2 className="text-center">Any questions? Apply to Our Friendly Staff</h2>
+			                    </Grid>
+			                </div>
+			                <div className="landing-testimonials-wrap">
+		                        <h2 className="landing-title"><span className="underlineText">Testimonials</span></h2>
+		                        <Grid>
+		                            <Row className="testimonials-slider form-group">
+		                                { testimonials.map((item, i) => this.printTestimonials(item, i)) }
+		                            </Row>
+		                            <div className="form-group text-center">
+		                                <BtnMain
+		                                    bsStyle="success"
+		                                    text="More testimonials"
+		                                    onClick={this.goToTestimonials} />
+		                            </div>
+		                        </Grid>
+			                </div>
+						</div>
+					: 	null
+				}
+				<div id="scroll-btn" className="scroll-btn-wrap" onClick={this.goToTop}>
+					<div className="wrap-scroll-sides">
+						<div className="scroll-front">
+                        	<span className="scroll-inner">to top</span>
+	                    </div>
+	                    <div className="scroll-back">
+	                        <span className="scroll-inner"><i className="fas fa-chevron-up"></i></span>
+	                    </div>
+					</div>
 				</div>
+
+                <MainModal
+                    body={<div>
+                            <img src={this.testimonialImg} className="img-responsive" alt="" />
+                            <div className="text-center font-bebas pt-15">
+                            	<a href="/testimonials" onClick={this.goToTestimonials}>View All Testimonials</a>
+                        	</div>
+                        </div>}
+                    title="Testimonials"
+                    show={testimonialsModal}
+                    keyModal="testimonials" />
 			</div>
 		)
 	}
@@ -131,6 +383,11 @@ const mapStateToProps = state =>
     ({
         showRegistration: state.ui.showRegistration,
         step: state.signup.step,
+        publicList: state.members.public,
+        stories: state.ui.stories,
+        testimonials: state.ui.testimonials,
+        testimonialsModal: state.ui.modals.testimonials,
+        country: state.signup.country,
     })
 
 export default connect(

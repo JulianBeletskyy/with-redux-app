@@ -76,7 +76,6 @@ class PublicHeader extends Component {
     render() {
         const { country } = this.props.signup
         const { token, support, login, recovery, role, unreadMessage, cart } = this.props
-        console.log(cart)
         return (
             <div>
                 <Navbar className="title" fixedTop collapseOnSelect={true} onToggle={this.setNavExpanded}>

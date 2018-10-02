@@ -3,8 +3,24 @@ import { connect } from 'react-redux'
 import Head from 'next/head'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import Layout from '../../layouts'
+import BtnMain from '../../components/buttons/btn_main'
+import { toggleModal, setUiKey } from '../../actions/ui'
+import { Router } from '../../routes'
 
 class Services extends Component {
+	
+
+	resolveButtons = type => e => {
+		const { dispatch, token } = this.props
+		if (token) {
+			dispatch(toggleModal(true, type))
+		} else {
+			dispatch(setUiKey('showRegistration', true))
+			Router.pushRoute('/')
+			window.scrollTo(0,0)
+		}
+	}
+
 	render() {
 		return (
 			<Layout>
@@ -130,7 +146,10 @@ class Services extends Component {
 	                                </Col>
 	                                <Col xs={12}>
 	                                    <div className="form-group text-center">
-	                                        
+	                                        <BtnMain
+	                                            bsStyle="success"
+	                                            text="Choose membership"
+	                                            onClick={this.resolveButtons('membership')} />
 	                                    </div>
 	                                </Col>
 	                                <Col sm={12} className="form-group">
@@ -179,7 +198,10 @@ class Services extends Component {
 	                                </Col>
 	                                <Col xs={12}>
 	                                    <div className="form-group text-center">
-	                                        
+	                                        <BtnMain
+	                                            bsStyle="success"
+	                                            text="Buy dibs"
+	                                            onClick={this.resolveButtons('credits')} />
 	                                    </div>
 	                                </Col>
 	                            </Row>
@@ -318,7 +340,7 @@ class Services extends Component {
 
 const mapStateToProps = state =>
     ({
-        
+        token: state.user.token,
     })
 
 export default connect(

@@ -109,14 +109,14 @@
 }
 
 .infoItemImg1 {
-	background-image: url('/assets/img/about-2.jpg');
+	background-image: url('/static/assets/img/about-2.jpg');
 	min-height: 350px;
 	background-position: center;
 	background-size: cover;
 }
 
 .infoItemImg2 {
-	background-image: url('/assets/img/about-3.jpg');
+	background-image: url('/static/assets/img/about-3.jpg');
 	min-height: 350px;
 	background-position: center;
 	background-size: cover;

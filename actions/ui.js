@@ -19,10 +19,26 @@ export const getBlog = id => dispatch => {
 	})
 }
 
+export const getPopularBlogs = () => dispatch => {
+	return get(`blog/popular`).then(res => {
+		if (res.data) {
+			dispatch(setUiKey('popularBlogs', res.data))
+		}
+	})
+}
+
 export const sendComment = (data, id) => dispatch => {
 	return post(`comments/create`, true, data).then(res => {
 		if (res.data) {
 			dispatch(getBlog(id))
+		}
+	})
+}
+
+export const getStories = () => dispatch => {
+	return get('stories').then(res => {
+		if (res.data) {
+			dispatch(setUiKey('stories', res.data))
 		}
 	})
 }

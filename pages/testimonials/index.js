@@ -1,13 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row } from 'react-bootstrap'
-import Layout from '../../layouts/blogs'
+import { Row, Col, FormGroup } from 'react-bootstrap'
+import Layout from '../../layouts/stories'
 import BtnMain from '../../components/buttons/btn_main'
+import { toggleModal, setUiKey } from '../../actions/ui'
+import MainModal from '../../components/modal'
+import { Router } from '../../routes'
+import MemberCarouselSmall from '../../components/block/member_carousel_small'
 
 class Testimonials extends Component {
 	constructor(props) {
 		super(props)
 	}
+
+	goToRegistration = () => {
+        const { dispatch } = this.props
+        dispatch(setUiKey('showRegistration', true))
+        Router.pushRoute('/')
+        window.scrollTo(0,0)
+    }
 
 	printTestimonials = (item, i) => {
 		return 	<div key={i} className="testimonials-item-wrap">
@@ -26,7 +37,7 @@ class Testimonials extends Component {
 	                                    <BtnMain
 	                                        bsStyle="success"
 	                                        text="Review"
-	                                        onClick={this.onClick} />
+	                                        onClick={this.onClick(item)} />
 	                                </div>
 	                            </div>
 	                        </div>
@@ -35,21 +46,46 @@ class Testimonials extends Component {
                 </div>
 	}
 
-	onClick = () => {
-
+	onClick = item => () => {
+		const { dispatch } = this.props
+		this.testimonialImg = item.text_img
+		dispatch(toggleModal(true, 'testimonials'))
 	}
 
 	render() {
-		const { testimonials } = this.props
-		console.log(this.props)
+		const { testimonials, testimonialsModal, country, token } = this.props
+		console.log(country)
+		console.log(token)
 		return (
 			<Layout>
-				<h1 className="font-bebas">Testimonials</h1>
-                <p className="text-justify">Dear Members, we are pleased to present you our clients' testimonials. Here you can read experience and appreciation of those who have found their beloved with our help. As well as opinions and suggestions from those who are still in the search of their soulmate.</p>
-                <hr />
-            	<div>
-                   { testimonials.map((item, i) => this.printTestimonials(item, i)) }
-                </div>
+				<Row>
+            		<Col sm={9}>
+						<h1 className="font-bebas">Testimonials</h1>
+		                <p className="text-justify">Dear Members, we are pleased to present you our clients' testimonials. Here you can read experience and appreciation of those who have found their beloved with our help. As well as opinions and suggestions from those who are still in the search of their soulmate.</p>
+		                <hr />
+		            	<div>
+		                   { testimonials.map((item, i) => this.printTestimonials(item, i)) }
+		                </div>
+		                <MainModal
+		                    body={<div><img src={this.testimonialImg} className="img-responsive" alt="" /></div>}
+		                    title="Testimonials"
+		                    show={testimonialsModal}
+		                    keyModal="testimonials" />
+                    </Col>
+                    <Col sm={3}>
+		                <FormGroup className="text-center">
+                            <img className="img-responsive" src="/static/assets/img/offer.png" alt="" />
+                        </FormGroup>
+                        <FormGroup className="text-center">
+                            <BtnMain
+                                bsStyle="success"
+                                text="Sign Up"
+                                onClick={this.goToRegistration} />
+                        </FormGroup>
+                        <hr />
+                        { country === 'UA' && !token ? null : <MemberCarouselSmall /> }		
+                	</Col>
+                </Row>
         	</Layout>
 		)
 	}
@@ -57,7 +93,10 @@ class Testimonials extends Component {
 
 const mapStateToProps = state =>
     ({
-        testimonials: state.ui.testimonials
+        testimonials: state.ui.testimonials,
+        testimonialsModal: state.ui.modals.testimonials,
+        country: state.signup.country,
+        token: state.user.token,
     })
 
 export default connect(

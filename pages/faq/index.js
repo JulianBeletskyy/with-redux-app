@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import Layout from '../../layouts/stories'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, FormGroup } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import {
     Accordion,
     AccordionItem,
     AccordionItemTitle,
     AccordionItemBody,
 } from 'react-accessible-accordion'
-import 'react-accessible-accordion/dist/fancy-example.css'
-import 'react-accessible-accordion/dist/minimal-example.css'
+import { setUiKey } from '../../actions/ui'
+import BtnMain from '../../components/buttons/btn_main'
+import { Router } from '../../routes'
+import MemberCarouselSmall from '../../components/block/member_carousel_small'
 
 class Faq extends Component {
 	constructor(props) {
@@ -66,7 +69,15 @@ class Faq extends Component {
                 </AccordionItem>
     }
 
+    goToRegistration = () => {
+        const { dispatch } = this.props
+        dispatch(setUiKey('showRegistration', true))
+        Router.pushRoute('/')
+        window.scrollTo(0,0)
+    }
+
 	render() {
+        const { token, country } = this.props
 		return (
 			<Layout>
 				<Row>
@@ -79,7 +90,17 @@ class Faq extends Component {
                         </Accordion>
 		            </Col>
 		            <Col sm={3}>
-		                    		
+		                <FormGroup className="text-center">
+                            <img className="img-responsive" src="/static/assets/img/offer.png" alt="" />
+                        </FormGroup>
+                        <FormGroup className="text-center">
+                            <BtnMain
+                                bsStyle="success"
+                                text="Sign Up"
+                                onClick={this.goToRegistration} />
+                        </FormGroup>
+                        <hr />
+                        { country === 'UA' && !token ? null : <MemberCarouselSmall /> }
                 	</Col>
             	</Row>
             </Layout>
@@ -87,4 +108,12 @@ class Faq extends Component {
 	}
 }
 
-export default Faq
+const mapStateToProps = state =>
+({
+    country: state.signup.country,
+    token: state.user.token,
+})
+
+export default connect(
+    mapStateToProps
+)(Faq)

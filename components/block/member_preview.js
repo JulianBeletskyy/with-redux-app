@@ -13,12 +13,18 @@ class MemberPreview extends Component {
 
 	goTo = link => e => {
 		e.preventDefault()
-		Router.pushRoute(link)
+		e.stopPropagation()
+		const { onClickItem = null } = this.props
+		if (onClickItem) {
+			this.props.onClickItem()
+		} else {
+			Router.pushRoute(link)
+		}
 	}
 
     render() {
-    	const { member, stars = true } = this.props
-    	const link = `/member/${member.id.toString()}`
+    	const { member, stars = true, onClickItem = null, token } = this.props
+    	const link = token ?  `/member/${member.id.toString()}` : `/`
         return (
             <div className="form-group">
 	            <div className="member-preview-wrap">
@@ -51,4 +57,9 @@ class MemberPreview extends Component {
     }
 }
 
-export default connect()(MemberPreview)
+const mapStateToProps = state =>
+    ({
+        token: state.user.token,
+    })
+
+export default connect(mapStateToProps)(MemberPreview)

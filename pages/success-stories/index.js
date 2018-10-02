@@ -2,28 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row } from 'react-bootstrap'
 import Layout from '../../layouts/stories'
-import { getStories } from '../../actions/landing'
+import { getStories } from '../../actions/ui'
 import fetch from 'isomorphic-unfetch'
 import { API_URL } from '../../config'
 
 class SuccessStories extends Component {
-	static getInitialProps ({ reduxStore, req }) {
-		console.log(reduxStore)
-		console.log(req)
-		//const isServer = !!req
-
-		return {}
-  	}
 
 	constructor(props) {
 		super(props)
 		const { dispatch } = props
 		dispatch(getStories())
-
 	}
 
 	render() {
-		
 		return (
 			<Layout>
 				<h1 className="font-bebas">Success Stories</h1>

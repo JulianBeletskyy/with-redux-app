@@ -3,9 +3,65 @@ import Head from 'next/head'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import Layout from '../../layouts'
+import Slider from 'react-slick'
+import { toggleModal, setUiKey } from '../../actions/ui'
+import MainModal from '../../components/modal'
+import BtnMain from '../../components/buttons/btn_main'
+import { Router } from '../../routes'
 
 class About extends Component {
+	getText = text => text.length > 330 ? text.slice(0, 330) + '...' : text
+
+	getRegistration = () => {
+		const { dispatch } = this.props
+		dispatch(setUiKey('showRegistration', true))
+		Router.pushRoute('/')
+	}
+
+	openTestimonial = item => e => {
+		const { dispatch } = this.props
+		this.testimonialImg = item.text_img
+		dispatch(toggleModal(true, 'testimonials'))
+	}
+
+	printTestimonials = (item, i) => {
+		const imgStyle = {
+            backgroundImage: `url(${item.img})`,
+            height: 120,
+            backgroundPosition: '50%',
+            width: 120,
+            borderRadius: '50%',
+            margin: '0 auto',
+            backgroundSize: 'cover'
+        }
+
+        return  <Col sm={4} key={i} className="pt-10 pb-10">
+                    <div className="text-center landing-item-testimonial p-15 pointer box-shadow" onClick={this.openTestimonial(item)}>
+	                    <div style={imgStyle}></div>
+	                    <div className="landing-testimonial-text">{this.getText(item.text)}</div>
+	                    <div className="landing-testimonial-name">{item.name}</div>
+	                </div>
+                </Col>
+    }
+
 	render() {
+		const { testimonials, testimonialsModal } = this.props
+		const testimonialsSettings = {
+            slidesToShow: 3,
+            dots: false,
+            infinite: true,
+            autoplay: false,
+            responsive: [
+                {
+                    breakpoint: 1120, 
+                    settings: {slidesToShow: 2}
+                },{
+                    breakpoint: 798, 
+                    settings: {slidesToShow: 1}
+                }
+            ]
+        }
+
 		return (
 			<Layout>
 				<Head>
@@ -61,7 +117,7 @@ class About extends Component {
 	                        <div className="backgroundGrey">
 	                            <Row>
 	                                <Col sm={6}>
-	                                    <img src="/assets/img/about-4.jpg" alt="" className="img-responsive" />
+	                                    <img src="/static/assets/img/about-4.jpg" alt="" className="img-responsive" />
 	                                </Col>
 	                                <Col sm={6}>
 	                                    <div className="works-title works-big-title pt-50 fs-36">
@@ -71,14 +127,19 @@ class About extends Component {
 	                                        Take the first step – complete the questionnaire on this site. Need more information? Please review the How it works and Services pages on our site, and feel free to Contact Us if you have further questions.
 	                                    </div>
 	                                    <div className="form-group">
-	                                        
+	                                        <BtnMain
+	                                            bsStyle="success"
+	                                            text="Free Sign Up"
+	                                            onClick={this.getRegistration} />
 	                                    </div>
 	                                </Col>
 	                            </Row>
 	                        </div>
 
 	                        <div className="pt-50 pb-50 px-15 testimonials-slider">
-	                            
+	                            <Slider {...testimonialsSettings}>
+	                                { testimonials.map((item, i) => this.printTestimonials(item, i)) }
+	                            </Slider>
 	                        </div>
 	                        <div className="lastPart">
 	                            <h4>SO WHAT’S NEXT?</h4>
@@ -88,6 +149,11 @@ class About extends Component {
 		                </div>
 		            </Grid>
 	            </div>
+	            <MainModal
+                    body={<div><img src={this.testimonialImg} className="img-responsive" alt="" /></div>}
+                    title="Testimonials"
+                    show={testimonialsModal}
+                    keyModal="testimonials" />
 			</Layout>
 		)
 	}
@@ -95,7 +161,8 @@ class About extends Component {
 
 const mapStateToProps = state =>
     ({
-        
+        testimonials: state.ui.testimonials,
+        testimonialsModal: state.ui.modals.testimonials,
     })
 
 export default connect(

@@ -1,12 +1,64 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
+import { Grid, Row, Col, FormGroup, Panel } from 'react-bootstrap'
 import Layout from '../../layouts'
+import { Router } from '../../routes'
+import { getPublicMembers } from '../../actions/members'
+import MembersCarousel from '../../components/block/members_carousel'
+import Registration from '../../components/registration'
+import { setUiKey } from '../../actions/ui'
 
 class Works extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            type: 'popular'
+        }
+        const { dispatch } = props
+        dispatch(getPublicMembers(this.state.type))
+    }
+
+    toggleMembers = type => e => {
+        const { dispatch } = this.props
+        dispatch(getPublicMembers(type))
+        this.setState({type})
+    }
+
+    getText = text => text.length > 330 ? text.slice(0, 330) + '...' : text
+
+    printTestimonials = (item, i) => {
+        if (i === 2) { return false }
+        const imgStyle = {
+            backgroundImage: `url(${item.img})`,
+            height: 120,
+            backgroundPosition: '50%',
+            width: 120,
+            borderRadius: '50%',
+            margin: '0 auto',
+            backgroundSize: 'cover'
+        }
+        return  <Col sm={4} key={i}>
+                    <div className="text-center landing-item-testimonial p-15 box-shadow">
+                        <div style={imgStyle}></div>
+                        <div className="landing-testimonial-text">{this.getText(item.text)}</div>
+                        <div className="landing-testimonial-name">{item.name}</div>
+                    </div>
+                </Col>
+    }
+
+    goToMembers = e => {
+        e.preventDefault()
+        Router.pushRoute('/members')
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(setUiKey('showRegistration', true))
+    }
 
 	render() {
         const type = 'new'
+        const { testimonials, publicList, showRegistration, step } = this.props
 		return (
             <Layout>
         		<div className="pt-100">
@@ -136,31 +188,43 @@ class Works extends Component {
                             
                             <div className="works-member-block clearfix">
                                 <div className="clearfix pt-15">
-                                    {/* this.props.services.testimonials.list[0].list.map((item, i) => this.printTestimonials(item, i)) */}
+                                    { testimonials.map((item, i) => this.printTestimonials(item, i)) }
                                 </div>
                                 <div className="col-sm-12 clearfix pv-40">
                                     <div className="form-group">
                                         <Row>
                                             <Col xs={4} className="text-center">
-                                                <div className="member-switch" onClick={() => this.toggleMembers('new')}>
-                                                    <span className={type === 'new' ? 'underline-text' : ''}>New</span>
+                                                <div className="member-switch" onClick={this.toggleMembers('new')}>
+                                                    <span className={this.state.type === 'new' ? 'underline-text' : ''}>New</span>
                                                 </div>
                                             </Col>
                                             <Col xs={4} className="text-center">
-                                                <div className="member-switch" onClick={() => this.toggleMembers('popular')}>
-                                                    <span className={type === 'popular' ? 'underline-text' : ''}>Popular</span>
+                                                <div className="member-switch" onClick={this.toggleMembers('popular')}>
+                                                    <span className={this.state.type === 'popular' ? 'underline-text' : ''}>Popular</span>
                                                 </div>
                                             </Col>
                                             <Col xs={4} className="text-center">
-                                                <div className="member-switch" onClick={() => history.push('/girls')}>
+                                                <a href="/members" className="member-switch" onClick={this.goToMembers}>
                                                     <span>Show more</span>
-                                                </div>
+                                                </a>
                                             </Col>
                                         </Row>
                                     </div>
+                                    <MembersCarousel items={publicList} />
                                 </div>
                             </div>
-                            
+                                <Panel bsClass="headerPanel panel">
+                                    <Panel.Heading>
+                                        <h3 className="title">
+                                            <i className="fas fa-address-card"></i>
+                                            &nbsp;
+                                            Free Sign Up
+                                        </h3>
+                                    </Panel.Heading>
+                                    <Panel.Body>
+                                        <Registration />
+                                    </Panel.Body>
+                                </Panel>
                             <hr />
                             <div className="color-888 fs-12">
                                 Disclaimer:<br />
@@ -176,7 +240,11 @@ class Works extends Component {
 
 const mapStateToProps = state =>
     ({
-        
+        testimonials: state.ui.testimonials,
+        publicList: state.members.public,
+        token: state.user.token,
+        showRegistration: state.ui.showRegistration,
+        step: state.signup.step,
     })
 
 export default connect(

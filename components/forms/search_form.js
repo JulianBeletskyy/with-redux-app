@@ -5,7 +5,7 @@ import { getNumArray, getArray } from '../../utils'
 import { getOptions, setAlert } from '../../actions/ui'
 import SelectField from '../inputs/select_field'
 import BtnMain from '../buttons/btn_main'
-import { getSearch } from '../../actions/members'
+import { getSearch, getPublicSearch } from '../../actions/members'
 
 class SearchForm extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class SearchForm extends Component {
     }
 
     getSearch = () => {
-    	const { dispatch } = this.props
+    	const { dispatch, publicPage = false } = this.props
     	if (this.search.match.from.value > this.search.match.to.value && this.search.match.to.value > 0) {
             dispatch(setAlert('Match is incorrect', 'error'))
             return
@@ -31,8 +31,11 @@ class SearchForm extends Component {
             children: this.search.children.value,
             hair_color_id: this.search.hair_color.value
         }
-        console.log(data)
-        dispatch(getSearch(data))
+        if (publicPage) {
+            dispatch(getPublicSearch(data))
+        } else {
+            dispatch(getSearch(data))
+        }
     }
 
     render() {

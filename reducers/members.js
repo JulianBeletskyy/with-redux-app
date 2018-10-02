@@ -27,7 +27,8 @@ const initialState = {
     contacts: {
         favorite: [],
         interest: [],
-    }
+    },
+    public: [],
 }
 
 export default function members(members = initialState, action = {}) {
@@ -69,6 +70,10 @@ export default function members(members = initialState, action = {}) {
         case types.SET_ALL_MEMBERS:
             return Object.assign({}, members, {
                 list: action.data
+            })
+        case types.SET_PUBLIC_MEMBERS:
+            return Object.assign({}, members, {
+                public: action.data
             })
         default:
             return members;

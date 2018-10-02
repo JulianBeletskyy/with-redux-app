@@ -17,6 +17,15 @@ export const getAllMembers = () => dispatch => {
 	})
 }
 
+export const getPublicMembers = type => dispatch => {
+	const link = type ? `members/${type}` : `members`
+	return get(link).then(res => {
+		if (res.data) {
+			dispatch(setPublicMembers(res.data))
+		}
+	})
+}
+
 export const seeMoreMembers = (link, key) => dispatch => {
 	return get(link).then(res => {
 		if (res.data) {
@@ -76,6 +85,14 @@ export const searchByProfileId = id => dispatch => {
 	})
 }
 
+export const getPublicSearch = data => dispatch => {
+	return post(`search`, false, data).then(res => {
+		if (res.data) {
+			dispatch(setPublicMembers(res.data))
+		}
+	})
+}
+
 export const addViewed = id => dispatch => {
 	return get(`user/view/${id}`)
 }
@@ -108,6 +125,12 @@ export const setMember = data =>
 	({
 		type: types.SET_MEMBER,
 		data,
+	})
+
+export const setPublicMembers = data =>
+	({
+		type: types.SET_PUBLIC_MEMBERS,
+		data
 	})
 
 export const addMemebers = (data, key) =>
