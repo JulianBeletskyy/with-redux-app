@@ -5,7 +5,7 @@ import PrivateLayout from '../../layouts/private'
 import Textarea from '../../components/inputs/textarea'
 import BtnMain from '../../components/buttons/btn_main'
 import UploadDropdown from '../../components/inputs/upload_dropdown'
-import { getMessage, saveDraft, sendMessage, setSendingMessage, buyMessage, showAttach, buyAttach, setBuyingAttach } from '../../actions/message'
+import { getMessage, saveDraft, sendMessage, setSendingMessage, buyMessage, showAttach, buyAttach, setBuyingAttach, clearAttachAll } from '../../actions/message'
 import { Router } from '../../routes'
 import Loader from '../../components/loader'
 import Validator from '../../validate'
@@ -207,6 +207,11 @@ class Message extends Component {
                 })
             }
         })
+    }
+
+    componentWillUnmount() {
+        const { dispatch } = this.props
+        dispatch(clearAttachAll())
     }
 
     getText = text => text ? text.replace(new RegExp('&nbsp;', 'g'), ' ') : text

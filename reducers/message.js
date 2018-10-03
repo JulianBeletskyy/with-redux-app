@@ -45,6 +45,11 @@ const message = (message = initialState, action = {}) => {
             return Object.assign({}, message, {
                 attach: message.attach.filter((item, i) => i !== action.key)
             })
+        case types.CLEAR_ATTACH_ALL:
+            return Object.assign({}, message, {
+                attach: [],
+                draftAttach: [],
+            })
         case types.SET_MESSAGES:
             return Object.assign({}, message, {
                 [action.key]: action.data

@@ -3,8 +3,8 @@ import * as types from './types.js'
 import { setSignupDataKey, setSignupKey } from './signup'
 import store from '../store'
 
-export const getBlogs = () => dispatch => {
-	return get('blog').then(res => {
+export const getBlogs = (link = '') => dispatch => {
+	return get(`blog${link}`).then(res => {
 		if (res.data) {
 			dispatch(setBlogs(res.data))
 		}
@@ -39,6 +39,14 @@ export const getStories = () => dispatch => {
 	return get('stories').then(res => {
 		if (res.data) {
 			dispatch(setUiKey('stories', res.data))
+		}
+	})
+}
+
+export const getStory = id => dispatch => {
+	return get(`stories/${id}`).then(res => {
+		if (res.data) {
+			dispatch(setUiKey('story', res.data))
 		}
 	})
 }

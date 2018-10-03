@@ -27,6 +27,28 @@
     font-size: 16px;
 }
 
+.pagination-wrap {
+    text-align: center;
+}
+
+.pagination-item {
+    padding: 5px;
+    text-align: center;
+    font-size: 18px;
+    font-family: bebas_neue,Helvetica,Arial,sans-serif;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 0 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.pagination-item:hover,
+.pagination-item.active {
+    background-color: #27c2d3;
+    color: #fff;
+}
+
 .navbar-default {
     width: 100%;
     margin-bottom: 20px;
@@ -47,6 +69,49 @@
 .navBar > li {
     margin-right: 15px;
     margin-left: 15px;
+}
+
+.story-list-img {
+    transition: transform .4s ease;
+}
+
+.story-list-item {
+    margin-bottom: 15px;
+}
+
+.story-list-img-wrap {
+    overflow: hidden;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.story-list-names {
+    font-family: "bebas_neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: color .3s;
+}
+
+.story-list-story {
+    color: #828282;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.story-list-item:hover .story-list-img {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-filter: brightness(140%);
+    filter: brightness(140%);
+}
+
+.story-list-item:hover .story-list-names {
+    color: #27c2d3;
 }
 
 .navbarDefault .navBar > li > a {
@@ -630,6 +695,11 @@ pre {
 .landing-link {
     color: rgb(39, 194, 211);
     text-decoration: underline;
+}
+
+.landing-link-search,
+.landing-link-search:hover {
+    color: rgb(39, 194, 211);
 }
 
 .landing-link:hover {
@@ -1335,6 +1405,10 @@ a.member-switch {
     top: 0px;
 }
 
+.wrap-fullscreen-preview video {
+    max-width: 600px;
+}
+
 .gallery-item-info {
     position: absolute;
     bottom: 8px;
@@ -1929,6 +2003,30 @@ input[value=girl]:checked + .fa-venus {
 .button:hover {
     background-color: #279faa;
     color: #fff;
+}
+
+.button.outline {
+    background-color: #fff;
+    color: #27c2d3;
+    border: 1px solid #27c2d3;
+}
+
+.button.outline:hover {
+    background-color: #279faa;
+    color: #fff;
+}
+
+.story-list-header {
+    
+}
+
+.story-list-header h1 {
+    font-family: bebas_neue,Helvetica,Arial,sans-serif;
+    letter-spacing: 3px;
+    z-index: 1;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .advantWrap {

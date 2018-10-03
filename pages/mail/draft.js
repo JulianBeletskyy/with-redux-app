@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Layout from '../../layouts'
 import PrivateLayout from '../../layouts/private'
-import { getMessage, addAttachMessage, addAttachDraft, saveDraft, sendMessage, setSendingMessage, buyMessage, removeDraft } from '../../actions/message'
+import { getMessage, addAttachMessage, addAttachDraft, saveDraft, sendMessage, setSendingMessage, buyMessage, removeDraft, clearAttachAll } from '../../actions/message'
 import { Router } from '../../routes'
 import Textarea from '../../components/inputs/textarea'
 import FullScreenPreview from '../../components/gallery/full_screen_preview'
@@ -11,6 +11,7 @@ import BtnMain from '../../components/buttons/btn_main'
 import { LETTER_PRICE, PHOTO_PRICE } from '../../config'
 import { setActiveTab, toggleModal } from '../../actions/ui'
 import { confirmAlert } from 'react-confirm-alert'
+import Loader from '../../components/loader'
 
 class Draft extends Component {
     static async getInitialProps({query}) {
@@ -132,58 +133,70 @@ class Draft extends Component {
         })
     }
 
+    componentWillUnmount() {
+        const { dispatch } = this.props
+        dispatch(clearAttachAll())
+    }
+
     render() {
-    	const { message, draftAttach } = this.props
+    	const { message, draftAttach, id } = this.props
         return (
             <Layout>
             	<PrivateLayout>
-            		<div className="pt-15">
-                        <div className="font-bebas form-group">
-                            <a className="font-bebas" href={`/mail/draft`} onClick={this.goTo(`/mail/draft`)}><i className="fas fa-chevron-left"></i> Back to mail</a>
+                {
+                    message.id === id * 1
+                    ?   <div>
+                           <div className="pt-15">
+                                <div className="font-bebas form-group">
+                                    <a className="font-bebas" href={`/mail/draft`} onClick={this.goTo(`/mail/draft`)}><i className="fas fa-chevron-left"></i> Back to mail</a>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <Textarea
+                                    inputRef={ref => { this.message = ref }}
+                                    value={message.original}
+                                    placeholder="Message"
+                                    label={true} />
+                            </div>
+                            {
+                                draftAttach.length
+                                    ?   <div className="row">
+                                            {   draftAttach.map((item, key) => {
+                                                    return  <div key={key} className="col-xs-6">
+                                                                <div className="attachmentWrap">
+                                                                {
+                                                                    <img onClick={this.showPhoto(item)} className="img-responsive pointer" src={this.getSrc(item)} alt="" />
+                                                                }
+                                                                </div>
+                                                            </div>
+                                                })
+                                            }
+                                        </div>
+                                    :   null
+                            }
+                            <div className="form-group">
+                                <BtnMain
+                                    bsStyle="success"
+                                    text="Send"
+                                    onClick={this.send} />
+                                &nbsp;
+                                <BtnMain
+                                    bsStyle="success"
+                                    onClick={this.save}
+                                    text="Save message" />
+                                &nbsp;
+                                <BtnMain
+                                    bsStyle="success"
+                                    onClick={this.remove}
+                                    text="Remove message" />
+                            </div>
+                            <div className="form-group">
+                                <UploadDropdown type="draft" />
+                            </div> 
                         </div>
-                    </div>
-                    <div className="form-group">
-	                	<Textarea
-                            inputRef={ref => { this.message = ref }}
-                            value={message.original}
-                            placeholder="Message"
-                            label={true} />
-	                </div>
-	                {
-	                	draftAttach.length
-                            ?  	<div className="row">
-                            		{	draftAttach.map((item, key) => {
-		                                    return  <div key={key} className="col-xs-6">
-		                                                <div className="attachmentWrap">
-		                                                {
-		                                                	<img onClick={this.showPhoto(item)} className="img-responsive pointer" src={this.getSrc(item)} alt="" />
-		                                                }
-		                                                </div>
-		                                            </div>
-                               			})
-                                	}
-                        		</div>
-                            : 	null
-	                }
-	                <div className="form-group">
-	                	<BtnMain
-                            bsStyle="success"
-                            text="Send"
-                            onClick={this.send} />
-                        &nbsp;
-                        <BtnMain
-                            bsStyle="success"
-                            onClick={this.save}
-                            text="Save message" />
-                        &nbsp;
-                        <BtnMain
-                            bsStyle="success"
-                            onClick={this.remove}
-                            text="Remove message" />
-	                </div>
-	                <div className="form-group">
-	                	<UploadDropdown type="draft" />
-                	</div>
+                    :   <Loader />
+                }
+            		
 	                <FullScreenPreview src={this.state.src} show={this.state.show} onClose={this.closePreview} />
             	</PrivateLayout>
         	</Layout>

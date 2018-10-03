@@ -4,13 +4,9 @@ import { getBlogs } from '../../actions/ui'
 import { connect } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import { Router } from '../../routes'
+import Pagination from '../../components/pagination'
 
 class Blog extends Component {
-	constructor(props) {
-		super(props)
-		const { dispatch } = props
-		dispatch(getBlogs())
-	}
 
 	goToBlog = id => e => {
 		Router.pushRoute(`/blogs/${id}`)
@@ -41,13 +37,24 @@ class Blog extends Component {
 				</div>
 	}
 
+	changePage = page => e => {
+		const { dispatch } = this.props
+		dispatch(getBlogs(`?page=${page}`))
+	}
+
+	componentDidMount() {
+		const { dispatch } = this.props
+		dispatch(getBlogs())
+	}
+
 	render() {
-		const { list } = this.props.blogs
+		const { list, current_page, total } = this.props.blogs
 		return (
 			<Layout>
         		<h1 className="font-bebas">Blog</h1>
                 <hr />
 				{ list.map((blog, i) => this.printBlogs(blog, i)) }
+				<Pagination onClick={this.changePage} total={total} current={current_page} />
 			</Layout>
 		)
 	}

@@ -13,6 +13,7 @@ const initialState = {
     },
     popularBlogs: [],
     stories: [],
+    story: {},
     testimonials: [
         {
             text: "Hello! I went to Ukraine to meet my lady in the springtime and it was great. I landed and my translator Marina met me at the airport, and helped me with everything the entire trip. She was great. I got to meet my lady and spend time with her. We seen the city and other cities all over Ukraine. We got to eat at many places trying many new foods all are delicious. All the people are helpful and very friendly. To anyone thinking of going I highly recommend it. It was an experience I will never forget. Duncan from Canada.",

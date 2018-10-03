@@ -12,10 +12,11 @@ import { setUiKey } from '../../actions/ui'
 import BtnMain from '../../components/buttons/btn_main'
 import { Router } from '../../routes'
 import MemberCarouselSmall from '../../components/block/member_carousel_small'
+import TextField from '../../components/inputs/text_field'
 
 class Faq extends Component {
-	constructor(props) {
-		super(props)
+	constructor() {
+		super()
 		this.list = [
             {
                 'question': 'How does the agency work?', 
@@ -54,6 +55,10 @@ class Faq extends Component {
                 'question': 'Have more questions?',
                 'answer': 'Apply to our support team to get an answer to any questions you may have.'
             }]
+
+        this.state = {
+            list: this.list
+        }
 	}
 
 	printAccordion = (item, i) => {
@@ -76,6 +81,10 @@ class Faq extends Component {
         window.scrollTo(0,0)
     }
 
+    handleSearch = val => {
+        this.setState({list: this.list.filter(item => item.question.toLowerCase().indexOf(val.toLowerCase()) + 1)})
+    }
+
 	render() {
         const { token, country } = this.props
 		return (
@@ -83,10 +92,15 @@ class Faq extends Component {
 				<Row>
             		<Col sm={9}>
 						<h1 className="font-bebas">FAQ</h1>
-			            <p className="text-justify">Another concept car that caught attention in Frankfurt was the Mercedes Intelligent Aerodynamic Automobile. A one-off showcase of the brand’s aerodynamic prowess, it boasts a drag coefficient of just 0.19. To accomplish this unprecedented level of slipperiness, Mercedes has developed a dynamic, adaptable body structure that literally changes shape with the push of a button.</p>
 			            <hr />
+                        <FormGroup>
+                            <TextField
+                                placeholder="Search"
+                                onChange={this.handleSearch}
+                                inputRef={ref => { this.search = ref }} />
+                        </FormGroup>
 			            <Accordion>
-                            { this.list.map((item, i) => this.printAccordion(item, i)) }
+                            { this.state.list.map((item, i) => this.printAccordion(item, i)) }
                         </Accordion>
 		            </Col>
 		            <Col sm={3}>
@@ -109,10 +123,10 @@ class Faq extends Component {
 }
 
 const mapStateToProps = state =>
-({
-    country: state.signup.country,
-    token: state.user.token,
-})
+    ({
+        country: state.signup.country,
+        token: state.user.token,
+    })
 
 export default connect(
     mapStateToProps

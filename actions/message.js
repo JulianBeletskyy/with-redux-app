@@ -79,7 +79,11 @@ export const removeMessage = (id, type) => dispatch => {
 }
 
 export const removeMessagePermanent = (id, type) => dispatch => {
-	return remove(`user/message/${id}/removepermanent`)
+	return remove(`user/message/${id}/removepermanent`, true).then(res => {
+		if (res.data) {
+			dispatch(getMail(type))
+		}
+	})
 }
 
 export const restoreMessage = (id, type) => dispatch => {
@@ -189,4 +193,9 @@ export const clearAttachMessage = key =>
 	({
 		type: types.CLEAR_ATTACH_MESSAGE,
 		key,
+	})
+
+export const clearAttachAll = () =>
+	({
+		type: types.CLEAR_ATTACH_ALL
 	})

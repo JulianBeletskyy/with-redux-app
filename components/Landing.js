@@ -189,7 +189,7 @@ class Landing extends Component {
 	                </div>
 				</div>
 				{
-					!showRegistration && country !== 'UA'
+					!showRegistration && country !== 'qwe'
 					? 	<div>
 							<div id="advantages" className="advantWrap">
 								<h2 className="advantTitle">Competitive <span className="underlineText">Advantages</span></h2>
@@ -261,7 +261,7 @@ class Landing extends Component {
 			                        <h2 className="text-center">
 			                            Hundreds of real verified profiles of Ukrainian Ladies! Say YES to the only one among many ladies waiting for fiance's confess:)
 			                            <br />
-			                            <a className="landing-link" onClick={this.goToMembers()} href="/members"> Search Now!</a>
+			                            <a className="landing-link-search" onClick={this.goToMembers()} href="/members"> Search Now!</a>
 			                        </h2>
 			                        <FormGroup className="text-center">
 			                            <BtnMain
