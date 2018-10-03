@@ -16,6 +16,7 @@ class VideoBlock extends Component {
     }
 
     showVideo = video => e => {
+        console.log(video)
     	this.setState({video, show: true})
     }
 
@@ -26,7 +27,7 @@ class VideoBlock extends Component {
     printVideo = (video, i) => {
     	const colorClass = video.private ? 'danger' : 'success'
     	const text = video.private ? 'private' : 'public'
-
+        console.log(video)
         return 	<div key={i} className="video-block-item">
         			<video className="video-block-video" height="200" src={video.video}></video>
 		                <span className="video-item-icon" onClick={this.showVideo(video.video)}>

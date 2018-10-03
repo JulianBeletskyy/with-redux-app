@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { addAttachMessage, clearAttachMessage } from '../../actions/message'
+import { addAttachMessage, clearAttachMessage, addAttachDraft, clearAttachDraft } from '../../actions/message'
 import { getUserGallery } from '../../actions/user'
 import { toggleModal } from '../../actions/ui'
 import MainModal from '../modal'
@@ -31,23 +31,38 @@ export class UploadDropdown extends Component {
 
 	onChange = ({target: {files}}) => {
 		if (files) {
-			const { dispatch } = this.props
+			const { dispatch, type = false } = this.props
 			dispatch(addAttachMessage(files))
 			this.setState({active: ! this.state.active})
+            if (type === 'draft') {
+                for (let file of files) {
+                    const reader = new FileReader()
+                        reader.readAsDataURL(file)
+                        reader.onload = () => {
+                            dispatch(addAttachDraft([reader.result]))
+                    }
+                }
+            }
 		}
 	}
 
 	chooseFromGallery = item => e => {
-		const { dispatch } = this.props
+		const { dispatch, type = false } = this.props
 		dispatch(addAttachMessage(item))
+        if (type === 'draft') {
+            dispatch(addAttachDraft(item))
+        }
 		dispatch(toggleModal(false, 'gallery'))
 		this.setState({active: ! this.state.active})
 	}
 
     clearAttach = i => e => {
         e.stopPropagation()
-        const { dispatch } = this.props
+        const { dispatch, type = false } = this.props
         dispatch(clearAttachMessage(i))
+        if (type === 'draft') {
+            dispatch(clearAttachDraft(i))
+        }
     }
 
     render() {

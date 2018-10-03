@@ -20,8 +20,7 @@ class Landing extends Component {
 			advantagesSecond: false,
 		}
 		const { dispatch } = props
-		dispatch(getPublicMembers(this.state.type))
-		dispatch(getStories())
+		
 	}
 
 	getRegistration = () => {
@@ -107,6 +106,10 @@ class Landing extends Component {
 	}
 
 	componentDidMount() {
+		const { dispatch } = this.props
+		dispatch(getPublicMembers(this.state.type))
+		dispatch(getStories())
+
 		window.addEventListener('scroll', e => {
 			const el = document.getElementById('advantages')
 			const btn = document.getElementById('scroll-btn')

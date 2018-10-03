@@ -53,6 +53,7 @@ class VideoSlider extends Component {
     }
 
     showVideo = video => e => {
+        console.log(video)
     	const { dispatch, membership, credits, memberId } = this.props
     	
 		if (video.private && ! video.purchased && membership.view_video === 'Limited') {
@@ -93,12 +94,13 @@ class VideoSlider extends Component {
             prevArrow: <PrevArrow />,
             ...this.props.settings
         };
+        const arrayLength = video.length <= 3 ? 3 - video.length : 0
+        const fakeList = Array.apply(null, Array(arrayLength))
 
         return (
-        	
             <Slider {...settings}>
                 { video.map((video, i) => this.printVideo(video, i)) }
-                {/*fakeList.map((item, i) => <div key={i}></div>)*/}
+                { fakeList.map((item, i) => <div key={i}></div>) }
             </Slider>
         );
     }

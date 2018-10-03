@@ -2544,6 +2544,12 @@ input[value=girl]:checked + .fa-venus {
 	opacity: 0.8;
 }
 
+@media (max-width: 768px) {
+    .wrapRegistration {
+        width: 100%;
+    }
+}
+
 @media(max-width: 520px) {
 	.credits-table {
 		font-size: 12px;

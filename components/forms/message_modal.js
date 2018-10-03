@@ -5,7 +5,7 @@ import BtnMain from '../buttons/btn_main'
 import Textarea from '../inputs/textarea'
 import Validator from '../../validate'
 import UploadDropdown from '../inputs/upload_dropdown'
-import { sendMessage, setSendingMessage, buyMessage } from '../../actions/message'
+import { sendMessage, setSendingMessage, buyMessage, saveDraft } from '../../actions/message'
 import { setActiveTab, toggleModal } from '../../actions/ui'
 import { Router } from '../../routes'
 import { LETTER_PRICE, PHOTO_PRICE } from '../../config'
@@ -45,6 +45,25 @@ export class MessageModal extends Component {
                 }
             ]
         })
+    }
+
+    saveDraft = () => {
+        let error = 1
+        error *= Validator.check(this.message.value, ['required'], 'Message')
+        if (error) {
+            const { dispatch, attach, newMessage } = this.props
+            const data = {
+                original: this.message.value,
+                receiver_id: this.props.memberId,
+                attachment: attach.map(item => item.src ? item.src : item)
+            }
+            dispatch(saveDraft(data)).then(res => {
+                if (res) {
+                    dispatch(toggleModal(false, 'message'))
+                    Router.pushRoute(`/mail/draft`)
+                }
+            })
+        }
     }
 
 	send = () => {

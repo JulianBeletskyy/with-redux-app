@@ -57,6 +57,7 @@ export const getMessage = (id, key) => dispatch => {
 		if (res.data) {
 			dispatch(setMessage(res.data))
 			dispatch(getUnreadMessage())
+			return true
 		}
 	})
 }
@@ -100,7 +101,7 @@ export const saveDraft = data => dispatch => {
     formData.append('original', data.original)
     formData.append('receiver_id', data.receiver_id)
 
-	return message(`user/message/draft${data.id ? `/${id}` : ''}`, true, formData).then(res => {
+	return message(`user/message/draft${data.id ? `/${data.id}` : ''}`, true, formData).then(res => {
 		if (res.data) {
 			return true
 		}
@@ -111,6 +112,7 @@ export const removeDraft = id => dispatch => {
 	return remove(`user/message/draft/${id}`, true).then(res => {
 		if (res.data) {
 			dispatch(getMail('draft'))
+			return true
 		}
 	})
 }
@@ -169,6 +171,18 @@ export const addAttachMessage = data =>
 	({
 		type: types.ADD_ATTACH_MESSAGE,
 		data,
+	})
+
+export const addAttachDraft = data =>
+	({
+		type: types.ADD_ATTACH_DRAFT,
+		data,
+	})
+
+export const clearAttachDraft = key =>
+	({
+		type: types.CLEAR_ATTACH_DRAFT,
+		key,
 	})
 
 export const clearAttachMessage = key =>

@@ -19,7 +19,7 @@ class PublicHeader extends Component {
             dropdown: false
         }
         const { dispatch, token } = props
-        dispatch(MyCountry())
+        
         if (token) {
             dispatch(getUnreadMessage())
         }
@@ -73,6 +73,11 @@ class PublicHeader extends Component {
         }
     }
 
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(MyCountry())
+    }
+
     render() {
         const { country } = this.props.signup
         const { token, support, login, recovery, role, unreadMessage, cart } = this.props
@@ -104,9 +109,14 @@ class PublicHeader extends Component {
                             }
                             { token && <li role="presentation"><a href="/profile/info" onClick={this.goTo('/profile/info')}>My Profile</a></li> }
 
-                            { (country !== 'UA' || (token && role === 'client')) && <li role="presentation"><a href="/girls" onClick={this.goTo('/girls')}>Girls</a></li> }
+                            {   
+                                token
+                                ?   role === 'client'
+                                    ?   <li role="presentation"><a href="/girls" onClick={this.goTo('/girls')}>Girls</a></li>
+                                    :   <li role="presentation"><a href="/men" onClick={this.goTo('/men')}>Men</a></li>
+                                :   country !== 'UA' ? <li role="presentation"><a href="/members" onClick={this.goTo('/members')}>Girls</a></li> : null
 
-                            { (country !== 'UA' || (token && role === 'girl')) && <li role="presentation"><a href="/men" onClick={this.goTo('/men')}>Men</a></li> }
+                            }
 
                             { token &&  <NavDropdown role="presentation" title="Contacts" id="dropdown">
                                             <a href="/contacts/favorite" onClick={this.goTo('/contacts/favorite')}>Favorite</a>

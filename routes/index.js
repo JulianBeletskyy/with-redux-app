@@ -17,6 +17,8 @@ routes.add('contacts', '/contacts/:slug')
 
 routes.add('member', '/member/:id')
 
+routes.add('mail/draft', '/mail/draft/:id')
+
 routes.add('mail', '/mail/:slug')
 
 routes.add('mail/message', '/mail/:slug/:id')

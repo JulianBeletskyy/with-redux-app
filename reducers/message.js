@@ -5,6 +5,7 @@ const initialState = {
     incoming: [],
     outgoing: [],
     draft: [],
+    draftAttach: [],
     deleted: [],
     contacts: [],
     message: {
@@ -31,6 +32,14 @@ const message = (message = initialState, action = {}) => {
         case types.ADD_ATTACH_MESSAGE:
             return Object.assign({}, message, {
                 attach: [...message.attach, ...action.data]
+            })
+        case types.ADD_ATTACH_DRAFT:
+            return Object.assign({}, message, {
+                draftAttach: [...message.draftAttach, ...action.data]
+            })
+        case types.CLEAR_ATTACH_DRAFT:
+            return Object.assign({}, message, {
+                draftAttach: message.draftAttach.filter((item, i) => i !== action.key)
             })
         case types.CLEAR_ATTACH_MESSAGE:
             return Object.assign({}, message, {
