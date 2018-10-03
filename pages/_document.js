@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" href="/static/assets/css/animate.min.css"/>
           <link rel="stylesheet" href="/static/assets/css/toastr.css"/>
           <link rel="stylesheet" href="/static/assets/css/cropper.css"/>
-          <link rel="stylesheet" href="/static/assets/css/main.min.css"/>
+          <link rel="stylesheet" href="/static/assets/css/main.css"/>
         </Head>
         <body>
           <script dangerouslySetInnerHTML={{__html: `(function(d, s, id){

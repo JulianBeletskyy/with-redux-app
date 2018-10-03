@@ -5,8 +5,7 @@ import TextField from '../inputs/text_field'
 import SelectField from '../inputs/select_field'
 import Autocomplete from '../inputs/autocomplete'
 import CheckboxField from '../inputs/checkbox_field'
-import Link from 'next/link'
-import BtnMain from '../buttons/btn_main'
+import BtnSignUp from '../buttons/btn_signup'
 import BtnFacebook from '../buttons/btn_facebook'
 import BtnGoogle from '../buttons/btn_google'
 import { setUiKey, getOptions, MyCountry } from '../../actions/ui'
@@ -69,7 +68,7 @@ export class StepZero extends Component {
     googleInit = () => {
         window.gapi.load('auth2', () => {
             const auth2 = window.gapi.auth2.init({
-                'client_id': '614936763337-p55fs7mrcgtknam26o26g6766mdjlmgv.apps.googleusercontent.com', //567378795616-ng6a5sqd13t0ii0a9c5jcv8emrv3fc1g.apps.googleusercontent.com
+                'client_id': '567378795616-ng6a5sqd13t0ii0a9c5jcv8emrv3fc1g.apps.googleusercontent.com',
                 'cookiepolicy': 'single_host_origin',
                 'scope': 'profile email'
             });
@@ -308,21 +307,18 @@ export class StepZero extends Component {
                                         <Row>
                                             <Col sm={4}>
                                                 <SelectField
-                                                    componentClass="select"
                                                     inputRef={ref => { this.signup.birth.month = ref }}
                                                     options={monthArray()}
                                                     value={birth.month} />
                                             </Col>
                                             <Col sm={4}>
                                                 <SelectField
-                                                    componentClass="select"
                                                     inputRef={ref => { this.signup.birth.day = ref }}
                                                     options={dayArray()}
                                                     value={birth.day} />
                                             </Col>
                                             <Col sm={4}>
                                                 <SelectField
-                                                    componentClass="select"
                                                     inputRef={ref => { this.signup.birth.year = ref }}
                                                     options={yearArray()}
                                                     value={birth.year} />
@@ -331,7 +327,6 @@ export class StepZero extends Component {
                                     </FormGroup>
                                     <FormGroup>
                                         <TextField
-                                            type="text"
                                             placeholder="Phone"
                                             inputRef={ref => { this.signup.mobile = ref }}
                                             value={mobile} />
@@ -347,21 +342,18 @@ export class StepZero extends Component {
                                         <Row>
                                             <Col sm={4}>
                                                 <SelectField
-                                                    componentClass="select"
                                                     inputRef={ref => { this.signup.birth.month = ref }}
                                                     options={monthArray()}
                                                     value={birth.month} />
                                             </Col>
                                             <Col sm={4}>
                                                 <SelectField
-                                                    componentClass="select"
                                                     inputRef={ref => { this.signup.birth.day = ref }}
                                                     options={dayArray()}
                                                     value={birth.day} />
                                             </Col>
                                             <Col sm={4}>
                                                 <SelectField
-                                                    componentClass="select"
                                                     inputRef={ref => { this.signup.birth.year = ref }}
                                                     options={yearArray()}
                                                     value={birth.year} />
@@ -371,7 +363,6 @@ export class StepZero extends Component {
                             }
                             <FormGroup>
                                 <SelectField
-                                    componentClass="select"
                                     inputRef={ref => { this.signup.country = ref }}
                                     options={this.getArray(countries)}
                                     value={country}
@@ -392,21 +383,18 @@ export class StepZero extends Component {
                                 &&   <div>
                                         <FormGroup>
                                             <TextField
-                                                type="text"
                                                 placeholder="Facebook"
                                                 inputRef={ref => { this.signup.facebook = ref }}
                                                 value={facebook} />
                                         </FormGroup>
                                         <FormGroup>
                                             <TextField
-                                                type="text"
                                                 placeholder="VK"
                                                 inputRef={ref => { this.signup.vk = ref }}
                                                 value={vk} />
                                         </FormGroup>
                                         <FormGroup>
                                             <TextField
-                                                type="text"
                                                 placeholder="Other social media"
                                                 inputRef={ref => { this.signup.other_social = ref }}
                                                 value={other_social} />
@@ -424,9 +412,7 @@ export class StepZero extends Component {
                                     value={terms} />
                         }
                         <FormGroup>
-                            <BtnMain
-                                type="button"
-                                bsStyle="success w-200"
+                            <BtnSignUp
                                 text="Join Us for Free"
                                 orientation="right"
                                 onClick={this.resolveRegistration} />

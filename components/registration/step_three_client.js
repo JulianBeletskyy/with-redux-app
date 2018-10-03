@@ -5,7 +5,7 @@ import Textarea from '../inputs/textarea'
 import TextField from '../inputs/text_field'
 import { getOptions } from '../../actions/ui'
 import { setSignupKey, sendSignUpFour } from '../../actions/signup'
-import BtnMain from '../buttons/btn_main'
+import BtnSignUp from '../buttons/btn_signup'
 import Block from '../block'
 
 
@@ -91,12 +91,12 @@ export class StepThreeClient extends Component {
                     
                 </Row>
                 <FormGroup className="text-center pt-15">
-                    <BtnMain
+                    <BtnSignUp
                         type="button"
                         text="Prev"
                         orientation="left"
                         onClick={this.prevStep} />
-                    <BtnMain
+                    <BtnSignUp
                         type="button"
                         bsStyle="success"
                         text="Finish"

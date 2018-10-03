@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import BtnUpload from '../buttons/btn_upload'
-import BtnMain from '../buttons/btn_main'
+import BtnSignUp from '../buttons/btn_signup'
 import BtnFacebook from '../buttons/btn_facebook'
 import BtnGoogle from '../buttons/btn_google'
 import { setSignupKey, skipStep, sendSignUpThree } from '../../actions/signup'
@@ -46,7 +46,7 @@ export class StepAvatar extends Component {
     googleInit = () => {
         window.gapi.load('auth2', () => {
             const auth2 = window.gapi.auth2.init({
-                'client_id': '614936763337-p55fs7mrcgtknam26o26g6766mdjlmgv.apps.googleusercontent.com',
+                'client_id': '567378795616-ng6a5sqd13t0ii0a9c5jcv8emrv3fc1g.apps.googleusercontent.com',
                 'cookiepolicy': 'single_host_origin',
                 'scope': 'profile email'
             });
@@ -157,11 +157,11 @@ export class StepAvatar extends Component {
                     </Col>
                 </Row>
                 <FormGroup className="text-center position-relative">
-                    <BtnMain
+                    <BtnSignUp
                         text="Prev"
                         orientation="left"
                         onClick={this.prevStep} />
-                    <BtnMain
+                    <BtnSignUp
                         text="Next"
                         orientation="right"
                         onClick={this.getSignUpThree} />

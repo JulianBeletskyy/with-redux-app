@@ -5,7 +5,7 @@ import { getArray, formatDate } from '../../utils'
 import { getOptions, setAlert } from '../../actions/ui'
 import { sendSignUpTwo, setSignupKey } from '../../actions/signup'
 import SelectField from '../inputs/select_field'
-import BtnMain from '../buttons/btn_main'
+import BtnSignUp from '../buttons/btn_signup'
 import Textarea from '../inputs/textarea'
 import TextField from '../inputs/text_field'
 import Validator from '../../validate'
@@ -378,11 +378,11 @@ export class StepTwoGirl extends Component {
                     </Col>
                     <Col xs={12} className="text-center">
                         <div className="position-relative">
-                            <BtnMain
+                            <BtnSignUp
                                 text="Prev"
                                 orientation="left"
                                 onClick={this.prevStep} />
-                            <BtnMain
+                            <BtnSignUp
                                 text="Next"
                                 orientation="right"
                                 onClick={this.getSignUpThree} />

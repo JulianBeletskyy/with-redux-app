@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import SelectField from '../inputs/select_field'
-import BtnMain from '../buttons/btn_main'
+import BtnSignUp from '../buttons/btn_signup'
 import TextField from '../inputs/text_field'
 import { getOptions } from '../../actions/ui'
 import { setSignupKey, sendSignUpOne, skipStep } from '../../actions/signup'
@@ -312,10 +312,12 @@ class StepOneClient extends Component {
                     </Col>
                     <Col xs={12} className="text-center">
                         <div className="position-relative">
-                            <BtnMain
+                            <BtnSignUp
+                                orientation="left"
                                 text="Prev"
                                 onClick={this.prevStep} />
-                            <BtnMain
+                            <BtnSignUp
+                                orientation="right"
                                 text="Next"
                                 onClick={this.getSignUpTwo} />
                             <a href="javascript:;" className="skip-link" onClick={this.skip}>Skip</a>

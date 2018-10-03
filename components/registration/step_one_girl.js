@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import SelectField from '../inputs/select_field'
-import BtnMain from '../buttons/btn_main'
+import BtnSignUp from '../buttons/btn_signup'
 import { getArray, heightsArray, weightsArray } from '../../utils'
 import { getOptions } from '../../actions/ui'
 import { sendSignUpOne, setSignupKey } from '../../actions/signup'
@@ -128,11 +128,11 @@ export class StepOneGirl extends Component {
                     </Col>
                     <Col xs={12} className="text-center">
                         <div className="position-relative">
-                            <BtnMain
+                            <BtnSignUp
                                 text="Prev"
                                 orientation="left"
                                 onClick={this.prevStep} />
-                            <BtnMain
+                            <BtnSignUp
                                 text="Next"
                                 orientation="right"
                                 onClick={this.getSignUpTwo} />
