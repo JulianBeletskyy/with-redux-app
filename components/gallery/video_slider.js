@@ -5,6 +5,7 @@ import { confirmAlert } from 'react-confirm-alert'
 import { VIDEO_PRICE } from '../../config'
 import { toggleModal } from '../../actions/ui' 
 import { buyVideo } from '../../actions/user'
+import FullScreenPreview from '../gallery/full_screen_preview'
 
 const NextArrow = props => {
   const { className, style, onClick } = props;
@@ -36,7 +37,13 @@ const PrevArrow = props => {
 }
 
 class VideoSlider extends Component {
-
+    constructor() {
+        super()
+        this.state = {
+            show: false,
+            video: ''
+        }
+    }
 
     printVideo = (video, i) => {
     	const hiddenClass = (video.private && ! video.purchased && this.props.membership.view_video !== 'Unlimited') ? 'hidden-video' : ''
@@ -53,9 +60,7 @@ class VideoSlider extends Component {
     }
 
     showVideo = video => e => {
-        console.log(video)
     	const { dispatch, membership, credits, memberId } = this.props
-    	
 		if (video.private && ! video.purchased && membership.view_video === 'Limited') {
 			confirmAlert({
                 title: '',
@@ -80,7 +85,13 @@ class VideoSlider extends Component {
                     }
                 ]
             })
+            return
 		}
+        this.setState({show: true, video: video.src})
+    }
+
+    closeVideo = () => {
+        this.setState({show: false, video: ''})
     }
 
     render() {
@@ -98,10 +109,13 @@ class VideoSlider extends Component {
         const fakeList = Array.apply(null, Array(arrayLength))
 
         return (
-            <Slider {...settings}>
-                { video.map((video, i) => this.printVideo(video, i)) }
-                { fakeList.map((item, i) => <div key={i}></div>) }
-            </Slider>
+            <div>
+                <Slider {...settings}>
+                    { video.map((video, i) => this.printVideo(video, i)) }
+                    { fakeList.map((item, i) => <div key={i}></div>) }
+                </Slider>
+                <FullScreenPreview video={this.state.video} show={this.state.show} onClose={this.closeVideo} />
+            </div>
         );
     }
 }

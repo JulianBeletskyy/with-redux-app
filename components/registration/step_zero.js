@@ -7,8 +7,10 @@ import Autocomplete from '../inputs/autocomplete'
 import CheckboxField from '../inputs/checkbox_field'
 import Link from 'next/link'
 import BtnMain from '../buttons/btn_main'
+import BtnFacebook from '../buttons/btn_facebook'
+import BtnGoogle from '../buttons/btn_google'
 import { setUiKey, getOptions, MyCountry } from '../../actions/ui'
-import { setSignupDataKey, sendSignUpBefore, sendSignUpStart } from '../../actions/signup'
+import { setSignupDataKey, sendSignUpBefore, sendSignUpStart, setSignupKey } from '../../actions/signup'
 import Validator from '../../validate'
 import { monthArray, dayArray, yearArray } from '../../utils'
 
@@ -26,14 +28,72 @@ export class StepZero extends Component {
 			gender: 'client',
             social: false
 		}
-
-        const { dispatch } = props
-        dispatch(getOptions('countries')).then(res => {
-            if (res) {
-                dispatch(MyCountry())
-            }
-        })
 	}
+
+    facebookSignUp = () => {
+        const { dispatch } = this.props
+
+        window.FB.login(response => {
+            window.FB.api('/me', {fields: ['first_name, last_name, email, picture.width(2048), gender, locale']}, response => {
+                if (response.first_name) {
+                    this.signup.first_name.value = response.first_name
+                    this.signup.last_name.value = response.last_name
+                    this.signup.email.value = response.email
+                    this.role.female.checked = response.gender === 'female'
+                    this.role.male.checked = response.gender === 'male'
+
+                    fetch(response.picture.data.url).then(res => {
+                        const result = res.blob()
+                        result.then(responseImg => {
+                            const reader = new FileReader()
+                            reader.onloadend = () => {
+                                dispatch(setSignupKey('avatar', reader.result))
+                            }
+                            reader.readAsDataURL(responseImg)
+                        })
+                    })
+
+                    const data = {
+                        first_name: response.first_name,
+                        last_name: response.last_name,
+                        email: response.email,
+                        role: response.gender === 'female' ? 'girl' : 'client'
+                    }
+                    this.signup.role = data.role
+                    dispatch(setSignupDataKey(data))
+                }  
+            });
+        }, {scope: 'public_profile, email'});
+    }
+
+    googleInit = () => {
+        window.gapi.load('auth2', () => {
+            const auth2 = window.gapi.auth2.init({
+                'client_id': '567378795616-ng6a5sqd13t0ii0a9c5jcv8emrv3fc1g.apps.googleusercontent.com',
+                'cookiepolicy': 'single_host_origin',
+                'scope': 'profile email'
+            });
+            const element = document.getElementById('google')
+
+            auth2.attachClickHandler(element, {}, this.googleSignUp)
+       })
+    }
+
+    googleSignUp = googleUser => {
+        const { dispatch } = this.props
+
+        this.signup.first_name.value = googleUser.w3.ofa
+        this.signup.last_name.value = googleUser.w3.wea
+        this.signup.email.value = googleUser.w3.U3
+
+        const data = {
+            first_name: googleUser.w3.ofa,
+            last_name: googleUser.w3.wea,
+            email: googleUser.w3.U3,
+        }
+        dispatch(setSignupDataKey(data))
+        dispatch(setSignupKey('avatar', googleUser.w3.Paa))
+    }
 
     getArray = array => {
         const temp = array.map(item => ({value: item.country_code, name: item.country_name}))
@@ -137,6 +197,16 @@ export class StepZero extends Component {
 
             dispatch(sendSignUpStart(data, step))
         }
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(getOptions('countries')).then(res => {
+            if (res) {
+                dispatch(MyCountry())
+            }
+        })
+        this.googleInit()
     }
 
     render() {
@@ -369,10 +439,10 @@ export class StepZero extends Component {
                                     <h4 className="">Join With</h4>
                                     <div className="social-button text-center">
                                         <div className="form-group">
-                                            {/*<BtnFacebook title="Join Up with Facebook" onClick={this.facebookSignUp} />*/}
+                                            <BtnFacebook title="Join Up with Facebook" onClick={this.facebookSignUp} />
                                         </div>
                                         <div>
-                                            {/*<BtnGoogle title="Join Up with Google" onClick={this.googleSignUp} />*/}
+                                            <BtnGoogle title="Join Up with Google" />
                                         </div>
                                     </div>
                                 </FormGroup>

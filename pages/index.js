@@ -11,11 +11,6 @@ class Index extends Component {
 	    return {hash: query.hash}
   	}
 
-	constructor(props) {
-		super(props)
-		const { dispatch } = props
-	}
-
 	deviceId = () => {
         const localStorage = window.localStorage
         const deviceId = localStorage.getItem('deviceId')

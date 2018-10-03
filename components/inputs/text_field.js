@@ -32,6 +32,12 @@ class TextField extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.value && !this.state.active) {
+            this.setState({active: true})
+        }
+    }
+
 	render() {
 		const { label, placeholder, type = 'text', thisRef, className, value, description, name, disabled } = this.props
 		return (

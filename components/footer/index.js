@@ -2,12 +2,25 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { Router } from '../../routes'
+import { setUiKey, toggleModal } from '../../actions/ui'
 
 class Footer extends Component {
 
     goTo = link => e => {
     	e.preventDefault()
     	Router.pushRoute(link)
+    }
+
+    showSignUp = () => {
+        const { dispatch } = this.props
+        dispatch(setUiKey('showRegistration', true))
+        Router.pushRoute('/')
+        window.scrollTo(0,0)
+    }
+
+    showLogin = () => {
+        const { dispatch } = this.props
+        dispatch(toggleModal(true, 'login'))
     }
 
     render() {
@@ -53,16 +66,20 @@ class Footer extends Component {
                             </ul>
                         </Col>
                         <Col sm={4}>
-                            <ul>
-                                <li>
-                                    <i className="fas fa-user-plus"></i>
-                                    <a href="javascript:;" onClick={this.showSignUp}>Join Free</a>
-                                </li>                            
-                                <li>
-                                    <i className="fas fa-sign-in-alt"></i>
-                                    <a href="javascript:;" onClick={this.showLogin}>Member Login</a>
-                                </li>
-                            </ul>
+                        {
+                            !token
+                            ?   <ul>
+                                    <li>
+                                        <i className="fas fa-user-plus"></i>
+                                        <a href="javascript:;" onClick={this.showSignUp}>Join Free</a>
+                                    </li>                            
+                                    <li>
+                                        <i className="fas fa-sign-in-alt"></i>
+                                        <a href="javascript:;" onClick={this.showLogin}>Member Login</a>
+                                    </li>
+                                </ul>
+                            :   null
+                        }   
                         </Col>
                     </Row>
                     <div className="footer-bottom">

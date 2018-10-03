@@ -19,8 +19,6 @@ class Landing extends Component {
 			advantagesFirst: false,
 			advantagesSecond: false,
 		}
-		const { dispatch } = props
-		
 	}
 
 	getRegistration = () => {

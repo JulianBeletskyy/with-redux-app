@@ -29,7 +29,7 @@ class Layout extends Component {
 			      { children }
 			    </main>
 			    <footer>
-			    	{ !token && country === 'UA' ? null : <Footer /> }
+			    	{ !token && country === 'asd' ? null : <Footer /> }
 			    </footer>
 			    <MainModal
                     body={<Credits />}

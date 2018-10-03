@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import BtnUpload from '../buttons/btn_upload'
 import BtnMain from '../buttons/btn_main'
+import BtnFacebook from '../buttons/btn_facebook'
+import BtnGoogle from '../buttons/btn_google'
 import { setSignupKey, skipStep, sendSignUpThree } from '../../actions/signup'
 import { setAlert } from '../../actions/ui'
 import Cropper from 'react-cropper'
@@ -18,6 +20,45 @@ export class StepAvatar extends Component {
         reader.onload = () => {
             dispatch(setSignupKey('avatar', reader.result))
         }
+    }
+
+    facebookSignUp = () => {
+        const { dispatch } = this.props
+
+        window.FB.login(response => {
+            window.FB.api('/me', {fields: ['picture.width(2048)']}, response => {
+                if (response.picture.data.url) {
+                    fetch(response.picture.data.url).then(res => {
+                        const result = res.blob()
+                        result.then(responseImg => {
+                            const reader = new FileReader()
+                            reader.onloadend = () => {
+                                dispatch(setSignupKey('avatar', reader.result))
+                            }
+                            reader.readAsDataURL(responseImg)
+                        })
+                    })
+                }  
+            });
+        }, {scope: 'public_profile, email'});
+    }
+
+    googleInit = () => {
+        window.gapi.load('auth2', () => {
+            const auth2 = window.gapi.auth2.init({
+                'client_id': '567378795616-ng6a5sqd13t0ii0a9c5jcv8emrv3fc1g.apps.googleusercontent.com',
+                'cookiepolicy': 'single_host_origin',
+                'scope': 'profile email'
+            });
+            const element = document.getElementById('google')
+
+            auth2.attachClickHandler(element, {}, this.googleSignUp)
+       })
+    }
+
+    googleSignUp = googleUser => {
+        const { dispatch } = this.props
+        dispatch(setSignupKey('avatar', googleUser.w3.Paa))
     }
 
     skip = () => {
@@ -58,6 +99,10 @@ export class StepAvatar extends Component {
         
     }
 
+    componentDidMount() {
+        this.googleInit()
+    }
+
     render() {
     	const content = this.props.avatar
 	    	? 	<Cropper
@@ -81,18 +126,17 @@ export class StepAvatar extends Component {
                         <div className="upload-btn-group">
                             <FormGroup>
                                 <BtnUpload
+                                    className="w-100"
                                     onChange={this.onDrop}
                                     text="upload photo" />
                             </FormGroup>
                             <FormGroup>
-                                {/*<BtnFacebook
-                                    title="Upload from Facebook"
-                                    onClick={this.facebookSignUp} />*/}
+                                <BtnFacebook
+                                    title="Upload from Facebook" onClick={this.facebookSignUp} />
                             </FormGroup>
                             <FormGroup>
-                                {/*<BtnGoogle
-                                    title="Upload from Google"
-                                    onClick={this.googleSignUp} />*/}
+                                <BtnGoogle
+                                    title="Upload from Google" />
                             </FormGroup>
                         </div>
                     </Col>
