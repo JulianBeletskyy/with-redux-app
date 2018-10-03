@@ -64,9 +64,6 @@ class About extends Component {
 
 		return (
 			<Layout>
-				<Head>
-					<link rel="stylesheet" href="/static/assets/css/about.css" />
-				</Head>
 				<div className="pt-100" id="about-container">
 	                <Grid>
 	                    <div className="bg-white p-15">
