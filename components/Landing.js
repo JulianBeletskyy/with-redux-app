@@ -189,7 +189,7 @@ class Landing extends Component {
 	                </div>
 				</div>
 				{
-					!showRegistration && country !== 'qwe'
+					!showRegistration && country !== 'UA'
 					? 	<div>
 							<div id="advantages" className="advantWrap">
 								<h2 className="advantTitle">Competitive <span className="underlineText">Advantages</span></h2>
