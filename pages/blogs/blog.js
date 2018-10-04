@@ -45,6 +45,8 @@ class Blog extends Component {
         }
   	}
 
+    printMetas = (item, i) => <meta key={i} name={item.name} content={item.content} />
+
 	render() {
 		const { blog } = this.props
 		let html = ''
@@ -55,6 +57,7 @@ class Blog extends Component {
 			<Layout>
                 <Head>
                     <title>{blog.title}</title>
+                    { blog.metas.length ? blog.metas.map((item, i) => this.printMetas(item, i)) : null }
                 </Head>
                 <h1 className="font-bebas">Blog</h1>
                 <hr />

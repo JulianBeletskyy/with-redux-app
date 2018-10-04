@@ -20,6 +20,15 @@
     }
 }
 
+.cursor-normal a {
+    cursor: default;
+}
+
+.unset-a,
+.unset-a:hover {
+    color: inherit;
+}
+
 .collapse-head {
     font-family: bebas_neue;
     font-weight: bold;

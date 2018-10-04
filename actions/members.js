@@ -44,7 +44,9 @@ export const getMember = id => dispatch => {
 
 export const toggleInterest = (id, value) => dispatch => {
 	return get(`user/members/interest/${id}/${!value ? 'add' : 'remove'}`, true).then(res => {
-		console.log(res)
+		if (res.data) {
+			dispatch(getMember(id))
+		}
 	})
 }
 
@@ -56,6 +58,7 @@ export const toggleFavorite = (id, value, type) => dispatch => {
 			} else {
 				dispatch(getMembers(type))
 			}
+			return true
 		}
 	})
 }

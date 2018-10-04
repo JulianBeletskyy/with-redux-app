@@ -59,12 +59,18 @@ class Member extends Component {
 
     toggleInterest = () => {
         const { dispatch, member } = this.props
-        dispatch(toggleInterest(member.id, member.interest))
+        if(!member.interest) {
+            dispatch(toggleInterest(member.id, member.interest))
+        }
     }
 
     toggleFavorite = () => {
         const { dispatch, member } = this.props
-        dispatch(toggleFavorite(member.id, member.favorite))
+        dispatch(toggleFavorite(member.id, member.favorite)).then(res => {
+            if (res) {
+                dispatch(getMember(member.id))
+            }
+        })
     }
 
     getContactsDetails = () => {
@@ -363,8 +369,9 @@ class Member extends Component {
                                             <div className="row">
                                                 <div className="col-sm-6 col-lg-6 col-md-12">
                                                     <LinkIcon 
-                                                        text={member.interest ? "Remove from interest" : "Express the interest"}
+                                                        text={member.interest ? "Interest Expressed" : "Express the interest"}
                                                         onClick={this.toggleInterest}
+                                                        className={`${member.interest ? `cursor-normal` : ``}`}
                                                         color="#FF8DA1" 
                                                         icon="fas fa-heart" />
                                                 </div>

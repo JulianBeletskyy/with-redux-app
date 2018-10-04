@@ -47,7 +47,7 @@ class Blog extends Component {
 	}
 
 	render() {
-		const { children, popularBlogs } = this.props
+		const { children, popularBlogs, token } = this.props
 		return (
 			<Layout>
 				<div className="pt-100">
@@ -58,15 +58,14 @@ class Blog extends Component {
 				            		{ children }
 		                    	</Col>
 		                    	<Col sm={3}>
-		                    		<FormGroup className="text-center">
-					                	<img className="img-responsive" src="/static/assets/img/offer.png" alt="" />
-					                </FormGroup>
-					                <FormGroup className="text-center">
-					                	<BtnMain
-					                        bsStyle="success"
-					                        text="Sign Up"
-					                        onClick={this.goToRegistration} />
-					                </FormGroup>
+		                    		{
+		                    			!token && 	<FormGroup className="text-center">
+									                	<BtnMain
+									                        bsStyle="success"
+									                        text="Sign Up"
+									                        onClick={this.goToRegistration} />
+									                </FormGroup>
+		                    		}
 					                <FormGroup>
 										<SmallDivider text="Popular Blogs" />
 									</FormGroup>
@@ -84,6 +83,7 @@ class Blog extends Component {
 const mapStateToProps = state =>
     ({
         popularBlogs: state.ui.popularBlogs,
+        token: state.user.token,
     })
 
 export default connect(

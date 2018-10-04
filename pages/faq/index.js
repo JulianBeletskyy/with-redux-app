@@ -104,15 +104,14 @@ class Faq extends Component {
                         </Accordion>
 		            </Col>
 		            <Col sm={3}>
-		                <FormGroup className="text-center">
-                            <img className="img-responsive" src="/static/assets/img/offer.png" alt="" />
-                        </FormGroup>
-                        <FormGroup className="text-center">
-                            <BtnMain
-                                bsStyle="success"
-                                text="Sign Up"
-                                onClick={this.goToRegistration} />
-                        </FormGroup>
+                        {
+                            !token &&   <FormGroup className="text-center">
+                                            <BtnMain
+                                                bsStyle="success"
+                                                text="Sign Up"
+                                                onClick={this.goToRegistration} />
+                                        </FormGroup>
+                        }
                         <hr />
                         { country === 'UA' && !token ? null : <MemberCarouselSmall /> }
                 	</Col>

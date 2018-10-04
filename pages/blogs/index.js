@@ -9,32 +9,35 @@ import Pagination from '../../components/pagination'
 class Blog extends Component {
 
 	goToBlog = id => e => {
+		e.preventDefault()
 		Router.pushRoute(`/blogs/${id}`)
 	}
 
 	printBlogs = (blog, i) => {
-		return 	<div key={i} className="blogPreviewWrap" onClick={this.goToBlog(blog.id)}>
-					<Row>
-		        		<Col sm={6}>
-		        			<div className="imgWrap">
-		        				<img src={blog.image} alt="" />
-		        			</div>
-		        		</Col>
-		        		<Col sm={6}>
-		        			<div className="blogPreviewTitle">
-		        				<h3>{blog.title}</h3>
-		        			</div>
-		        			<div>
-		        				{blog.description}
-		                        <br />
-		                        <br />
-		        			</div>
-		        		</Col>
-		        	</Row>
-		        	<div className="date">
-						{blog.created_at}
+		return 	<a href={`/blogs/${blog.id}`} key={i} className="unset-a" onClick={this.goToBlog(blog.id)}>
+					<div className="blogPreviewWrap">
+						<Row>
+			        		<Col sm={6}>
+			        			<div className="imgWrap">
+			        				<img src={blog.image} alt="" />
+			        			</div>
+			        		</Col>
+			        		<Col sm={6}>
+			        			<div className="blogPreviewTitle">
+			        				<h3>{blog.title}</h3>
+			        			</div>
+			        			<div>
+			        				{blog.description}
+			                        <br />
+			                        <br />
+			        			</div>
+			        		</Col>
+			        	</Row>
+			        	<div className="date">
+							{blog.created_at}
+						</div>
 					</div>
-				</div>
+				</a>
 	}
 
 	changePage = page => e => {
