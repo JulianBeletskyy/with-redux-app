@@ -5,6 +5,7 @@ const initialState = {
     token: Cookies.get('token'),
     role: 'client',
     timeout: false,
+    recoveryHash: '',
     data: {
         role: 'client',
         profile_id: '',
@@ -102,6 +103,10 @@ const user = (user = initialState, action = {}) => {
             return Object.assign({}, user, {
                 data: {...user.data, ...action.data}
             })
+        case types.SET_RECOVERY_HASH:
+            return Object.assign({}, user, {
+                recoveryHash: action.value
+            });
         default:
             return user;
     }

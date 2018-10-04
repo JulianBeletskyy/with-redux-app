@@ -93,11 +93,11 @@ export class MessageModal extends Component {
 	}
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 <FormGroup className="member">
     	           <Textarea
+                        counter={4500}
                         inputRef={ref => { this.message = ref }}
                         value={''}
                         placeholder="Message" />

@@ -57,6 +57,21 @@ export const activateUser = hash => dispatch => {
 	})
 }
 
+export const updatePassword = (data, hash) => dispatch => {
+	return post(`password/${hash}`, true, data).then(res => {
+		if (res.data) {
+			dispatch(setRecoveryHash(''))
+			return true
+		}
+	})
+}
+
+export const setRecoveryHash = value =>
+	({
+		type: types.SET_RECOVERY_HASH,
+		value,
+	})
+
 export const sendRecovery = data => dispatch => {
 	return post(`recovery`, true, data).then(res => {
 		if (res.data) {

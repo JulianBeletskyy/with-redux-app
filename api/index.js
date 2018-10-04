@@ -3,15 +3,13 @@ import fetch from 'isomorphic-unfetch'
 import initializeStore from '../store'
 import { setAlert } from '../actions/ui'
 
-let withMessage = false
-
-const responseHandler = response => {
+const responseHandler = alert => response => {
     const contentType = response.headers.get('content-type')
     if (contentType && contentType.indexOf('application/json') !== -1) {
         const promise = response.json()
 
         const ok = response.ok
-        if (withMessage) {
+        if (alert) {
             promise.then(response => {
                 if (response.validate) {
                     for (let k in response.validate) {
@@ -26,7 +24,6 @@ const responseHandler = response => {
                 if (response.message && (! response.validate || response.validate == null)) {
                     initializeStore.dispatch(setAlert(response.message, ok ? 'success' : 'error'))
                 }
-                withMessage = false
             })
         }
         return promise;
@@ -49,78 +46,71 @@ const getHeader = () =>
     })
 
 export const get = (...data) => {
-	const [url, alert = true] = data
-	withMessage = alert
+	const [url, alert = false] = data
     return fetch(`${API_URL}/${url}`, {
         method: 'get',
         headers: getHeader(),
     })
-    .then(responseHandler)
+    .then(responseHandler(alert))
 }
 
 export const post = (...data) => {
 	const [url, alert = true, body] = data
-	withMessage = alert
     return fetch(`${API_URL}/${url}`, {
         method: 'post',
         headers: getHeader(),
         body: JSON.stringify(body)
     })
-    .then(responseHandler)
+    .then(responseHandler(alert))
 }
 
 export const put = (...data) => {
     const [url, alert = false, body] = data
-    withMessage = alert
     return fetch(`${API_URL}/${url}`, {
         method: 'put',
         headers: getHeader(),
         body: JSON.stringify(body)
     })
-    .then(responseHandler)
+    .then(responseHandler(alert))
 }
 
 export const remove = (...data) => {
 	const [url, alert = false] = data
-	withMessage = alert
     return fetch(`${API_URL}/${url}`, {
         method: 'delete',
         headers: getHeader()
     })
-    .then(responseHandler)
+    .then(responseHandler(alert))
 }
 
 export const patch = (...data) => {
     const [url, alert = false, body] = data
-    withMessage = alert
     return fetch(`${API_URL}/${url}`, {
         method: 'patch',
         headers: getHeader(),
         body: JSON.stringify(body)
     })
-    .then(responseHandler)
+    .then(responseHandler(alert))
 }
 
 export const image = (...data) => {
     const [url, alert = false, body] = data
-    withMessage = alert
     return fetch(`${API_URL}/${url}`, {
         method: 'post',
         headers: {'Authorization': `Bearer ${initializeStore.getState().user.token}`},
         body: body
     })
-    .then(responseHandler)
+    .then(responseHandler(alert))
 }
 
 export const message = (...data) => {
     const [url, alert = true, body] = data
-    withMessage = alert
     return fetch(`${API_URL}/${url}`, {
         method: 'post',
         headers: {'Authorization': `Bearer ${initializeStore.getState().user.token}`},
         body: body
     })
-    .then(responseHandler)
+    .then(responseHandler(alert))
 }
 
 export const getMyCountry = () => {
@@ -130,7 +120,7 @@ export const getMyCountry = () => {
             'Accept': 'application/json',
         },
     })
-    .then(responseHandler)
+    .then(responseHandler())
 }
 
 export const goAuth = () => {

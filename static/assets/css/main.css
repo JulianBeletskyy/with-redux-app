@@ -1137,6 +1137,16 @@ pre {
     content: '';
 }*/
 
+.textarea-counter {
+    color: #828282;
+    font-size: 12px;
+    float: right;
+}
+
+.textarea-counter.danger {
+    color: #fc3a3a;
+}
+
 .video-block-inner {
     position: relative;
     overflow: hidden;

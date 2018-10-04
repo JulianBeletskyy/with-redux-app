@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { activateUser } from '../actions/auth'
+import { activateUser, setRecoveryHash } from '../actions/auth'
 import Header from '../components/header'
 import Layout from '../layouts'
 import Landing from '../components/Landing.js'
 import Client from './main/client'
+import { toggleModal } from '../actions/ui'
 
 class Index extends Component {
 	static async getInitialProps({query}) {
-	    return {hash: query.hash}
+	    return {hash: query.hash, recovery: query.recovery}
   	}
 
 	deviceId = () => {
@@ -23,10 +24,14 @@ class Index extends Component {
     chr4 = () => Math.random().toString(16).slice(-4)
 
 	componentDidMount() {
-		const { dispatch, hash } = this.props
+		const { dispatch, hash, recovery } = this.props
 		this.deviceId()
 		if (hash) {
 			dispatch(activateUser(hash))
+		}
+		if (recovery) {
+			dispatch(setRecoveryHash(recovery))
+			dispatch(toggleModal(true, 'recovery'))
 		}
 	}
 

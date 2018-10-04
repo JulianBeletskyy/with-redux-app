@@ -140,14 +140,6 @@ class Message extends Component {
                     member_id: this.new ? newMessage.receiver_id : receiver_id,
                     text: this.new ? '' : original
                 }
-            case 'draft':
-                return {
-                    fromTo: 'To',
-                    avatar: userId === sender_id ? receiver_avatar : sender_avatar,
-                    oponent: userId === sender_id ? receiver_first_name : sender_first_name,
-                    member_id: userId === sender_id ? receiver_id : sender_id,
-                    text: original
-                }
             case 'deleted':
                 return {
                     fromTo: userId === sender_id ? 'To' : 'From',
@@ -245,18 +237,14 @@ class Message extends Component {
                                                         </a>
                                                     </div>
                                                 </div>
-                                                {
-                                                    type !== 'draft'
-                                                    ?   <div className="row form-group">
-                                                            <div className="col-sm-2">
-                                                                <strong>Date:</strong>
-                                                            </div>
-                                                            <div className="col-sm-10">
-                                                                {message.date}
-                                                            </div>
-                                                        </div>
-                                                    : null
-                                                }
+                                                <div className="row form-group">
+                                                    <div className="col-sm-2">
+                                                        <strong>Date:</strong>
+                                                    </div>
+                                                    <div className="col-sm-10">
+                                                        {message.date}
+                                                    </div>
+                                                </div>
                                                 <div className="row form-group">
                                                     <div className="col-sm-2">
                                                         <strong>Message:</strong>
@@ -315,6 +303,7 @@ class Message extends Component {
                                 <div>
                                     <div className="form-group">
                                         <Textarea
+                                            counter={4500}
                                             inputRef={ref => { this.message = ref }}
                                             value={''}
                                             placeholder="Message" />
@@ -327,7 +316,7 @@ class Message extends Component {
                                         &nbsp;
                                         <BtnMain
                                             bsStyle="success"
-                                            text={'Reply'}
+                                            text={type === 'incoming' ? 'Reply' : 'Send'}
                                             onClick={this.send(data.member_id)} />
                                         <UploadDropdown />
                                     </div>

@@ -153,6 +153,7 @@ class Draft extends Component {
                             </div>
                             <div className="form-group">
                                 <Textarea
+                                    counter={4500}
                                     inputRef={ref => { this.message = ref }}
                                     value={message.original}
                                     placeholder="Message"

@@ -20,6 +20,10 @@ class Textarea extends Component {
     }
 
     handleChange = ({target: {value}}) => {
+        const { counter } = this.props
+        if (value.length > counter) {
+            value = value.slice(0, counter)
+        }
         this.setState({value, active: true})
         if (this.props.onChange) {
            this.props.onChange(value)
@@ -33,7 +37,7 @@ class Textarea extends Component {
     }
 
 	render() {
-		const { value = '', placeholder, label, className } = this.props
+		const { value = '', placeholder, label, className, counter = false } = this.props
 		return (
 			<div className="textarea-wrap">
                 {label ? <label>{placeholder}</label> : null}
@@ -45,6 +49,7 @@ class Textarea extends Component {
                     value={this.state.value}>
                 </textarea>
                 {label ? null : <span className={`textarea-placeholder ${this.state.active ? 'active' : ''}`}>{placeholder}</span>}
+                { counter && <span className={`textarea-counter ${this.state.value.length === counter ? `danger` : ``}`}>{this.state.value.length} / {counter}</span> }
             </div>
 		)
 	}
