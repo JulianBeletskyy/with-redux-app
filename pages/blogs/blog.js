@@ -58,7 +58,7 @@ class Blog extends Component {
                 <Head>
                     <title>{blog.title}</title>
                     { blog.metas.length ? blog.metas.map((item, i) => this.printMetas(item, i)) : null }
-                    <meta name="og:image" content={blog.image} />
+                    <meta property="og:image" content={blog.image} />
                 </Head>
                 <h1 className="font-bebas">Blog</h1>
                 <hr />
