@@ -45,16 +45,23 @@ class Edit extends Component {
             	eventKey: 'contact',
                 title: 'Contact Info', 
                 content: <ContactForm />
-            }, {
-                eventKey: 'settings',
-                title: 'Account Settings', 
-                content: <SettingsForm />
-            }]
+            }
+        ]
 
         if (role === 'client') {
-            tabList = [...tabList, {eventKey: 'password',title: 'Password',content: <PasswordForm />}]
+            tabList = [
+                ...tabList, 
+                {
+                    eventKey: 'password',
+                    title: 'Password',
+                    content: <PasswordForm />
+                }, {
+                    eventKey: 'settings',
+                    title: 'Account Settings', 
+                    content: <SettingsForm />
+                }
+            ]
         }
-
             
         return (
             <Layout>
