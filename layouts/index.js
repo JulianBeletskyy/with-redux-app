@@ -7,15 +7,16 @@ import MainModal from '../components/modal'
 import Credits from '../components/forms/credits'
 import Membership from '../components/forms/membership'
 import Alert from '../components/alert'
-import { startChecker } from '../utils'
 import { isAuthentificate } from '../utils'
+import { setTimeoutValue } from '../actions/auth'
 
 class Layout extends Component {
 	constructor(props) {
 		super(props)
-		const { token, dispatch } = props
-		if (token) {
+		const { token, dispatch, timeout } = props
+		if (token && !timeout) {
 			isAuthentificate()
+			dispatch(setTimeoutValue(true))
 		}
 	}
 	render() {
@@ -55,6 +56,7 @@ const mapStateToProps = state =>
         membership: state.ui.modals.membership,
         token: state.user.token,
         country: state.signup.country,
+        timeout: state.user.timeout,
     })
 
 export default connect(mapStateToProps)(Layout)

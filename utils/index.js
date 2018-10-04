@@ -57,17 +57,15 @@ export const dayArray = () => {
 }
 
 export const getNumArray = (type, from, to) => {
-    let temp = []
+    let temp = [{ 'value': '', 'name': type }]
     if (type === 'from') {
         for (from; from <= to; from++) {
             temp.push({ 'value': from, 'name': from })
         }
-        temp.unshift({ 'value': '', 'name': type })
     } else {
         for (from; from >= to; from--) {
             temp.push({ 'value': from, 'name': from })
         }
-        temp.unshift({ 'value': '', 'name': type })
     }
     return temp;
 }
@@ -87,7 +85,7 @@ export const formatDate = value => {
 }
 
 export const isAuthentificate = () => {
-    setTimeout(() => {
+    var checkTimeout = setTimeout(() => {
         goAuth().then(res => {
             if (!res.redirected) {
                 isAuthentificate()
@@ -96,6 +94,7 @@ export const isAuthentificate = () => {
                     Router.pushRoute('/')
                 })
             }
+            clearTimeout(checkTimeout)
         })
     }, 5000)
 }

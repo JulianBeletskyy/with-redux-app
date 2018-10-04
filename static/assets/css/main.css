@@ -1132,10 +1132,10 @@ pre {
     margin-bottom: 5px;
 }
 
-.landing-testimonials-wrap .slick-prev:before,
+/*.landing-testimonials-wrap .slick-prev:before,
 .landing-testimonials-wrap .slick-next:before {
     content: '';
-}
+}*/
 
 .video-block-inner {
     position: relative;

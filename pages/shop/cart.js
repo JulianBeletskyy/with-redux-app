@@ -4,7 +4,7 @@ import Layout from '../../layouts'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import { getUserInfo } from '../../actions/user'
 import { getAllMembers } from '../../actions/members'
-import { setCart, setReceiverToShop } from '../../actions/shop'
+import { setCart, setReceiverToShop, buyProducts } from '../../actions/shop'
 import ReceiverInfo from '../../components/block/receiver_info'
 
 class Cart extends Component {
@@ -130,6 +130,73 @@ class Cart extends Component {
                 </tr>
     }
 
+    checkOut = () => {
+        window.paypal.Button.render({
+            env: 'production', // sandbox | production
+            commit: true,
+            style: {
+                label: 'paypal',
+                size:  'large',    // small | medium | large | responsive
+                shape: 'rect',     // pill | rect
+                color: 'blue',     // gold | blue | silver | black
+                tagline: false    
+            },
+            client: {
+                sandbox:    'AfDGqe6kXnSsTM9gDI2OZdUXxrydoxVCG7CZbp76Nr-NdDvHjyKs7W52X7n8s8_i4k6cQqwF7gor72f_',
+                production: 'AUjZF0corGMnwDfnp4_EGJkFESZn6u96_wnxqVL2XNQ_RCkqnHjLJaNRKSB9j4Ypn4LniWukXuSJ_bF7'
+            },
+            payment: (data, actions) => {
+                return actions.payment.create({
+                    payment: {
+                        transactions: [
+                            {
+                                amount: { total: this.getTotal(), currency: 'USD' }
+                            }
+                        ]
+                    }
+                });
+            },
+
+            onAuthorize: (data, actions) => {
+                const { cart, receiver, dispatch } = this.props
+                return actions.payment.execute().then(() => {
+                    let temp = {}
+                    for (let k in cart) {
+                        temp[cart[k].product.id] = cart[k].count
+                    }
+
+                    const mas = {
+                        girl_id: receiver.id,
+                        paypal_id:  data.paymentID,
+                        products: temp
+                    }
+
+                    dispatch(buyProducts(mas))
+                    this.clearCart()
+                    this.clearReceiver()
+                });
+            }
+        }, '#paypal-button-cart');
+    }
+
+    renderPayPal = () => {
+        if (!window.paypal) {
+            const script = document.createElement('script')
+            script.src = 'https://www.paypalobjects.com/api/checkout.js'
+
+            script.onload = () => {
+                this.checkOut()
+            }
+            document.body.appendChild(script)
+        } else {
+            this.checkOut()
+        }
+    }
+
+    componentDidMount() {
+        this.renderPayPal()
+    }
+
     render() {
     	const { cart, membersList, receiver } = this.props
     	const hiddenClass = cart.length && receiver.id ? '' : 'hidden'
@@ -191,9 +258,6 @@ class Cart extends Component {
 				                            <div className={`${hiddenClass} text-center`} id="paypal-button-cart"></div>
 				                        </Col>
 				                    </Row>
-				                </Col>
-				                <Col xs={2}>
-				                    
 				                </Col>
 				            </Row>
                         </Grid>

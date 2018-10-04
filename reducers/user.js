@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 const initialState = {
     token: Cookies.get('token'),
     role: 'client',
+    timeout: false,
     data: {
         role: 'client',
         profile_id: '',
@@ -92,6 +93,10 @@ const user = (user = initialState, action = {}) => {
         case types.REMOVE_TOKEN:
             return Object.assign({}, user, {
                 token: false
+            });
+        case types.SET_TIMEOUT_VALUE:
+            return Object.assign({}, user, {
+                timeout: action.value
             });
         case types.SET_USER_INFO:
             return Object.assign({}, user, {

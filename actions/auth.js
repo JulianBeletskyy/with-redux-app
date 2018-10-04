@@ -3,14 +3,12 @@ import * as types from './types.js'
 import Cookies from 'js-cookie'
 import { toggleModal } from './ui'
 import { Router } from '../routes'
-import { isAuthentificate } from '../utils'
 
 export const login = data => dispatch => {
 	return post('login', true, data).then(res => {
 		if (res.data) {
 			dispatch(toggleModal(false, 'login'))
 			dispatch(setToken(res.data))
-			isAuthentificate()
 			return true
 		}
 	})
@@ -18,6 +16,7 @@ export const login = data => dispatch => {
 
 export const logout = () => dispatch => {
     dispatch(removeToken())
+    dispatch(setTimeoutValue(false))
     return Promise.resolve(true)
 }
 
@@ -35,6 +34,12 @@ export const setToken = token => {
         token
     }
 }
+
+export const setTimeoutValue = value =>
+	({
+		type: types.SET_TIMEOUT_VALUE,
+		value,
+	})
 
 export const setTokenServer = token => {
 	return {

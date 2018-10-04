@@ -9,6 +9,7 @@ import MemberBlock from '../components/block/member_block'
 import { Router } from '../routes'
 import { getPublicMembers } from '../actions/members'
 import MainModal from '../components/modal'
+import Slider from 'react-slick'
 
 class Landing extends Component {
 	constructor(props) {
@@ -93,7 +94,7 @@ class Landing extends Component {
             margin: '0 auto',
             backgroundSize: 'cover'
         }
-        if (i === 2) { return false }
+        //if (i === 2) { return false }
 		return	<Col sm={4} key={i}>
                     <div className="text-center landing-item-testimonial p-15 pointer" onClick={this.openTestimonial(item)}>
 	                    <div style={imgStyle}></div>
@@ -132,6 +133,23 @@ class Landing extends Component {
 		if (showRegistration) {
 			col = 12
 		}
+
+		const settings = {
+            slidesToShow: 3,
+            dots: false,
+            arrows: true,
+            infinite: true,
+            autoplay: false,
+            responsive: [
+                {
+                    breakpoint: 1120, 
+                    settings: {slidesToShow: 2}
+                },{
+                    breakpoint: 798, 
+                    settings: {slidesToShow: 1, arrows: false, dots: true}
+                }
+            ]
+        };
 
 		return (
 			<div className="homeWrapper">
@@ -189,7 +207,7 @@ class Landing extends Component {
 	                </div>
 				</div>
 				{
-					!showRegistration && country !== 'UA'
+					!showRegistration && country !== 'UqweA'
 					? 	<div>
 							<div id="advantages" className="advantWrap">
 								<h2 className="advantTitle">Competitive <span className="underlineText">Advantages</span></h2>
@@ -341,7 +359,9 @@ class Landing extends Component {
 		                        <h2 className="landing-title"><span className="underlineText">Testimonials</span></h2>
 		                        <Grid>
 		                            <Row className="testimonials-slider form-group">
-		                                { testimonials.map((item, i) => this.printTestimonials(item, i)) }
+		                            	<Slider {...settings}>
+		                                	{ testimonials.map((item, i) => this.printTestimonials(item, i)) }
+		                                </Slider>
 		                            </Row>
 		                            <div className="form-group text-center">
 		                                <BtnMain

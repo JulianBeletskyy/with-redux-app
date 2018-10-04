@@ -9,6 +9,14 @@ export const getCategories = () => dispatch => {
 	})
 }
 
+export const buyProducts = data => dispatch => {
+	return post(`client/shop/buy`, true, data).then(res => {
+		if (res.data) {
+			
+		}
+	})
+}
+
 export const setCart = cart =>
 	({
 		type: types.SET_CART,
