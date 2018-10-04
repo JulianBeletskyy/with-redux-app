@@ -9,8 +9,8 @@ const express = require('express')
 
 app.prepare().then(() => {
 	const server = express();
-	//server.use('/robots.txt', express.static(join(__dirname, '/static/robots.txt')));
-	//server.use('/sitemap.xml', express.static(join(__dirname, '/static/sitemap.xml')));
+	server.use('/robots.txt', express.static(join(__dirname, '/static/robots.txt')));
+	server.use('/sitemap.xml', express.static(join(__dirname, '/static/sitemap.xml')));
 	server.use(handler).listen(3000)
 
   	//createServer(handler).listen(3000)
