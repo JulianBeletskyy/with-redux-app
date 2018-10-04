@@ -8,6 +8,8 @@ const initialState = {
     recoveryHash: '',
     data: {
         role: 'client',
+        hidden: false,
+        hidden_request: false,
         profile_id: '',
         zodiac: '',
         weight: {},

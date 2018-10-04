@@ -76,6 +76,14 @@ export const toggleActive = (data, url) => dispatch => {
 	})
 }
 
+export const toggleHidden = val => dispatch => {
+	return post(`client/hidden-request/${val ? `hidden` : `visible`}`).then(res => {
+		if (res.data) {
+			dispatch(setUserInfo({hidden_request: true}))
+		}
+	})
+}
+
 export const saveAvatar = data => dispatch => {
 	return put(`gallery/avatar`, true, data).then(res => {
 		if (res.data) {

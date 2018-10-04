@@ -10,6 +10,7 @@ import EditForm from '../../components/forms/edit'
 import OtherForm from '../../components/forms/other'
 import ContactForm from '../../components/forms/contact'
 import PasswordForm from '../../components/forms/password'
+import SettingsForm from '../../components/forms/settings'
 
 class Edit extends Component {
 	static async getInitialProps({query}) {
@@ -44,6 +45,10 @@ class Edit extends Component {
             	eventKey: 'contact',
                 title: 'Contact Info', 
                 content: <ContactForm />
+            }, {
+                eventKey: 'settings',
+                title: 'Account Settings', 
+                content: <SettingsForm />
             }]
 
         if (role === 'client') {
