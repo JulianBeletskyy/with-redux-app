@@ -109,6 +109,8 @@
     color: #828282;
     text-align: center;
     margin-bottom: 10px;
+    height: 100px;
+    overflow: hidden;
 }
 
 .story-list-item:hover .story-list-img {

@@ -15,15 +15,16 @@ class Story extends Component {
 
 	render() {
 		const { story } = this.props
+		const html = story.story ? story.story.replace(/&nbsp;/g, ' ') : ''
 		return (
 			<Layout>
 				<div className="story-list-header">
 					<h1>{story.client_name} & {story.girl_name}</h1>
 				</div>
-				<div className="story-list-story">{story.story}</div>
 				<div>
 					<img src={story.image} alt="" className="img-responsive" />
 				</div>
+				<div dangerouslySetInnerHTML={{__html: html}} />
 			</Layout>
 		)
 	}

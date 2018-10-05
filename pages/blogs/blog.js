@@ -70,7 +70,7 @@ class Blog extends Component {
                         <hr />
                     </FormGroup>
                     <FormGroup>
-                        {<div dangerouslySetInnerHTML={{__html: html}} />}
+                        <div dangerouslySetInnerHTML={{__html: html}} />
                     </FormGroup>
                     <hr />
                     <div>
