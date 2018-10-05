@@ -14,18 +14,17 @@ class Mail extends Component {
         return {type: query.slug}
     }
 
-    constructor(props) {
-        super(props)
-        const { dispatch, type } = props
-
-        dispatch(getMail(type))
-        dispatch(setActiveTab(type, 'mail'))
-    }
-
     getMail = key => {
         const { dispatch } = this.props
         dispatch(getMail(key))
         Router.pushRoute(`/mail/${key}`)
+    }
+
+    componentDidMount() {
+        const { dispatch, type } = this.props
+
+        dispatch(getMail(type))
+        dispatch(setActiveTab(type, 'mail'))
     }
 
     render() {

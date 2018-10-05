@@ -12,11 +12,6 @@ import { setActiveTab } from '../../actions/ui'
 import SearchForm from '../../components/forms/search_form'
 
 class Client extends Component {
-    constructor(props) {
-        super(props)
-        const { dispatch, activeTab } = props
-        dispatch(getMembers(activeTab))
-    }
 
     getMembers = key => {
     	const { dispatch } = this.props
@@ -36,6 +31,11 @@ class Client extends Component {
     			dispatch(setActiveTab('search', 'main'))
     		}
     	})
+    }
+
+    componentDidMount() {
+    	const { dispatch, activeTab } = this.props
+        dispatch(getMembers(activeTab))
     }
 
     render() {

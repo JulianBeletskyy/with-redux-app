@@ -9,6 +9,7 @@ const initialState = {
     deleted: [],
     contacts: [],
     message: {
+        attachment: [],
         sender_avatar: '',
         sender_first_name: '',
         sender_id: '',

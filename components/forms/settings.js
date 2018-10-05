@@ -4,10 +4,6 @@ import Checkbox from '../inputs/checkbox'
 import { toggleHidden } from '../../actions/user'
 
 class SettingsForm extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     toggleHide = val => {
     	const { dispatch } = this.props
     	dispatch(toggleHidden(val))

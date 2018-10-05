@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import Head from 'next/head'
 import Layout from '../../layouts/blogs'
-import { Router } from '../../routes'
 import { connect } from 'react-redux'
-import { getBlog, sendComment } from '../../actions/ui'
+import { sendComment } from '../../actions/ui'
 import { FormGroup, Col, Row } from 'react-bootstrap'
 import TextField from '../../components/inputs/text_field.js'
 import BtnMain from '../../components/buttons/btn_main.js'
@@ -86,8 +85,7 @@ class Blog extends Component {
                                 <TextField
                                     placeholder="First Name"
                                     inputRef={ref => { this.name = ref }}
-                                    name="Name"
-                                    key="name" />
+                                    name="Name" />
                             </FormGroup>
                             <FormGroup>
                                 <Textarea
@@ -96,10 +94,9 @@ class Blog extends Component {
                             </FormGroup>
                             <FormGroup className="text-right">
                                 <BtnMain
-                                    type="button"
                                     bsStyle="success"
                                     text="Comment"
-                                    onClick = {this.setComment} />
+                                    onClick={this.setComment} />
                             </FormGroup>
                         </Col>
                     </Row>

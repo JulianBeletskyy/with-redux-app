@@ -57,7 +57,7 @@ export const getMessage = (id, key) => dispatch => {
 		if (res.data) {
 			dispatch(setMessage(res.data))
 			dispatch(getUnreadMessage())
-			return true
+			return res.data
 		}
 	})
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Head from 'next/head'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import Layout from '../../layouts'
@@ -69,7 +68,6 @@ class About extends Component {
 	                    <div className="bg-white p-15">
 	                        <h1 className="font-bebas">About Company</h1>
 	                        <hr />
-
 	                        <h2 className="text-center form-group p-15 works-big-title fs-48">
 	                            <span className="text-uppercase"><span className="underline-text">Life In Love</span> has been in business for several years.</span>
 	                        </h2>
@@ -80,9 +78,7 @@ class About extends Component {
 	                                </div>
 	                            </div>
 	                        </div>
-	                        
 	                        <hr />
-
 	                        <div className="pt-50">
 	                            <Row>
 	                                <Col sm={6}>
@@ -107,10 +103,8 @@ class About extends Component {
 	                                </Col>
 	                            </Row>
 	                        </div>
-
 	                        <div className="pt-50 pb-50">
 	                        </div>
-
 	                        <div className="backgroundGrey">
 	                            <Row>
 	                                <Col sm={6}>
@@ -132,7 +126,6 @@ class About extends Component {
 	                                </Col>
 	                            </Row>
 	                        </div>
-
 	                        <div className="pt-50 pb-50 px-15 testimonials-slider">
 	                            <Slider {...testimonialsSettings}>
 	                                { testimonials.map((item, i) => this.printTestimonials(item, i)) }
@@ -162,6 +155,4 @@ const mapStateToProps = state =>
         testimonialsModal: state.ui.modals.testimonials,
     })
 
-export default connect(
-    mapStateToProps
-)(About)
+export default connect(mapStateToProps)(About)

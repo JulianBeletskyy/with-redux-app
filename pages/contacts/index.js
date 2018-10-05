@@ -10,9 +10,8 @@ class Contacts extends Component {
 	    return {type: query.slug}
   	}
 
-    constructor(props) {
-        super(props)
-        const { dispatch, type } = props
+    componentDidMount() {
+        const { dispatch, type } = this.props
         dispatch(getContacts(type))
     }
 
@@ -33,7 +32,7 @@ class Contacts extends Component {
                     </div>
             	</PrivateLayout>
         	</Layout>
-        );
+        )
     }
 }
 

@@ -9,14 +9,8 @@ import Registration from '../../components/registration'
 import { setUiKey } from '../../actions/ui'
 
 class Works extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            type: 'popular'
-        }
-        const { dispatch } = props
-        dispatch(getPublicMembers(this.state.type))
-    }
+
+    state = {type: 'popular'}
 
     toggleMembers = type => e => {
         const { dispatch } = this.props
@@ -54,10 +48,10 @@ class Works extends Component {
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(setUiKey('showRegistration', true))
+        dispatch(getPublicMembers(this.state.type))
     }
 
 	render() {
-        const type = 'new'
         const { testimonials, publicList, showRegistration, step } = this.props
 		return (
             <Layout>
@@ -99,7 +93,6 @@ class Works extends Component {
                                     </Col>
                                 </Row>
                             </FormGroup>
-
                             <FormGroup>
                                 <Row>
                                     <Col sm={8} xsHidden>
@@ -124,7 +117,6 @@ class Works extends Component {
                                     </Col>
                                 </Row>
                             </FormGroup>
-
                             <FormGroup>
                                 <Row>
                                     <Col sm={4}>
@@ -140,7 +132,6 @@ class Works extends Component {
                                     </Col>
                                 </Row>
                             </FormGroup>
-
                             <FormGroup>
                                 <Row>
                                     <Col sm={8} xsHidden>
@@ -169,7 +160,6 @@ class Works extends Component {
                                     </Col>
                                 </Row>
                             </FormGroup>
-
                             <FormGroup>
                                 <Row>
                                     <Col sm={4}>
@@ -185,7 +175,6 @@ class Works extends Component {
                                     </Col>
                                 </Row>
                             </FormGroup>
-                            
                             <div className="works-member-block clearfix">
                                 <div className="clearfix pt-15">
                                     { testimonials.map((item, i) => this.printTestimonials(item, i)) }
@@ -247,6 +236,4 @@ const mapStateToProps = state =>
         step: state.signup.step,
     })
 
-export default connect(
-    mapStateToProps
-)(Works)
+export default connect(mapStateToProps)(Works)

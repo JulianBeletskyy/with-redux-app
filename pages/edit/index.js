@@ -17,17 +17,16 @@ class Edit extends Component {
         return {type: query.slug}
     }
 
-    constructor(props) {
-        super(props)
-        const { dispatch, type } = props
-        dispatch(setActiveTab(type, 'edit'))
-        dispatch(getUserFullInfo())
-    }
-
     handleChangeProfile = key => {
         const { dispatch } = this.props
         dispatch(setActiveTab(key, 'edit'))
         Router.pushRoute(`/edit/${key}`)
+    }
+
+    componentDidMount() {
+        const { dispatch, type } = this.props
+        dispatch(setActiveTab(type, 'edit'))
+        dispatch(getUserFullInfo())
     }
 
     render() {

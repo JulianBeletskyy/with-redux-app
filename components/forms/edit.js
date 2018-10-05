@@ -123,6 +123,7 @@ class Edit extends Component {
         }
 
         if (error) {
+            console.log(this.user)
         	const data = {
                 first_name: this.user.first_name.value,
                 last_name: this.user.last_name.value,

@@ -18,22 +18,10 @@ class Draft extends Component {
         return {id: query.id}
     }
 
-    constructor(props) {
-        super(props)
-        this.state = {
-        	show: false,
-            src: '',
-            filesPreview: []
-        }
-
-        const { dispatch, id } = props
-        dispatch(getMessage(id, 'draft')).then(res => {
-        	if (res) {
-        		const temp = this.props.message.attachment.map(item => ({id: item.id, src: item.img}))
-        		dispatch(addAttachDraft(temp))
-        		dispatch(addAttachMessage(temp))
-        	}
-        })
+    state = {
+        show: false,
+        src: '',
+        filesPreview: []
     }
 
     goTo = link => e => {
@@ -42,17 +30,14 @@ class Draft extends Component {
     }
 
     showPhoto = item => e => {
-    	this.setState({show: true, src: item.src})
+    	this.setState({show: true, src: item.src ? item.src : item})
     }
 
     closePreview = () => {
     	this.setState({show: false, src: ''})
     }
 
-    getSrc = item => {
-    	if (item.src) {return item.src}
-		return item
-    }
+    getSrc = item => item.src ? item.src : item
 
     send = () => {
     	const { dispatch, attach, message } = this.props
@@ -138,66 +123,74 @@ class Draft extends Component {
         dispatch(clearAttachAll())
     }
 
+    componentDidMount() {
+        const { dispatch, id } = this.props
+        dispatch(getMessage(id, 'draft')).then(res => {
+            if (res.attachment) {
+                const temp = res.attachment.map(item => ({id: item.id, src: item.img}))
+                dispatch(addAttachDraft(temp))
+                dispatch(addAttachMessage(temp))
+            }
+        })
+    }
+
     render() {
     	const { message, draftAttach, id } = this.props
         return (
             <Layout>
             	<PrivateLayout>
-                {
-                    message.id === id * 1
-                    ?   <div>
-                           <div className="pt-15">
-                                <div className="font-bebas form-group">
-                                    <a className="font-bebas" href={`/mail/draft`} onClick={this.goTo(`/mail/draft`)}><i className="fas fa-chevron-left"></i> Back to mail</a>
+                    {
+                        message.id === id * 1
+                        ?   <div>
+                               <div className="pt-15">
+                                    <div className="font-bebas form-group">
+                                        <a className="font-bebas" href={`/mail/draft`} onClick={this.goTo(`/mail/draft`)}><i className="fas fa-chevron-left"></i> Back to mail</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="form-group">
-                                <Textarea
-                                    counter={4500}
-                                    inputRef={ref => { this.message = ref }}
-                                    value={message.original}
-                                    placeholder="Message"
-                                    label={true} />
-                            </div>
-                            {
-                                draftAttach.length
+                                <div className="form-group">
+                                    <Textarea
+                                        counter={4500}
+                                        inputRef={ref => { this.message = ref }}
+                                        value={message.original}
+                                        placeholder="Message"
+                                        label={true} />
+                                </div>
+                                {
+                                    draftAttach.length
                                     ?   <div className="row">
                                             {   draftAttach.map((item, key) => {
                                                     return  <div key={key} className="col-xs-6">
                                                                 <div className="attachmentWrap">
-                                                                {
-                                                                    <img onClick={this.showPhoto(item)} className="img-responsive pointer" src={this.getSrc(item)} alt="" />
-                                                                }
+                                                                { <img onClick={this.showPhoto(item)} className="img-responsive pointer" src={this.getSrc(item)} alt="" /> }
                                                                 </div>
                                                             </div>
                                                 })
                                             }
                                         </div>
                                     :   null
-                            }
-                            <div className="form-group">
-                                <BtnMain
-                                    bsStyle="success"
-                                    text="Send"
-                                    onClick={this.send} />
-                                &nbsp;
-                                <BtnMain
-                                    bsStyle="success"
-                                    onClick={this.save}
-                                    text="Save message" />
-                                &nbsp;
-                                <BtnMain
-                                    bsStyle="success"
-                                    onClick={this.remove}
-                                    text="Remove message" />
+                                }
+                                <div className="form-group">
+                                    <BtnMain
+                                        bsStyle="success"
+                                        text="Send"
+                                        onClick={this.send} />
+                                    &nbsp;
+                                    <BtnMain
+                                        bsStyle="success"
+                                        onClick={this.save}
+                                        text="Save message" />
+                                    &nbsp;
+                                    <BtnMain
+                                        bsStyle="success"
+                                        onClick={this.remove}
+                                        text="Remove message" />
+                                </div>
+                                <div className="form-group">
+                                    <UploadDropdown type="draft" />
+                                </div> 
                             </div>
-                            <div className="form-group">
-                                <UploadDropdown type="draft" />
-                            </div> 
-                        </div>
-                    :   <Loader />
-                }
-            		
+                        :   <Loader />
+                    }
 	                <FullScreenPreview src={this.state.src} show={this.state.show} onClose={this.closePreview} />
             	</PrivateLayout>
         	</Layout>

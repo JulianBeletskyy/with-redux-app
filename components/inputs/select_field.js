@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class SelectField extends Component {
     constructor(props) {
         super(props)
-        this.state = {value: props.value}
+        this.state = {value: props.value || ''}
     }
     
     printOptions = (option, i) => <option key={i} id={option.value} value={option.value}>{option.name}</option>
@@ -17,8 +17,9 @@ class SelectField extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.value !== this.state.value && nextProps.value !== this.props.value) {
-            this.setState({value: nextProps.value})
+        const value = nextProps.value ? nextProps.value : ''
+        if (value !== this.state.value && value !== this.props.value) {
+            this.setState({value: value})
         }
     }
 

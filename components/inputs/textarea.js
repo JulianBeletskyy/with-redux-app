@@ -31,8 +31,9 @@ class Textarea extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (!this.state.value && nextProps.value !== this.state.value) {
-            this.setState({value: nextProps.value})
+        const value = nextProps.value ? nextProps.value : ''
+        if (!this.state.value && value !== this.state.value) {
+            this.setState({value: value})
         }
     }
 
