@@ -28,6 +28,9 @@ class Faq extends Component {
                         <Questions />
 		            </Col>
 		            <Col sm={3}>
+                        <FormGroup>
+                            <img src="/static/assets/img/banner.jpg" className="img-responsive" alt="" />
+                        </FormGroup>
                         {
                             !token &&   <FormGroup className="text-center">
                                             <BtnMain
