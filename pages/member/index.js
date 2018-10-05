@@ -17,6 +17,7 @@ import MainModal from '../../components/modal'
 import MessageModal from '../../components/forms/message_modal'
 import { getUserInfo } from '../../actions/user'
 import VideoSlider from '../../components/gallery/video_slider'
+import NotActive from '../../components/NotActive'
 
 class Member extends Component {
     static async getInitialProps({query}) {
@@ -130,7 +131,7 @@ class Member extends Component {
     }
 
 	render() {
-        const { member, role, modal } = this.props
+        const { member, role, modal, active } = this.props
 		return (
 			<Layout>
                 <div className="pt-15">
@@ -447,6 +448,7 @@ class Member extends Component {
                             list={[{src: member.avatar.original}, ...member.gallery]} />
                 }
                 <Alert />
+                { !active && <NotActive /> }
                 <MainModal
                     body={<MessageModal memberId={member.id} />}
                     title="Send Message"
@@ -463,6 +465,7 @@ const mapStateToProps = state =>
         role: state.user.data.role,
         modal: state.ui.modals.message,
         membership: state.user.data.membership,
+        active: state.user.data.active,
     })
 
 export default connect(mapStateToProps)(Member)

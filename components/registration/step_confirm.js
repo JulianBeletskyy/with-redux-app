@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
+import { resendEmail } from '../../actions/auth'
 
 export class StepConfirm extends Component {
+    resend = () => {
+        const { dispatch, email } = this.props
+        dispatch(resendEmail(email))
+    }
+
     render() {
         return (
         	<Row>

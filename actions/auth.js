@@ -3,6 +3,7 @@ import * as types from './types.js'
 import Cookies from 'js-cookie'
 import { toggleModal } from './ui'
 import { Router } from '../routes'
+import { setUserInfo } from './user'
 
 export const login = data => dispatch => {
 	return post('login', true, data).then(res => {
@@ -35,6 +36,12 @@ export const setToken = token => {
     }
 }
 
+export const resendEmail = email => dispatch => {
+	return get(`resend/${email}`, true).then(res => {
+		if (res.data) { return true }
+	})
+}
+
 export const setTimeoutValue = value =>
 	({
 		type: types.SET_TIMEOUT_VALUE,
@@ -52,6 +59,7 @@ export const activateUser = hash => dispatch => {
 	return get(`activate/${hash}`, true).then(res => {
 		if (res.data) {
 			dispatch(setToken(res.data))
+			dispatch(setUserInfo({active: true}))
 			Router.pushRoute('/')
 		}
 	})

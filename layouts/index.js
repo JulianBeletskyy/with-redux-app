@@ -20,7 +20,7 @@ class Layout extends Component {
 		}
 	}
 	render() {
-		const { children, credits, membership, country, token } = this.props
+		const { children, credits, membership, country, token, active } = this.props
 		return (
 			<div>
 				<header>
@@ -30,7 +30,7 @@ class Layout extends Component {
 			      { children }
 			    </main>
 			    <footer>
-			    	{ !token && country === 'UA' ? null : <Footer /> }
+			    	{ (!token && country === 'UA') || (token && !active) ? null : <Footer /> }
 			    </footer>
 			    <MainModal
                     body={<Credits />}
@@ -57,6 +57,7 @@ const mapStateToProps = state =>
         token: state.user.token,
         country: state.signup.country,
         timeout: state.user.timeout,
+        active: state.user.data.active,
     })
 
 export default connect(mapStateToProps)(Layout)

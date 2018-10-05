@@ -10,6 +10,7 @@ const initialState = {
         role: 'client',
         hidden: false,
         hidden_request: false,
+        active: false,
         profile_id: '',
         zodiac: '',
         weight: {},

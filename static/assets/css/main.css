@@ -29,6 +29,35 @@
     color: inherit;
 }
 
+.not-active-wrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: rgba(255,255,255,0.8);
+    z-index: 1;
+}
+
+.not-active-inner {
+    background: #fff;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 320px;
+    text-align: center;
+    padding: 50px 0 50px 0;
+    min-width: 80%;
+    min-height: 300px;
+}
+
+.not-active-inner p {
+    font-family: bebas_neue;
+    color: #333;
+    font-size: 24px;
+}
+
 .collapse-head {
     font-family: bebas_neue;
     font-weight: bold;

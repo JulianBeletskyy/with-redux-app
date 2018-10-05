@@ -36,7 +36,8 @@ class Index extends Component {
 	}
 
 	render () {
-		const { token } = this.props
+		const { token, active } = this.props
+		console.log(active)
 		return (
 			<div className="App">
 				<Layout>
@@ -49,7 +50,8 @@ class Index extends Component {
 
 const mapStateToProps = state =>
 	({
-		token: state.user.token
+		token: state.user.token,
+		active: state.user.data.active,
 	})
 
 export default connect(mapStateToProps)(Index)

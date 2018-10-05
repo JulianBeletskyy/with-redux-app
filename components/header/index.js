@@ -19,7 +19,6 @@ class PublicHeader extends Component {
             dropdown: false
         }
         const { dispatch, token } = props
-        
         if (token) {
             dispatch(getUnreadMessage())
         }
@@ -80,7 +79,7 @@ class PublicHeader extends Component {
 
     render() {
         const { country } = this.props.signup
-        const { token, support, login, recovery, role, unreadMessage, cart } = this.props
+        const { token, support, login, recovery, role, unreadMessage, cart, active } = this.props
         return (
             <div>
                 <Navbar className="title" fixedTop collapseOnSelect={true} onToggle={this.setNavExpanded}>
@@ -95,63 +94,99 @@ class PublicHeader extends Component {
                     <Navbar.Collapse id="collapse" className="collapse-head">
                         <ul className="navBar nav navbar-nav navbar-right">
                             {
-                                (country !== 'UA' && ! token) &&    <NavDropdown role="presentation" title="About" id="dropdown">
-                                                                        <a href="/about" onClick={this.goTo('/about')}>About Company</a>
-                                                                        <a href="/how-it-works" onClick={this.goTo('/how-it-works')}>How it works?</a>
-                                                                        <a href="/testimonials" onClick={this.goTo('/testimonials')}>Testimonials</a>
-                                                                        <a href="/success-stories" onClick={this.goTo('/success-stories')}>Success stories</a>
-                                                                    </NavDropdown>
+                                (country !== 'UA' && ! token)  
+                                ?   <NavDropdown role="presentation" title="About" id="dropdown">
+                                        <a href="/about" onClick={this.goTo('/about')}>About Company</a>
+                                        <a href="/how-it-works" onClick={this.goTo('/how-it-works')}>How it works?</a>
+                                        <a href="/testimonials" onClick={this.goTo('/testimonials')}>Testimonials</a>
+                                        <a href="/success-stories" onClick={this.goTo('/success-stories')}>Success stories</a>
+                                    </NavDropdown>
+                                :   null
                             }
-                            { token &&  <li role="presentation">
-                                            <a href="/mail/incoming" onClick={this.goTo('/mail/incoming')}>Mail</a>
-                                            {unreadMessage ? <span className="badge-message">{unreadMessage}</span> : null}
-                                        </li>
+                            { 
+                                (token && active)
+                                ?   <li role="presentation">
+                                        <a href="/mail/incoming" onClick={this.goTo('/mail/incoming')}>Mail</a>
+                                        {unreadMessage ? <span className="badge-message">{unreadMessage}</span> : null}
+                                    </li>
+                                :   null
                             }
-                            { token && <li role="presentation"><a href="/profile/info" onClick={this.goTo('/profile/info')}>My Profile</a></li> }
-
+                            { 
+                                (token && active) 
+                                ?   <li role="presentation"><a href="/profile/info" onClick={this.goTo('/profile/info')}>My Profile</a></li>
+                                :   null
+                            }
                             {   
-                                token
+                                (token && active)
                                 ?   role === 'client'
                                     ?   <li role="presentation"><a href="/girls" onClick={this.goTo('/girls')}>Girls</a></li>
                                     :   <li role="presentation"><a href="/men" onClick={this.goTo('/men')}>Men</a></li>
                                 :   country !== 'UA' ? <li role="presentation"><a href="/members" onClick={this.goTo('/members')}>Girls</a></li> : null
 
                             }
-
-                            { token &&  <NavDropdown role="presentation" title="Contacts" id="dropdown">
-                                            <a href="/contacts/favorite" onClick={this.goTo('/contacts/favorite')}>Favorite</a>
-                                            <a href="/contacts/interests" onClick={this.goTo('/contacts/interest')}>My interests</a>
-                                        </NavDropdown> 
+                            { 
+                                (token && active) 
+                                ?   <NavDropdown role="presentation" title="Contacts" id="dropdown">
+                                        <a href="/contacts/favorite" onClick={this.goTo('/contacts/favorite')}>Favorite</a>
+                                        <a href="/contacts/interests" onClick={this.goTo('/contacts/interest')}>My interests</a>
+                                    </NavDropdown>
+                                :   null
                             }
-                            { (country !== 'UA' || (token && role === 'client')) && <li role="presentation"><a href="/services" onClick={this.goTo('/services')}>Services</a></li> }
-                            { country !== 'UA' && ! token && <li role="presentation"><a href="/success-stories" onClick={this.goTo('/success-stories')}>Success Stories</a></li>}
-                            { (country !== 'UA' || token) && <li role="presentation"><a href="/blogs" onClick={this.goTo('/blogs')}>Blog</a></li> }
-                            { country !== 'UA' && ! token && <li role="presentation"><a href="/how-it-works" onClick={this.goTo('/how-it-works')}>How it works?</a></li> }
-                            { (token && role === 'client') && <li role="presentation"><a href="/shop" onClick={this.goTo('/shop')}>Shop</a></li> }
-                            {
-                                ! token &&  <NavDropdown 
-                                                role="presentation"
-                                                eventKey={2}
-                                                title="Support" 
-                                                id="support-nav-dropdown">
-                                                <a href="javascript:;" onClick={this.showSupport()}>Send Request</a>
-                                                <a href="/faq" onClick={this.goTo('/faq')}>FAQ</a>
-                                            </NavDropdown>
+                            { 
+                                (country !== 'UA' || (token && role === 'client' && active))
+                                ?   <li role="presentation"><a href="/services" onClick={this.goTo('/services')}>Services</a></li>
+                                :   null
+                            }
+                            { 
+                                country !== 'UA' && ! token
+                                ?   <li role="presentation"><a href="/success-stories" onClick={this.goTo('/success-stories')}>Success Stories</a></li>
+                                :   null
+                            }
+                            { 
+                                (country !== 'UA' || (token && active))
+                                ?    <li role="presentation"><a href="/blogs" onClick={this.goTo('/blogs')}>Blog</a></li>
+                                :   null
+                            }
+                            { 
+                                country !== 'UA' && ! token
+                                ?   <li role="presentation"><a href="/how-it-works" onClick={this.goTo('/how-it-works')}>How it works?</a></li>
+                                :   null
+                            }
+                            { 
+                                (token && role === 'client' && active)
+                                ?   <li role="presentation"><a href="/shop" onClick={this.goTo('/shop')}>Shop</a></li>
+                                :   null
                             }
                             {
-                                (token && role === 'client') && <NavDropdown role="presentation" title="About" id="dropdown">
-                                                                    <a href="/about" onClick={this.goTo('/about')}>About Company</a>
-                                                                    <a href="/how-it-works" onClick={this.goTo('/how-it-works')}>How it works?</a>
-                                                                    <a href="/testimonials" onClick={this.goTo('/testimonials')}>Testimonials</a>
-                                                                    <a href="/success-stories" onClick={this.goTo('/success-stories')}>Success stories</a>
-                                                                </NavDropdown>
+                                (! token || (token && !active)) 
+                                ?   <NavDropdown 
+                                        role="presentation"
+                                        eventKey={2}
+                                        title="Support" 
+                                        id="support-nav-dropdown">
+                                        <a href="javascript:;" onClick={this.showSupport()}>Send Request</a>
+                                        <a href="/faq" onClick={this.goTo('/faq')}>FAQ</a>
+                                    </NavDropdown>
+                                :   null
                             }
                             {
-                                (token && role === 'client') && <li role="presentation">
-                                                                    <a href="/shop/cart" onClick={this.goTo('/shop/cart')}>
-                                                                    <i className="fas fa-shopping-cart"></i></a>
-                                                                    { cart.length ? <span className="badge-message">{this.countCart()}</span> : null }
-                                                                </li>
+                                (token && role === 'client' && active)
+                                ?   <NavDropdown role="presentation" title="About" id="dropdown">
+                                        <a href="/about" onClick={this.goTo('/about')}>About Company</a>
+                                        <a href="/how-it-works" onClick={this.goTo('/how-it-works')}>How it works?</a>
+                                        <a href="/testimonials" onClick={this.goTo('/testimonials')}>Testimonials</a>
+                                        <a href="/success-stories" onClick={this.goTo('/success-stories')}>Success stories</a>
+                                    </NavDropdown>
+                                :   null
+                            }
+                            {
+                                (token && role === 'client' && active)
+                                ?   <li role="presentation">
+                                        <a href="/shop/cart" onClick={this.goTo('/shop/cart')}>
+                                        <i className="fas fa-shopping-cart"></i></a>
+                                        { cart.length ? <span className="badge-message">{this.countCart()}</span> : null }
+                                    </li>
+                                :   null
                                 
                             }
                             {
@@ -195,6 +230,7 @@ const mapStateToProps = state =>
         role: state.user.data.role,
         unreadMessage: state.user.data.unread_message,
         cart: state.shop.cart,
+        active: state.user.data.active,
     })
 
 export default connect(

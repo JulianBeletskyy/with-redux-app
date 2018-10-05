@@ -6,6 +6,7 @@ import GirlMenu from '../components/menus/girl_menu'
 import ClientMenu from '../components/menus/client_menu'
 import AvatarGallery from '../components/gallery/avatar_gallery'
 import MainModal from '../components/modal'
+import NotActive from '../components/NotActive'
 
 class Private extends Component {
     constructor(props) {
@@ -15,9 +16,9 @@ class Private extends Component {
     }
 
     render() {
-    	const { children, role, avatar } = this.props
+    	const { children, role, avatar, active } = this.props
         return (
-            <div className="pt-80 bg-blue">
+            <div className="pt-80 bg-blue position-relative">
                 <Grid id="profile">
                     <Row>
                         <Col md={9} className="bg-white">
@@ -28,6 +29,7 @@ class Private extends Component {
                         </Col>
                     </Row>
                 </Grid>
+                { !active && <NotActive /> }
                 <MainModal
                     body={<AvatarGallery />}
                     title="Avatar"
@@ -44,6 +46,7 @@ const mapStateToProps = state =>
         token: state.user.token,
         role: state.user.data.role,
         avatar: state.ui.modals.avatar,
+        active: state.user.data.active,
     })
 
 export default connect(mapStateToProps)(Private)
