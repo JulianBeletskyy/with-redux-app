@@ -12,8 +12,8 @@ import MainModal from '../components/modal'
 import Slider from 'react-slick'
 
 class Landing extends Component {
-	constructor(props) {
-		super(props)
+	constructor() {
+		super()
 		this.elements = {}
 		this.state = {
 			type: 'popular',
@@ -24,7 +24,11 @@ class Landing extends Component {
 
 	getRegistration = () => {
 		const { dispatch } = this.props
-		window.scrollTo(0,0)
+		window.scroll({
+	  		top: 0, 
+	  		left: 0, 
+	  		behavior: 'smooth' 
+		})
 		dispatch(setUiKey('showRegistration', true))
 	}
 
@@ -59,7 +63,11 @@ class Landing extends Component {
 	}
 
 	goToTop = () => {
-		window.scrollTo(0,0);
+		window.scroll({
+	  		top: 0, 
+	  		left: 0, 
+	  		behavior: 'smooth' 
+		})
 	}
 
 	getText = text => text.length > 330 ? text.slice(0, 330) + '...' : text
@@ -94,7 +102,6 @@ class Landing extends Component {
             margin: '0 auto',
             backgroundSize: 'cover'
         }
-        //if (i === 2) { return false }
 		return	<Col sm={4} key={i}>
                     <div className="text-center landing-item-testimonial p-15 pointer" onClick={this.openTestimonial(item)}>
 	                    <div style={imgStyle}></div>
@@ -207,7 +214,7 @@ class Landing extends Component {
 	                </div>
 				</div>
 				{
-					!showRegistration && country !== 'UA'
+					!showRegistration && country !== 'asd'
 					? 	<div>
 							<div id="advantages" className="advantWrap">
 								<h2 className="advantTitle">Competitive <span className="underlineText">Advantages</span></h2>
