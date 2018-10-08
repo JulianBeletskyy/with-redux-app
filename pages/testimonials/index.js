@@ -54,8 +54,6 @@ class Testimonials extends Component {
 
 	render() {
 		const { testimonials, testimonialsModal, country, token } = this.props
-		console.log(country)
-		console.log(token)
 		return (
 			<Layout>
 				<Row>

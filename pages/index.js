@@ -37,7 +37,6 @@ class Index extends Component {
 
 	render () {
 		const { token, active } = this.props
-		console.log(active)
 		return (
 			<div className="App">
 				<Layout>

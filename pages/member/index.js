@@ -370,7 +370,7 @@ class Member extends Component {
                                             <div className="row">
                                                 <div className="col-sm-6 col-lg-6 col-md-12">
                                                     <LinkIcon 
-                                                        text={member.interest ? "Interest Expressed" : "Express the interest"}
+                                                        text={member.interest ? "Interest Expressed" : "Express interest"}
                                                         onClick={this.toggleInterest}
                                                         className={`${member.interest ? `cursor-normal` : ``}`}
                                                         color="#FF8DA1" 

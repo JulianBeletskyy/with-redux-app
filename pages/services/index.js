@@ -8,7 +8,6 @@ import { toggleModal, setUiKey } from '../../actions/ui'
 import { Router } from '../../routes'
 
 class Services extends Component {
-	
 
 	resolveButtons = type => e => {
 		const { dispatch, token } = this.props
@@ -241,7 +240,6 @@ class Services extends Component {
 	                                </Col>
 	                            </Row>
 	                        </FormGroup>
-
 	                        <FormGroup>
 	                            <Row>
 	                                <Col sm={4}>
@@ -294,7 +292,6 @@ class Services extends Component {
 	                                </Col>
 	                            </Row>
 	                        </FormGroup>
-
 	                        <FormGroup>
 	                            <Row>
 	                                <Col sm={4}>
@@ -310,13 +307,10 @@ class Services extends Component {
 	                                </Col>
 	                            </Row>
 	                        </FormGroup>
-
 	                        <div className="service-title-right form-group">
 	                            Finding love abroad can be challenging – but it’s not impossible. <strong>Life In Love</strong> will guide you through the process. Sign up for our services and let us help you meet the lady of your dreams today!
 	                        </div>
-
 	                        <hr />
-
 	                        <div className="color-888 fs-12">
 	                            Disclosure:<br />
 	                            * Packages are billed in 3-Month increments. For example, the monthly rate for the Gold package is $19.99. If you select the Gold Membership package, you will be billed 1 payment of $59.97 for 3 months of service. 

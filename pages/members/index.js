@@ -9,9 +9,8 @@ import { setUiKey } from '../../actions/ui'
 
 class Members extends Component {
 
-    constructor(props) {
-        super(props)
-        const { dispatch } = props
+    componentDidMount() {
+        const { dispatch } = this.props
         dispatch(getPublicMembers())
     }
 
