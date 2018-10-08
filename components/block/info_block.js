@@ -250,6 +250,4 @@ const mapStateToProps = state =>
         user: state.user.data
     })
 
-export default connect(
-    mapStateToProps
-)(Info)
+export default connect(mapStateToProps)(Info)

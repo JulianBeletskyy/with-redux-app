@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getUserInfo } from '../actions/user'
 import GirlMenu from '../components/menus/girl_menu'
 import ClientMenu from '../components/menus/client_menu'
+import MobileMenu from '../components/menus/mobile_menu'
 import AvatarGallery from '../components/gallery/avatar_gallery'
 import MainModal from '../components/modal'
 import NotActive from '../components/NotActive'
@@ -30,6 +31,7 @@ class Private extends Component {
                     </Row>
                 </Grid>
                 { !active && <NotActive /> }
+                <MobileMenu client={role === 'client'} />
                 <MainModal
                     body={<AvatarGallery />}
                     title="Avatar"

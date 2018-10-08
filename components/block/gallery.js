@@ -153,6 +153,4 @@ const mapStateToProps = state =>
 		membership: state.user.data.membership,
 	})
 
-export default connect(
-	mapStateToProps
-)(Gallery)
+export default connect(mapStateToProps)(Gallery)

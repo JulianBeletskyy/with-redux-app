@@ -6,14 +6,11 @@ import { setActiveTab } from '../../actions/ui'
 export class CustomTabs extends Component {
 	handleSelect = key => {
 		const { dispatch, tabKey } = this.props
-		console.log(this.props)
 		dispatch(setActiveTab(key, tabKey))
 		this.props.onChange(key)
 	}
 
-	printTabs = (tab, i) => {
-  		return <Tab key={i} eventKey={tab.eventKey} title={tab.title}><div className="pt-15">{tab.content}</div></Tab>
-  	}
+	printTabs = (tab, i) => <Tab key={i} eventKey={tab.eventKey} title={tab.title}><div className="pt-15">{tab.content}</div></Tab>
 
     render() {
     	const { tabs, activeTab, tabKey } = this.props
@@ -27,11 +24,6 @@ export class CustomTabs extends Component {
     }
 }
 
-const mapStateToProps = state =>
-	({
-	    activeTab: state.ui.tab
-	})
+const mapStateToProps = state => ({activeTab: state.ui.tab})
 
-export default connect(
-    mapStateToProps
-)(CustomTabs)
+export default connect(mapStateToProps)(CustomTabs)
