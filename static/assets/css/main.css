@@ -24,12 +24,6 @@
     background: rgba(255,255,255,0.8);
     z-index: 1;
 }
-.girl-color {
-    color: #F9006E;
-}
-.client-color {
-    color: #39C7D6;
-}
 .not-active-inner {
     background: #fff;
     z-index: 2;
@@ -2115,6 +2109,12 @@ input[value=girl]:checked + .fa-venus {
 	text-transform: uppercase;
 	color: #828282;
 	letter-spacing: 1px;
+}
+.girl-color {
+    color: #F9006E;
+}
+.client-color {
+    color: #39C7D6;
 }
 .font-arial {
 	font-family: Arial;
