@@ -4,8 +4,8 @@ import { ToastContainer } from "react-toastr"
 import { removeAlert } from '../../actions/ui'
 
 class Alert extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.container = false
     }
 
@@ -16,7 +16,7 @@ class Alert extends Component {
         }
     }
 
-    showMessages = (messages) => {
+    showMessages = messages => {
         for (let message of messages) {
             this.container[message.level](message.text, '', { closeButton: true, timeOut: message.timeout })
         }
@@ -40,6 +40,4 @@ const mapStateToProps = state =>
         }   
     })
 
-export default connect(
-    mapStateToProps
-)(Alert);
+export default connect(mapStateToProps)(Alert)

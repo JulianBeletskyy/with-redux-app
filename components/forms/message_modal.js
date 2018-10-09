@@ -13,6 +13,10 @@ import { confirmAlert } from 'react-confirm-alert'
 
 export class MessageModal extends Component {
 
+    state = {
+        message: ''
+    }
+
     showAlert = data => {
         const { dispatch, userCredits } = this.props
         const messagePrice = LETTER_PRICE + (data.attachment.length * PHOTO_PRICE)
@@ -92,15 +96,31 @@ export class MessageModal extends Component {
 		}
 	}
 
+    handleChange = ({target: {textContent}}) => {
+        this.setState({message: textContent})
+    }
+
+    componentDidMount() {
+        const userLang = navigator.language || navigator.userLanguage
+        if (userLang === 'en-US' && window.location.host === 'localhost:3000') {
+            $Spelling.SpellCheckAsYouType('messageTextArea')
+            const el = document.getElementById('messageTextArea___livespell_proxy')
+            el.addEventListener('input', this.handleChange)
+        }
+    }
+
     render() {
+        const { first_name } = this.props
         return (
             <div>
                 <FormGroup className="member">
     	           <Textarea
+                        id="messageTextArea"
+                        label={true}
                         counter={4500}
                         inputRef={ref => { this.message = ref }}
-                        value={''}
-                        placeholder="Message" />
+                        value={this.state.message}
+                        placeholder={`Message to ${first_name}`} />
                 </FormGroup>
                 <FormGroup>
                     <BtnMain
@@ -124,8 +144,7 @@ const mapStateToProps = state =>
 	({
 	    attach: state.message.attach,
         userCredits: state.user.data.credits,
+        first_name: state.members.member.first_name,
 	})
 
-export default connect(
-    mapStateToProps,
-)(MessageModal)
+export default connect(mapStateToProps)(MessageModal)

@@ -98,6 +98,9 @@
     -webkit-transition: max-width 0.4s, margin-right 0.4s;
     transition: max-width 0.4s, margin-right 0.4s;
 }
+.dropdown-menu {
+    border-radius: 0;
+}
 .mobileWrap i {
     vertical-align: middle;
     width: 12px;

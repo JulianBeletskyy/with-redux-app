@@ -38,11 +38,12 @@ class Textarea extends Component {
     }
 
 	render() {
-		const { value = '', placeholder, label, className, counter = false } = this.props
+		const { value = '', placeholder, label, className, counter = false, id = '' } = this.props
 		return (
 			<div className="textarea-wrap">
                 {label ? <label>{placeholder}</label> : null}
-                <textarea 
+                <textarea
+                    id={id} 
                     ref={this.thisRef}
                     className="textarea-main form-control"
                     onChange={this.handleChange}

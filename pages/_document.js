@@ -46,6 +46,7 @@ export default class MyDocument extends Document {
                   });
               };`}} />
           <script src="https://apis.google.com/js/platform.js" async defer></script>
+          {/*<script type='text/javascript' src='http://spell.da/JavaScriptSpellCheck/include.js'></script>*/}
           <Main />
           <NextScript />
         </body>
