@@ -92,12 +92,10 @@ class About extends Component {
 	                                <Col sm={6}>
 	                                    <Row>
 	                                        <Col xs={6}>
-	                                            <div className="infoItemImg1">
-	                                            </div>
+	                                            <div className="infoItemImg1"></div>
 	                                        </Col>
 	                                        <Col xs={6}>
-	                                            <div className="infoItemImg2">
-	                                            </div>
+	                                            <div className="infoItemImg2"></div>
 	                                        </Col>
 	                                    </Row>
 	                                </Col>

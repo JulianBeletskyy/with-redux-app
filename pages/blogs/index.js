@@ -19,7 +19,7 @@ class Blog extends Component {
 						<Row>
 			        		<Col sm={6}>
 			        			<div className="imgWrap">
-			        				<img src={blog.image} alt="" />
+			        				<img src={blog.image} className="img-responsive" alt="" />
 			        			</div>
 			        		</Col>
 			        		<Col sm={6}>

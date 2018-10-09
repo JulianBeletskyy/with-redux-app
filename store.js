@@ -10,7 +10,6 @@ import reducers from './reducers'
     composeWithDevTools(applyMiddleware(thunkMiddleware)))
 }*/
 
-
 const initialState = {}
 
 export default createStore(reducers, initialState, applyMiddleware(thunkMiddleware))

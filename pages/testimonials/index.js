@@ -9,9 +9,6 @@ import { Router } from '../../routes'
 import MemberCarouselSmall from '../../components/block/member_carousel_small'
 
 class Testimonials extends Component {
-	constructor(props) {
-		super(props)
-	}
 
 	goToRegistration = () => {
         const { dispatch } = this.props
@@ -24,7 +21,7 @@ class Testimonials extends Component {
 		return 	<div key={i} className="testimonials-item-wrap">
                     <div className="row">
 	                    <div className="col-sm-4 text-center">
-	                        <img src={item.img} className="testimonials-item-img" alt="" />
+	                        <img src={item.img} className="img-responsive" alt="" />
 	                    </div>
 	                    <div className="col-sm-8">
 	                        <div className="testimonials-item-text">{item.text}</div>

@@ -9,12 +9,6 @@ import { Router } from '../../routes'
 
 class Credits extends Component {
 
-	constructor(props) {
-		super(props)
-		const { dispatch } = props
-		dispatch(getPackages())
-	}
-
 	setPackage = item => e => {
 		const { dispatch, membership } = this.props
 		const data = {
@@ -136,7 +130,9 @@ class Credits extends Component {
     }
 
 	componentDidMount() {
-       this.renderPayPal()
+   		this.renderPayPal()
+   		const { dispatch } = this.props
+		dispatch(getPackages())
     }
 
     render() {
@@ -162,6 +158,4 @@ const mapStateToProps = state =>
 		buyingAttach: state.message.buyingAttach,
 	})
 
-export default connect(
-    mapStateToProps,
-)(Credits)
+export default connect(mapStateToProps)(Credits)

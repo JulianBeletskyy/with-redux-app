@@ -126,6 +126,4 @@ const mapStateToProps = state =>
 		credits: state.user.data.credits,
 	})
 
-export default connect(
-    mapStateToProps
-)(VideoSlider)
+export default connect(mapStateToProps)(VideoSlider)

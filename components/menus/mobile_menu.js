@@ -28,7 +28,6 @@ class MobileMenu extends Component {
                         <a href="javascript:;">
                             <span onClick={this.goToSection('/edit/info')}>Edit</span>
                             <i className="fas fa-cog"></i>
-                            
                         </a>
                     </li>
                     <li>
@@ -38,22 +37,20 @@ class MobileMenu extends Component {
                         </a>
                     </li>
                     {
-                        client
-                        &&  <li>
-                                <a href="javascript:;">
-                                    <span onClick={this.showModal('credits')}>Add Credits</span>
-                                    <i className="fas fa-credit-card"></i>
-                                </a>
-                            </li>
+                        client &&  	<li>
+		                                <a href="javascript:;">
+		                                    <span onClick={this.showModal('credits')}>Add Credits</span>
+		                                    <i className="fas fa-credit-card"></i>
+		                                </a>
+		                            </li>
                     }
                     {
-                        client
-                        &&  <li>
-                                <a href="javascript:;">
-                                    <span onClick={this.showModal('membership')}>Membership</span>
-                                    <i className="fab fa-paypal"></i>
-                                </a>
-                            </li>
+                        client &&  	<li>
+		                                <a href="javascript:;">
+		                                    <span onClick={this.showModal('membership')}>Membership</span>
+		                                    <i className="fab fa-paypal"></i>
+		                                </a>
+		                            </li>
                     }  
                 </ul>
             </div> 

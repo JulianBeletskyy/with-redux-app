@@ -7,7 +7,7 @@ import { confirmAlert } from 'react-confirm-alert'
 import { PHOTO_PRICE } from '../../config'
 import { buyPhoto } from '../../actions/members'
 
-const NextArrow = (props) => {
+const NextArrow = props => {
   const { className, style, onClick } = props;
   return (
     <div className={className} onClick={onClick}>
@@ -22,7 +22,7 @@ const NextArrow = (props) => {
   );
 }
 
-const PrevArrow = (props) => {
+const PrevArrow = props => {
   const { className, style, onClick } = props;
   return (
     <div className={className} onClick={onClick}>
@@ -47,7 +47,7 @@ class FullScreenSlider extends Component {
 								<BtnMain
 			                        type="button"
 			                        bsStyle="success"
-			                        text="Buy photo"
+			                        text="Upgrade to review"
 			                        onClick = {this.buyPhoto(item)} />
 		                    </div>
                         :   null
@@ -84,10 +84,7 @@ class FullScreenSlider extends Component {
 
 	getButton = item => {
         const { membership } = this.props
-		if (item.private && ! item.purchased && membership.view_photo === 'Limited') {
-			return true
-		}
-		return false
+		return (item.private && ! item.purchased && membership.view_photo === 'Limited')
 	}
 
 	close = e => {
@@ -132,6 +129,4 @@ const mapStateToProps = state =>
         credits: state.user.data.credits,
     })
 
-export default connect(
-    mapStateToProps
-)(FullScreenSlider)
+export default connect(mapStateToProps)(FullScreenSlider)

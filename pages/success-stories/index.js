@@ -21,7 +21,7 @@ class SuccessStories extends Component {
 
 	printStories = (item, i) => {
 		return 	<Col key={i} xs={12} md={4}>
-					<div className="story-list-item">
+					<div className="form-group story-list-item">
 						<div className="story-list-img-wrap">
 							<img src={item.image} className="img-responsive story-list-img" alt="" />
 						</div>

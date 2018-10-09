@@ -116,6 +116,4 @@ const mapStateToProps = state =>
 		role: state.user.data.role,
 	})
 
-export default connect(
-    mapStateToProps
-)(OtherForm)
+export default connect(mapStateToProps)(OtherForm)

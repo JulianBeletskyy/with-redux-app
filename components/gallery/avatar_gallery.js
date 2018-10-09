@@ -11,18 +11,14 @@ class AvatarGallery extends Component {
 
     constructor(props) {
         super(props)
-        const { dispatch } = props
-        dispatch(getUserGallery())
         this.state = {
         	avatar: props.avatar
         }
-
         this.cropData = {}
     }
 
     crop = () => {
         let crop = this.refs.cropper.getData()
-
         this.cropData = {
             width: crop.width.toFixed(),
             height: crop.height.toFixed(),
@@ -60,6 +56,11 @@ class AvatarGallery extends Component {
 					<img src={item.src} className="img-responsive pointer" alt="" />
 				</div>
 	}
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(getUserGallery())
+    }
 
     render() {
     	const { gallery } = this.props
@@ -106,6 +107,4 @@ const mapStateToProps = state =>
 	    avatar: state.user.data.avatar.original
 	})
 
-export default connect(
-    mapStateToProps,
-)(AvatarGallery)
+export default connect(mapStateToProps)(AvatarGallery)

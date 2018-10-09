@@ -5,7 +5,6 @@ const CloseIcon = () => {
 }
 
 class FullScreenPreview extends Component {
-
     render() {
     	const { src, show, onClose = () => {}, video = false } = this.props
         return (

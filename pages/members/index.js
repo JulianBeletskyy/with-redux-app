@@ -37,11 +37,6 @@ class Members extends Component {
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        publicList: state.members.public
-    })
+const mapStateToProps = state => ({publicList: state.members.public})
 
-export default connect(
-    mapStateToProps
-)(Members)
+export default connect(mapStateToProps)(Members)

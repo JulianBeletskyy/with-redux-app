@@ -63,11 +63,4 @@ class PasswordForm extends Component {
     }
 }
 
-const mapStateToProps = state =>
-	({
-	    
-	})
-
-export default connect(
-    mapStateToProps,
-)(PasswordForm)
+export default connect()(PasswordForm)

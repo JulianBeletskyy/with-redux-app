@@ -98,9 +98,6 @@ class Recovery extends Component {
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        recoveryHash: state.user.recoveryHash
-    })
+const mapStateToProps = state =>b({recoveryHash: state.user.recoveryHash})
 
 export default connect(mapStateToProps)(Recovery)

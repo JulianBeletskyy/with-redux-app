@@ -8,8 +8,8 @@ import store from '../../store'
 import { Router } from '../../routes'
 
 class Login extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.auth = {}
         this.state = {
             email: true,
@@ -18,7 +18,7 @@ class Login extends Component {
         }
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = e => {
     	e.preventDefault()
     	const data = {
             email: this.auth.email.value,
@@ -27,7 +27,6 @@ class Login extends Component {
         store.dispatch(login(data)).then(res => {
             if (res) {
                 window.location.href = '/'
-                //Router.pushRoute('/')
             }
         })
     }
@@ -48,9 +47,7 @@ class Login extends Component {
                         placeholder="Enter email"
                         inputRef={ref => { this.auth.email = ref }} />
                 </FormGroup>
-                <div>
-                    &nbsp;
-                </div>
+                <div>&nbsp;</div>
                 <FormGroup>
                     <TextField 
                         type="password"
@@ -74,4 +71,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Login

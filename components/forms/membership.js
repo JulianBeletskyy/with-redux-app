@@ -53,19 +53,14 @@ export class Membership extends Component {
                 <form ref="createSubscription" action="https://www.paypal.com/cgi-bin/websc" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_xclick-subscriptions" />
                     <input type="hidden" name="business" value={ PAYPAL_EMAIL } />
-                    
                     <input type="hidden" name="item_name" value={ this.state.plan.name } />
                     <input type="hidden" name="no_note" value="1" />
                     <input type="hidden" name="no_shipping" value="1" />
-                    
                     <input type="hidden" name="return" value={ 'http://' + window.location.host } />
-
                     <input type="hidden" name="src" value="1" />
                     <input type="hidden" name="a3" value={ this.state.plan.amount } />
-                    
                     <input type="hidden" name="p3" value={ this.state.plan.period } />
                     <input type="hidden" name="t3" value="M" />
-
                     <input id="customData" type="hidden" name="custom" value={ JSON.stringify(this.state.plan) } />
                     <input type="hidden" name="currency_code" value={ this.currency } />
                 </form>
@@ -81,6 +76,4 @@ const mapStateToProps = state =>
 	    userId: state.user.data.id,
 	})
 
-export default connect(
-    mapStateToProps
-)(Membership)
+export default connect(mapStateToProps)(Membership)

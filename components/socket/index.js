@@ -7,7 +7,7 @@ class Socket extends Component {
     componentDidMount() {
     	//const websocket = new WebSocket('wss://echo.websocket.org')
 
-    	/*let echo = new Echo({
+    	/*const echo = new Echo({
 	      	broadcaster: 'socket.io',
 	      	host: 'wss://echo.websocket.org',  
 	      	client: Socketio,
@@ -16,9 +16,9 @@ class Socket extends Component {
 	               	'Authorization': 'Bearer ' + this.props.token,
 	          	},
 	      	},
-	  	});*/
+	  	});
 
-	  	console.log(this.props)
+	  	console.log(echo)
     	//const socket = openSocket('wss://echo.websocket.org')
 
     	/*websocket.onopen = evt => { 

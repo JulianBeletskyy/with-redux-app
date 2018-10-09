@@ -97,6 +97,4 @@ const mapStateToProps = state =>
 		role: state.user.data.role,
 	})
 
-export default connect(
-    mapStateToProps
-)(Footer)
+export default connect(mapStateToProps)(Footer)

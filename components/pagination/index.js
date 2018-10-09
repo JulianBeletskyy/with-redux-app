@@ -9,7 +9,7 @@ class Pagination extends Component {
     render() {
     	const list = Array.apply(null, Array(this.props.total))
         return (
-                <div className="pagination-wrap">
+                <div className="text-center">
                     { list.map((item, i) => this.printPagination(item, i)) }
                 </div>     	
         )

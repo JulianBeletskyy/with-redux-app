@@ -27,9 +27,6 @@ class NotActive extends Component {
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        email: state.user.data.email,
-    })
+const mapStateToProps = state => ({email: state.user.data.email})
 
 export default connect(mapStateToProps)(NotActive)

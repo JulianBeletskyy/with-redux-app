@@ -3,12 +3,7 @@ import { connect } from 'react-redux'
 import BtnMain from '../buttons/btn_main'
 
 export class MessageGallery extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            active: []
-        }
-    }
+    state = {active: []}
 
     handleClick = item => e => {
         let active = this.state.active
@@ -43,11 +38,6 @@ export class MessageGallery extends Component {
     }
 }
 
-const mapStateToProps = state =>
-	({
-	    gallery: state.user.data.gallery
-	})
+const mapStateToProps = state => ({gallery: state.user.data.gallery})
 
-export default connect(
-    mapStateToProps,
-)(MessageGallery)
+export default connect(mapStateToProps)(MessageGallery)

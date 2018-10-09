@@ -98,7 +98,7 @@ export class ContactForm extends Component {
                     <BtnMain
                         bsStyle="success"
                         text="Save"
-                        onClick = {this.save} />
+                        onClick={this.save} />
                 </FormGroup>
 			</div>
         )
@@ -115,6 +115,4 @@ const mapStateToProps = state =>
 		role: state.user.data.role,
 	})
 
-export default connect(
-    mapStateToProps
-)(ContactForm)
+export default connect(mapStateToProps)(ContactForm)

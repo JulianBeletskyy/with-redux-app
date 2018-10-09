@@ -109,7 +109,9 @@ class MailItem extends Component {
            <div className="p-15">
                 <div className={`row ${role} ${!read && type === 'incoming' ? 'unread-message' : ''}`}>
                     <div className="col-sm-2">
-                        <a href={`/member/${data.member_id}`} onClick={this.goToMember(data.member_id)}><img src={data.avatar} alt="" className="img-responsive pointer" /></a>
+                        <a href={`/member/${data.member_id}`} onClick={this.goToMember(data.member_id)}>
+                            <img src={data.avatar} alt="" className="img-responsive pointer" />
+                        </a>
                     </div>
                     <div className="col-sm-10">
                         <div><strong>{data.fromTo}: </strong>{data.oponent}</div>
