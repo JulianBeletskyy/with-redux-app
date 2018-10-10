@@ -8,11 +8,6 @@ import { getPopularBlogs, setUiKey } from '../actions/ui'
 import { Router } from '../routes'
 
 class Blog extends Component {
-	constructor(props) {
-		super(props)
-		const { dispatch } = props
-		dispatch(getPopularBlogs())
-	}
 
 	goToRegistration = () => {
 		const { dispatch } = this.props
@@ -44,6 +39,11 @@ class Blog extends Component {
 						</Row>
 					</div>
 				</FormGroup>
+	}
+
+	componentDidMount() {
+		const { dispatch } = this.props
+		dispatch(getPopularBlogs())
 	}
 
 	render() {
