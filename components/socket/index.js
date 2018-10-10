@@ -4,28 +4,44 @@ import Echo from 'laravel-echo/dist/echo'
 import Socketio from 'socket.io-client'
 
 class Socket extends Component {
+	constructor() {
+		super()
+		this.id = false
+	}
+	componentWillReceiveProps(nextProps) {
+		if (!this.id && nextProps.userId) {
+			this.id = nextProps.userId
+			this.openSocket()
+		}
+	}
+
+	openSocket = () => {
+		const {userId, token} = this.props
+		let echo = new Echo({
+			broadcaster: 'socket.io',
+		  	host: window.location.hostname + ':6001',
+			client: Socketio,
+			auth: {
+				headers: {
+					 'Authorization': 'Bearer ' + token,
+				},
+			},
+	  	});
+		console.log(this.id)
+	  	echo.private('user.'+this.id)
+			.listen('Broadcasting.Message.Translate', (e) => {
+				console.log(e);
+			})
+	}
     componentDidMount() {
-    	//const websocket = new WebSocket('wss://echo.websocket.org')
-
-    	/*let echo = new Echo({
-	      	broadcaster: 'socket.io',
-	      	host: 'wss://echo.websocket.org',  
-	      	client: Socketio,
-	      	auth: {
-	          	headers: {
-	               	'Authorization': 'Bearer ' + this.props.token,
-	          	},
-	      	},
-	  	});*/
-
-	  	console.log(this.props)
+	  	// console.log(this.props)
     	//const socket = openSocket('wss://echo.websocket.org')
 
-    	/*websocket.onopen = evt => { 
+    	/*websocket.onopen = evt => {
     		websocket.send('hello lifeinlove');
 	 	};
 
-	 	websocket.onmessage = evt => { 
+	 	websocket.onmessage = evt => {
 	 		console.log(evt)
 	 	};
 
@@ -36,11 +52,11 @@ class Socket extends Component {
 
     render() {
         return (
-           <div></div> 
+           <div></div>
         );
     }
 }
 
-const mapStateToProps = state => ({token: state.user.token})
+const mapStateToProps = state => ({token: state.user.token, userId: state.user.data.id})
 
 export default connect(mapStateToProps)(Socket)
