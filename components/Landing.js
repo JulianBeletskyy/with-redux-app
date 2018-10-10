@@ -252,7 +252,7 @@ class Landing extends Component {
 								</Row>
 							</div>
 							<div className="landing-member-wrap">
-								<h2 className="landing-title"><span className="underlineText">Girls</span></h2>
+								<h2 className="landing-title"><span className="underlineText">Ladies</span></h2>
 								<Grid>
 			                        <div className="pb-50">
 			                            <Row>

@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 
 class ReceiverInfo extends Component {
-	constructor() {
-		super()
-		this.state = {
-            tempList: []
-        }
-	}
 
-	thisRef = (ref) => {
+    state = {tempList: []}
+
+	thisRef = ref => {
         this.props.inputRef(ref)
         this.input = ref
     }
@@ -20,7 +16,6 @@ class ReceiverInfo extends Component {
 	    		return (item.first_name).toLowerCase().indexOf(this.input.value.toLowerCase().replace(' ', '')) + 1 || (item.last_name).toLowerCase().indexOf(this.input.value.toLowerCase().replace(' ', '')) + 1
 	    	})
     	}
-    	
     	this.setState({tempList: tempList})
     }
 

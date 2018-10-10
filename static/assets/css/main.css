@@ -1754,9 +1754,14 @@ input[value=girl]:checked + .fa-venus {
     letter-spacing: 1px;
     z-index: 1;
     opacity: .5;
-    -webkit-transition: all .2s linear 0s;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    transition-delay: 0s;
+
+    /*-webkit-transition: all .2s linear 0s;
     -o-transition: all .2s linear 0s;
-    transition: all .2s linear 0s;
+    transition: all .2s linear 0s;*/
 }
 .text-field:focus + .text-field-placeholder,
 .text-field-placeholder.active {

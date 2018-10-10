@@ -13,14 +13,10 @@ import { getUnreadMessage } from '../../actions/message'
 import { setCart } from '../../actions/shop'
 
 class PublicHeader extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             dropdown: false
-        }
-        const { dispatch, token } = props
-        if (token) {
-            dispatch(getUnreadMessage())
         }
     }
 
@@ -73,8 +69,11 @@ class PublicHeader extends Component {
     }
 
     componentDidMount() {
-        const { dispatch } = this.props
+        const { dispatch, token } = this.props
         dispatch(MyCountry())
+        if (token) {
+            dispatch(getUnreadMessage())
+        }
     }
 
     render() {
@@ -119,9 +118,9 @@ class PublicHeader extends Component {
                             {   
                                 (token && active)
                                 ?   role === 'client'
-                                    ?   <li role="presentation"><a href="/girls" onClick={this.goTo('/girls')}>Girls</a></li>
+                                    ?   <li role="presentation"><a href="/girls" onClick={this.goTo('/girls')}>Ladies</a></li>
                                     :   <li role="presentation"><a href="/men" onClick={this.goTo('/men')}>Men</a></li>
-                                :   country !== 'UA' ? <li role="presentation"><a href="/members" onClick={this.goTo('/members')}>Girls</a></li> : null
+                                :   country !== 'UA' ? <li role="presentation"><a href="/members" onClick={this.goTo('/members')}>Ladies</a></li> : null
 
                             }
                             { 

@@ -8,14 +8,11 @@ import BtnMain from '../buttons/btn_main'
 import { getSearch, getPublicSearch } from '../../actions/members'
 
 class SearchForm extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super()
         this.search = {
         	match: {}
         }
-        const { dispatch } = props
-        dispatch(getOptions('eyes'))
-		dispatch(getOptions('hair_colors'))
     }
 
     getSearch = () => {
@@ -36,6 +33,12 @@ class SearchForm extends Component {
         } else {
             dispatch(getSearch(data))
         }
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(getOptions('eyes'))
+        dispatch(getOptions('hair_colors'))
     }
 
     render() {

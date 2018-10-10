@@ -37,13 +37,11 @@ const PrevArrow = props => {
 }
 
 class VideoSlider extends Component {
-    constructor() {
-        super()
-        this.state = {
+
+    state = {
             show: false,
             video: ''
         }
-    }
 
     printVideo = (video, i) => {
     	const hiddenClass = (video.private && ! video.purchased && this.props.membership.view_video !== 'Unlimited') ? 'hidden-video' : ''

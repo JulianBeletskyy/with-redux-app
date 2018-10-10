@@ -26,8 +26,8 @@ export class OtherForm extends Component {
 
         if (error) {
             let data = {
-                like_to_meet: this.user.about_me.value,
-                about_me: this.user.like_to_meet.value
+                like_to_meet: this.user.like_to_meet.value,
+                about_me: this.user.about_me.value
             }
             if (role === 'girl') {
                 data.about_family = this.user.about_family.value

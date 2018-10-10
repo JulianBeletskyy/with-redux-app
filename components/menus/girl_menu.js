@@ -8,10 +8,6 @@ import Avatar from '../avatar'
 import { setActiveTab, toggleModal } from '../../actions/ui'
 
 class GirlMenu extends Component {
-    
-    constructor(props) {
-        super(props);
-    }
 
     showAvatar = () => {
     	const { dispatch } = this.props
@@ -97,6 +93,4 @@ const mapStateToProps = state =>
 	})
 
 
-export default connect(
-	mapStateToProps
-)(GirlMenu)
+export default connect(mapStateToProps)(GirlMenu)

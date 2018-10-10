@@ -4,7 +4,6 @@ import Validator from '../../validate'
 import { FormGroup } from 'react-bootstrap'
 import TextField from '../inputs/text_field'
 import BtnMain from '../buttons/btn_main'
-import store from '../../store'
 import { sendRecovery, updatePassword } from '../../actions/auth'
 import { toggleModal, setAlert } from '../../actions/ui'
 
@@ -98,6 +97,6 @@ class Recovery extends Component {
     }
 }
 
-const mapStateToProps = state =>b({recoveryHash: state.user.recoveryHash})
+const mapStateToProps = state => ({recoveryHash: state.user.recoveryHash})
 
 export default connect(mapStateToProps)(Recovery)

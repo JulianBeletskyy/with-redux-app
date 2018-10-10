@@ -89,6 +89,4 @@ const mapStateToProps = state =>
         token: state.user.token,
     })
 
-export default connect(
-    mapStateToProps
-)(Blog)
+export default connect(mapStateToProps)(Blog)

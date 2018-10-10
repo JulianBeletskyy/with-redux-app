@@ -5,15 +5,10 @@ import FullScreenPreview from '../gallery/full_screen_preview'
 
 class VideoBlock extends Component {
 
-    constructor(props) {
-        super(props)
-        const { dispatch } = props
-        dispatch(getUserVideo())
-        this.state = {
-        	video: '',
-        	show: false,
+    state = {
+            video: '',
+            show: false,
         }
-    }
 
     showVideo = video => e => {
     	this.setState({video, show: true})
@@ -33,6 +28,11 @@ class VideoBlock extends Component {
 	                	</span>
 		                <span className={`gallery-item-info ${colorClass}`}>{text}</span>
     			</div>
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(getUserVideo())
     }
 
     render() {

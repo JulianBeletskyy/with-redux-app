@@ -5,9 +5,8 @@ import { getMemberships } from '../../actions/membership'
 import PlanItem from '../block/plan_item'
 
 export class Membership extends Component {
-	constructor(props) {
-        super(props)
-        const { dispatch } = props
+	constructor() {
+        super()
         this.user = {}
         this.state = {
             plan: {
@@ -20,8 +19,6 @@ export class Membership extends Component {
             },
             currency: 'USD'
         }
-
-        dispatch(getMemberships())
     }
 
     printPlans = (plan, i) => {
@@ -44,6 +41,11 @@ export class Membership extends Component {
         }, () => {
            this.refs.createSubscription.submit()
         })
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(getMemberships())
     }
 
     render() {

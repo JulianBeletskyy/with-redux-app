@@ -141,6 +141,4 @@ const mapStateToProps = state =>
 		credits: state.user.data.credits,
 	})
 
-export default connect(
-    mapStateToProps
-)(ClientMenu)
+export default connect(mapStateToProps)(ClientMenu)

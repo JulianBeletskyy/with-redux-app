@@ -123,7 +123,7 @@ export class MessageModal extends Component {
                         label={true}
                         counter={4500}
                         inputRef={ref => { this.message = ref }}
-                        value={this.state.message}
+                        value={''}
                         placeholder={`Message to ${first_name}`} />
                 </FormGroup>
                 <FormGroup>

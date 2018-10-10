@@ -9,16 +9,11 @@ import BtnUpload from '../buttons/btn_upload'
 
 class Gallery extends Component {
 
-    constructor(props) {
-        super(props);
-        const { dispatch } = props
-        dispatch(getUserGallery())
-        this.state = {
-        	activeMenu: 0,
-        	open: false,
-        	current: 0,
+    state = {
+            activeMenu: 0,
+            open: false,
+            current: 0,
         }
-    }
 
     showGallery = i => e => {
     	this.setState({open: true, current: i})
@@ -116,6 +111,11 @@ class Gallery extends Component {
 		            </ul>
 		            <span className={`gallery-item-info ${colorClass}`}>{text}</span>
 		        </div>
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(getUserGallery())
     }
 
     render() {

@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#000000" />
           <title>Lifein.Love</title>
           <link rel="shortcut icon" href="/static/assets/favicon.png" />
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossOrigin="anonymous" />
+          <link rel="stylesheet" media="all" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossOrigin="anonymous" />
           <link rel="stylesheet" type="text/css" charSet="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" />
           <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
@@ -46,6 +46,7 @@ export default class MyDocument extends Document {
                   });
               };`}} />
           <script src="https://apis.google.com/js/platform.js" async defer></script>
+          {<script type='text/javascript' src='https://api.lifein.love/JavaScriptSpellCheck/include.js'></script>}
           {/*<script type='text/javascript' src='http://spell.da/JavaScriptSpellCheck/include.js'></script>*/}
           <Main />
           <NextScript />

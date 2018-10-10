@@ -13,7 +13,14 @@ import { setTimeoutValue } from '../actions/auth'
 class Layout extends Component {
 	constructor(props) {
 		super(props)
-		const { token, dispatch, timeout } = props
+		/*const { token, dispatch, timeout } = props
+		if (token && !timeout) {
+			isAuthentificate()
+			dispatch(setTimeoutValue(true))
+		}*/
+	}
+	componentDidMount() {
+		const { token, dispatch, timeout } = this.props
 		if (token && !timeout) {
 			isAuthentificate()
 			dispatch(setTimeoutValue(true))

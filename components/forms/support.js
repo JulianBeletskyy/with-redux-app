@@ -11,12 +11,9 @@ import store from '../../store'
 
 class Support extends Component {
 
-    constructor() {
-        super()
-        this.state = {
+    state = {
             file: {}
         }
-    }
 
     send = () => {
 		let error = 1

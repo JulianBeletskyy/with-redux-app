@@ -6,14 +6,8 @@ import { setUiKey } from '../../actions/ui'
 import { Router } from '../../routes'
 
 class MemberCarouselSmall extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            active: 0
-        }
-        const { dispatch } = props
-        dispatch(getPublicMembers('popular'))
-    }
+
+    state = {active: 0}
 
     onClickItem = id => {
         const { dispatch, token } = this.props
@@ -45,6 +39,11 @@ class MemberCarouselSmall extends Component {
     prev = () => {
         let active = this.state.active == 0 ? this.props.publicList.length - 1 : this.state.active-1
         this.setState({active})
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(getPublicMembers('popular'))
     }
 
     render() {
