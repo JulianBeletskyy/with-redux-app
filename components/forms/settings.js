@@ -29,6 +29,4 @@ const mapStateToProps = state =>
 	    hidden_request: state.user.data.hidden_request,
 	})
 
-export default connect(
-    mapStateToProps
-)(SettingsForm)
+export default connect(mapStateToProps)(SettingsForm)

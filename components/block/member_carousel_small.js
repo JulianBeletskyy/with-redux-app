@@ -69,6 +69,4 @@ const mapStateToProps = state =>
         token: state.user.token,
     })
 
-export default connect(
-    mapStateToProps
-)(MemberCarouselSmall)
+export default connect(mapStateToProps)(MemberCarouselSmall)

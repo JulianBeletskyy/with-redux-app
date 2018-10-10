@@ -54,9 +54,8 @@ class MembershipInfo extends Component {
 				</FormGroup>
 				<div>
 					<BtnMain
-                        type="button"
                         bsStyle="success"
-                        text={'Upgrade'}
+                        text="Upgrade"
                         onClick={this.toggleModal} />
 				</div>
 			</div>
@@ -64,11 +63,6 @@ class MembershipInfo extends Component {
     }
 }
 
-const mapStateToProps = state =>
-	({
-		membership: state.user.data.membership
-	})
+const mapStateToProps = state => ({membership: state.user.data.membership})
 
-export default connect(
-	mapStateToProps
-)(MembershipInfo)
+export default connect(mapStateToProps)(MembershipInfo)

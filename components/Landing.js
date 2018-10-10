@@ -418,6 +418,4 @@ const mapStateToProps = state =>
         country: state.signup.country,
     })
 
-export default connect(
-    mapStateToProps
-)(Landing)
+export default connect(mapStateToProps)(Landing)

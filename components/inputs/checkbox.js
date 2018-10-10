@@ -8,7 +8,7 @@ class CheckBox extends Component {
     render() {
         const { value, inputRef, onChange = () => {}, title, disabled = false } = this.props
         return (
-            <label className="checkbox">
+            <label className="checkbox custom">
                 <input type="checkbox" disabled={disabled} checked={value} onChange={this.onChange} ref={inputRef} />
                 <div className={`checkbox__text ${disabled ? `disabled` : ``}`}></div>
                 <div className="checkbox-title">{title}</div>

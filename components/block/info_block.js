@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import { MONTH } from '../../config'
 
 class Info extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     getBirthday = date => `${date.day} ${MONTH[date.month - 1]}`
 
@@ -245,9 +242,6 @@ class Info extends Component {
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        user: state.user.data
-    })
+const mapStateToProps = state => ({user: state.user.data})
 
 export default connect(mapStateToProps)(Info)

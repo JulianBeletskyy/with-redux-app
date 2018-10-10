@@ -57,9 +57,6 @@ class MemberPreview extends Component {
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        token: state.user.token,
-    })
+const mapStateToProps = state => ({token: state.user.token})
 
 export default connect(mapStateToProps)(MemberPreview)

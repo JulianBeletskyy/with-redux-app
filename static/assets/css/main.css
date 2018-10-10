@@ -2449,7 +2449,7 @@ input[value=girl]:checked + .fa-venus {
     margin-bottom: .5rem;
     position: relative;
 }
-.checkbox input {
+.checkbox.custom input {
     position: absolute;
     z-index: -1;
     opacity: 0;

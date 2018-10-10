@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class PlanItem extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super()
         this.state = {
         	active: false
         }
@@ -40,8 +40,6 @@ class PlanItem extends Component {
 
     setPlan = val => {
         this.props.onChoose(val)
-        //this.hideValues()
-        //store.dispatch(toggleModal(false, 'plans'))
     }
 
     showValues = () => {
@@ -131,6 +129,4 @@ const mapStateToProps = state =>
         use_trial: state.user.data.use_trial,
     })
 
-export default connect(
-    mapStateToProps
-)(PlanItem)
+export default connect(mapStateToProps)(PlanItem)

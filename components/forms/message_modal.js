@@ -101,12 +101,16 @@ export class MessageModal extends Component {
     }
 
     componentDidMount() {
-        const userLang = navigator.language || navigator.userLanguage
+        /*const userLang = navigator.language || navigator.userLanguage
         if (userLang === 'en-US' && window.location.host === 'localhost:3000') {
-            $Spelling.SpellCheckAsYouType('messageTextArea')
-            const el = document.getElementById('messageTextArea___livespell_proxy')
-            el.addEventListener('input', this.handleChange)
+            
+        } else {
+            
         }
+        $Spelling.DefaultDictionary = "Chiness"
+        $Spelling.SpellCheckAsYouType('messageTextArea')
+        const el = document.getElementById('messageTextArea___livespell_proxy')
+        el.addEventListener('input', this.handleChange)*/
     }
 
     render() {

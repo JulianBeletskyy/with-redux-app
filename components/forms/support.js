@@ -11,8 +11,8 @@ import store from '../../store'
 
 class Support extends Component {
 
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             file: {}
         }
@@ -20,7 +20,6 @@ class Support extends Component {
 
     send = () => {
 		let error = 1
-
         error *= Validator.check(this.name.value, ['required'], 'Name')
         error *= Validator.check(this.email.value, ['required', 'email'], 'Email')
         error *= Validator.check(this.subject.value, ['required'], 'Subject')
@@ -54,8 +53,7 @@ class Support extends Component {
 	                <TextField
 	                    placeholder="Name"
 	                    inputRef={ref => { this.name = ref }}
-	                    name="Name"
-	                    key="name" />
+	                    name="Name" />
 	            </FormGroup>
                 <FormGroup>
                     <TextField
@@ -66,8 +64,7 @@ class Support extends Component {
 	                <TextField
 	                    placeholder="Subject"
 	                    inputRef={ref => { this.subject = ref }}
-	                    name="Subject"
-	                    key="subject" />
+	                    name="Subject" />
 	            </FormGroup>
 	            <FormGroup>
                     <Textarea

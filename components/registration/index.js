@@ -13,7 +13,7 @@ import StepThreeGirl from './step_three_girl'
 class Registration extends Component {
 
     render() {
-        const { step } = this.props.signup
+        const { step } = this.props
         let content = <div></div>
         switch (step) {
             case 1:
@@ -44,20 +44,11 @@ class Registration extends Component {
         }
 
         return (
-            <div>
-                { content }
-            </div>
-        );
+            <div>{ content }</div>
+        )
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        signup: {
-            step: state.signup.step
-        }
-    })
+const mapStateToProps = state => ({step: state.signup.step})
 
-export default connect(
-    mapStateToProps
-)(Registration);
+export default connect(mapStateToProps)(Registration)

@@ -46,11 +46,6 @@ class VideoBlock extends Component {
     }
 }
 
-const mapStateToProps = state =>
-	({
-		video: state.user.data.video
-	})
+const mapStateToProps = state => ({video: state.user.data.video})
 
-export default connect(
-	mapStateToProps
-)(VideoBlock)
+export default connect(mapStateToProps)(VideoBlock)
