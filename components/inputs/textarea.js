@@ -8,7 +8,7 @@ class Textarea extends Component {
         this.state = {value: props.value, active: false}
     }
 
-	thisRef = (ref) => {
+	thisRef = ref => {
         this.props.inputRef(ref)
         this.input = ref
     }
