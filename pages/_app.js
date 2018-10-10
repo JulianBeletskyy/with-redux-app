@@ -2,7 +2,6 @@ import App, {Container} from 'next/app'
 import React from 'react'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
-import Socket from '../components/socket'
 
 class MyApp extends App {
 	render() {
@@ -12,7 +11,6 @@ class MyApp extends App {
 				<Provider store={reduxStore}>
 			  		<Component {...pageProps} />
 				</Provider>
-				<Socket store={reduxStore} />
 		  	</Container>
 		)
 	}

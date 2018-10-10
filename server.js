@@ -13,3 +13,22 @@ app.prepare().then(() => {
 	server.use('/google1d28c663b970d3ad.html', express.static(join(__dirname, '/static/google1d28c663b970d3ad.html')));
 	server.use(handler).listen(3000)
 })
+
+require('laravel-echo-server').run({
+    authHost: 'http://api.liveinlove.da/',
+    authEndpoint: '/broadcasting/auth',
+    devMode: true,
+    database: "redis",
+    databaseConfig: {
+        redis: {
+            host: 'localhost',
+            port: 6379,
+        }
+    },
+    apiOriginAllow: {
+        "allowCors" : true,
+        "allowOrigin" : "http://127.0.0.1",
+        "allowMethods" : "GET, POST",
+        "allowHeaders" : "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
+    },
+});

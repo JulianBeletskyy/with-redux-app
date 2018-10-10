@@ -1,6 +1,7 @@
 import { get, post, message, put } from '../api'
 import * as types from './types.js'
 import { getMember } from './members'
+import { openSocket } from '../utils/socket'
 
 export const getUserFullInfo = () => dispatch => {
 	return get(`user/profile`).then(res => {
@@ -14,6 +15,7 @@ export const getUserInfo = () => dispatch => {
 	return get(`user`).then(res => {
 		if (res.data) {
 			dispatch(setUserInfo(res.data))
+			openSocket()
 		}
 	})
 }
@@ -106,4 +108,10 @@ export const setUserInfo = data =>
 	({
 		type: types.SET_USER_INFO,
 		data,
+	})
+
+export const setOpenSocket = value =>
+	({
+		type: types.SET_OPEN_SOCKET,
+		value,
 	})
