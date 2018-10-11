@@ -14,7 +14,7 @@ app.prepare().then(() => {
 	server.use(handler).listen(3000)
 })
 
-require('laravel-echo-server').run({
+/*require('laravel-echo-server').run({
     authHost: 'http://api.liveinlove.da/',
     authEndpoint: '/broadcasting/auth',
     devMode: true,
@@ -31,4 +31,4 @@ require('laravel-echo-server').run({
         "allowMethods" : "GET, POST",
         "allowHeaders" : "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
     },
-});
+});*/

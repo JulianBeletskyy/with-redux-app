@@ -34,7 +34,6 @@ export class ClientMenu extends Component {
     	const { 
 	    	avatar,
 			first_name,
-			last_name,
 			profile_id,
 			membership,
 			view_profile,
@@ -50,7 +49,7 @@ export class ClientMenu extends Component {
 				</FormGroup>
 				<FormGroup className="text-center name-title">
 					<h3>
-						<strong>{`${first_name} ${last_name}`}</strong>
+						<strong>{first_name}</strong>
 					</h3>
 					<MiddleString
 						text={profile_id}
@@ -132,7 +131,6 @@ const mapStateToProps = state =>
 	({
    		avatar: state.user.data.avatar,
 		first_name: state.user.data.first_name,
-		last_name: state.user.data.last_name,
 		profile_id: state.user.data.profile_id,
 		membership: state.user.data.membership,
 		view_profile: state.user.data.view_profile,

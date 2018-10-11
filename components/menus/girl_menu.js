@@ -23,7 +23,6 @@ class GirlMenu extends Component {
     	const {
     		avatar,
 			first_name,
-			last_name,
 			profile_id,
 			view_profile,
 			count_interest,
@@ -36,7 +35,7 @@ class GirlMenu extends Component {
 					<Avatar src={avatar.croped} onClick={this.showAvatar} />
 				</FormGroup>
 				<FormGroup className="text-center name-title">
-					<h3><strong>{`${first_name} ${last_name}`}</strong></h3>
+					<h3><strong>{first_name}</strong></h3>
 					<MiddleString
 						text={profile_id}
 						keyName="ID:" />
@@ -85,7 +84,6 @@ const mapStateToProps = state =>
 	({
 		avatar: state.user.data.avatar,
 		first_name: state.user.data.first_name,
-		last_name: state.user.data.last_name,
 		profile_id: state.user.data.profile_id,
 		view_profile: state.user.data.view_profile,
 		count_interest: state.user.data.count_interest,
