@@ -74,7 +74,7 @@ export const sendSignUpThree = (data, step, role) => dispatch => {
 export const sendSignUpFour = data => dispatch => {
 	return post(`signup/last`, false, data).then(res => {
 		if (res.data) {
-			dispatch(sendSignUpFinish(res.data, `${window.location.href}activate/{hash}`, localStorage.getItem('deviceId')))
+			dispatch(sendSignUpFinish(res.data, `${window.location.host}/activate/{hash}`, localStorage.getItem('deviceId')))
 		}
 	})
 }

@@ -15,7 +15,7 @@ app.prepare().then(() => {
 })
 
 /*require('laravel-echo-server').run({
-    authHost: 'http://api.liveinlove.da/',
+    authHost: 'https://api.lifein.love/',
     authEndpoint: '/broadcasting/auth',
     devMode: true,
     database: "redis",

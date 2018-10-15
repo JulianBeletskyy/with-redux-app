@@ -45,7 +45,7 @@ export default class MyDocument extends Document {
                       version: 'v2.12'
                   });
               };`}} />
-          <script src="https://apis.google.com/js/platform.js" async defer></script>
+          <script src="https://apis.google.com/js/platform.js"></script>
           {/*<script type='text/javascript' src='https://api.lifein.love/JavaScriptSpellCheck/include.js'></script>*/}
           {/*<script type='text/javascript' src='http://spell.da/JavaScriptSpellCheck/include.js'></script>*/}
           <Main />

@@ -16,6 +16,9 @@
 .unset-a:hover {
     color: inherit;
 }
+.position-absolute {
+    position: absolute;
+}
 .not-active-wrap {
     position: fixed;
     width: 100%;

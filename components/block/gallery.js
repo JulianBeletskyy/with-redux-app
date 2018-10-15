@@ -9,6 +9,11 @@ import BtnUpload from '../buttons/btn_upload'
 
 class Gallery extends Component {
 
+    constructor() {
+        super()
+        this.test = null
+    }
+
     state = {
             activeMenu: 0,
             open: false,
@@ -77,10 +82,32 @@ class Gallery extends Component {
     		}
     	} else {
     		const url = item.private ? 'public' : 'private'
+            //this.makeBlur(item)
+            /*if (item.private) {
+                this.makeBlur(item)
+            }*/
     		dispatch(toggleActive({'images': [item.id]}, url)).then(res => {
     			this.closeMenu()
     		})
     	}
+    }
+
+    makeBlur = item => {
+        const image = new Image()
+        image.src = `${item.src}?${new Date().getTime()}`
+        image.setAttribute('crossOrigin', '')
+        
+        const canvas = document.createElement(`canvas`)
+        const ctx = canvas.getContext("2d")
+        image.onload = () => {
+            canvas.width = image.width
+            canvas.height = image.height
+            ctx.filter = 'blur(10px)'
+            ctx.globalAlpha = 0.5
+            ctx.drawImage(image, 0, 0)
+            const url = canvas.toDataURL()
+            console.log(url)
+        }
     }
 
     checkActive = () => {
@@ -110,6 +137,7 @@ class Gallery extends Component {
 		                <li onClick={this.toggleActive(item)} className="gallery-item-menu-item font-bebas">Make {textMenu}</li>
 		            </ul>
 		            <span className={`gallery-item-info ${colorClass}`}>{text}</span>
+                    
 		        </div>
     }
 
@@ -130,6 +158,7 @@ class Gallery extends Component {
                 <div className="wrap-gallery">
                 	{ gallery.map((item, i) => this.printGallery(item, i)) }
                 </div>
+                <div ref={ref => this.test = ref}></div>
                 <Lightbox
                     images={gallery}
                     isOpen={this.state.open}
