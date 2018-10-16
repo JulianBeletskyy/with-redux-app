@@ -46,6 +46,8 @@ export default class MyDocument extends Document {
                   });
               };`}} />
           <script src="https://apis.google.com/js/platform.js"></script>
+          <script type='text/javascript' dangerouslySetInnerHTML={{__html: `(function(){ var widget_id = 'pzTYsLBavS';var d=document;var w=window;function l(){
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`}} />
           {/*<script type='text/javascript' src='https://api.lifein.love/JavaScriptSpellCheck/include.js'></script>*/}
           {/*<script type='text/javascript' src='http://spell.da/JavaScriptSpellCheck/include.js'></script>*/}
           <Main />
