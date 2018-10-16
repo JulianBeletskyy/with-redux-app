@@ -78,6 +78,14 @@ export const toggleActive = (data, url) => dispatch => {
 	})
 }
 
+export const makePrivate = data => dispatch => {
+	return post(`gallery/make/private`, true, data).then(res => {
+		if (res.data) {
+			dispatch(getUserGallery())
+		}
+	})
+}
+
 export const toggleHidden = val => dispatch => {
 	return post(`client/hidden-request/${val ? `hidden` : `visible`}`).then(res => {
 		if (res.data) {
