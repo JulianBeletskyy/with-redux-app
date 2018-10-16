@@ -8,7 +8,9 @@ export const sendRequest = data => dispatch => {
     formData.append('email', data.email)
     formData.append('subject', data.subject)
     formData.append('message', data.message)
-    formData.append('file', data.file)
+    if (data.file) {
+    	formData.append('file', data.file)
+    }
 	return message(`support`, true, formData).then(res => {
 		if (res.data) {
 			return true

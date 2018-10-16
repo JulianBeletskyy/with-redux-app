@@ -12,7 +12,8 @@ import store from '../../store'
 class Support extends Component {
 
     state = {
-            file: {}
+            file: {},
+            value: '',
         }
 
     send = () => {
@@ -28,8 +29,10 @@ class Support extends Component {
         		email: this.email.value,
         		subject: this.subject.value,
         		message: this.message.value,
-                file: this.state.file
         	}
+            if (Object.keys(this.state.file).length) {
+                data.file = this.state.file
+            }
         	store.dispatch(sendRequest(data)).then(res => {
         		if (res) {
         			this.setState({file: {}})
@@ -38,6 +41,10 @@ class Support extends Component {
         	})
         }
 	}
+
+    handleChange = value => {
+        this.setState({value})
+    }
 
     onDrop = files => {
     	this.setState({file: files[0]})
@@ -65,6 +72,8 @@ class Support extends Component {
 	            </FormGroup>
 	            <FormGroup>
                     <Textarea
+                        onChange={this.handleChange}
+                        value={this.state.value}
                         inputRef={ref => { this.message = ref }}
                         placeholder="Message" />
                 </FormGroup>
