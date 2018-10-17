@@ -14,14 +14,14 @@ app.prepare().then(() => {
 	server.use(handler).listen(3000)
 })
 
-/*require('laravel-echo-server').run({
-    authHost: 'https://api.lifein.love/',
+require('laravel-echo-server').run({
+    authHost: 'https://api.lifein.love',
     authEndpoint: '/broadcasting/auth',
     devMode: true,
     database: "redis",
     databaseConfig: {
         redis: {
-            host: 'localhost',
+            host: 'https://api.lifein.love',
             port: 6379,
         }
     },
@@ -31,4 +31,4 @@ app.prepare().then(() => {
         "allowMethods" : "GET, POST",
         "allowHeaders" : "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
     },
-});*/
+});
