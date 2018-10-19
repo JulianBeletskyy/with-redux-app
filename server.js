@@ -19,6 +19,7 @@ require('laravel-echo-server').run({
     authEndpoint: '/broadcasting/auth',
     devMode: true,
     database: "redis",
+    protocol: 'https',
     databaseConfig: {
         redis: {
             host: 'localhost',
