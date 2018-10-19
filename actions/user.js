@@ -15,7 +15,7 @@ export const getUserInfo = () => dispatch => {
 	return get(`user`).then(res => {
 		if (res.data) {
 			dispatch(setUserInfo(res.data))
-			//openSocket()
+			openSocket()
 		}
 	})
 }
