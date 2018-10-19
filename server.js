@@ -21,7 +21,7 @@ require('laravel-echo-server').run({
     database: "redis",
     databaseConfig: {
         redis: {
-            host: 'https://api.lifein.love',
+            host: 'localhost',
             port: 6379,
         }
     },
