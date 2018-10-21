@@ -17,9 +17,10 @@ app.prepare().then(() => {
 require('laravel-echo-server').run({
     authHost: 'https://api.lifein.love',
     authEndpoint: '/broadcasting/auth',
+    sslCertPath: '/etc/nginx/ssl/lifein.crt',
+    sslKeyPath: '/etc/nginx/ssl/lifein.key',
     devMode: true,
     database: "redis",
-    protocol: 'https',
     databaseConfig: {
         redis: {
             host: 'localhost',
