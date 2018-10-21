@@ -37,6 +37,7 @@ const SliderItem = props => {
                 className="pointer"
                 style={{
                         backgroundImage: `url(${item.src})`,
+                        transform: `rotate(${item.angle}deg)`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         height: 100

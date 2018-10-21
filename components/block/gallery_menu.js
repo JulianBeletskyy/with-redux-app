@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { removePhotos, toggleActive, makePrivate } from '../../actions/user'
+import { removePhotos, toggleActive, makePrivate, rotateImgGallery } from '../../actions/user'
 import { setAlert } from '../../actions/ui'
 import { confirmAlert } from 'react-confirm-alert'
 
 class GalleryItem extends Component {
-	state = {
-		angle: 0
-	}
 
 	remove = id => e => {
 		e.stopPropagation()
@@ -76,7 +73,8 @@ class GalleryItem extends Component {
 
 	rotate = (item, angle) => e => {
 		e.stopPropagation()
-		this.setState({angle: this.state.angle + angle})
+		const { dispatch, item } = this.props
+		dispatch(rotateImgGallery(item.id, item.angle + angle))
 	}
 
     render() {
@@ -88,7 +86,7 @@ class GalleryItem extends Component {
 
         return (
         	<div className="wrap-gallery-item" onClick={showGallery}>
-	            <img src={item.src} className="gallery-item-img" alt="" style={{transform: `rotate(${this.state.angle}deg)`}} />
+	            <img src={item.src} className="gallery-item-img" alt="" style={{transform: `rotate(${item.angle}deg)`}} />
                 <span className="gallery-item-icon" onClick={showMenu}>
                     <i className="fas fa-pen-square fa-2x"></i>
                 </span>

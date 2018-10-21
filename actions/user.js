@@ -29,6 +29,17 @@ export const getUserGallery = () => dispatch => {
 	})
 }
 
+export const rotateImgGallery = (id, angle) => dispatch => {
+	dispatch({
+		type: types.ROTATE_IMG_GALLERY,
+		id,
+		angle,
+	})
+	return post('gallery/rotate', false, {id, angle}).then(res => {
+		console.log(res)
+	})
+}
+
 export const getUserVideo = () => dispatch => {
 	return get(`girl/video`).then(res => {
 		if (res.data) {

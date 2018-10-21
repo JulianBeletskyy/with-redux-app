@@ -24,8 +24,14 @@ class AvatarGallery extends Component {
             height: crop.height.toFixed(),
             x: crop.x.toFixed(),
             y: crop.y.toFixed(),
-            avatar: this.state.avatar
+            avatar: this.state.avatar,
+            angle: crop.rotate * -1,
         }
+    }
+
+    rotate = angle => e => {
+        this.refs.cropper.rotate(angle)
+        this.crop()
     }
 
     handleClick = item => e => {
@@ -77,6 +83,11 @@ class AvatarGallery extends Component {
                             background={false}
                             cropend={this.crop}
                             ready={this.crop} />
+                        <div className="gallery-item-menu-item font-bebas text-center">
+                            <i className="fas fa-chevron-left pointer pull-left" onClick={this.rotate(-90)}></i>
+                            Rotate
+                            <i className="fas fa-chevron-right pointer pull-right" onClick={this.rotate(90)}></i>
+                        </div>
                     </Col>
                     <Col sm={8}>
                     	<div className="message-gallery-wrap">

@@ -115,6 +115,16 @@ const user = (user = initialState, action = {}) => {
             return Object.assign({}, user, {
                 openSocket: action.value
             });
+        case types.ROTATE_IMG_GALLERY:
+            const gallery = user.data.gallery.map(item => {
+                if (item.id === action.id) {
+                    item.angle = action.angle
+                }
+                return item
+            })
+            return Object.assign({}, user, {
+                data: {...user.data, gallery}
+            })
         default:
             return user;
     }
