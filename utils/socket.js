@@ -22,6 +22,8 @@ export const openSocket = () => {
 	  	const channel = echo.private(`user.${user.data.id}`)
 	  	
 	  	channel.listen('.WhenMessageTranslate', ({data}) => {
+	  		console.log(data)
+	  		console.log('WhenMessageTranslate')
 			if (data) {
 				store.dispatch(getUnreadMessage())
 			}
