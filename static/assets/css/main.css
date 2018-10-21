@@ -1099,6 +1099,12 @@ a.member-switch {
 .wrap-fullscreen-preview img {
     max-height: calc(100vh - 90px);
 }
+.gallery-item-menu-item .fa-chevron-left {
+    padding-top: 3px;
+}
+.gallery-item-menu-item .fa-chevron-right {
+    padding-top: 3px;
+}
 .contact-img {
     width: 100px;
 }

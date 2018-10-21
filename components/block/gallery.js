@@ -6,6 +6,7 @@ import { setAlert } from '../../actions/ui'
 import Lightbox from 'react-images'
 import BtnUpload from '../buttons/btn_upload'
 import { makeBlur } from '../../utils'
+import GalleryItem from './gallery_menu'
 
 class Gallery extends Component {
 
@@ -41,7 +42,9 @@ class Gallery extends Component {
     }
 
     closeMenu = e => {
-        e.stopPropagation()
+        if (e) {
+            e.stopPropagation()
+        }
     	this.setState({activeMenu: 0})
     }
 
@@ -70,7 +73,7 @@ class Gallery extends Component {
     		const url = item.active ? 'hide' : 'show'
     		if ((this.checkActive() && url === 'show') || url === 'hide') {
     			dispatch(toggleActive({'images': [item.id]}, url)).then(res => {
-    				this.closeMenu()
+    				this.setState({activeMenu: 0})
     			})
     		} else {
     			dispatch(setAlert('You can\'t make more active photos', 'error'))
@@ -82,7 +85,7 @@ class Gallery extends Component {
                 return
             }
     		dispatch(toggleActive({'images': [item.id]}, url)).then(res => {
-    			this.closeMenu()
+    			this.setState({activeMenu: 0})
     		})
     	}
     }
@@ -102,8 +105,17 @@ class Gallery extends Component {
             ctx.globalAlpha = 0.5
             ctx.drawImage(image, 0, 0)
             const url = canvas.toDataURL()
-            dispatch(makePrivate({id: item.id, base64: url}))
+            dispatch(makePrivate({id: item.id, base64: url})).then(res => {
+                if (res) {
+                    this.setState({activeMenu: 0})
+                }
+            })
         }
+    }
+
+    rotate = (item, angle) => e => {
+        e.stopPropagation()
+        console.log(angle)
     }
 
     checkActive = () => {
@@ -118,22 +130,14 @@ class Gallery extends Component {
 
     printGallery = (item, i) => {
     	const { role } = this.props
-    	const textMenu = role === 'client' ? (!item.active ? 'active' : 'unactive') : (!item.private ? 'private' : 'public')
-    	const text = role === 'client' ? (item.active ? 'active' : 'unactive') : (item.private ? 'private' : 'public')
-    	const colorClass = role === 'client' ? (item.active ? 'success' : 'danger') : (item.private ? 'danger' : 'success')
-
-    	return 	<div key={i} className="wrap-gallery-item" onClick={this.showGallery(i)}>
-		            <img src={item.src} className="gallery-item-img" alt="" />
-		                <span className="gallery-item-icon" onClick={this.showMenu(item.id)}>
-	                        <i className="fas fa-pen-square fa-2x"></i>
-	                    </span>
-		            <ul className={`gallery-item-menu ${this.state.activeMenu === item.id ? `active` : ``}`}>
-		                <span onClick={this.closeMenu} className="gallery-item-close pointer"><i className="fas fa-times"></i></span>
-		                <li onClick={this.remove(item.id)} className="gallery-item-menu-item font-bebas">Remove Photo</li>
-		                <li onClick={this.toggleActive(item)} className="gallery-item-menu-item font-bebas">Make {textMenu}</li>
-		            </ul>
-		            <span className={`gallery-item-info ${colorClass}`}>{text}</span>
-		        </div>
+    	return 	<GalleryItem
+                    key={i}
+                    active={this.state.activeMenu === item.id}
+                    onClose={this.closeMenu}
+                    showGallery={this.showGallery(i)}
+                    showMenu={this.showMenu(item.id)}
+                    checkActive={this.checkActive}
+                    item={item} />
     }
 
     componentDidMount() {
