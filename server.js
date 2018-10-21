@@ -20,6 +20,7 @@ require('laravel-echo-server').run({
     secure: true,
     sslCertPath: '/etc/nginx/ssl/lifein.crt',
     sslKeyPath: '/etc/nginx/ssl/lifein.key',
+    sslCertChainPath: '/etc/nginx/ssl/lifein-bundle.crt',
     devMode: true,
     database: "redis",
     databaseConfig: {
