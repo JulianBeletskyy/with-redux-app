@@ -1,8 +1,9 @@
 import Echo from 'laravel-echo/dist/echo'
 import Socketio from 'socket.io-client'
 import store from '../store'
-import { setOpenSocket } from '../actions/user'
+import { setOpenSocket, getUserFullInfo } from '../actions/user'
 import { getUnreadMessage } from '../actions/message'
+import { logout } from '../actions/auth'
 
 export const openSocket = () => {
 	const { user } = store.getState()
@@ -29,10 +30,18 @@ export const openSocket = () => {
 			}
 		})
 
-		channel.listen('.WhenUserLogin', event => {
-			console.log(event)
-			if (event.token !== user.token) {
-				dispatch(logout())
+		channel.listen('.WhenUserLogin', ({token}) => {
+			console.log(token)
+			if (token !== user.token) {
+				dispatch(logout()).then(res => {
+					window.location.href = '/'
+				})
+			}
+		})
+
+		channel.listen('.WhenAdminChangeUser', ({data}) => {
+			if (data) {
+				dispatch(getUserFullInfo())
 			}
 		})
 	}
