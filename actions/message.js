@@ -59,13 +59,12 @@ export const getMessage = (id, key) => dispatch => {
 	})
 }
 
-export const getUnreadMessage = () => dispatch => {
-	return get(`user/all-unread-message`).then(({data}) => {
+export const getUnreadMessage = () => dispatch =>
+	get(`user/all-unread-message`).then(({data}) => {
 		if (data) {
 			dispatch(setUserInfo({unread_message: data.count}))
 		}
 	})
-}
 
 export const removeMessage = (id, type) => dispatch => {
 	return remove(`user/message/${id}/remove`, true).then(res => {
