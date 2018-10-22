@@ -20,18 +20,17 @@ export const openSocket = () => {
 	  	})
 
 	  	const { dispatch } = store
+	  	const { listen } = echo.private(`user.${user.data.id}`)
 
 	  	dispatch(setOpenSocket(true))
-	  	const channel = echo.private(`user.${user.data.id}`)
 	  	
-	  	channel.listen('.WhenMessageTranslate', ({data}) => {
+	  	listen('.WhenMessageTranslate', ({data}) => {
 			if (data) {
 				dispatch(getUnreadMessage())
 			}
 		})
 
-		channel.listen('.WhenUserLogin', ({token}) => {
-			console.log(token)
+		listen('.WhenUserLogin', ({token}) => {
 			if (token !== user.token) {
 				dispatch(logout()).then(res => {
 					window.location.href = '/'
@@ -39,10 +38,8 @@ export const openSocket = () => {
 			}
 		})
 
-		channel.listen('.WhenAdminChangeUser', ({data}) => {
-			if (data) {
-				dispatch(getUserFullInfo())
-			}
+		listen('.WhenAdminChangeUser', ({data}) => {
+			if (data) { dispatch(getUserFullInfo()) }
 		})
 	}
 }

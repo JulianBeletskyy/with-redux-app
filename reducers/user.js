@@ -99,10 +99,6 @@ const user = (user = initialState, action = {}) => {
             return Object.assign({}, user, {
                 token: false
             });
-        case types.SET_TIMEOUT_VALUE:
-            return Object.assign({}, user, {
-                timeout: action.value
-            });
         case types.SET_USER_INFO:
             return Object.assign({}, user, {
                 data: {...user.data, ...action.data}
