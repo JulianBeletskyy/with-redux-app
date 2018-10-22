@@ -17,7 +17,6 @@ export const login = data => dispatch => {
 
 export const logout = () => dispatch => {
     dispatch(removeToken())
-    dispatch(setTimeoutValue(false))
     return Promise.resolve(true)
 }
 
@@ -41,12 +40,6 @@ export const resendEmail = email => dispatch => {
 		if (res.data) { return true }
 	})
 }
-
-export const setTimeoutValue = value =>
-	({
-		type: types.SET_TIMEOUT_VALUE,
-		value,
-	})
 
 export const setTokenServer = token => {
 	return {

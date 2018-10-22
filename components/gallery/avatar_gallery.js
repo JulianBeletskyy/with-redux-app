@@ -25,7 +25,7 @@ class AvatarGallery extends Component {
             x: crop.x.toFixed(),
             y: crop.y.toFixed(),
             avatar: this.state.avatar,
-            angle: crop.rotate * -1,
+            rotate: crop.rotate * -1,
         }
     }
 

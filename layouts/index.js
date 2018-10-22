@@ -7,25 +7,8 @@ import MainModal from '../components/modal'
 import Credits from '../components/forms/credits'
 import Membership from '../components/forms/membership'
 import Alert from '../components/alert'
-import { isAuthentificate } from '../utils'
-import { setTimeoutValue } from '../actions/auth'
 
 class Layout extends Component {
-	constructor(props) {
-		super(props)
-		/*const { token, dispatch, timeout } = props
-		if (token && !timeout) {
-			isAuthentificate()
-			dispatch(setTimeoutValue(true))
-		}*/
-	}
-	componentDidMount() {
-		const { token, dispatch, timeout } = this.props
-		if (token && !timeout) {
-			isAuthentificate()
-			dispatch(setTimeoutValue(true))
-		}
-	}
 	render() {
 		const { children, credits, membership, country, token, active } = this.props
 		return (

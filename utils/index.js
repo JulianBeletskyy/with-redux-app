@@ -84,21 +84,6 @@ export const formatDate = value => {
     return digitsValue
 }
 
-export const isAuthentificate = () => {
-    var checkTimeout = setTimeout(() => {
-        goAuth().then(res => {
-            if (!res.redirected) {
-                isAuthentificate()
-            } else {
-                store.dispatch(logout()).then(res => {
-                    Router.pushRoute('/')
-                })
-            }
-            clearTimeout(checkTimeout)
-        })
-    }, 5000)
-}
-
 export const makeBlur = item => {
     const image = new Image()
     image.src = `${item.src}?${new Date().getTime()}`
