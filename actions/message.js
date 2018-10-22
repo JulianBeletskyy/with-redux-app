@@ -38,34 +38,31 @@ export const buyMessage = data => dispatch => {
     		dispatch(getUserInfo())
     		return true
     	}
-    	dispatch(getUserInfo())
-		return true
     })
 }
 
 export const getMail = type => dispatch => {
-	return get(`user/message/${type}`).then(res => {
-		if (res.data) {
-			dispatch(setMessages(res.data, type))
-			dispatch(getUnreadMessage())
+	return get(`user/message/${type}`).then(({data}) => {
+		if (data) {
+			dispatch(setMessages(data, type))
 		}
 	})
 }
 
 export const getMessage = (id, key) => dispatch => {
-	return get(`user/message/${key}/${id}`).then(res => {
-		if (res.data) {
-			dispatch(setMessage(res.data))
+	return get(`user/message/${key}/${id}`).then(({data}) => {
+		if (data) {
+			dispatch(setMessage(data))
 			dispatch(getUnreadMessage())
-			return res.data
+			return data
 		}
 	})
 }
 
 export const getUnreadMessage = () => dispatch => {
-	return get(`user/all-unread-message`).then(res => {
-		if (res.data) {
-			dispatch(setUserInfo({unread_message: res.data.count}))
+	return get(`user/all-unread-message`).then(({data}) => {
+		if (data) {
+			dispatch(setUserInfo({unread_message: data.count}))
 		}
 	})
 }

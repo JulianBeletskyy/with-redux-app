@@ -4,6 +4,7 @@ import store from '../store'
 import { setOpenSocket, getUserFullInfo } from '../actions/user'
 import { getUnreadMessage } from '../actions/message'
 import { logout } from '../actions/auth'
+import { Router } from '../routes'
 
 export const openSocket = () => {
 	const { user } = store.getState()
@@ -27,6 +28,10 @@ export const openSocket = () => {
 	  	channel.listen('.WhenMessageTranslate', ({data}) => {
 			if (data) {
 				dispatch(getUnreadMessage())
+				const slug = Router.router.query.slug
+				if (slug) {
+					dispatch(getMail(slug))
+				}
 			}
 		})
 
