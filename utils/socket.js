@@ -2,7 +2,7 @@ import Echo from 'laravel-echo/dist/echo'
 import Socketio from 'socket.io-client'
 import store from '../store'
 import { setOpenSocket, getUserFullInfo } from '../actions/user'
-import { getUnreadMessage } from '../actions/message'
+import { getUnreadMessage, getMail } from '../actions/message'
 import { logout } from '../actions/auth'
 import { Router } from '../routes'
 
