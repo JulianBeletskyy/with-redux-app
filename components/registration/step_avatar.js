@@ -74,6 +74,8 @@ export class StepAvatar extends Component {
     }
 
     getSignUpThree = () => {
+        ga('send', 'event', '3step', 'registraciya') // google metrics
+
         const { dispatch } = this.props
         if (! this.refs.cropper && this.props.role === 'client') {
             this.skip()

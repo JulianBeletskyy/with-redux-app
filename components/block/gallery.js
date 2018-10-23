@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { confirmAlert } from 'react-confirm-alert'
 import { removePhotos, toggleActive, addToGallery, getUserGallery, makePrivate } from '../../actions/user'
 import { setAlert } from '../../actions/ui'
-import Lightbox from 'react-images'
 import BtnUpload from '../buttons/btn_upload'
 import { makeBlur } from '../../utils'
 import GalleryItem from './gallery_menu'
@@ -137,19 +136,6 @@ class Gallery extends Component {
                         initialSlide={this.state.current}
                         list={gallery} />
                 }
-                
-
-                {/*<Lightbox
-                    images={gallery}
-                    isOpen={this.state.open}
-                    backdropClosesModal={true}
-                    showImageCount={true}
-                    currentImage={this.state.current}
-                    onClickPrev={this.gotoPrevious}
-                    onClickNext={this.gotoNext}
-                    onClickThumbnail={this.goToImage}
-                    showThumbnails={true}
-                    onClose={this.closeGallery} />*/}
             </div>
         )
     }

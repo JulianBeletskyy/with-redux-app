@@ -77,6 +77,8 @@ export class StepTwoClient extends Component {
     }
 
     getSignUpTwo = () => {
+        ga('send', 'event', '3step', 'registraciya') // google metrics
+
         const { dispatch } = this.props
     	const data = {
             education_id: this.signup.education.value,
@@ -86,7 +88,6 @@ export class StepTwoClient extends Component {
             languages: this.state.languages,
             custom_remember_token: this.props.custom_remember_token
         }
-        console.log(data)
         dispatch(sendSignUpTwo(data, 2, this.props.role))
     }
 

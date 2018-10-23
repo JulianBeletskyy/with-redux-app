@@ -84,6 +84,8 @@ class StepOneClient extends Component {
     }
 
     getSignUpTwo = () => {
+        ga('send', 'event', '2step', 'registraciya') // google metrics
+        
     	const { dispatch } = this.props
     	const data = {
     		height_id: this.signup.height.value,

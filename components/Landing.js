@@ -23,12 +23,9 @@ class Landing extends Component {
 	}
 
 	getRegistration = () => {
+		ga('send', 'event', 'start', 'registraciya') // google metrics
 		const { dispatch } = this.props
-		window.scroll({
-	  		top: 0, 
-	  		left: 0, 
-	  		behavior: 'smooth' 
-		})
+		window.scroll({top: 0,left: 0,behavior: 'smooth'})
 		dispatch(setUiKey('showRegistration', true))
 	}
 

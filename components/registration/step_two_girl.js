@@ -134,6 +134,8 @@ export class StepTwoGirl extends Component {
     }
 
     getSignUpThree = () => {
+        ga('send', 'event', '3step', 'registraciya') // google metrics
+        
         const { dispatch } = this.props
         let error = 1
 

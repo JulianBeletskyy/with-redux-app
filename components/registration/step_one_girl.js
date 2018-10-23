@@ -23,6 +23,8 @@ export class StepOneGirl extends Component {
 	}
 
 	getSignUpTwo = () => {
+        ga('send', 'event', '2step', 'registraciya') // google metrics
+        
         let error = 1
 
         error *= Validator.check(this.signup.height.value, ['required'], 'Height')

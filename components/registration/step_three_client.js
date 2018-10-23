@@ -38,6 +38,8 @@ export class StepThreeClient extends Component {
     }
 
     getConfirm = () => {
+        ga('send', 'event', 'finish', 'registraciya') // google metrics
+        
         const { dispatch } = this.props
         const data = {
             about_me: this.signup.about_me.value,

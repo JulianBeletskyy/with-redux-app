@@ -30,6 +30,8 @@ export class StepZero extends Component {
 	}
 
     facebookSignUp = () => {
+        ga('send', 'event', 'facebook', 'registraciya') // google metrics
+
         const { dispatch } = this.props
 
         window.FB.login(response => {
@@ -79,6 +81,7 @@ export class StepZero extends Component {
     }
 
     googleSignUp = googleUser => {
+        ga('send', 'event', 'google', 'registraciya') // google metrics
         const { dispatch } = this.props
 
         this.signup.first_name.value = googleUser.w3.ofa
@@ -131,11 +134,12 @@ export class StepZero extends Component {
     resolveRegistration = () => {
         const { dispatch, showRegistration, custom_remember_token } = this.props
         if (!showRegistration) {
+            ga('send', 'event', 'start', 'registraciya') // google metrics
             dispatch(setUiKey('showRegistration', true))
             this.sendPreSignUp()
             return
         }
-
+        ga('send', 'event', '1step', 'registraciya') // google metrics
         let error = 1
         for (var k in this.signup.birth) {
             if (error) {
