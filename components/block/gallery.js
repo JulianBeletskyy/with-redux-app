@@ -7,6 +7,7 @@ import Lightbox from 'react-images'
 import BtnUpload from '../buttons/btn_upload'
 import { makeBlur } from '../../utils'
 import GalleryItem from './gallery_menu'
+import FullScreenSlider from '../gallery/full_screen_slider'
 
 class Gallery extends Component {
 
@@ -90,34 +91,6 @@ class Gallery extends Component {
     	}
     }
 
-    makeBlur = item => {
-        const { dispatch } = this.props
-        const image = new Image()
-        image.src = `${item.src}?${new Date().getTime()}`
-        image.setAttribute('crossOrigin', '')
-        
-        const canvas = document.createElement(`canvas`)
-        const ctx = canvas.getContext("2d")
-        image.onload = () => {
-            canvas.width = image.width
-            canvas.height = image.height
-            ctx.filter = 'blur(15px)'
-            ctx.globalAlpha = 0.5
-            ctx.drawImage(image, 0, 0)
-            const url = canvas.toDataURL()
-            dispatch(makePrivate({id: item.id, base64: url})).then(res => {
-                if (res) {
-                    this.setState({activeMenu: 0})
-                }
-            })
-        }
-    }
-
-    rotate = (item, angle) => e => {
-        e.stopPropagation()
-        console.log(angle)
-    }
-
     checkActive = () => {
     	const { membership, gallery } = this.props
     	return gallery.filter(item => item.active).length < membership.my_photo
@@ -157,7 +130,16 @@ class Gallery extends Component {
                 <div className="wrap-gallery">
                 	{ gallery.map((item, i) => this.printGallery(item, i)) }
                 </div>
-                <Lightbox
+                {
+                    this.state.open 
+                    &&  <FullScreenSlider
+                        backDrop={this.closeGallery}
+                        initialSlide={this.state.current}
+                        list={gallery} />
+                }
+                
+
+                {/*<Lightbox
                     images={gallery}
                     isOpen={this.state.open}
                     backdropClosesModal={true}
@@ -167,7 +149,7 @@ class Gallery extends Component {
                     onClickNext={this.gotoNext}
                     onClickThumbnail={this.goToImage}
                     showThumbnails={true}
-                    onClose={this.closeGallery} />
+                    onClose={this.closeGallery} />*/}
             </div>
         )
     }

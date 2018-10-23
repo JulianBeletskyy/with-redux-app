@@ -84,7 +84,7 @@ class FullScreenSlider extends Component {
 
 	getButton = item => {
         const { membership } = this.props
-		return (item.private && ! item.purchased && membership.view_photo === 'Limited')
+		return (item.private && ! item.purchased && membership && membership.view_photo === 'Limited')
 	}
 
 	close = e => {

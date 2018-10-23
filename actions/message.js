@@ -41,23 +41,21 @@ export const buyMessage = data => dispatch => {
     })
 }
 
-export const getMail = type => dispatch => {
-	return get(`user/message/${type}`).then(({data}) => {
+export const getMail = type => dispatch =>
+	get(`user/message/${type}`).then(({data}) => {
 		if (data) {
 			dispatch(setMessages(data, type))
 		}
 	})
-}
 
-export const getMessage = (id, key) => dispatch => {
-	return get(`user/message/${key}/${id}`).then(({data}) => {
+export const getMessage = (id, key) => dispatch =>
+	get(`user/message/${key}/${id}`).then(({data}) => {
 		if (data) {
 			dispatch(setMessage(data))
 			dispatch(getUnreadMessage())
 			return data
 		}
 	})
-}
 
 export const getUnreadMessage = () => dispatch =>
 	get(`user/all-unread-message`).then(({data}) => {
@@ -66,30 +64,27 @@ export const getUnreadMessage = () => dispatch =>
 		}
 	})
 
-export const removeMessage = (id, type) => dispatch => {
-	return remove(`user/message/${id}/remove`, true).then(res => {
-		if (res.data) {
+export const removeMessage = (id, type) => dispatch =>
+	remove(`user/message/${id}/remove`, true).then(({data}) => {
+		if (data) {
 			dispatch(getMail(type))
 		}
 	})
-}
 
-export const removeMessagePermanent = (id, type) => dispatch => {
-	return remove(`user/message/${id}/removepermanent`, true).then(res => {
-		if (res.data) {
+export const removeMessagePermanent = (id, type) => dispatch =>
+	remove(`user/message/${id}/removepermanent`, true).then(({data}) => {
+		if (data) {
 			dispatch(getMail(type))
 		}
 	})
-}
 
-export const restoreMessage = (id, type) => dispatch => {
-	return get(`user/message/${id}/restore`).then(res => {
-		if (res.data) {
+export const restoreMessage = (id, type) => dispatch =>
+	get(`user/message/${id}/restore`).then(({data}) => {
+		if (data) {
 			dispatch(getMail(type))
 			return true
 		}
 	})
-}
 
 export const saveDraft = data => dispatch => {
 	let formData = new FormData()
@@ -108,33 +103,30 @@ export const saveDraft = data => dispatch => {
 	})
 }
 
-export const removeDraft = id => dispatch => {
-	return remove(`user/message/draft/${id}`, true).then(res => {
-		if (res.data) {
+export const removeDraft = id => dispatch =>
+	remove(`user/message/draft/${id}`, true).then(({data}) => {
+		if (data) {
 			dispatch(getMail('draft'))
 			return true
 		}
 	})
-}
 
-export const showAttach = data => dispatch => {
-	return post(`user/message/attachment/see`, true, data).then(res => {
+export const showAttach = data => dispatch =>
+	post(`user/message/attachment/see`, true, data).then(res => {
 		if (res.data) {
 			dispatch(setMessage(res.data))
 			return true
 		}
 		return false
 	})
-}
 
-export const buyAttach = data => dispatch => {
-	return post(`user/message/attachment/buy`, true, data).then(res => {
+export const buyAttach = data => dispatch =>
+	post(`user/message/attachment/buy`, true, data).then(res => {
 		if (res.data) {
 			dispatch(setMessage(res.data))
 			dispatch(getUserInfo())
 		}
 	})
-}
 
 export const setBuyingAttach = data =>
 	({

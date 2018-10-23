@@ -60,7 +60,6 @@ class GalleryItem extends Component {
             canvas.width = image.width
             canvas.height = image.height
             ctx.filter = 'blur(15px)'
-            ctx.globalAlpha = 0.5
             ctx.drawImage(image, 0, 0)
             const url = canvas.toDataURL()
             dispatch(makePrivate({id: item.id, base64: url})).then(res => {

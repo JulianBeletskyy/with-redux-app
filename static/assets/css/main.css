@@ -1801,6 +1801,7 @@ input[value=girl]:checked + .fa-venus {
     justify-content: center;
     align-items: center;
     padding: 10px;
+    z-index: 2;
 }
 .textarea-main {
     min-height: 100px;

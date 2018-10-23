@@ -15,6 +15,8 @@ class AvatarGallery extends Component {
         	avatar: props.avatar
         }
         this.cropData = {}
+        this.rotateBtnLeft = null
+        this.rotateBtnRight = null
     }
 
     crop = () => {
@@ -27,11 +29,6 @@ class AvatarGallery extends Component {
             avatar: this.state.avatar,
             rotate: crop.rotate * -1,
         }
-    }
-
-    rotate = angle => e => {
-        this.refs.cropper.rotate(angle)
-        this.crop()
     }
 
     handleClick = item => e => {
@@ -63,9 +60,37 @@ class AvatarGallery extends Component {
 				</div>
 	}
 
+    rotateStartLeft = e => {
+        this.needRotate = true
+        this.rotate(1)
+        this.rotateBtnLeft.addEventListener('mouseup', this.cancelRotate)
+    }
+
+    rotateStartRight = e => {
+        this.needRotate = true
+        this.rotate(-1)
+        this.rotateBtnRight.addEventListener('mouseup', this.cancelRotate)
+    }
+
+    cancelRotate = () => {
+        this.needRotate = false
+        this.crop()
+    }
+
+    rotate = vector => {
+        if (this.needRotate) {
+            setTimeout(() => {
+                this.refs.cropper.rotate(vector)
+                this.rotate(vector)
+            }, 10) 
+        }
+    }
+
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(getUserGallery())
+        this.rotateBtnLeft.addEventListener('mousedown', this.rotateStartLeft)
+        this.rotateBtnRight.addEventListener('mousedown', this.rotateStartRight)
     }
 
     render() {
@@ -84,9 +109,9 @@ class AvatarGallery extends Component {
                             cropend={this.crop}
                             ready={this.crop} />
                         <div className="gallery-item-menu-item font-bebas text-center">
-                            <i className="fas fa-chevron-left pointer pull-left" onClick={this.rotate(-90)}></i>
+                            <i className="fas fa-chevron-left pointer pull-left" ref={ref => this.rotateBtnLeft = ref}></i>
                             Rotate
-                            <i className="fas fa-chevron-right pointer pull-right" onClick={this.rotate(90)}></i>
+                            <i className="fas fa-chevron-right pointer pull-right" ref={ref => this.rotateBtnRight = ref}></i>
                         </div>
                     </Col>
                     <Col sm={8}>
