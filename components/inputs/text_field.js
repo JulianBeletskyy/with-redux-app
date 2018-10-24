@@ -38,6 +38,10 @@ class TextField extends Component {
         }
     }
 
+    focus = () => {
+        this.input.focus()
+    }
+
 	render() {
 		const { label, placeholder, type = 'text', thisRef, className, value, description, name, disabled } = this.props
 		return (
@@ -52,7 +56,7 @@ class TextField extends Component {
                     className={`text-field form-control ${className}`}
                     onChange={this.handleChange}
                     defaultValue={value} />
-                {label ? null : <div className={`text-field-placeholder ${this.state.active ? 'active' : ''}`}>{placeholder}</div>}
+                {label ? null : <div className={`text-field-placeholder ${this.state.active ? 'active' : ''}`} onClick={this.focus}>{placeholder}</div>}
                 {description ? <span className="text-field-description">{description}</span> : null}
             </div>
 		)

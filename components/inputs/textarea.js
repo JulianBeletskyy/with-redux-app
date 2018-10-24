@@ -37,6 +37,10 @@ class Textarea extends Component {
         }
     }
 
+    focus = () => {
+        this.input.focus()
+    }
+
 	render() {
 		const { value = '', placeholder, label, className, counter = false, id = '' } = this.props
 		return (
@@ -50,7 +54,7 @@ class Textarea extends Component {
                     onBlur={this.handleBlur}
                     value={this.state.value}>
                 </textarea>
-                {label ? null : <span className={`textarea-placeholder ${this.state.active ? 'active' : ''}`}>{placeholder}</span>}
+                {label ? null : <span className={`textarea-placeholder ${this.state.active ? 'active' : ''}`} onClick={this.focus}>{placeholder}</span>}
                 { counter && <span className={`textarea-counter ${this.state.value.length === counter ? `danger` : ``}`}>{this.state.value.length} / {counter}</span> }
             </div>
 		)

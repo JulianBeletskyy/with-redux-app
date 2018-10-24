@@ -181,6 +181,4 @@ const mapStateToProps = state =>
 	    custom_remember_token: state.signup.custom_remember_token,
 	})
 
-export default connect(
-    mapStateToProps
-)(StepAvatar);
+export default connect(mapStateToProps)(StepAvatar)

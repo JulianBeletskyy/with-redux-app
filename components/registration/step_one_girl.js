@@ -24,7 +24,7 @@ export class StepOneGirl extends Component {
 
 	getSignUpTwo = () => {
         ga('send', 'event', '2step', 'registraciya') // google metrics
-        
+
         let error = 1
 
         error *= Validator.check(this.signup.height.value, ['required'], 'Height')
@@ -100,7 +100,6 @@ export class StepOneGirl extends Component {
                                 options={getArray(body_styles, 'Body Style')}
                                 value={body_style} />
                         </FormGroup>
-                        
                     </Col>
                     <Col xs={12} md={6}>
                         <FormGroup>
@@ -166,6 +165,4 @@ const mapStateToProps = state =>
 		role: state.signup.data.role
 	})
 
-export default connect(
-    mapStateToProps
-)(StepOneGirl);
+export default connect(mapStateToProps)(StepOneGirl)

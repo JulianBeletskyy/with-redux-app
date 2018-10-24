@@ -32,7 +32,8 @@ class Message extends Component {
 
         this.state = {
             show: false,
-            src: ''
+            src: '',
+            value: '',
         }
     }
 
@@ -201,6 +202,10 @@ class Message extends Component {
         })
     }
 
+    handleChange = value => {
+        this.setState({value})
+    }
+
     componentWillUnmount() {
         const { dispatch } = this.props
         dispatch(clearAttachAll())
@@ -305,7 +310,8 @@ class Message extends Component {
                                         <Textarea
                                             counter={4500}
                                             inputRef={ref => { this.message = ref }}
-                                            value={''}
+                                            value={this.state.value}
+                                            onChange={this.handleChange}
                                             placeholder="Message" />
                                     </div>
                                     <div className="form-group">

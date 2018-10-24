@@ -370,7 +370,6 @@ export class StepTwoGirl extends Component {
                                     </Row>
                                 </FormGroup>
                         }
-                            
                         <FormGroup>
                             <Textarea
                                 inputRef={ref => { this.signup.future_goals = ref }}
@@ -410,7 +409,6 @@ const mapStateToProps = state =>
 		employment_status: state.signup.data.employment_status,
 		living_situation: state.signup.data.living_situation,
 		future_goals: state.signup.data.future_goals,
-
 		marital_statuses: state.options.marital_statuses,
 		childrens: state.options.children,
 		want_children: state.options.want_children,
@@ -427,6 +425,4 @@ const mapStateToProps = state =>
 		role: state.signup.data.role,
 	})
 
-export default connect(
-    mapStateToProps
-)(StepTwoGirl);
+export default connect(mapStateToProps)(StepTwoGirl)

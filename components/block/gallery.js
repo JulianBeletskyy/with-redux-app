@@ -4,7 +4,6 @@ import { confirmAlert } from 'react-confirm-alert'
 import { removePhotos, toggleActive, addToGallery, getUserGallery, makePrivate } from '../../actions/user'
 import { setAlert } from '../../actions/ui'
 import BtnUpload from '../buttons/btn_upload'
-import { makeBlur } from '../../utils'
 import GalleryItem from './gallery_menu'
 import FullScreenSlider from '../gallery/full_screen_slider'
 
@@ -63,31 +62,6 @@ class Gallery extends Component {
                 }
             ]
         })
-    }
-
-    toggleActive = item => e => {
-    	e.stopPropagation()
-    	const { dispatch, role } = this.props
-
-    	if (role === 'client') {
-    		const url = item.active ? 'hide' : 'show'
-    		if ((this.checkActive() && url === 'show') || url === 'hide') {
-    			dispatch(toggleActive({'images': [item.id]}, url)).then(res => {
-    				this.setState({activeMenu: 0})
-    			})
-    		} else {
-    			dispatch(setAlert('You can\'t make more active photos', 'error'))
-    		}
-    	} else {
-    		const url = item.private ? 'public' : 'private'
-            if (!item.private) {
-                this.makeBlur(item)
-                return
-            }
-    		dispatch(toggleActive({'images': [item.id]}, url)).then(res => {
-    			this.setState({activeMenu: 0})
-    		})
-    	}
     }
 
     checkActive = () => {

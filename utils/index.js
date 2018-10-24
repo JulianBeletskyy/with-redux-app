@@ -67,7 +67,7 @@ export const getNumArray = (type, from, to) => {
             temp.push({ 'value': from, 'name': from })
         }
     }
-    return temp;
+    return temp
 }
 
 export const formatDate = value => {
@@ -82,24 +82,4 @@ export const formatDate = value => {
         digitsValue = `${digitsValue.slice(0,2)}/${digitsValue.slice(2)}`
     }
     return digitsValue
-}
-
-export const makeBlur = item => {
-    const image = new Image()
-    image.src = `${item.src}?${new Date().getTime()}`
-    image.setAttribute('crossOrigin', '')
-    
-    const canvas = document.createElement(`canvas`)
-    const ctx = canvas.getContext("2d")
-    image.onload = () => {
-        canvas.width = image.width
-        canvas.height = image.height
-        ctx.filter = 'blur(10px)'
-        ctx.globalAlpha = 0.5
-        ctx.drawImage(image, 0, 0)
-        const url = canvas.toDataURL()
-        console.log(url)
-        return url
-    }
-    return Promise.resolve(image.onload())
 }

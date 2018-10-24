@@ -34,6 +34,4 @@ const mapStateToProps = state =>
     	email: state.signup.data.email
 	})
 
-export default connect(
-    mapStateToProps
-)(StepConfirm)
+export default connect(mapStateToProps)(StepConfirm)

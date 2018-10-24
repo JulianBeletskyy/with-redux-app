@@ -10,7 +10,7 @@ import CheckboxField from '../inputs/checkbox_field'
 import Link from 'next/link'
 import Block from '../block'
 import Validator from '../../validate'
-
+import { getNumArray } from '../../utils'
 
 export class StepThreeGirl extends Component {
     constructor(props) {
@@ -29,22 +29,6 @@ export class StepThreeGirl extends Component {
         } else {
             this.interests = this.interests.filter(item => item !== id)
         }
-    }
-
-    getNumArray = (type, from, to) => {
-        let temp = []
-        if (type === 'from') {
-            for (from; from <= to; from++) {
-                temp.push({ 'value': from, 'name': from })
-            }
-            temp.unshift({ 'value': '', 'name': type })
-        } else {
-            for (from; from >= to; from--) {
-                temp.push({ 'value': from, 'name': from })
-            }
-            temp.unshift({ 'value': '', 'name': type })
-        }
-        return temp;
     }
 
     printInterest = (interest, i) => {
@@ -129,13 +113,13 @@ export class StepThreeGirl extends Component {
                                 <Col sm={4}>
                                     <SelectField
                                         inputRef={ref => { this.signup.match.from = ref }}
-                                        options={this.getNumArray('from', 19, 70)}
+                                        options={getNumArray('from', 19, 70)}
                                         value={match.from} />
                                 </Col>
                                 <Col sm={4}>
                                     <SelectField
                                         inputRef={ref => { this.signup.match.to = ref }}
-                                        options={this.getNumArray('to', 70, 19)}
+                                        options={getNumArray('to', 70, 19)}
                                         value={match.to} />
                                 </Col>
                             </Row>
@@ -181,6 +165,4 @@ const mapStateToProps = state =>
         custom_remember_token: state.signup.custom_remember_token,
 	})
 
-export default connect(
-    mapStateToProps
-)(StepThreeGirl);
+export default connect(mapStateToProps)(StepThreeGirl)

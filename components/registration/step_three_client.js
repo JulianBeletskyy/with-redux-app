@@ -119,6 +119,4 @@ const mapStateToProps = state =>
     })
 
 
-export default connect(
-    mapStateToProps
-)(StepThreeClient);
+export default connect(mapStateToProps)(StepThreeClient)

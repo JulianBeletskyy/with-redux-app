@@ -106,9 +106,6 @@ class GalleryItem extends Component {
     }
 }
 
-const mapStateToProps = state =>
-	({
-		role: state.user.data.role,
-	})
+const mapStateToProps = state => ({role: state.user.data.role})
 
 export default connect(mapStateToProps)(GalleryItem)
