@@ -26,7 +26,15 @@ export const openSocket = () => {
 
 	  	const channel = echo.private(`user.${user.data.id}`)
 
+	  	const publicChannel = echo.channel('public')
+
 	  	dispatch(setOpenSocket(true))
+
+	  	publicChannel.listen('.NeedReload', ({data}) => {
+	  		if (data) {
+	  			window.location.reload(true)	
+	  		}
+	  	})
 	  	
 	  	channel.listen('.WhenMessageTranslate', ({data}) => {
 			if (data) {
