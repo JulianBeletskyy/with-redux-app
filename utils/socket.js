@@ -6,10 +6,13 @@ import { getUnreadMessage, getMail } from '../actions/message'
 import { logout } from '../actions/auth'
 import { Router } from '../routes'
 
+var globalEcho
+
 export const openSocket = () => {
 	const { user } = store.getState()
 	if (user.data.id && !user.openSocket) {
-		const echo = new Echo({
+	  	const { dispatch } = store
+	  	const echo = new Echo({
 			broadcaster: 'socket.io',
 		  	host: `${window.location.hostname}:6001`,
 			client: Socketio,
@@ -18,9 +21,9 @@ export const openSocket = () => {
 					 'Authorization': `Bearer ${user.token}`,
 				},
 			},
-	  	})
+		})
+		globalEcho = echo
 
-	  	const { dispatch } = store
 	  	const channel = echo.private(`user.${user.data.id}`)
 
 	  	dispatch(setOpenSocket(true))
@@ -47,4 +50,9 @@ export const openSocket = () => {
 			if (data) { dispatch(getUserFullInfo()) }
 		})
 	}
+}
+
+export const closeSocket = () => {
+	const { user } = store.getState()
+	globalEcho.leave(`user.${user.data.id}`)
 }

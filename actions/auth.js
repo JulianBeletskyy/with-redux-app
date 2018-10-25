@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 import { toggleModal } from './ui'
 import { Router } from '../routes'
 import { setUserInfo } from './user'
+import { closeSocket } from '../utils/socket'
 
 export const login = data => dispatch => {
 	return post('login', true, data).then(res => {
@@ -17,6 +18,7 @@ export const login = data => dispatch => {
 
 export const logout = () => dispatch => {
     dispatch(removeToken())
+    closeSocket()
     return Promise.resolve(true)
 }
 

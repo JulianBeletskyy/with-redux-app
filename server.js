@@ -15,7 +15,7 @@ app.prepare().then(() => {
 })
 
 require('laravel-echo-server').run({
-    authHost: 'https://api.lifein.love',
+    authHost: 'https://api.lifein.love', //'https://api.lifein.love',
     authEndpoint: '/broadcasting/auth',
     secure: true,
     sslCertPath: '/etc/nginx/ssl/lifein.crt',

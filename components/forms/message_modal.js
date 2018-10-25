@@ -14,7 +14,7 @@ import { confirmAlert } from 'react-confirm-alert'
 export class MessageModal extends Component {
 
     state = {
-        message: ''
+        value: ''
     }
 
     showAlert = data => {
@@ -96,21 +96,8 @@ export class MessageModal extends Component {
 		}
 	}
 
-    handleChange = ({target: {textContent}}) => {
-        this.setState({message: textContent})
-    }
-
-    componentDidMount() {
-        /*const userLang = navigator.language || navigator.userLanguage
-        if (userLang === 'en-US' && window.location.host === 'localhost:3000') {
-            
-        } else {
-            
-        }
-        $Spelling.DefaultDictionary = "Chiness"
-        $Spelling.SpellCheckAsYouType('messageTextArea')
-        const el = document.getElementById('messageTextArea___livespell_proxy')
-        el.addEventListener('input', this.handleChange)*/
+    handleChange = value => {
+        this.setState({value})
     }
 
     render() {
@@ -123,13 +110,14 @@ export class MessageModal extends Component {
                         label={true}
                         counter={4500}
                         inputRef={ref => { this.message = ref }}
-                        value={''}
+                        onChange={this.handleChange}
+                        value={this.state.value}
                         placeholder={`Message to ${first_name}`} />
                 </FormGroup>
                 <FormGroup>
                     <BtnMain
                         type="button"
-                        bsStyle="success "
+                        bsStyle="success"
                         text="Save to drats"
                         onClick = {this.saveDraft} />
                     &nbsp;
