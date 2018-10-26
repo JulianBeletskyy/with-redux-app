@@ -18,7 +18,7 @@ class SelectField extends Component {
 
     componentWillReceiveProps(nextProps) {
         const value = nextProps.value ? nextProps.value : ''
-        if (value !== this.state.value && value !== this.props.value) {
+        if (! this.state.value && value !== this.state.value && value !== this.props.value) {
             this.setState({value: value})
         }
     }
