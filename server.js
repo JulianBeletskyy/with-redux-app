@@ -18,11 +18,11 @@ require('laravel-echo-server').run({
     authHost: 'https://api.lifein.love', //'https://api.lifein.love',
     authEndpoint: '/broadcasting/auth',
     secure: true,
+    protocol: 'https',
     sslCertPath: '/etc/nginx/ssl/lifein.crt',
     sslKeyPath: '/etc/nginx/ssl/lifein.key',
     sslCertChainPath: '/etc/nginx/ssl/lifein-bundle.crt',
     devMode: true,
-    protocol: 'https',
     database: "redis",
     databaseConfig: {
         redis: {

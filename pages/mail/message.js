@@ -14,6 +14,7 @@ import { setActiveTab, toggleModal } from '../../actions/ui'
 import { LETTER_PRICE, PHOTO_PRICE } from '../../config'
 import { confirmAlert } from 'react-confirm-alert'
 import FullScreenPreview from '../../components/gallery/full_screen_preview'
+import { startTyping } from '../../utils/socket'
 
 class Message extends Component {
     static async getInitialProps({query}) {
@@ -203,6 +204,8 @@ class Message extends Component {
     }
 
     handleChange = value => {
+        //const { userName } = this.props
+        //startTyping(userName)
         this.setState({value})
     }
 
@@ -341,6 +344,7 @@ class Message extends Component {
 const mapStateToProps = state =>
     ({
         role: state.user.data.role,
+        userName: state.user.data.first_name,
         userId: state.user.data.id,
         message: state.message.message,
         newMessage: state.message.newMessage,

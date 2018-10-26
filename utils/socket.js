@@ -7,6 +7,7 @@ import { logout } from '../actions/auth'
 import { Router } from '../routes'
 
 var globalEcho
+var globalChat
 
 export const openSocket = () => {
 	const { user } = store.getState()
@@ -25,17 +26,23 @@ export const openSocket = () => {
 		globalEcho = echo
 
 	  	const channel = echo.private(`user.${user.data.id}`)
-
 	  	const publicChannel = echo.channel('public')
-
+	  	//const chat = echo.private(`chat`)
+	  	
 	  	dispatch(setOpenSocket(true))
 
 	  	publicChannel.listen('.NeedReload', ({data}) => {
 	  		if (data) {
-	  			window.location.reload(true)	
+	  			window.location.reload(true)
 	  		}
 	  	})
-	  	
+
+	  	//globalChat = chat
+
+	    /*globalChat.listenForWhisper('typing', ({message}) => {
+	        console.log(message)
+	    })*/
+
 	  	channel.listen('.WhenMessageTranslate', ({data}) => {
 			if (data) {
 				dispatch(getUnreadMessage())
@@ -63,7 +70,15 @@ export const openSocket = () => {
 	}
 }
 
+export const startTyping = userName => {
+	globalChat.whisper('typing', {
+        message: `${userName} is typing`
+    })
+}
+
 export const closeSocket = () => {
 	const { user } = store.getState()
-	globalEcho.leave(`user.${user.data.id}`)
+	if (globalEcho) {
+		globalEcho.leave(`user.${user.data.id}`)
+	}
 }
