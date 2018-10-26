@@ -1,7 +1,7 @@
 import Echo from 'laravel-echo/dist/echo'
 import Socketio from 'socket.io-client'
 import store from '../store'
-import { setOpenSocket, getUserFullInfo } from '../actions/user'
+import { setOpenSocket, getUserFullInfo, getUserInfo } from '../actions/user'
 import { getUnreadMessage, getMail } from '../actions/message'
 import { logout } from '../actions/auth'
 import { Router } from '../routes'
@@ -55,7 +55,10 @@ export const openSocket = () => {
 		})
 
 		channel.listen('.WhenAdminChangeUser', ({data}) => {
-			if (data) { dispatch(getUserFullInfo()) }
+			if (data) {
+				dispatch(getUserInfo())
+				dispatch(getUserFullInfo())
+			}
 		})
 	}
 }

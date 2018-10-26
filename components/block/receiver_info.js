@@ -12,9 +12,7 @@ class ReceiverInfo extends Component {
     handleChange = () => {
     	let tempList = []
     	if (this.input.value) {
-    		tempList = this.props.list.filter(item => {
-	    		return (item.first_name).toLowerCase().indexOf(this.input.value.toLowerCase().replace(' ', '')) + 1 || (item.last_name).toLowerCase().indexOf(this.input.value.toLowerCase().replace(' ', '')) + 1
-	    	})
+    		tempList = this.props.list.filter(item => (item.first_name).toLowerCase().indexOf(this.input.value.toLowerCase().replace(' ', '')) + 1)
     	}
     	this.setState({tempList: tempList})
     }
@@ -28,7 +26,7 @@ class ReceiverInfo extends Component {
     printList = (item, i) => {
     	return 	<div key={i} className="receiver-list-item" onClick={this.choose(item)}>
     				<img className="receiver-item-img" src={item.avatar} alt="" />
-    				<span>{`${item.first_name} ${item.last_name}`}</span>
+    				<span>{item.first_name}</span>
 				</div>
     }
 
@@ -41,7 +39,7 @@ class ReceiverInfo extends Component {
             		? 	<div>
             				<div className="receiver-item  font-bebas}"><span className="{style.underlineText}">Receiver</span></div>
 		        			<img className="receiver-item-img" src={receiver.avatar.croped || receiver.avatar} alt="" />
-							<span>{`${receiver.first_name} ${receiver.last_name}`}</span>
+							<span>{receiver.first_name}</span>
 							<span className="receiver-btn" onClick={clearReceiver}><i className="fas fa-times text-danger"></i></span>
 						</div>
             		: 	<div>
