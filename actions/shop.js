@@ -10,12 +10,26 @@ export const getCategories = () => dispatch => {
 }
 
 export const buyProducts = data => dispatch => {
-	return post(`client/shop/buy`, true, data).then(res => {
-		if (res.data) {
+	return post(`client/shop/buy`, true, data).then(({data}) => {
+		if (data) {
 			
 		}
 	})
 }
+
+export const getShopMembers = () => dispatch => {
+	return get(`user/members/shop`).then(({data}) => {
+		if (data) {
+			dispatch(setShopMembers(data))
+		}
+	})
+}
+
+export const setShopMembers = data =>
+	({
+		type: types.SET_SHOP_MEMBERS,
+		data,
+	})
 
 export const setCart = cart =>
 	({

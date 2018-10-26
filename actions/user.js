@@ -2,6 +2,7 @@ import { get, post, message, put } from '../api'
 import * as types from './types.js'
 import { getMember } from './members'
 import { openSocket } from '../utils/socket'
+import { detectAdBlock } from '../utils'
 
 export const getUserFullInfo = () => dispatch => {
 	return get(`user/profile`).then(res => {
@@ -16,6 +17,7 @@ export const getUserInfo = () => dispatch => {
 		if (res.data) {
 			dispatch(setUserInfo(res.data))
 			openSocket()
+			detectAdBlock(res.data.id)
 		}
 	})
 }

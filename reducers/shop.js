@@ -4,6 +4,7 @@ const initialState = {
     receiver: {},
     categories: [],
     cart: [],
+    shopMembers: [],
 }
 
 const shop = (shop = initialState, action = {}) => {
@@ -19,6 +20,10 @@ const shop = (shop = initialState, action = {}) => {
         case types.SET_CART:
             return Object.assign({}, shop, {
                 cart: action.cart
+            });
+        case types.SET_SHOP_MEMBERS:
+            return Object.assign({}, shop, {
+                shopMembers: action.data
             });
         default:
             return shop;

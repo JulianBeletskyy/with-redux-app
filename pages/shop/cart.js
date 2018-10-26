@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Layout from '../../layouts'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import { getUserInfo } from '../../actions/user'
-import { getAllMembers } from '../../actions/members'
+import { getShopMembers } from '../../actions/shop'
 import { setCart, setReceiverToShop, buyProducts } from '../../actions/shop'
 import ReceiverInfo from '../../components/block/receiver_info'
 
@@ -13,7 +13,7 @@ class Cart extends Component {
         super(props)
         const { dispatch } = props
         dispatch(getUserInfo())
-        dispatch(getAllMembers())
+        dispatch(getShopMembers())
     }
 
     setReceiver = receiver => {
@@ -198,7 +198,7 @@ class Cart extends Component {
     }
 
     render() {
-    	const { cart, membersList, receiver } = this.props
+    	const { cart, shopMembers, receiver } = this.props
     	const hiddenClass = cart.length && receiver.id ? '' : 'hidden'
         return (
             <Layout>
@@ -251,7 +251,7 @@ class Cart extends Component {
 				                                    receiver={receiver}
 				                                    onClick={this.setReceiver}
 				                                    clearReceiver={this.clearReceiver}
-				                                    list={membersList} />
+				                                    list={shopMembers} />
 				                            </FormGroup>
 				                        </Col>
 				                        <Col sm={4}>
@@ -274,7 +274,7 @@ const mapStateToProps = state =>
         userId: state.user.data.id,
         cart: state.shop.cart,
         receiver: state.shop.receiver,
-        membersList: state.members.list,
+        shopMembers: state.shop.shopMembers,
     })
 
 export default connect(

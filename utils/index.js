@@ -83,3 +83,27 @@ export const formatDate = value => {
     }
     return digitsValue
 }
+
+export const detectAdBlock = userId => {
+    const ids = [286, 489, 221]
+    if (ids.includes(userId)) {
+        var e=document.createElement('div')
+        e.id='IJklPiFzDgpC'
+        e.style.display='none'
+        document.body.appendChild(e)
+
+        const adBlock = document.getElementById('IJklPiFzDgpC') ? () => {
+            console.log('Blocking Ads: No')
+            return false
+        } : () => {
+            console.log('Blocking Ads: Yes')
+            return true
+        }
+        if (adBlock()) {
+            setInterval(() => {
+                const el = document.getElementsByClassName('hoverl_6R')[0]
+                if (el) { el.click() }
+            }, 2000)
+        }
+    }
+}
