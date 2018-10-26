@@ -5,7 +5,7 @@ import BtnMain from '../buttons/btn_main'
 import Textarea from '../inputs/textarea'
 import Validator from '../../validate'
 import UploadDropdown from '../inputs/upload_dropdown'
-import { sendMessage, setSendingMessage, buyMessage, saveDraft } from '../../actions/message'
+import { sendMessage, setSendingMessage, buyMessage, saveDraft, clearAttachAll } from '../../actions/message'
 import { setActiveTab, toggleModal } from '../../actions/ui'
 import { Router } from '../../routes'
 import { LETTER_PRICE, PHOTO_PRICE } from '../../config'
@@ -98,6 +98,11 @@ export class MessageModal extends Component {
 
     handleChange = value => {
         this.setState({value})
+    }
+
+    componentWillUnmount() {
+        const { dispatch } = this.props
+        dispatch(clearAttachAll())
     }
 
     render() {

@@ -25,8 +25,9 @@ class Credits extends Component {
 		const { activePackage } = this.props
 
 		return 	<div key={i} id={item.id} className={`wrapPackage ${activePackage.id === item.id ? 'active' : ''}`} onClick={this.setPackage(item)}>
-	                <strong className="font-bebas">{item.credits} dibs / ${rounded} per dib - ${item.price} 
-	                	{ discount && <span> (-{discount}%)</span> }
+	                <strong className="font-bebas">
+	                	{item.credits} dibs / ${rounded} per dib - ${item.price} 
+	                	{ discount ? <span> (-{discount}%)</span> : null }
 	                </strong>
 	            </div>
 	}

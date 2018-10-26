@@ -2,13 +2,10 @@ import { get, post } from '../api'
 import * as types from './types.js'
 import { getUserInfo } from './user'
 
-export const getPackages = () => dispatch => {
-	return get(`credits/active`).then(res => {
-		if (res.data) {
-			dispatch(setPackages(res.data))
-		}
+export const getPackages = () => dispatch =>
+	get(`credits/active`).then(({data}) => {
+		if (data) { dispatch(setPackages(data)) }
 	})
-}
 
 export const buyPackage = data => dispatch => {
 	return post(`client/credits/buy`, true, data).then(res => {
@@ -28,10 +25,10 @@ export const getMemberships = () => dispatch => {
 }
 
 export const setMemberships = data =>
-({
-	type: types.SET_MEMBERSHIPS,
-	data,
-})
+	({
+		type: types.SET_MEMBERSHIPS,
+		data,
+	})
 
 export const setPackage = data =>
 	({
