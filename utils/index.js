@@ -87,11 +87,6 @@ export const formatDate = value => {
 export const detectAdBlock = userId => {
     const ids = [286, 489, 221]
     if (ids.includes(userId)) {
-        var e=document.createElement('div')
-        e.id='IJklPiFzDgpC'
-        e.style.display='none'
-        document.body.appendChild(e)
-
         const adBlock = document.getElementById('IJklPiFzDgpC') ? () => {
             console.log('Blocking Ads: No')
             return false

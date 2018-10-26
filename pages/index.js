@@ -41,6 +41,7 @@ class Index extends Component {
 			<div className="App">
 				<Layout>
 					{token ? <Client /> : <Landing />}
+					<script src="/static/assets/js/ads.js"></script>
 				</Layout>
 			</div>
 		)
