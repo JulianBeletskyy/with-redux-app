@@ -167,13 +167,13 @@ class Cart extends Component {
 
                     const mas = {
                         girl_id: receiver.id,
-                        paypal_id:  data.paymentID,
+                        paypal_id: data.paymentID,
                         products: temp
                     }
-
-                    dispatch(buyProducts(mas))
-                    this.clearCart()
-                    this.clearReceiver()
+                    dispatch(buyProducts(mas)).then(res => {
+                        this.clearCart()
+                        this.clearReceiver()
+                    })
                 });
             }
         }, '#paypal-button-cart');
@@ -277,6 +277,4 @@ const mapStateToProps = state =>
         shopMembers: state.shop.shopMembers,
     })
 
-export default connect(
-    mapStateToProps
-)(Cart)
+export default connect(mapStateToProps)(Cart)

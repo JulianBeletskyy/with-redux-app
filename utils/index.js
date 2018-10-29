@@ -83,22 +83,3 @@ export const formatDate = value => {
     }
     return digitsValue
 }
-
-export const detectAdBlock = userId => {
-    const ids = [286, 489, 221]
-    if (ids.includes(userId)) {
-        const adBlock = document.getElementById('IJklPiFzDgpC') ? () => {
-            console.log('Blocking Ads: No')
-            return false
-        } : () => {
-            console.log('Blocking Ads: Yes')
-            return true
-        }
-        if (adBlock()) {
-            setInterval(() => {
-                const el = document.getElementsByClassName('hoverl_6R')[0]
-                if (el) { el.click() }
-            }, 2000)
-        }
-    }
-}

@@ -1,5 +1,5 @@
 import * as types from './types.js'
-import { get } from '../api'
+import { get, post } from '../api'
 
 export const getCategories = () => dispatch => {
 	return get(`client/shop/category`).then(res => {
@@ -12,7 +12,7 @@ export const getCategories = () => dispatch => {
 export const buyProducts = data => dispatch => {
 	return post(`client/shop/buy`, true, data).then(({data}) => {
 		if (data) {
-			
+			return true
 		}
 	})
 }

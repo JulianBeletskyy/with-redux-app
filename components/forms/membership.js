@@ -58,7 +58,7 @@ export class Membership extends Component {
                     <input type="hidden" name="item_name" value={ this.state.plan.name } />
                     <input type="hidden" name="no_note" value="1" />
                     <input type="hidden" name="no_shipping" value="1" />
-                    <input type="hidden" name="return" value={ 'http://' + window.location.host } />
+                    <input type="hidden" name="return" value={ `https://${window.location.host}/redirect/paypal` } />
                     <input type="hidden" name="src" value="1" />
                     <input type="hidden" name="a3" value={ this.state.plan.amount } />
                     <input type="hidden" name="p3" value={ this.state.plan.period } />

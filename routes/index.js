@@ -10,6 +10,7 @@ routes.add('cart', '/shop/cart', 'shop/cart')
 
 routes.add('index', '/activate/:hash')
 routes.add('recovery', '/recovery/:recovery', '/')
+routes.add('paypal', '/redirect/:paypal', '/')
 
 routes.add('girls', '/girls', '/')
 routes.add('men', '/men', '/')
@@ -27,4 +28,3 @@ routes.add('mail/message', '/mail/:slug/:id')
 routes.add('profile', '/profile/:slug')
 
 routes.add('edit', '/edit/:slug')
-

@@ -52,6 +52,7 @@ const initialState = {
         testimonials: false,
         message: false,
         membership: false,
+        paypal: false,
     },
     showRegistration: false,
     tab: {
