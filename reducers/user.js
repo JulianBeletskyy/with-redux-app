@@ -7,6 +7,7 @@ const initialState = {
     openSocket: false,
     timeout: false,
     recoveryHash: '',
+    onlineUsers: [],
     data: {
         role: 'client',
         hidden: false,
@@ -120,6 +121,18 @@ const user = (user = initialState, action = {}) => {
             })
             return Object.assign({}, user, {
                 data: {...user.data, gallery}
+            })
+        case types.SET_ONLINE_USERS:
+            return Object.assign({}, user, {
+                onlineUsers: action.userIds,
+            })
+        case types.ADD_ONLINE_USERS:
+            return Object.assign({}, user, {
+                onlineUsers: [...user.onlineUsers, action.id],
+            })
+        case types.REMOVE_ONLINE_USERS:
+            return Object.assign({}, user, {
+                onlineUsers: user.onlineUsers.filter(id => id !== action.id),
             })
         default:
             return user;

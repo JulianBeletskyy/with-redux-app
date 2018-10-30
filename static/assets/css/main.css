@@ -62,6 +62,20 @@
     display: inline-block;
     vertical-align: middle;
 }
+.online-dot {
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 50%;
+}
+.online-dot.online {
+    background: #34dca2;
+}
+.online-dot.offline {
+    background: #a8a8a8;
+}
 .mobileWrap {
     position: fixed;
     z-index: 22;

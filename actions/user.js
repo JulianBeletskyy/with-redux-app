@@ -124,6 +124,24 @@ export const buyVideo = (id, member_id) => dispatch => {
 	})
 }
 
+export const setOnlineUsers = userIds =>
+	({
+		type: types.SET_ONLINE_USERS,
+		userIds 
+	})
+
+export const addOnlineUsers = id =>
+	({
+		type: types.ADD_ONLINE_USERS,
+		id 
+	})
+
+export const removeOnlineUsers = id =>
+	({
+		type: types.REMOVE_ONLINE_USERS,
+		id 
+	})
+
 export const setUserInfo = data =>
 	({
 		type: types.SET_USER_INFO,

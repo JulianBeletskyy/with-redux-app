@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { toggleFavorite } from '../../actions/members'
 import { Router } from '../../routes'
+import OnlineDot from './online_dot'
+
+const testUsers = [221, 286]
 
 class MemberPreview extends Component {
 	toggleFavorite = value => e => {
@@ -23,7 +26,7 @@ class MemberPreview extends Component {
 	}
 
     render() {
-    	const { member, stars = true, onClickItem = null, token } = this.props
+    	const { member, stars = true, onClickItem = null, token, onlineUsers, userId } = this.props
     	const link = token ?  `/member/${member.id.toString()}` : `/`
         return (
             <div className="form-group">
@@ -42,6 +45,11 @@ class MemberPreview extends Component {
 	    		                	<div className="ellipsis">{`${member.country}, ${member.state ? `${member.state}, ` : ''} ${member.city}`}</div>
 	    		                </div>
 	    	                </div>
+	    	                {
+	    	                	testUsers.includes(userId)
+	    	                	? 	<OnlineDot active={onlineUsers.includes(member.id)} />
+	    	                	: 	null
+	    	                }	    	                
 	                        {
 	                            stars
 	                            ?   member.favorite
@@ -57,6 +65,6 @@ class MemberPreview extends Component {
     }
 }
 
-const mapStateToProps = state => ({token: state.user.token})
+const mapStateToProps = state => ({token: state.user.token, onlineUsers: state.user.onlineUsers, userId: state.user.data.id})
 
 export default connect(mapStateToProps)(MemberPreview)

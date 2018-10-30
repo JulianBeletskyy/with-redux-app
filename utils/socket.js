@@ -1,13 +1,14 @@
 import Echo from 'laravel-echo/dist/echo'
 import Socketio from 'socket.io-client'
 import store from '../store'
-import { setOpenSocket, getUserFullInfo, getUserInfo } from '../actions/user'
+import { setOpenSocket, getUserFullInfo, getUserInfo, setOnlineUsers, addOnlineUsers, removeOnlineUsers } from '../actions/user'
 import { getUnreadMessage, getMail } from '../actions/message'
 import { logout } from '../actions/auth'
 import { Router } from '../routes'
 
 var globalEcho
 var globalChat
+var globalOnline
 
 export const openSocket = () => {
 	const { user } = store.getState()
@@ -27,7 +28,21 @@ export const openSocket = () => {
 
 	  	const channel = echo.private(`user.${user.data.id}`)
 	  	const publicChannel = echo.channel('public')
+	  	const onlineChannel = echo.join('presence-channel')
 	  	//const chat = echo.private(`chat`)
+	  	globalOnline = onlineChannel
+	  	
+  		
+
+  		onlineChannel.here(userIds => {
+	  			dispatch(setOnlineUsers(userIds))
+	  		})
+	  		.joining(id => {
+	  			dispatch(addOnlineUsers(id))
+	  		})
+	  		.leaving(id => {
+	  			dispatch(removeOnlineUsers(id))
+	  		})
 	  	
 	  	dispatch(setOpenSocket(true))
 
@@ -78,7 +93,11 @@ export const startTyping = userName => {
 
 export const closeSocket = () => {
 	const { user } = store.getState()
+	const { dispatch } = store
+
 	if (globalEcho) {
 		globalEcho.leave(`user.${user.data.id}`)
+		globalEcho.leave(`presence-channel`)
+		dispatch(setOpenSocket(false))
 	}
 }
