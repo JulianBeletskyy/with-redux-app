@@ -432,7 +432,7 @@ class Edit extends Component {
                                     <FormGroup>
                                         <SelectField
                                             inputRef={ref => { this.user.weight = ref }}
-                                            options={heightsArray(heights)}
+                                            options={weightsArray(weights)}
                                             value={data.weight.id}
                                             label={true}
                                             placeholder="Weight" />

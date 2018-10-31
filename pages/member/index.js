@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Layout from '../../layouts'
 import { getMember, toggleInterest, toggleFavorite, getContactsDetails, addViewed } from '../../actions/members'
+import { makeCall } from '../../actions/chat'
 import { toggleModal } from '../../actions/ui'
 import { setReceiverToShop } from '../../actions/shop'
 import { Grid, Row, Col } from 'react-bootstrap'
@@ -126,12 +127,18 @@ class Member extends Component {
         }
     }
 
+    inviteToChat = () => {
+        const { dispatch, member } = this.props
+        dispatch(makeCall(member.id, member.first_name, member.avatar.croped))
+    }
+
     componentDidMount() {
         this.checkView()
     }
 
 	render() {
         const { member, role, modal, active } = this.props
+        
 		return (
 			<Layout>
                 <div className="pt-15">
@@ -391,7 +398,11 @@ class Member extends Component {
                                                         icon="fas fa-envelope" />
                                                 </div>
                                                 {/*<div className="col-sm-6 col-lg-6 col-md-12">
-                                                    <LinkIcon text="Invite to Video-Chat" icon="fas fa-comment" color="#FF0000" />
+                                                    <LinkIcon
+                                                        text="Invite to Video-Chat"
+                                                        icon="fas fa-comment"
+                                                        color="#FF0000"
+                                                        onClick={this.inviteToChat} />
                                                 </div>*/}
                                                 {
                                                     role === 'client'

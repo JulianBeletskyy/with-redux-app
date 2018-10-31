@@ -7,10 +7,11 @@ import MainModal from '../components/modal'
 import Credits from '../components/forms/credits'
 import Membership from '../components/forms/membership'
 import Alert from '../components/alert'
+import CallBlock from '../components/block/call_block'
 
 class Layout extends Component {
 	render() {
-		const { children, credits, membership, country, token, active } = this.props
+		const { children, credits, membership, country, token, active, callIn, callOut } = this.props
 		return (
 			<div>
 				<header>
@@ -22,6 +23,7 @@ class Layout extends Component {
 			    <footer>
 			    	{ (!token && country === 'UA') || (token && !active) ? null : <Footer /> }
 			    </footer>
+                { callIn || callOut ? <CallBlock callIn={callIn} callOut={callOut} /> : null }
 			    <MainModal
                     body={<Credits />}
                     title="Dibs"
@@ -48,6 +50,8 @@ const mapStateToProps = state =>
         country: state.signup.country,
         timeout: state.user.timeout,
         active: state.user.data.active,
+        callIn: state.chat.callIn,
+        callOut: state.chat.callOut,
     })
 
 export default connect(mapStateToProps)(Layout)

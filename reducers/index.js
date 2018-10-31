@@ -7,6 +7,7 @@ import options from './options.js'
 import shop from './shop.js'
 import message from './message.js'
 import membership from './membership.js'
+import chat from './chat.js'
 
 const reducer = combineReducers({
 	user,
@@ -16,7 +17,8 @@ const reducer = combineReducers({
 	options,
 	shop,
 	message,
-	membership
+	membership,
+	chat
 })
 
 export default reducer

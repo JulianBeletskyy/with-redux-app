@@ -3,7 +3,9 @@ import Socketio from 'socket.io-client'
 import store from '../store'
 import { setOpenSocket, getUserFullInfo, getUserInfo, setOnlineUsers, addOnlineUsers, removeOnlineUsers } from '../actions/user'
 import { getUnreadMessage, getMail } from '../actions/message'
+import { setCallIn, setCallOut, setRoomHash, setInviteOponent } from '../actions/chat'
 import { logout } from '../actions/auth'
+import { setAlert } from '../actions/ui'
 import { Router } from '../routes'
 
 var globalEcho
@@ -81,6 +83,20 @@ export const openSocket = () => {
 				dispatch(getUserInfo())
 				dispatch(getUserFullInfo())
 			}
+		})
+
+		channel.listen('.WhenInviteChat', ({sender, hash}) => {
+			dispatch(setCallIn(true))
+			dispatch(setRoomHash(hash))
+			dispatch(setInviteOponent(sender))
+		})
+
+		channel.listen('.WhenInviteCancel', ({name}) => {
+			const { chat: { callIn } } = store.getState()
+			callIn ? dispatch(setCallIn(false)) : dispatch(setCallOut(false))		
+			dispatch(setRoomHash(''))
+			dispatch(setInviteOponent({}))
+			dispatch(setAlert(`${name} was canceled call.`, 'error'))
 		})
 	}
 }
