@@ -34,6 +34,7 @@ class Edit extends Component {
             current_childSex: '',
             current_childBirth: '',
             country: props.data.country.country_code,
+            interests: [],
         }
 
         dispatch(getOptions('countries'))
@@ -181,8 +182,9 @@ class Edit extends Component {
 			this.setState({country: nextProps.data.country.country_code})
 		}
 
-		if (nextProps.data.interests !== this.interests) {
-			this.interests = nextProps.data.interests
+		if (nextProps.data.interests !== this.state.interests) {
+            this.setState({interests: nextProps.data.interests})
+            this.interests = nextProps.data.interests
 		}
 	}
 
@@ -286,6 +288,7 @@ class Edit extends Component {
         } else {
             this.interests = this.interests.filter(item => item !== id)
         }
+        this.setState({interests: this.interests})
     }
 
     isInterest = id => {

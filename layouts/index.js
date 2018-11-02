@@ -8,10 +8,11 @@ import Credits from '../components/forms/credits'
 import Membership from '../components/forms/membership'
 import Alert from '../components/alert'
 import CallBlock from '../components/block/call_block'
+import Chat from '../components/chat'
 
 class Layout extends Component {
 	render() {
-		const { children, credits, membership, country, token, active, callIn, callOut } = this.props
+		const { children, credits, membership, country, token, active, callIn, callOut, chatState } = this.props
 		return (
 			<div>
 				<header>
@@ -36,6 +37,7 @@ class Layout extends Component {
                     className="plans-modal"
                     size="lg"
                     keyModal="membership" />
+                <Chat state={chatState} />
                 <Alert />
 		    </div>
 		)
@@ -52,6 +54,7 @@ const mapStateToProps = state =>
         active: state.user.data.active,
         callIn: state.chat.callIn,
         callOut: state.chat.callOut,
+        chatState: state.chat.chatState,
     })
 
 export default connect(mapStateToProps)(Layout)

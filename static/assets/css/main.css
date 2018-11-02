@@ -19,6 +19,32 @@
 .position-absolute {
     position: absolute;
 }
+.wrap-chat {
+    background: #fff;
+    position: fixed;
+    height: 0%;
+    bottom: 0;
+    z-index: 2000;
+    opacity: 1;
+    border-radius: 10px;
+    transition: height .5s;
+    overflow: hidden;
+}
+.wrap-chat.open-chat {
+    height: 99%;
+}
+.wrap-chat .icon-block i {
+    padding: 15px;
+}
+.wrap-chat.minimize-chat {
+    height: 10%;
+}
+.wrap-chat.minimize-chat,
+.wrap-chat.open-chat {
+    left: 15px;
+    right: 15px;
+    padding: 15px;
+}
 .not-active-wrap {
     position: fixed;
     width: 100%;

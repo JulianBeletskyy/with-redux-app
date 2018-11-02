@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BtnMain from '../buttons/btn_main'
-import { setCallIn, setCallOut, cancelInvite } from '../../actions/chat'
+import { setCallIn, setCallOut, cancelInvite, takeInvite, toggleChat } from '../../actions/chat'
+import { connectToRoom } from '../../utils/socket'
 
 class CallBlock extends Component {
 
@@ -10,6 +11,14 @@ class CallBlock extends Component {
 		callIn ? dispatch(setCallIn(false)) : dispatch(setCallOut(false))
 		dispatch(cancelInvite(oponent.id))
 		
+	}
+
+	takeCall = () => {
+		const { hash, callIn, oponent, dispatch, roomId } = this.props
+		callIn ? dispatch(setCallIn(false)) : dispatch(setCallOut(false))
+		dispatch(takeInvite(oponent.id))
+		dispatch(toggleChat('open'))
+		connectToRoom(roomId)
 	}
 
     render() {
@@ -26,7 +35,7 @@ class CallBlock extends Component {
 			            		<div className="font-bebas">{oponent.name} call you</div>
 			            		<div className="wrap-call-buttons">
 			            			<BtnMain text="Cancel" onClick={this.cancelCall} />
-			            			<BtnMain text="Take Call" />
+			            			<BtnMain text="Take Call" onClick={this.takeCall} />
 			            		</div>
 		            		</div>
             		}
@@ -51,6 +60,8 @@ class CallBlock extends Component {
 const mapStateToProps = state =>
 	({
 		oponent: state.chat.oponent,
+		hash: state.chat.roomHash,
+		roomId: state.chat.roomId,
 	})
 
 export default connect(mapStateToProps)(CallBlock)

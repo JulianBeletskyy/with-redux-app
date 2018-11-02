@@ -3,7 +3,7 @@ import Socketio from 'socket.io-client'
 import store from '../store'
 import { setOpenSocket, getUserFullInfo, getUserInfo, setOnlineUsers, addOnlineUsers, removeOnlineUsers } from '../actions/user'
 import { getUnreadMessage, getMail } from '../actions/message'
-import { setCallIn, setCallOut, setRoomHash, setInviteOponent } from '../actions/chat'
+import { setCallIn, setCallOut, setRoomHash, setRoomId, setInviteOponent, toggleChat, setTypingRoom, setOponentVideo } from '../actions/chat'
 import { logout } from '../actions/auth'
 import { setAlert } from '../actions/ui'
 import { Router } from '../routes'
@@ -11,6 +11,7 @@ import { Router } from '../routes'
 var globalEcho
 var globalChat
 var globalOnline
+var globalRoom
 
 export const openSocket = () => {
 	const { user } = store.getState()
@@ -27,14 +28,12 @@ export const openSocket = () => {
 			},
 		})
 		globalEcho = echo
-
+		console.log(globalEcho)
 	  	const channel = echo.private(`user.${user.data.id}`)
 	  	const publicChannel = echo.channel('public')
 	  	const onlineChannel = echo.join('presence-channel')
 	  	//const chat = echo.private(`chat`)
 	  	globalOnline = onlineChannel
-	  	
-  		
 
   		onlineChannel.here(userIds => {
 	  			dispatch(setOnlineUsers(userIds))
@@ -85,9 +84,10 @@ export const openSocket = () => {
 			}
 		})
 
-		channel.listen('.WhenInviteChat', ({sender, hash}) => {
+		channel.listen('.WhenInviteChat', ({sender, hash, roomId}) => {
 			dispatch(setCallIn(true))
 			dispatch(setRoomHash(hash))
+			dispatch(setRoomId(roomId))
 			dispatch(setInviteOponent(sender))
 		})
 
@@ -98,13 +98,43 @@ export const openSocket = () => {
 			dispatch(setInviteOponent({}))
 			dispatch(setAlert(`${name} was canceled call.`, 'error'))
 		})
+
+		channel.listen('.WhenInviteTake', ({data}) => {
+			const { chat: { roomId } } = store.getState()
+			dispatch(setCallOut(false))
+			dispatch(toggleChat('open'))
+			connectToRoom(roomId)
+		})
 	}
 }
 
-export const startTyping = userName => {
-	globalChat.whisper('typing', {
-        message: `${userName} is typing`
+export const connectToRoom = id => {
+	const room = globalEcho.private(`room.${id}`)
+	const { dispatch } = store
+	let timeout
+	globalRoom = room
+
+	globalRoom.listenForWhisper('typing', ({message}) => {
+		clearTimeout(timeout)
+        dispatch(setTypingRoom(message))
+        timeout = setTimeout(() => {
+        	dispatch(setTypingRoom(''))
+        }, 1000)
     })
+
+    globalRoom.listenForWhisper('videoChange', ({data}) => {
+    	dispatch(setOponentVideo(data))
+    })
+}
+
+export const typingInRoom = userName => {
+	globalRoom.whisper('typing', {
+		message: `${userName} is typing`
+	})
+}
+
+export const sendVideoInRoom = data => {
+	globalRoom.whisper('videoChange', {data})
 }
 
 export const closeSocket = () => {

@@ -35,6 +35,7 @@ class Message extends Component {
             show: false,
             src: '',
             value: '',
+            showOriginal: false,
         }
     }
 
@@ -204,9 +205,12 @@ class Message extends Component {
     }
 
     handleChange = value => {
-        //const { userName } = this.props
-        //startTyping(userName)
         this.setState({value})
+    }
+
+    showOriginal = e => {
+        e.preventDefault()
+        this.setState({showOriginal: !this.state.showOriginal})
     }
 
     componentWillUnmount() {
@@ -258,7 +262,14 @@ class Message extends Component {
                                                         <strong>Message:</strong>
                                                     </div>
                                                     <div className="col-sm-10">
-                                                        <pre dangerouslySetInnerHTML={{__html: this.getText(data.text)}} />
+                                                    {
+                                                        role === 'client' || type === 'outgoing'
+                                                        ?   <pre dangerouslySetInnerHTML={{__html: this.getText(data.text)}} />
+                                                        :   <div>
+                                                                <a href="javascript:;" onClick={this.showOriginal} className="pointer">Show</a>
+                                                                {this.state.showOriginal && <pre dangerouslySetInnerHTML={{__html: this.getText(data.text)}} />}
+                                                            </div>
+                                                    }
                                                     </div>
                                                 </div>
                                                 {

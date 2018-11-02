@@ -20,6 +20,8 @@ import { getUserInfo } from '../../actions/user'
 import VideoSlider from '../../components/gallery/video_slider'
 import NotActive from '../../components/NotActive'
 
+const testUsers = [221, 286]
+
 class Member extends Component {
     static async getInitialProps({query}) {
         return {id: query.id}
@@ -137,7 +139,7 @@ class Member extends Component {
     }
 
 	render() {
-        const { member, role, modal, active } = this.props
+        const { member, role, modal, active, userId } = this.props
         
 		return (
 			<Layout>
@@ -397,13 +399,17 @@ class Member extends Component {
                                                         color="#27C2D3"
                                                         icon="fas fa-envelope" />
                                                 </div>
-                                                {/*<div className="col-sm-6 col-lg-6 col-md-12">
-                                                    <LinkIcon
-                                                        text="Invite to Video-Chat"
-                                                        icon="fas fa-comment"
-                                                        color="#FF0000"
-                                                        onClick={this.inviteToChat} />
-                                                </div>*/}
+                                                {
+                                                    testUsers.includes(userId)
+                                                    ?   <div className="col-sm-6 col-lg-6 col-md-12">
+                                                            <LinkIcon
+                                                                text="Invite to Video-Chat"
+                                                                icon="fas fa-comment"
+                                                                color="#FF0000"
+                                                                onClick={this.inviteToChat} />
+                                                        </div>
+                                                    :   null
+                                                }
                                                 {
                                                     role === 'client'
                                                     ?   <div>
@@ -477,6 +483,7 @@ const mapStateToProps = state =>
         modal: state.ui.modals.message,
         membership: state.user.data.membership,
         active: state.user.data.active,
+        userId: state.user.data.id,
     })
 
 export default connect(mapStateToProps)(Member)

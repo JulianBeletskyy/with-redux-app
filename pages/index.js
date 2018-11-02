@@ -37,7 +37,7 @@ class Index extends Component {
 		}
 		if (redirect === 'paypal') {
 			Router.push('/')
-			//dispatch(toggleModal(true, 'paypal'))
+			dispatch(toggleModal(true, 'paypal'))
 		}
 	}
 
@@ -49,7 +49,7 @@ class Index extends Component {
 					{token ? <Client /> : <Landing />}
 				</Layout>
 				<MainModal
-                    body={<div>From PayPal</div>}
+                    body={<div>Dear Sir, your payment is pending. Please, wait until PayPal aproves your purchase. As soon as your payment completed, you will be able to use your Membership and all privilleges it gives.</div>}
                     title="PayPal"
                     show={paypal}
                     keyModal="paypal" />
