@@ -8,6 +8,12 @@ class Block extends Component {
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.active !== this.state.active) {
+			this.setState({active: nextProps.active})
+		}
+	}
+
 	toggleState = () => {
 		this.setState({active: !this.state.active}, () => {
 			this.props.onChange(this.props.value, this.state.active)

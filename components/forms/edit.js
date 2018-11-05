@@ -337,7 +337,7 @@ class Edit extends Component {
 			field_of_works,
 			employment_statuses,
     	} = this.props
-
+        
         return (
             <div className={data.role}>
     			<Row>
