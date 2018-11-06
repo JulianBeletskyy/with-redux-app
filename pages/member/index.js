@@ -140,7 +140,6 @@ class Member extends Component {
 
 	render() {
         const { member, role, modal, active, userId } = this.props
-        
 		return (
 			<Layout>
                 <div className="pt-15">
@@ -176,6 +175,9 @@ class Member extends Component {
                                             <div>
                                                 <strong className={`font-bebas fs-36 ${member.role}-color`}>{member.first_name}</strong>
                                                 <strong className="fs-18">,&nbsp;{member.age} y.o.</strong>
+                                            </div>
+                                            <div>
+                                                <span className="fs-20 font-bebas">{member.profile_id}</span>
                                             </div>
                                             <hr />
                                             <div className="row">
