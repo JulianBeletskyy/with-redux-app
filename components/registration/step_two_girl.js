@@ -9,6 +9,7 @@ import BtnSignUp from '../buttons/btn_signup'
 import Textarea from '../inputs/textarea'
 import TextField from '../inputs/text_field'
 import Validator from '../../validate'
+import ReactGA from 'react-ga'
 
 let state = {
 	languages: [],
@@ -134,7 +135,7 @@ export class StepTwoGirl extends Component {
     }
 
     getSignUpThree = () => {
-        ga('send', 'event', '3step', 'registraciya') // google metrics
+        ReactGA.ga('send', 'event', '3step', 'registraciya') // google metrics
         
         const { dispatch } = this.props
         let error = 1

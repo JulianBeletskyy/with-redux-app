@@ -1,4 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document'
+import ReactGA from 'react-ga'
+
+ReactGA.initialize('GTM-PTR7TDZ');
 
 export default class MyDocument extends Document {
   render() {

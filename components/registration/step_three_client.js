@@ -7,7 +7,7 @@ import { getOptions } from '../../actions/ui'
 import { setSignupKey, sendSignUpFour } from '../../actions/signup'
 import BtnSignUp from '../buttons/btn_signup'
 import Block from '../block'
-
+import ReactGA from 'react-ga'
 
 export class StepThreeClient extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ export class StepThreeClient extends Component {
     }
 
     getConfirm = () => {
-        ga('send', 'event', 'finish', 'registraciya') // google metrics
+        ReactGA.ga('send', 'event', 'finish', 'registraciya') // google metrics
         
         const { dispatch } = this.props
         const data = {

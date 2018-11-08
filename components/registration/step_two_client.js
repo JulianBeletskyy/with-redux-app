@@ -6,6 +6,7 @@ import BtnSignUp from '../buttons/btn_signup'
 import { getOptions } from '../../actions/ui'
 import { sendSignUpTwo, skipStep, setSignupKey } from '../../actions/signup'
 import { getArray } from '../../utils'
+import ReactGA from 'react-ga'
 
 let state = {
     languages: [],
@@ -77,7 +78,7 @@ export class StepTwoClient extends Component {
     }
 
     getSignUpTwo = () => {
-        ga('send', 'event', '3step', 'registraciya') // google metrics
+        ReactGA.ga('send', 'event', '3step', 'registraciya') // google metrics
 
         const { dispatch } = this.props
     	const data = {

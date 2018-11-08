@@ -11,6 +11,7 @@ import Link from 'next/link'
 import Block from '../block'
 import Validator from '../../validate'
 import { getNumArray } from '../../utils'
+import ReactGA from 'react-ga'
 
 export class StepThreeGirl extends Component {
     constructor(props) {
@@ -38,7 +39,7 @@ export class StepThreeGirl extends Component {
     }
 
     getSignUpThree = () => {
-        ga('send', 'event', 'finish', 'registraciya') // google metrics
+        ReactGA.ga('send', 'event', 'finish', 'registraciya') // google metrics
         
         const { dispatch } = this.props
         let error = 1

@@ -7,6 +7,7 @@ import TextField from '../inputs/text_field'
 import { getOptions } from '../../actions/ui'
 import { setSignupKey, sendSignUpOne, skipStep } from '../../actions/signup'
 import { getArray, heightsArray, weightsArray, formatDate, getNumArray } from '../../utils'
+import ReactGA from 'react-ga'
 
 let state = {
     childrens: [],
@@ -84,7 +85,7 @@ class StepOneClient extends Component {
     }
 
     getSignUpTwo = () => {
-        ga('send', 'event', '2step', 'registraciya') // google metrics
+        ReactGA.ga('send', 'event', '2step', 'registraciya') // google metrics
         
     	const { dispatch } = this.props
     	const data = {

@@ -23,6 +23,7 @@
     "react-confirm-alert": "^2.0.6",
     "react-cropper": "^1.0.1",
     "react-dom": "16.5.0",
+    "react-ga": "^2.5.3",
     "react-images": "^0.5.19",
     "react-redux": "^5.0.1",
     "react-slick": "^0.23.1",

@@ -12,6 +12,7 @@ import { setUiKey, getOptions, MyCountry } from '../../actions/ui'
 import { setSignupDataKey, sendSignUpBefore, sendSignUpStart, setSignupKey } from '../../actions/signup'
 import Validator from '../../validate'
 import { monthArray, dayArray, yearArray } from '../../utils'
+import ReactGA from 'react-ga'
 
 export class StepZero extends Component {
 	constructor(props) {
@@ -30,7 +31,7 @@ export class StepZero extends Component {
 	}
 
     facebookSignUp = () => {
-        ga('send', 'event', 'facebook', 'registraciya') // google metrics
+        ReactGA.ga('send', 'event', 'facebook', 'registraciya') // google metrics
 
         const { dispatch } = this.props
 
@@ -81,7 +82,7 @@ export class StepZero extends Component {
     }
 
     googleSignUp = googleUser => {
-        ga('send', 'event', 'google', 'registraciya') // google metrics
+        ReactGA.ga('send', 'event', 'google', 'registraciya') // google metrics
         const { dispatch } = this.props
 
         this.signup.first_name.value = googleUser.w3.ofa
@@ -134,12 +135,12 @@ export class StepZero extends Component {
     resolveRegistration = () => {
         const { dispatch, showRegistration, custom_remember_token } = this.props
         if (!showRegistration) {
-            ga('send', 'event', 'start', 'registraciya') // google metrics
+            ReactGA.ga('send', 'event', 'start', 'registraciya') // google metrics
             dispatch(setUiKey('showRegistration', true))
             this.sendPreSignUp()
             return
         }
-        ga('send', 'event', '1step', 'registraciya') // google metrics
+        ReactGA.ga('send', 'event', '1step', 'registraciya') // google metrics
         let error = 1
         for (var k in this.signup.birth) {
             if (error) {
