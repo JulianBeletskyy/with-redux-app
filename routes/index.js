@@ -11,6 +11,7 @@ routes.add('cart', '/shop/cart', 'shop/cart')
 routes.add('index', '/activate/:hash')
 routes.add('recovery', '/recovery/:recovery', '/')
 routes.add('paypal', '/redirect/:paypal', '/')
+routes.add('login', '/login/:loginHash', '/')
 
 routes.add('girls', '/girls', '/')
 routes.add('men', '/men', '/')

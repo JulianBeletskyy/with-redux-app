@@ -16,6 +16,15 @@ export const login = data => dispatch => {
 	})
 }
 
+export const loginWithHash = hash => dispatch => {
+	return post('login/hash', true, {hash}).then(res => {
+		if (res.data) {
+			dispatch(setToken(res.data))
+			return true
+		}
+	})
+}
+
 export const logout = () => dispatch => {
     dispatch(removeToken())
     closeSocket()
