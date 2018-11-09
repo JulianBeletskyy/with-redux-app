@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 class BtnGoogle extends Component {
     render() {
+        const { id = '' } = this.props
         return (
             <button
                 type="button"

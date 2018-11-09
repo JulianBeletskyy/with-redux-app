@@ -28,10 +28,6 @@ export class StepConfirm extends Component {
     }
 }
 
-const mapStateToProps = state =>
-	({
-		data: state.signup.data,
-    	email: state.signup.data.email
-	})
+const mapStateToProps = state => ({data: state.signup.data, email: state.signup.data.email})
 
 export default connect(mapStateToProps)(StepConfirm)

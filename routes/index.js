@@ -19,6 +19,7 @@ routes.add('men', '/men', '/')
 routes.add('contacts', '/contacts/:slug')
 
 routes.add('member', '/member/:id')
+routes.add('memberLogin', '/member/:id/:loginHash', 'member')
 
 routes.add('mail/draft', '/mail/draft/:id')
 

@@ -12,7 +12,6 @@ import { setUiKey, getOptions, MyCountry } from '../../actions/ui'
 import { setSignupDataKey, sendSignUpBefore, sendSignUpStart, setSignupKey } from '../../actions/signup'
 import Validator from '../../validate'
 import { monthArray, dayArray, yearArray } from '../../utils'
-import ReactGA from 'react-ga'
 
 export class StepZero extends Component {
 	constructor(props) {
@@ -31,7 +30,7 @@ export class StepZero extends Component {
 	}
 
     facebookSignUp = () => {
-        ReactGA.ga('send', 'event', 'facebook', 'registraciya') // google metrics
+        // ReactGA.ga('send', 'event', 'facebook', 'registraciya') // google metrics
 
         const { dispatch } = this.props
 
@@ -82,7 +81,7 @@ export class StepZero extends Component {
     }
 
     googleSignUp = googleUser => {
-        ReactGA.ga('send', 'event', 'google', 'registraciya') // google metrics
+        // ReactGA.ga('send', 'event', 'google', 'registraciya') // google metrics
         const { dispatch } = this.props
 
         this.signup.first_name.value = googleUser.w3.ofa
@@ -135,12 +134,17 @@ export class StepZero extends Component {
     resolveRegistration = () => {
         const { dispatch, showRegistration, custom_remember_token } = this.props
         if (!showRegistration) {
-            ReactGA.ga('send', 'event', 'start', 'registraciya') // google metrics
+            // ReactGA.ga('send', 'event', 'start', 'registraciya') // google metrics
             dispatch(setUiKey('showRegistration', true))
             this.sendPreSignUp()
+            const el = document.getElementById('register-btn')
+            if (el) {
+                el.setAttribute('onclick', "ga('send', 'event', '1step', 'registraciya'); return true;")
+            }
+            
             return
         }
-        ReactGA.ga('send', 'event', '1step', 'registraciya') // google metrics
+        // ReactGA.ga('send', 'event', '1step', 'registraciya') // google metrics
         let error = 1
         for (var k in this.signup.birth) {
             if (error) {
@@ -203,6 +207,21 @@ export class StepZero extends Component {
         }
     }
 
+    initGoogleAnalytics = () => {
+        const el = document.getElementById('register-btn')
+        if (el) {
+            el.setAttribute('onclick', "ga('send', 'event', 'start', 'registraciya'); return true;")
+        }
+        const fbBtn = document.getElementById('facebook-btn')
+        if (fbBtn) {
+            fbBtn.setAttribute('onclick', "ga('send', 'event', 'facebook', 'registraciya'); return true;")
+        }
+        const googleBtn = document.getElementById('google')
+        if (googleBtn) {
+            googleBtn.setAttribute('onclick', "ga('send', 'event', 'google', 'registraciya'); return true;")
+        }
+    }
+
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(getOptions('countries')).then(res => {
@@ -211,6 +230,7 @@ export class StepZero extends Component {
             }
         })
         this.googleInit()
+        this.initGoogleAnalytics()
     }
 
     render() {
@@ -420,6 +440,7 @@ export class StepZero extends Component {
                             <BtnSignUp
                                 text="Join Us for Free"
                                 orientation="right"
+                                id="register-btn"
                                 onClick={this.resolveRegistration} />
                         </FormGroup>
                         <FormGroup>
@@ -430,10 +451,10 @@ export class StepZero extends Component {
                                     <h4 className="">Join With</h4>
                                     <div className="social-button text-center">
                                         <div className="form-group">
-                                            <BtnFacebook title="Join Up with Facebook" onClick={this.facebookSignUp} />
+                                            <BtnFacebook id="facebook-btn" title="Join Up with Facebook" onClick={this.facebookSignUp} />
                                         </div>
                                         <div>
-                                            <BtnGoogle title="Join Up with Google" />
+                                            <BtnGoogle id="google-btn" title="Join Up with Google" />
                                         </div>
                                     </div>
                                 </FormGroup>

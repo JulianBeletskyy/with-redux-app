@@ -39,7 +39,7 @@ export class StepThreeGirl extends Component {
     }
 
     getSignUpThree = () => {
-        ReactGA.ga('send', 'event', 'finish', 'registraciya') // google metrics
+        // ReactGA.ga('send', 'event', 'finish', 'registraciya') // google metrics
         
         const { dispatch } = this.props
         let error = 1
@@ -75,6 +75,13 @@ export class StepThreeGirl extends Component {
             }
 
             dispatch(sendSignUpFour(data))
+        }
+    }
+
+    componentDidMount() {
+        const el = document.getElementById('register-finish')
+        if (el) {
+            el.setAttribute('onclick', "ga('send', 'event', 'finish', 'registraciya'); return true;")
         }
     }
 
@@ -144,6 +151,7 @@ export class StepThreeGirl extends Component {
                             value={false} />
                         <div className="position-relative">
                             <BtnMain
+                                id="register-finish"
                                 text="Add profile to the women's gallery"
                                 onClick={this.getSignUpThree}
                                 orientation="right" />

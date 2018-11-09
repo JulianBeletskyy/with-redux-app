@@ -24,7 +24,7 @@ export class StepOneGirl extends Component {
 	}
 
 	getSignUpTwo = () => {
-        ReactGA.ga('send', 'event', '2step', 'registraciya') // google metrics
+        // ReactGA.ga('send', 'event', '2step', 'registraciya') // google metrics
 
         let error = 1
 
@@ -56,6 +56,13 @@ export class StepOneGirl extends Component {
     prevStep = () => {
         const { dispatch } = this.props
         dispatch(setSignupKey('step', 0))
+    }
+
+    componentDidMount() {
+        const el = document.getElementById('register-2step')
+        if (el) {
+            el.setAttribute('onclick', "ga('send', 'event', '2step', 'registraciya'); return true;")
+        }
     }
 
     render() {
@@ -135,6 +142,7 @@ export class StepOneGirl extends Component {
                                 orientation="left"
                                 onClick={this.prevStep} />
                             <BtnSignUp
+                                id="register-2step"
                                 text="Next"
                                 orientation="right"
                                 onClick={this.getSignUpTwo} />

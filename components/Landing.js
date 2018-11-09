@@ -23,10 +23,14 @@ class Landing extends Component {
 	}
 
 	getRegistration = () => {
-		ga('send', 'event', 'start', 'registraciya') // google metrics
+		// ga('send', 'event', 'start', 'registraciya') // google metrics
 		const { dispatch } = this.props
 		window.scroll({top: 0,left: 0,behavior: 'smooth'})
 		dispatch(setUiKey('showRegistration', true))
+		const el = document.getElementById('register-btn')
+		if (el) {
+			el.setAttribute('onclick', "ga('send', 'event', '1step', 'registraciya'); return true;")
+		}
 	}
 
 	closeRegistation = () => {
@@ -128,6 +132,15 @@ class Landing extends Component {
 				btn.classList.remove('active')
             }
 		})
+
+		const el = document.getElementById('signup-btn')
+		if (el) {
+			el.setAttribute('onclick', "ga('send', 'event', 'start', 'registraciya'); return true;")
+		}
+        const link = document.getElementById('signup-link')
+        if (link) {
+        	link.setAttribute('onclick', "ga('send', 'event', 'start', 'registraciya'); return true;")
+        }
 	}
 
 	render() {
@@ -194,11 +207,12 @@ class Landing extends Component {
 			                                        <h2 className="text-white text-center">
 			                                            We are not Gods to predict your future but we have something to make you closer to your dream come true.
 			                                            <br />
-			                                            <a className="landing-link" onClick={this.getRegistration} href="javascript:;"> Join Now</a>
+			                                            <a id="signup-link" className="landing-link" onClick={this.getRegistration} href="javascript:;"> Join Now</a>
 			                                        </h2>
 			                                   </div>
 			                                   <div className="btn-login text-center">
 			                                        <BtnMain
+			                                        	id="signup-btn"
 			                                            bsStyle="success"
 			                                            text="Free Sign Up"
 			                                            onClick={this.getRegistration} />

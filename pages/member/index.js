@@ -17,6 +17,7 @@ import { Router } from '../../routes'
 import MainModal from '../../components/modal'
 import MessageModal from '../../components/forms/message_modal'
 import { getUserInfo } from '../../actions/user'
+import { loginWithHash } from '../../actions/auth'
 import VideoSlider from '../../components/gallery/video_slider'
 import NotActive from '../../components/NotActive'
 
@@ -24,7 +25,7 @@ const testUsers = [221, 286]
 
 class Member extends Component {
     static async getInitialProps({query}) {
-        return {id: query.id}
+        return {id: query.id, loginHash: query.loginHash}
     }
 
     constructor(props) {
@@ -135,6 +136,19 @@ class Member extends Component {
     }
 
     componentDidMount() {
+        const { loginHash, dispatch, id } = this.props
+        if (loginHash) {
+            dispatch(loginWithHash(loginHash)).then(res => {
+                if (res) {
+                    dispatch(getMember(id))
+                    dispatch(getUserInfo())
+                    Router.pushRoute(`/member/${id}`)
+                }
+            })
+        } else {
+            dispatch(getMember(id))
+            dispatch(getUserInfo())
+        }
         this.checkView()
     }
 

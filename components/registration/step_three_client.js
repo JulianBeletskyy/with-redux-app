@@ -38,7 +38,7 @@ export class StepThreeClient extends Component {
     }
 
     getConfirm = () => {
-        ReactGA.ga('send', 'event', 'finish', 'registraciya') // google metrics
+        // ReactGA.ga('send', 'event', 'finish', 'registraciya') // google metrics
         
         const { dispatch } = this.props
         const data = {
@@ -49,6 +49,13 @@ export class StepThreeClient extends Component {
             custom_remember_token: this.props.custom_remember_token
         }
         dispatch(sendSignUpFour(data))
+    }
+
+    componentDidMount() {
+        const el = document.getElementById('register-finish')
+        if (el) {
+            el.setAttribute('onclick', "ga('send', 'event', 'finish', 'registraciya'); return true;")
+        }
     }
 
     render() {
@@ -99,6 +106,7 @@ export class StepThreeClient extends Component {
                         orientation="left"
                         onClick={this.prevStep} />
                     <BtnSignUp
+                        id="register-finish"
                         type="button"
                         bsStyle="success"
                         text="Finish"

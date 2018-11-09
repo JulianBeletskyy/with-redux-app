@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 
 class BtnFacebook extends Component {
     render() {
+        const { id = '' } = this.props
         return (
             <button
+                id={id}
                 type="button"
                 className="btn btn-default btn-facebook"
                 onClick={this.props.onClick} >

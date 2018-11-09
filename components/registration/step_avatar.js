@@ -74,7 +74,7 @@ export class StepAvatar extends Component {
     }
 
     getSignUpThree = () => {
-        ReactGA.ga('send', 'event', '3step', 'registraciya') // google metrics
+        // ReactGA.ga('send', 'event', '3step', 'registraciya') // google metrics
 
         const { dispatch } = this.props
         if (! this.refs.cropper && this.props.role === 'client') {
@@ -103,6 +103,10 @@ export class StepAvatar extends Component {
 
     componentDidMount() {
         this.googleInit()
+        const el = document.getElementById('register-3step')
+        if (el) {
+            el.setAttribute('onclick', "ga('send', 'event', '3step', 'registraciya'); return true;")
+        }
     }
 
     render() {
@@ -164,6 +168,7 @@ export class StepAvatar extends Component {
                         orientation="left"
                         onClick={this.prevStep} />
                     <BtnSignUp
+                        id="register-3step"
                         text="Next"
                         orientation="right"
                         onClick={this.getSignUpThree} />
