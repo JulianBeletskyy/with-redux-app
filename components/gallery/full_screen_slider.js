@@ -64,7 +64,7 @@ class FullScreenSlider extends Component {
                 {
                     label: 'Cancel'
                 }, {
-                    label: 'Use Credits',
+                    label: 'Use Dibs',
                     onClick: () => {
                         if (credits < PHOTO_PRICE) {
                             dispatch(toggleModal(true, 'credits'))
