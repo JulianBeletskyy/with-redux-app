@@ -26,7 +26,7 @@ require('laravel-echo-server').run({
     database: "redis",
     databaseConfig: {
         redis: {
-            host: '0.0.0.0',
+            host: 'lifein.mrzfhe.0001.usw1.cache.amazonaws.com',
             port: 6379,
         }
     },
