@@ -132,7 +132,6 @@ class About extends Component {
 	                        <div className="lastPart">
 	                            <h4>SO WHAT’S NEXT?</h4>
 	                            <h1>ARE YOU READY? <a href="javascript:;" onClick={this.getSignUp}>LET’S WORK!</a></h1>
-	                            
 	                        </div>
 		                </div>
 		            </Grid>
@@ -147,10 +146,6 @@ class About extends Component {
 	}
 }
 
-const mapStateToProps = state =>
-    ({
-        testimonials: state.ui.testimonials,
-        testimonialsModal: state.ui.modals.testimonials,
-    })
+const mapStateToProps = ({ui}) => ({testimonials: ui.testimonials,testimonialsModal: ui.modals.testimonials})
 
 export default connect(mapStateToProps)(About)

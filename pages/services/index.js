@@ -60,6 +60,12 @@ class Services extends Component {
 	                                                </tr>
 	                                            </thead>
 	                                            <tbody>
+	                                            	<tr>
+	                                            		<td><strong>Free Dibs</strong></td>
+	                                            		<td><strong>10 dibs per month</strong></td>
+	                                            		<td><strong>15 dibs per month</strong></td>
+	                                            		<td><strong>25 dibs per month</strong></td>
+	                                            	</tr>
 	                                                <tr>
 	                                                    <td>Expression of Interest</td>
 	                                                    <td>Unlimited</td>
@@ -131,12 +137,12 @@ class Services extends Component {
 	                                                        May Be Used Once Only.
 	                                                    </td>
 	                                                    <td>
-	                                                        03 Month - $84.99/Month<br />
-	                                                        Billed in 1 Payment of $254.97<br />
-	                                                        06 Month - $54.99/Month<br />
-	                                                        Billed in 1 Payment of $329.94<br />
-	                                                        12 Month - $44.99/Month<br />
-	                                                        Billed in 1 Payment of $539.88<br />
+	                                                    	03 Month - $64.99/Month<br />
+															Billed in 1 Payment of $194.97<br />
+															06 Month - $44.99/Month<br />
+															Billed in 1 Payment of $269.94<br />
+															12 months - $34.99/month<br />
+															Billed in 1 Payment of $419.88<br />
 	                                                    </td>
 	                                                </tr>
 	                                            </tbody>

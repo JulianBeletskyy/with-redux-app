@@ -49,6 +49,7 @@ export default class MyDocument extends Document {
                   });
               };`}} />
           <script src="https://apis.google.com/js/platform.js"></script>
+          {/*<script type='text/javascript' src='https://api.lifein.love/javascriptspellcheck/include.js'></script>*/}
           <Main />
           <NextScript />
         </body>

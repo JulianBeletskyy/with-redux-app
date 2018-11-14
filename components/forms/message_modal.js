@@ -100,13 +100,24 @@ export class MessageModal extends Component {
         this.setState({value})
     }
 
+    handleSpellChacker = ({target: {textContent}}) => {
+        this.setState({message: textContent})
+    }
+
     componentWillUnmount() {
         const { dispatch } = this.props
         dispatch(clearAttachAll())
     }
 
+    /*componentDidMount() {
+        $Spelling.SpellCheckAsYouType('messageTextArea')
+        const el = document.getElementById('messageTextArea___livespell_proxy')
+        el.addEventListener('input', this.handleSpellChacker)
+    }*/
+
     render() {
         const { first_name } = this.props
+
         return (
             <div>
                 <FormGroup className="member">
@@ -137,11 +148,11 @@ export class MessageModal extends Component {
     }
 }
 
-const mapStateToProps = state =>
+const mapStateToProps = ({message, user, members}) =>
 	({
-	    attach: state.message.attach,
-        userCredits: state.user.data.credits,
-        first_name: state.members.member.first_name,
+	    attach: message.attach,
+        userCredits: user.data.credits,
+        first_name: members.member.first_name,
 	})
 
 export default connect(mapStateToProps)(MessageModal)

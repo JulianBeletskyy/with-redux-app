@@ -273,7 +273,6 @@ class StepOneClient extends Component {
                                         }
                                 </div>
                         }
-
                     </Col>
                     <Col xs={12} md={6}>
                         <FormGroup>
@@ -297,14 +296,12 @@ class StepOneClient extends Component {
                                 </Col>
                                 <Col sm={4}>
                                     <SelectField
-                                        componentClass="select"
                                         inputRef={ref => { this.signup.match.from = ref }}
                                         options={getNumArray('from', 18, 55)}
                                         value={data.match.from} />
                                 </Col>
                                 <Col sm={4}>
                                     <SelectField
-                                        componentClass="select"
                                         inputRef={ref => { this.signup.match.to = ref }}
                                         options={getNumArray('to', 55, 18)}
                                         value={data.match.to} />

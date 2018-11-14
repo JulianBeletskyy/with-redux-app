@@ -63,11 +63,6 @@ class Blog extends Component {
 	}
 }
 
-const mapStateToProps = state =>
-    ({
-        blogs: state.ui.blogs
-    })
+const mapStateToProps = ({ui: {blogs}}) => ({blogs})
 
-export default connect(
-    mapStateToProps
-)(Blog)
+export default connect(mapStateToProps)(Blog)

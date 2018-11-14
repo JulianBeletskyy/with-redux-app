@@ -36,9 +36,6 @@ class Contacts extends Component {
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        contacts: state.members.contacts,
-    })
+const mapStateToProps = ({members: {contacts}}) => ({contacts})
 
 export default connect(mapStateToProps)(Contacts)
