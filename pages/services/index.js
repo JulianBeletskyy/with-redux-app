@@ -104,9 +104,9 @@ class Services extends Component {
 	                                                </tr>
 	                                                <tr>
 	                                                    <td>Accept/Send Private Photos **</td>
-	                                                    <td>Up to 20 per month</td>
-	                                                    <td>Up to 30 per month</td>
-	                                                    <td>Up to 50 per month</td>
+	                                                    <td>Up to 10 per month</td>
+	                                                    <td>Up to 15 per month</td>
+	                                                    <td>Up to 25 per month</td>
 	                                                </tr>
 	                                                <tr>
 	                                                    <td>Share Contact Info ***</td>
