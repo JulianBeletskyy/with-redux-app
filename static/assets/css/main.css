@@ -1,6 +1,6 @@
 @font-face {
 	font-family: bebas_neue;
-	src: url(/static/assets/fonts/bebasneue_regular-webfont.woff);
+	src: url(https://d2etktq4v0899q.cloudfront.net/static/assets/fonts/bebasneue_regular-webfont.woff);
 }
 @font-face {
 	font-family: open_sans;
@@ -365,13 +365,13 @@
     line-height: 1.8;
 }
 .infoItemImg1 {
-    background-image: url('/static/assets/img/about-2.jpg');
+    background-image: url('https://d2etktq4v0899q.cloudfront.net/static/assets/img/about-2.jpg');
     min-height: 350px;
     background-position: center;
     background-size: cover;
 }
 .infoItemImg2 {
-    background-image: url('/static/assets/img/about-3.jpg');
+    background-image: url('https://d2etktq4v0899q.cloudfront.net/static/assets/img/about-3.jpg');
     min-height: 350px;
     background-position: center;
     background-size: cover;
@@ -437,7 +437,7 @@ pre {
     float: right;
 }
 .landing-member-wrap {
-    background-image: url(/static/assets/img/image-51.jpg);
+    background-image: url(https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-51.jpg);
     min-height: 800px;
     background-size: cover;
     background-position: 100%;
@@ -451,7 +451,7 @@ pre {
     margin-bottom: 15px;
 }
 .landing-stories-wrap {
-    background-image: url(/static/assets/img/image-21.jpg);
+    background-image: url(https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-21.jpg);
     background-size: cover;
     background-position: 100%;
     background-attachment: fixed;
@@ -459,7 +459,7 @@ pre {
     padding-top: 50px;
 }
 .landing-testimonials-wrap {
-    background-image: url(/static/assets/img/image-31.jpg);
+    background-image: url(https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-31.jpg);
     background-size: cover;
     background-position: 100%;
     background-attachment: fixed;
@@ -889,7 +889,7 @@ pre {
     overflow: hidden;
 }
 .main-layout {
-    background-image: url('/static/assets/img/image.jpg');
+    background-image: url('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image.jpg');
     background-size: cover;
     background-position: right center;
     background-attachment: fixed;
@@ -2469,7 +2469,7 @@ input[value=girl]:checked + .fa-venus {
 	}
 }
 .wrap-404 {
-	background-image: url('/static/assets/img/bg.jpg');
+	background-image: url('https://d2etktq4v0899q.cloudfront.net/static/assets/img/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }

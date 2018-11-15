@@ -9,6 +9,7 @@ import BtnMain from '../../components/buttons/btn_main.js'
 import Textarea from '../../components/inputs/textarea.js'
 import Validator from '../../validate'
 import { API_URL } from '../../config'
+import { makeCDN } from '../../utils'
 
 class Blog extends Component {
 	static async getInitialProps(app) {
@@ -66,7 +67,7 @@ class Blog extends Component {
                         <h2>{blog.title}</h2>
                     </FormGroup>
                     <FormGroup>
-                        <img className="img-responsive" src={blog.image} alt="" />
+                        <img className="img-responsive" src={makeCDN(blog.image)} alt="" />
                         <hr />
                     </FormGroup>
                     <FormGroup>

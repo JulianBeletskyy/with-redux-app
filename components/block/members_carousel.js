@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
+import { makeCDN } from '../../utils'
 
 const NextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -33,7 +34,7 @@ const PrevArrow = (props) => {
 class MembersCarousel extends Component {
 	printItems = (item, i) => {
 		return 	<div key={i} className="position-relative">
-					<img src={item.avatar} className="img-responsive" alt="" />
+					<img src={makeCDN(item.avatar)} className="img-responsive" alt="" />
 					<div className="member-carousel-name">{item.first_name}, {item.age}</div>
 				</div>
 	}

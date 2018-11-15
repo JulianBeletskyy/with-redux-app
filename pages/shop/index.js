@@ -6,6 +6,7 @@ import { getCategories, setCart } from '../../actions/shop'
 import BtnMain from '../../components/buttons/btn_main'
 import { Router } from '../../routes'
 import { getUserInfo } from '../../actions/user'
+import { makeCDN } from '../../utils'
 
 class Shop extends Component {
     constructor(props) {
@@ -65,7 +66,7 @@ class Shop extends Component {
     printProducts = (item, i) => {
     	return	<Col xs={6} key={i}>
 	    			<div className="wrap-product-item">
-		                <img className="product-img" src={item.image} alt="" />
+		                <img className="product-img" src={makeCDN(item.image)} alt="" />
 		                <div className="product-info">
 		                    <div className="font-bebas"><strong>{item.name}</strong></div>
 		                    <div className="font-bebas"><strong className="product-price">${item.price}</strong></div>
@@ -95,7 +96,7 @@ class Shop extends Component {
     	const { product } = this.state
     	return 	<Row>
                     <Col sm={6}>
-                        <img className="img-responsive" src={product.image} alt="" />
+                        <img className="img-responsive" src={makeCDN(product.image)} alt="" />
                     </Col>
                     <Col sm={6}>
                         <div className="font-bebas">

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { makeCDN } from '../../utils'
 
 export class Avatar extends Component {
     render() {
@@ -8,7 +9,7 @@ export class Avatar extends Component {
                 <div className="avatar-hover" onClick={this.props.onClick} >
                     <span>edit</span>
                 </div>
-                <img src={src} className="avatar-img" alt="" />
+                <img src={makeCDN(src)} className="avatar-img" alt="" />
             </div>
         )
     }

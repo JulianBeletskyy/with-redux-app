@@ -6,6 +6,7 @@ import Slider from 'react-slick'
 import { confirmAlert } from 'react-confirm-alert'
 import { PHOTO_PRICE } from '../../config'
 import { buyPhoto } from '../../actions/members'
+import { makeCDN } from '../../utils'
 
 const NextArrow = props => {
   const { className, style, onClick } = props;
@@ -40,7 +41,7 @@ const PrevArrow = props => {
 class FullScreenSlider extends Component {
 	printItems = (item, i) => {
 		return 	<div key={i} className="text-center position-relative" id="backdrop">
-					<img src={item.src} className="img-responsive full-screen-slider-img" style={{transform: `rotate(${item.angle}deg)`}} />
+					<img src={makeCDN(item.src)} className="img-responsive full-screen-slider-img" style={{transform: `rotate(${item.angle}deg)`}} />
 					{
 						this.getButton(item)
 						? 	<div className="full-screen-slider-button">

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Router } from '../../routes'
 import { removeMessage, restoreMessage, removeDraft, removeMessagePermanent } from '../../actions/message'
 import { setActiveTab } from '../../actions/ui'
+import { makeCDN } from '../../utils'
 
 class MailItem extends Component {
 
@@ -110,7 +111,7 @@ class MailItem extends Component {
                 <div className={`row ${role} ${!read && type === 'incoming' ? 'unread-message' : ''}`}>
                     <div className="col-sm-2">
                         <a href={`/member/${data.member_id}`} onClick={this.goToMember(data.member_id)}>
-                            <img src={data.avatar} alt="" className="img-responsive pointer" />
+                            <img src={makeCDN(data.avatar)} alt="" className="img-responsive pointer" />
                         </a>
                     </div>
                     <div className="col-sm-10">

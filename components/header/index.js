@@ -85,7 +85,7 @@ class PublicHeader extends Component {
                     <Navbar.Header>
                         <Navbar.Brand>
                             <a href="/" onClick={this.goTo('/')}>
-                                <img alt="a real dating site" src="/static/assets/img/logo-dark.svg" className="brandImg img-responsive" />
+                                <img alt="a real dating site" src="https://d2etktq4v0899q.cloudfront.net/static/assets/img/logo-dark.svg" className="brandImg img-responsive" />
                             </a>
                         </Navbar.Brand>
                         <Navbar.Toggle />

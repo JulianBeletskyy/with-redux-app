@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { removePhotos, toggleActive, makePrivate, rotateImgGallery } from '../../actions/user'
 import { setAlert } from '../../actions/ui'
 import { confirmAlert } from 'react-confirm-alert'
+import { makeCDN } from '../../utils'
 
 class GalleryItem extends Component {
 
@@ -85,7 +86,7 @@ class GalleryItem extends Component {
 
         return (
         	<div className="wrap-gallery-item" onClick={showGallery}>
-	            <img src={item.src} className="gallery-item-img" alt="" style={{transform: `rotate(${item.angle}deg)`}} />
+	            <img src={makeCDN(item.src)} className="gallery-item-img" alt="" style={{transform: `rotate(${item.angle}deg)`}} />
                 <span className="gallery-item-icon" onClick={showMenu}>
                     <i className="fas fa-pen-square fa-2x"></i>
                 </span>

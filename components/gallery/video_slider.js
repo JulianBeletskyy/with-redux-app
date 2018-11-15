@@ -6,6 +6,7 @@ import { VIDEO_PRICE } from '../../config'
 import { toggleModal } from '../../actions/ui' 
 import { buyVideo } from '../../actions/user'
 import FullScreenPreview from '../gallery/full_screen_preview'
+import { makeCDN } from '../../utils'
 
 const NextArrow = props => {
   const { className, style, onClick } = props;
@@ -48,7 +49,7 @@ class VideoSlider extends Component {
         return 	<div key={i}>
         			<div key={i} className="video-block-item">
 	        			<div className="video-block-inner">
-		        			<video className={`video-block-video ${hiddenClass}`} height="200" src={video.src}></video>
+		        			<video className={`video-block-video ${hiddenClass}`} height="200" src={makeCDN(video.src)}></video>
 			                <span className="video-item-icon" onClick={this.showVideo(video)}>
 			                	<i className="far fa-play-circle fa-3x"></i>
 		                	</span>

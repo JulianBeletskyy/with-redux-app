@@ -59,7 +59,7 @@ class Blog extends Component {
 		                    	</Col>
 		                    	<Col sm={3}>
 		                    		<FormGroup>
-			                            <img src="/static/assets/img/banner.jpg" className="img-responsive" alt="" />
+			                            <img src="https://d2etktq4v0899q.cloudfront.net/static/assets/img/banner.jpg" className="img-responsive" alt="" />
 			                        </FormGroup>
 		                    		{
 		                    			!token && 	<FormGroup className="text-center">

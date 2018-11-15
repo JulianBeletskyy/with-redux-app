@@ -21,12 +21,13 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" type="text/css" charSet="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" />
           <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
-          <link rel="stylesheet" href="/static/assets/css/react-confirm-alert.min.css"/>
-          <link rel="stylesheet" href="/static/assets/css/accordion.min.css"/>
-          <link rel="stylesheet" href="/static/assets/css/animate.min.css"/>
-          <link rel="stylesheet" href="/static/assets/css/toastr.css"/>
-          <link rel="stylesheet" href="/static/assets/css/cropper.css"/>
-          <link rel="stylesheet" href="/static/assets/css/main.css"/>
+          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/react-confirm-alert.min.css"/>
+          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/accordion.min.css"/>
+          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/animate.min.css"/>
+          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/toastr.css"/>
+          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css"/>
+          <link rel="stylesheet" href="/static/assets/css/font.css"/>
+          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/style.css"/>
         </Head>
         <body>
           <noscript>

@@ -15,6 +15,7 @@ import { LETTER_PRICE, PHOTO_PRICE } from '../../config'
 import { confirmAlert } from 'react-confirm-alert'
 import FullScreenPreview from '../../components/gallery/full_screen_preview'
 import { startTyping } from '../../utils/socket'
+import { makeCDN } from '../../utils'
 
 class Message extends Component {
     static async getInitialProps({query}) {
@@ -234,7 +235,7 @@ class Message extends Component {
                                 </div>
                                 <div className="row form-group">
                                     <div className="col-sm-2">
-                                        <a href={`/member/${data.member_id}`} onClick={this.goTo(`/member/${data.member_id}`)}><img src={data.avatar} alt="" className="img-responsive pointer" /></a>
+                                        <a href={`/member/${data.member_id}`} onClick={this.goTo(`/member/${data.member_id}`)}><img src={makeCDN(data.avatar)} alt="" className="img-responsive pointer" /></a>
                                     </div>
                                     {
                                         ! this.new
@@ -294,7 +295,7 @@ class Message extends Component {
                                                                 ?  message.attachment.map((item, key) => {
                                                                         return  <div key={key} className="col-xs-6">
                                                                                     <div className="attachmentWrap">
-                                                                                        <img onClick={this.showPhoto(item)} className="img-responsive pointer" src={item.img} alt="" />
+                                                                                        <img onClick={this.showPhoto(item)} className="img-responsive pointer" src={makeCDN(item.img)} alt="" />
                                                                                         {
                                                                                             item.confirm !== '1' && ! message.my && role === 'client' && type !== 'draft'
                                                                                             &&  <span className="attachBtnWrap">

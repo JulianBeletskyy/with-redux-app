@@ -5,6 +5,7 @@ import Layout from '../../layouts/stories'
 import { getStories } from '../../actions/ui'
 import BtnMain from '../../components/buttons/btn_main'
 import { Router } from '../../routes'
+import { makeCDN } from '../../utils'
 
 class SuccessStories extends Component {
 
@@ -23,7 +24,7 @@ class SuccessStories extends Component {
 		return 	<Col key={i} xs={12} md={4}>
 					<div className="form-group story-list-item">
 						<div className="story-list-img-wrap">
-							<img src={item.image} className="img-responsive story-list-img" alt="" />
+							<img src={makeCDN(item.image)} className="img-responsive story-list-img" alt="" />
 						</div>
 						<div className="story-list-names">{item.client_name} & {item.girl_name}</div>
 						<div className="story-list-story">{this.getText(item.description)}</div>

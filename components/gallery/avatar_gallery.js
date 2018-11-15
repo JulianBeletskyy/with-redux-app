@@ -6,6 +6,7 @@ import { getUserGallery, addToGallery, saveAvatar } from '../../actions/user'
 import { toggleModal } from '../../actions/ui'
 import BtnMain from '../buttons/btn_main'
 import BtnUpload from '../buttons/btn_upload'
+import { makeCDN } from '../../utils'
 
 class AvatarGallery extends Component {
 
@@ -56,7 +57,7 @@ class AvatarGallery extends Component {
 
     printGallery = (item, i) => {
 		return 	<div key={i} className="message-gallery-item" onClick={this.handleClick(item)}>
-					<img src={item.src} className="img-responsive pointer" alt="" />
+					<img src={makeCDN(item.src)} className="img-responsive pointer" alt="" />
 				</div>
 	}
 

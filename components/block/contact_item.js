@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import BtnMain from '../buttons/btn_main'
 import { Router } from '../../routes'
 import { setNewMessage } from '../../actions/message'
+import { makeCDN } from '../../utils'
 
 class ContactItem extends Component {
 
@@ -28,7 +29,7 @@ class ContactItem extends Component {
         return (
             <div className={`wrap-contact${role === 'girl' ? ' girl' : ''}`} onClick={this.goToMember}>
                 <div className="contact-img">
-                    <img src={avatar} alt="" className="img-responsive" />
+                    <img src={makeCDN(avatar)} alt="" className="img-responsive" />
                 </div>
                 <div className="contact-info">
                     <strong className="font-bebas">{first_name}</strong>

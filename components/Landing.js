@@ -10,6 +10,7 @@ import { Router } from '../routes'
 import { getPublicMembers } from '../actions/members'
 import MainModal from '../components/modal'
 import Slider from 'react-slick'
+import { makeCDN } from '../utils'
 
 class Landing extends Component {
 	constructor() {
@@ -41,6 +42,14 @@ class Landing extends Component {
 
 	goToMembers = () => e => {
 		Router.pushRoute('/members')
+	}
+
+	goToStory = id => {
+		Router.pushRoute(`/success-stories/${id}`)
+	}
+
+	goToStories = () => {
+		Router.pushRoute('/success-stories')
 	}
 
 	goToTestimonials = e => {
@@ -79,7 +88,7 @@ class Landing extends Component {
         return  <div className="landing-story-wrap" key={i} onClick={() => this.goToStory(story.id)}>
                     <div className="row">
                         <div className="col-xs-4">
-                            <img src={story.image} alt={story.client_name} className="img-responsive" />
+                            <img src={makeCDN(story.image)} alt={story.client_name} className="img-responsive" />
                         </div>
                         <div className="col-sm-8">
                             <h3 className="{style.carouselName}">
@@ -95,7 +104,7 @@ class Landing extends Component {
 
 	printTestimonials = (item, i) => {
 		const imgStyle = {
-            backgroundImage: `url(${item.img})`,
+            backgroundImage: `url(${makeCDN(item.img)})`,
             height: 120,
             backgroundPosition: '50%',
             width: 120,

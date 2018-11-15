@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { makeCDN } from '../../utils'
 
 class ReceiverInfo extends Component {
 
@@ -25,7 +26,7 @@ class ReceiverInfo extends Component {
 
     printList = (item, i) => {
     	return 	<div key={i} className="receiver-list-item" onClick={this.choose(item)}>
-    				<img className="receiver-item-img" src={item.avatar} alt="" />
+    				<img className="receiver-item-img" src={makeCDN(item.avatar)} alt="" />
     				<span>{item.first_name}</span>
 				</div>
     }
@@ -38,7 +39,7 @@ class ReceiverInfo extends Component {
             		receiver.id
             		? 	<div>
             				<div className="receiver-item  font-bebas}"><span className="{style.underlineText}">Receiver</span></div>
-		        			<img className="receiver-item-img" src={receiver.avatar.croped || receiver.avatar} alt="" />
+		        			<img className="receiver-item-img" src={makeCDN(receiver.avatar.croped || receiver.avatar)} alt="" />
 							<span>{receiver.first_name}</span>
 							<span className="receiver-btn" onClick={clearReceiver}><i className="fas fa-times text-danger"></i></span>
 						</div>

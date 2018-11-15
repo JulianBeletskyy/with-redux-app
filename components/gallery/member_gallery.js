@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
+import { makeCDN } from '../../utils'
 
 const NextArrow = props => {
   const { className, style, onClick } = props;
@@ -36,7 +37,7 @@ const SliderItem = props => {
                 onClick={onClick(i)}
                 className="pointer"
                 style={{
-                        backgroundImage: `url(${item.src})`,
+                        backgroundImage: `url(${makeCDN(item.src)})`,
                         transform: `rotate(${item.angle}deg)`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',

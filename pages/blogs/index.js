@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import { Router } from '../../routes'
 import Pagination from '../../components/pagination'
+import { makeCDN } from '../../utils'
 
 class Blog extends Component {
 
@@ -19,7 +20,7 @@ class Blog extends Component {
 						<Row>
 			        		<Col sm={6}>
 			        			<div className="imgWrap">
-			        				<img src={blog.image} className="img-responsive" alt="" />
+			        				<img src={makeCDN(blog.image)} className="img-responsive" alt="" />
 			        			</div>
 			        		</Col>
 			        		<Col sm={6}>

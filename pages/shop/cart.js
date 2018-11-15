@@ -6,6 +6,7 @@ import { getUserInfo } from '../../actions/user'
 import { getShopMembers } from '../../actions/shop'
 import { setCart, setReceiverToShop, buyProducts } from '../../actions/shop'
 import ReceiverInfo from '../../components/block/receiver_info'
+import { makeCDN } from '../../utils'
 
 class Cart extends Component {
 
@@ -98,7 +99,7 @@ class Cart extends Component {
     printCart = (item, i) => {
     	const { product } = item
     	return  <tr className="font-bebas" key={i}>
-                    <td><img className="cart-thumbnail" src={product.image} alt="" /></td>
+                    <td><img className="cart-thumbnail" src={makeCDN(product.image)} alt="" /></td>
                     <td><span>{product.name}</span></td>
                     <td className="text-center"><span>${product.price}</span></td>
                     <td className="text-center">

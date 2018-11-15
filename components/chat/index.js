@@ -139,7 +139,6 @@ class Chat extends Component {
 
     render() {
     	const { state, chat } = this.props
-    	console.log(chat)
         return (
             <div className={`wrap-chat ${state}-chat`}>
             	<div className="text-right icon-block">

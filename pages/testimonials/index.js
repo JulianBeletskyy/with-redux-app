@@ -69,7 +69,7 @@ class Testimonials extends Component {
                     </Col>
                     <Col sm={3}>
 		                <FormGroup className="text-center">
-                            <img className="img-responsive" src="/static/assets/img/offer.png" alt="" />
+                            <img className="img-responsive" src="https://d2etktq4v0899q.cloudfront.net/static/assets/img/banner.jpg" alt="" />
                         </FormGroup>
                         <FormGroup className="text-center">
                             <BtnMain
@@ -94,6 +94,4 @@ const mapStateToProps = state =>
         token: state.user.token,
     })
 
-export default connect(
-    mapStateToProps
-)(Testimonials)
+export default connect(mapStateToProps)(Testimonials)

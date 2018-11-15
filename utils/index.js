@@ -83,3 +83,12 @@ export const formatDate = value => {
     }
     return digitsValue
 }
+
+export const makeCDN = link => {
+    if (typeof link === 'string') {
+        const original = 'liveinlove.s3.us-west-2.amazonaws.com'
+        const cdn = 'd2etktq4v0899q.cloudfront.net'
+        return link.replace(original, cdn)
+    }
+    return link
+}

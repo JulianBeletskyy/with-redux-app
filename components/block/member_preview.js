@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { toggleFavorite } from '../../actions/members'
 import { Router } from '../../routes'
 import OnlineDot from './online_dot'
+import { makeCDN } from '../../utils'
 
 const testUsers = [221, 286]
 
@@ -34,7 +35,7 @@ class MemberPreview extends Component {
                     <a href={link} onClick={this.goTo(link)}>
 	                    <span>
 	    	            	<div className="member-preview-img-wrap">
-	    	                	<img src={member.avatar} className="member-preview-img" alt="" />
+	    	                	<img src={makeCDN(member.avatar)} className="member-preview-img" alt="" />
 	    	            	</div>
 	    	            	<div className="member-preview-info">
 	    		                <div className="text-center">
