@@ -30,10 +30,8 @@ export class StepZero extends Component {
 	}
 
     facebookSignUp = () => {
-        // ReactGA.ga('send', 'event', 'facebook', 'registraciya') // google metrics
-
+        gtag('event', 'facebook', {'event_category': 'facebook', 'event_action': 'registraciya2'}) // google metrics
         const { dispatch } = this.props
-
         window.FB.login(response => {
             window.FB.api('/me', {fields: ['first_name, last_name, email, picture.width(2048), gender, locale']}, response => {
                 if (response.first_name) {
@@ -81,7 +79,7 @@ export class StepZero extends Component {
     }
 
     googleSignUp = googleUser => {
-        // ReactGA.ga('send', 'event', 'google', 'registraciya') // google metrics
+        gtag('event', 'google', {'event_category': 'google', 'event_action': 'registraciya3'}) // google metrics
         const { dispatch } = this.props
 
         this.signup.first_name.value = googleUser.w3.ofa
@@ -134,7 +132,7 @@ export class StepZero extends Component {
     resolveRegistration = () => {
         const { dispatch, showRegistration, custom_remember_token } = this.props
         if (!showRegistration) {
-            // ReactGA.ga('send', 'event', 'start', 'registraciya') // google metrics
+            gtag('event', 'start', {'event_category': 'start', 'event_action': 'registraciya1'}) // google metrics
             dispatch(setUiKey('showRegistration', true))
             this.sendPreSignUp()
             const el = document.getElementById('register-btn')
@@ -144,7 +142,7 @@ export class StepZero extends Component {
             
             return
         }
-        // ReactGA.ga('send', 'event', '1step', 'registraciya') // google metrics
+        gtag('event', '1step', {'event_category': '1step', 'event_action': 'registraciya4'}) // google metrics
         let error = 1
         for (var k in this.signup.birth) {
             if (error) {
@@ -230,7 +228,7 @@ export class StepZero extends Component {
             }
         })
         this.googleInit()
-        this.initGoogleAnalytics()
+        //this.initGoogleAnalytics()
     }
 
     render() {

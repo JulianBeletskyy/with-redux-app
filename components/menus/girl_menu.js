@@ -8,7 +8,6 @@ import Avatar from '../avatar'
 import { setActiveTab, toggleModal } from '../../actions/ui'
 
 class GirlMenu extends Component {
-
     showAvatar = () => {
     	const { dispatch } = this.props
 		dispatch(toggleModal(true, 'avatar'))
@@ -80,14 +79,14 @@ class GirlMenu extends Component {
     }
 }
 
-const mapStateToProps = state =>
+const mapStateToProps = ({user: {data}}) =>
 	({
-		avatar: state.user.data.avatar,
-		first_name: state.user.data.first_name,
-		profile_id: state.user.data.profile_id,
-		view_profile: state.user.data.view_profile,
-		count_interest: state.user.data.count_interest,
-		count_favorite: state.user.data.count_favorite,
+		avatar: data.avatar,
+		first_name: data.first_name,
+		profile_id: data.profile_id,
+		view_profile: data.view_profile,
+		count_interest: data.count_interest,
+		count_favorite: data.count_favorite,
 	})
 
 

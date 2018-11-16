@@ -78,7 +78,7 @@ export class StepTwoClient extends Component {
     }
 
     getSignUpTwo = () => {
-        // ReactGA.ga('send', 'event', '3step', 'registraciya') // google metrics
+        gtag('event', '3step', {'event_category': '3step', 'event_action': 'registraciya6'}) // google metrics
 
         const { dispatch } = this.props
     	const data = {
@@ -108,10 +108,10 @@ export class StepTwoClient extends Component {
     }
 
     componentDidMount() {
-        const el = document.getElementById('register-3step')
+        /*const el = document.getElementById('register-3step')
         if (el) {
             el.setAttribute('onclick', "ga('send', 'event', '3step', 'registraciya'); return true;")
-        }
+        }*/
     }
 
     render() {

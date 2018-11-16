@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BtnMain from '../buttons/btn_main'
-import { FormGroup } from 'react-bootstrap'
 import { toggleModal } from '../../actions/ui'
 
 class MembershipInfo extends Component {
@@ -14,7 +13,7 @@ class MembershipInfo extends Component {
     	const { membership } = this.props
         return (
             <div className="pt-15">
-				<FormGroup>
+				<div className="form-group">
 					<div>
 						<span className="font-bebas">Current plan: </span>
 						<strong>{ membership.name + ( membership.value.id == 13 ? '(Trial)' : '' ) }</strong>
@@ -51,7 +50,7 @@ class MembershipInfo extends Component {
 						<span className="font-bebas">Value: </span>
 						<strong>{`${membership.value.month} months - $${membership.value.month_payment} per month (billed in one payment $${membership.value.one_payment})`}</strong>
 					</div>
-				</FormGroup>
+				</div>
 				<div>
 					<BtnMain
                         bsStyle="success"

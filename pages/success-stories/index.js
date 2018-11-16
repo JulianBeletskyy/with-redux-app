@@ -14,7 +14,7 @@ class SuccessStories extends Component {
 		dispatch(getStories())
 	}
 
-	goToStory = id => e => {
+	goToStory = id => () => {
 		Router.pushRoute(`/success-stories/${id}`)
 	}
 
@@ -52,9 +52,6 @@ class SuccessStories extends Component {
 	}
 }
 
-const mapStateToProps = state =>
-    ({
-        stories: state.ui.stories
-    })
+const mapStateToProps = ({ui: {stories}}) => ({stories})
 
 export default connect(mapStateToProps)(SuccessStories)

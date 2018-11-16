@@ -123,10 +123,6 @@ class PlanItem extends Component {
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        currentId: state.user.data.membership.id,
-        use_trial: state.user.data.use_trial,
-    })
+const mapStateToProps = ({user: {data}}) => ({currentId: data.membership.id,use_trial: data.use_trial})
 
 export default connect(mapStateToProps)(PlanItem)

@@ -8,7 +8,6 @@ import GalleryItem from './gallery_menu'
 import FullScreenSlider from '../gallery/full_screen_slider'
 
 class Gallery extends Component {
-
     state = {
             activeMenu: 0,
             open: false,
@@ -115,11 +114,6 @@ class Gallery extends Component {
     }
 }
 
-const mapStateToProps = state =>
-	({
-		gallery: state.user.data.gallery,
-		role: state.user.data.role,
-		membership: state.user.data.membership,
-	})
+const mapStateToProps = ({user: {data}}) => ({gallery: data.gallery,role: data.role,membership: data.membership})
 
 export default connect(mapStateToProps)(Gallery)

@@ -105,6 +105,4 @@ const mapStateToProps = state =>
 	    gallery: state.ui.modals.gallery,
 	})
 
-export default connect(
-    mapStateToProps
-)(UploadDropdown);
+export default connect(mapStateToProps)(UploadDropdown)

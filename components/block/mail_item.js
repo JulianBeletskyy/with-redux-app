@@ -151,10 +151,6 @@ class MailItem extends Component {
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        role: state.user.data.role,
-        userId: state.user.data.id,
-    })
+const mapStateToProps = ({user: {data}}) => ({role: data.role,userId: data.id})
 
 export default connect(mapStateToProps)(MailItem)

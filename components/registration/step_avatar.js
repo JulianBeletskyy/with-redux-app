@@ -74,7 +74,7 @@ export class StepAvatar extends Component {
     }
 
     getSignUpThree = () => {
-        // ReactGA.ga('send', 'event', '3step', 'registraciya') // google metrics
+        gtag('event', '4step', {'event_category': '4step', 'event_action': 'registraciya7'}) // google metrics
 
         const { dispatch } = this.props
         if (! this.refs.cropper && this.props.role === 'client') {
@@ -103,10 +103,10 @@ export class StepAvatar extends Component {
 
     componentDidMount() {
         this.googleInit()
-        const el = document.getElementById('register-3step')
+        /*const el = document.getElementById('register-3step')
         if (el) {
             el.setAttribute('onclick', "ga('send', 'event', '3step', 'registraciya'); return true;")
-        }
+        }*/
     }
 
     render() {

@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import store from '../../store'
-//import { removePlaceholder, setPlaceholder } from 'actions'
 
 class Autocomplete extends Component {
     constructor(props) {
@@ -54,7 +51,6 @@ class Autocomplete extends Component {
     }
 
     setUSState = components => {
-        console.log(components)
         components.forEach(item => {
             if (item.types.includes('administrative_area_level_1')) {
                 this.props.setUSState(item.short_name)
@@ -95,11 +91,4 @@ class Autocomplete extends Component {
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        textField: state.textField
-    })
-
-export default connect(
-    mapStateToProps
-)(Autocomplete);
+export default Autocomplete

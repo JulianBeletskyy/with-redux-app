@@ -1,6 +1,6 @@
 import { API_URL } from '../config'
 import fetch from 'isomorphic-unfetch'
-import initializeStore from '../store'
+import store from '../store'
 import { setAlert } from '../actions/ui'
 
 const responseHandler = alert => response => {
@@ -15,14 +15,14 @@ const responseHandler = alert => response => {
                     for (let k in response.validate) {
                         if (k !== '_service') {
                             for (let j in response.validate[k]) {
-                                initializeStore.dispatch(setAlert(response.validate[k][j], 'error'))
+                                store.dispatch(setAlert(response.validate[k][j], 'error'))
                             }
                         }
                     }
                 }
 
                 if (response.message && (! response.validate || response.validate == null)) {
-                    initializeStore.dispatch(setAlert(response.message, ok ? 'success' : 'error'))
+                    store.dispatch(setAlert(response.message, ok ? 'success' : 'error'))
                 }
             })
         }
@@ -42,7 +42,7 @@ const getHeader = () =>
     ({
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': `Bearer ${initializeStore.getState().user.token}`,
+        'Authorization': `Bearer ${store.getState().user.token}`,
     })
 
 export const get = (...data) => {
@@ -97,7 +97,7 @@ export const image = (...data) => {
     const [url, alert = false, body] = data
     return fetch(`${API_URL}/${url}`, {
         method: 'post',
-        headers: {'Authorization': `Bearer ${initializeStore.getState().user.token}`},
+        headers: {'Authorization': `Bearer ${store.getState().user.token}`},
         body: body
     })
     .then(responseHandler(alert))
@@ -107,7 +107,7 @@ export const message = (...data) => {
     const [url, alert = true, body] = data
     return fetch(`${API_URL}/${url}`, {
         method: 'post',
-        headers: {'Authorization': `Bearer ${initializeStore.getState().user.token}`},
+        headers: {'Authorization': `Bearer ${store.getState().user.token}`},
         body: body
     })
     .then(responseHandler(alert))
@@ -126,7 +126,7 @@ export const getMyCountry = () => {
 export const goAuth = () => {
     return fetch(`${API_URL}/login/check`, {
         method: 'get',
-        headers: {'Authorization': `Bearer ${initializeStore.getState().user.token}`},
+        headers: {'Authorization': `Bearer ${store.getState().user.token}`},
     })
     .then(res => res)
 }

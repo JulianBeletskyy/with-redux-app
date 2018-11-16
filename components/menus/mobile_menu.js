@@ -4,7 +4,6 @@ import { toggleModal } from '../../actions/ui'
 import store from '../../store'
 
 class MobileMenu extends Component {
-
     showModal = type => e => {
     	store.dispatch(toggleModal(true, type))
     }

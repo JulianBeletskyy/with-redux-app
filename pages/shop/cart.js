@@ -9,7 +9,6 @@ import ReceiverInfo from '../../components/block/receiver_info'
 import { makeCDN } from '../../utils'
 
 class Cart extends Component {
-
     constructor(props) {
         super(props)
         const { dispatch } = props
@@ -269,13 +268,13 @@ class Cart extends Component {
     }
 }
 
-const mapStateToProps = state =>
+const mapStateToProps = ({user, shop}) =>
     ({
-        categories: state.shop.categories,
-        userId: state.user.data.id,
-        cart: state.shop.cart,
-        receiver: state.shop.receiver,
-        shopMembers: state.shop.shopMembers,
+        categories: shop.categories,
+        userId: user.data.id,
+        cart: shop.cart,
+        receiver: shop.receiver,
+        shopMembers: shop.shopMembers,
     })
 
 export default connect(mapStateToProps)(Cart)

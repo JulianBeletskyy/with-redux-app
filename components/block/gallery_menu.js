@@ -6,7 +6,6 @@ import { confirmAlert } from 'react-confirm-alert'
 import { makeCDN } from '../../utils'
 
 class GalleryItem extends Component {
-
 	remove = id => e => {
 		e.stopPropagation()
     	const { dispatch } = this.props

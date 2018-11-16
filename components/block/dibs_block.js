@@ -53,11 +53,6 @@ class DibsInfo extends Component {
     }
 }
 
-const mapStateToProps = state =>
-	({
-		membership: state.user.data.membership,
-		membership_count: state.user.data.membership_count,
-		credits: state.user.data.credits,
-	})
+const mapStateToProps = ({user: {data}}) => ({membership: data.membership,membership_count: data.membership_count,credits: data.credits})
 
 export default connect(mapStateToProps)(DibsInfo)

@@ -45,6 +45,6 @@ class ContactItem extends Component {
     }
 }
 
-const mapStateToProps = state => ({role: state.user.data.role})
+const mapStateToProps = ({user: {data}}) => ({role: data.role})
 
 export default connect(mapStateToProps)(ContactItem)

@@ -24,7 +24,7 @@ class Landing extends Component {
 	}
 
 	getRegistration = () => {
-		// ga('send', 'event', 'start', 'registraciya') // google metrics
+		gtag('event', 'start', {'event_category': 'start', 'event_action': 'registraciya1'}) // google metrics
 		const { dispatch } = this.props
 		window.scroll({top: 0,left: 0,behavior: 'smooth'})
 		dispatch(setUiKey('showRegistration', true))
@@ -142,14 +142,14 @@ class Landing extends Component {
             }
 		})
 
-		const el = document.getElementById('signup-btn')
+		/*const el = document.getElementById('signup-btn')
 		if (el) {
 			el.setAttribute('onclick', "ga('send', 'event', 'start', 'registraciya'); return true;")
 		}
         const link = document.getElementById('signup-link')
         if (link) {
         	link.setAttribute('onclick', "ga('send', 'event', 'start', 'registraciya'); return true;")
-        }
+        }*/
 	}
 
 	render() {

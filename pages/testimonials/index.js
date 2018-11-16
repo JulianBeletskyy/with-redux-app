@@ -86,12 +86,12 @@ class Testimonials extends Component {
 	}
 }
 
-const mapStateToProps = state =>
+const mapStateToProps = ({ui, signup, user}) =>
     ({
-        testimonials: state.ui.testimonials,
-        testimonialsModal: state.ui.modals.testimonials,
-        country: state.signup.country,
-        token: state.user.token,
+        testimonials: ui.testimonials,
+        testimonialsModal: ui.modals.testimonials,
+        country: signup.country,
+        token: user.token,
     })
 
 export default connect(mapStateToProps)(Testimonials)

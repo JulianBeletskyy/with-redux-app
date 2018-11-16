@@ -127,16 +127,16 @@ export class ClientMenu extends Component {
     }
 }
 
-const mapStateToProps = state =>
+const mapStateToProps = ({user: {data}}) =>
 	({
-   		avatar: state.user.data.avatar,
-		first_name: state.user.data.first_name,
-		profile_id: state.user.data.profile_id,
-		membership: state.user.data.membership,
-		view_profile: state.user.data.view_profile,
-		count_interest: state.user.data.count_interest,
-		count_favorite: state.user.data.count_favorite,
-		credits: state.user.data.credits,
+   		avatar: data.avatar,
+		first_name: data.first_name,
+		profile_id: data.profile_id,
+		membership: data.membership,
+		view_profile: data.view_profile,
+		count_interest: data.count_interest,
+		count_favorite: data.count_favorite,
+		credits: data.credits,
 	})
 
 export default connect(mapStateToProps)(ClientMenu)

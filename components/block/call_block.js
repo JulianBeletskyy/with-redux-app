@@ -5,7 +5,6 @@ import { setCallIn, setCallOut, cancelInvite, takeInvite, toggleChat } from '../
 import { connectToRoom } from '../../utils/socket'
 
 class CallBlock extends Component {
-
 	cancelCall = () => {
 		const { dispatch, callIn, callOut, oponent } = this.props
 		callIn ? dispatch(setCallIn(false)) : dispatch(setCallOut(false))

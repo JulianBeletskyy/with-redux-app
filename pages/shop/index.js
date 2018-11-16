@@ -39,7 +39,7 @@ class Shop extends Component {
     	let cart  = this.getCart()
         let check = false
 
-        cart = cart.map((item) => {
+        cart = cart.map(item => {
             if (item.product && item.product.id === product.id) {
                 item.count++
                 check = true;
@@ -47,7 +47,7 @@ class Shop extends Component {
             return item;
         });
 
-        if ( ! check) {
+        if (!check) {
             cart.push({product: product, count: 1});
         }
         
@@ -146,12 +146,6 @@ class Shop extends Component {
     }
 }
 
-const mapStateToProps = state =>
-    ({
-        categories: state.shop.categories,
-        userId: state.user.data.id,
-    })
+const mapStateToProps = ({shop, user}) => ({categories: shop.categories,userId: user.data.id})
 
-export default connect(
-    mapStateToProps
-)(Shop)
+export default connect(mapStateToProps)(Shop)

@@ -232,6 +232,4 @@ const mapStateToProps = state =>
         active: state.user.data.active,
     })
 
-export default connect(
-    mapStateToProps
-)(PublicHeader)
+export default connect(mapStateToProps)(PublicHeader)

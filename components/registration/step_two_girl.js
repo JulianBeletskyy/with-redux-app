@@ -135,7 +135,7 @@ export class StepTwoGirl extends Component {
     }
 
     getSignUpThree = () => {
-        // ReactGA.ga('send', 'event', '3step', 'registraciya') // google metrics
+        gtag('event', '3step', {'event_category': '3step', 'event_action': 'registraciya6'}) // google metrics
         
         const { dispatch } = this.props
         let error = 1
@@ -200,10 +200,10 @@ export class StepTwoGirl extends Component {
     }
 
     componentDidMount() {
-        const el = document.getElementById('register-3step')
+        /*const el = document.getElementById('register-3step')
         if (el) {
             el.setAttribute('onclick', "ga('send', 'event', '3step', 'registraciya'); return true;")
-        }
+        }*/
     }
 
     prevStep = () => {

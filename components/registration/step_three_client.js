@@ -38,7 +38,7 @@ export class StepThreeClient extends Component {
     }
 
     getConfirm = () => {
-        // ReactGA.ga('send', 'event', 'finish', 'registraciya') // google metrics
+        gtag('event', 'finish', {'event_category': 'finish', 'event_action': 'registraciya8'}) // google metrics
         
         const { dispatch } = this.props
         const data = {
@@ -52,10 +52,10 @@ export class StepThreeClient extends Component {
     }
 
     componentDidMount() {
-        const el = document.getElementById('register-finish')
+        /*const el = document.getElementById('register-finish')
         if (el) {
             el.setAttribute('onclick', "ga('send', 'event', 'finish', 'registraciya'); return true;")
-        }
+        }*/
     }
 
     render() {
