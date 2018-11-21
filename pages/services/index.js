@@ -119,8 +119,10 @@ class Services extends Component {
                                                         Billed in 1 Payment of $119.88<br />
                                                     </td>
                                                     <td>
+                                                        <strong><strong>Special Black Friday Offer: </strong><br />
                                                         03 Month - $34.99/Month<br />
-                                                        Billed in 1 Payment of $104.97<br />
+                                                        Billed in 1 Payment of $104.97 + 35 Dibs</strong><br />
+                                                        <br />
                                                         06 Month - $22.99/Month<br />
                                                         Billed in 1 Payment of $137.94<br />
                                                         12 Month - $14.99/Month<br />

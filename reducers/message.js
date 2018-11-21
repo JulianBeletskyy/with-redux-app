@@ -64,7 +64,6 @@ const message = (message = initialState, action = {}) => {
                 newMessage: action.data
             })
         case types.SET_SENDING_MESSAGE:
-            console.log(action.data)
             return Object.assign({}, message, {
                 sendingMessage: action.data
             })

@@ -10,6 +10,8 @@ import { getMembers, seeMoreMembers, searchByProfileId } from '../../actions/mem
 import { API_URL } from '../../config'
 import { setActiveTab } from '../../actions/ui'
 import SearchForm from '../../components/forms/search_form'
+import BlackFriday from '../../components/banners/black_friday'
+import { isNotFinishBlackFriday } from '../../utils'
 
 class Client extends Component {
 
@@ -45,15 +47,20 @@ class Client extends Component {
 			popular_list,
 			new_list,
 			search,
+			role,
 		} = this.props
 
 		const more_viwed = viewed_list.current_page < viewed_list.last_page
         const more_popular = popular_list.current_page < popular_list.last_page
         const more_new = new_list.current_page < new_list.last_page
-
         return (
             <Layout>
                 <div className="pt-15">
+	                {
+	                	role === 'client' && isNotFinishBlackFriday()
+	                	? 	<div className="form-group"><BlackFriday /></div>
+	                	: 	null
+	                }
 	                <Row>
 	                    <Col sm={8}>
 	                        <FormGroup className="pt-17">
@@ -125,6 +132,7 @@ const mapStateToProps = state =>
 		popular_list: state.members.popular,
 		new_list: state.members.new,
 		search: state.members.search,
+		role: state.user.data.role,
     })
 
 export default connect(mapStateToProps)(Client)

@@ -49,6 +49,6 @@ class Registration extends Component {
     }
 }
 
-const mapStateToProps = state => ({step: state.signup.step})
+const mapStateToProps = ({signup: {step}}) => ({step})
 
 export default connect(mapStateToProps)(Registration)

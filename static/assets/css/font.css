@@ -2,3 +2,37 @@
 	font-family: bebas_neue;
 	src: url(/static/assets/fonts/bebasneue_regular-webfont.woff);
 }
+
+.black-friday-wrap {
+	position: relative;
+}
+
+.black-friday-text {
+    background: rgba(18, 18, 18, 1);
+    color: rgb(255, 255, 255);
+    padding: 15px 0px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    width: 48%;
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    line-height: 1.2;
+    z-index: 1;
+    letter-spacing: 0.4px;
+}
+
+.black-friday-img {
+    width: 60%;
+    display: inline-block;
+}
+
+.black-friday-img img {
+	outline: 1px solid #fff;
+    outline-offset: -1px;
+}
+
+.black-friday-text a {
+	color: rgb(241, 0, 27);
+}
