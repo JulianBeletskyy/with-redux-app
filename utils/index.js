@@ -95,6 +95,6 @@ export const makeCDN = link => {
 
 export const isNotFinishBlackFriday = () => {
     const today = (new Date() * 1 / 1000).toFixed(0)
-    const finish = 1543104000
+    const finish = 1543017600
     return (finish - today) > 0
 }

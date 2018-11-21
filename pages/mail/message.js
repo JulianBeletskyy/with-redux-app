@@ -280,7 +280,7 @@ class Message extends Component {
                                                                 <strong>Translate:</strong>
                                                             </div>
                                                             <div className="col-sm-10">
-                                                                <span dangerouslySetInnerHTML={{__html: this.getText(message.translation)}} />
+                                                                <pre dangerouslySetInnerHTML={{__html: this.getText(message.translation)}} />
                                                             </div>
                                                         </div>
                                                 }
