@@ -3,37 +3,24 @@
 	src: url(/static/assets/fonts/bebasneue_regular-webfont.woff);
 }
 
-.black-friday-wrap {
-	position: relative;
+@media (max-width: 1199px) {
+    .black-friday-text {
+        line-height: 1;
+    }
 }
 
-.black-friday-text {
-    background: rgba(18, 18, 18, 1);
-    color: rgb(255, 255, 255);
-    padding: 15px 0px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 14px;
-    width: 50%;
-    display: inline-block;
-    position: absolute;
-    line-height: 1.2;
-    z-index: 1;
-    letter-spacing: 0.4px;
-    right: 0;
-    top: 0;
+@media (max-width: 991px) {
+    .black-friday-wrap {
+        margin-top: 15px;
+    }
 }
 
-.black-friday-img {
-    width: 60%;
-    display: inline-block;
-}
-
-.black-friday-img img {
-    outline: 2px solid #fff;
-    outline-offset: -2px;
-}
-
-.black-friday-text a {
-	color: rgb(241, 0, 27);
+@media (max-width: 630px) {
+    .black-friday-text {
+        position: relative;
+        width: 100%;
+    }
+    .black-friday-img {
+        width: 100%;
+    }
 }

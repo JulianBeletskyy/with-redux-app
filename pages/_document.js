@@ -29,8 +29,8 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/animate.min.css"/>
           <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/toastr.css"/>
           <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css"/>
-          <link rel="stylesheet" href="/static/assets/css/font.css"/>
           <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/style.css"/>
+          <link rel="stylesheet" href="/static/assets/css/font.css"/>
         </Head>
         <body>
           <noscript>
