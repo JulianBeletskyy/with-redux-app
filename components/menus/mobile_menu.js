@@ -46,7 +46,7 @@ class MobileMenu extends Component {
                     {
                         client &&  	<li>
 		                                <a href="javascript:;">
-		                                    <span onClick={this.showModal('membership')}>Membership</span>
+		                                    <span onClick={this.goToSection('/subscribe')}>Membership</span>
 		                                    <i className="fab fa-paypal"></i>
 		                                </a>
 		                            </li>

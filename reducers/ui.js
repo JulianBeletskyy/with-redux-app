@@ -53,6 +53,7 @@ const initialState = {
         message: false,
         membership: false,
         paypal: false,
+        subscribe: false,
     },
     showRegistration: false,
     tab: {
@@ -61,6 +62,7 @@ const initialState = {
         profile: 'info',
         edit: 'info',
     },
+    redirect: '',
 }
 
 export default function ui(ui = initialState, action = {}) {

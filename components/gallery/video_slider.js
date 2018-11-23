@@ -7,6 +7,7 @@ import { toggleModal } from '../../actions/ui'
 import { buyVideo } from '../../actions/user'
 import FullScreenPreview from '../gallery/full_screen_preview'
 import { makeCDN } from '../../utils'
+import { Router } from '../../routes'
 
 const NextArrow = props => {
   const { className, style, onClick } = props;
@@ -79,7 +80,7 @@ class VideoSlider extends Component {
                     }, {
                         label: 'Upgrade Membership',
                         onClick: () => {
-                            dispatch(toggleModal(true, 'plans'))
+                            Router.pushRoute('/subscribe')
                         }
                     }
                 ]

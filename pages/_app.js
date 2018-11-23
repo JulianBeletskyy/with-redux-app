@@ -9,12 +9,18 @@ class MyApp extends App {
   	componentDidMount() {
   		const { reduxStore } = this.props
   		const { user: {token} } = reduxStore.getState()
+  		const privatePage = ['shop', 'subscribe', 'mail', 'contacts', 'girls']
 		if (token) {
 			fetch(`${API_URL}/login/check`, {headers: {'Authorization': `Bearer ${token}`}}).then(({redirected}) => {
 				if (redirected) {
 					reduxStore.dispatch(logout()).then(res => window.location.href = '/')
 				}
 			})
+		} else {
+			const path = window.location.pathname.split('/')[1]
+			if (privatePage.includes(path)) {
+				window.location.href = '/404'
+			}
 		}
   	}
 

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BtnMain from '../buttons/btn_main'
-import { toggleModal } from '../../actions/ui'
+import { Router } from '../../routes'
 
 class MembershipInfo extends Component {
-	toggleModal = () => {
-		const { dispatch } = this.props
-		dispatch(toggleModal(true, 'membership'))
+
+	goToSubscribe = () => {
+		Router.pushRoute('/subscribe')
 	}
 
     render() {
@@ -16,7 +16,7 @@ class MembershipInfo extends Component {
 				<div className="form-group">
 					<div>
 						<span className="font-bebas">Current plan: </span>
-						<strong>{ membership.name + ( membership.value.id == 13 ? '(Trial)' : '' ) }</strong>
+						<strong>{ membership.name + ( membership.value.trial ? '(Trial)' : '' ) }</strong>
 					</div>
 					<div>
 						<span className="font-bebas">Expression of Interest: </span>
@@ -55,7 +55,7 @@ class MembershipInfo extends Component {
 					<BtnMain
                         bsStyle="success"
                         text="Upgrade"
-                        onClick={this.toggleModal} />
+                        onClick={this.goToSubscribe} />
 				</div>
 			</div>
         )

@@ -8,16 +8,16 @@ import Avatar from '../avatar'
 import { setActiveTab, toggleModal } from '../../actions/ui'
 import { Credits } from '../forms/credits'
 import MainModal from '../modal'
+import { Router } from '../../routes'
 
 export class ClientMenu extends Component {
-	showPlans = e => {
-		const { dispatch } = this.props
-		dispatch(toggleModal(true, 'membership'))
-	}
-
 	goToMail = () => {
 		const { dispatch } = this.props
 		dispatch(setActiveTab('incoming', 'mail'))
+	}
+
+	goToSubscribe = () => {
+		Router.pushRoute('/subscribe')
 	}
 
 	showAddCredits = () => {
@@ -61,8 +61,8 @@ export class ClientMenu extends Component {
 					<MiddleString
 						text={membership.value.month == 1 && membership.value.trial ? membership.name + ' (Trial)' : membership.name}
 						keyName="Membership:"
-						link=" "
-						onClick={this.showPlans} />
+						link="subscribe"
+						onClick={this.goToSubscribe} />
 				</FormGroup>
 				<FormGroup>
 					<SmallDivider text="Activity" />

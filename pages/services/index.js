@@ -3,10 +3,14 @@ import { connect } from 'react-redux'
 import Layout from '../../layouts'
 import BtnMain from '../../components/buttons/btn_main'
 import { toggleModal, setUiKey } from '../../actions/ui'
+import { getUserInfo } from '../../actions/user'
 import { Router } from '../../routes'
-import { isNotFinishBlackFriday } from '../../utils'
+import SubscribeTable from '../../components/tables/subscribe'
 
 class Services extends Component {
+    state = {
+        titleSubscribe: '',
+    }
 
 	resolveButtons = type => e => {
 		const { dispatch, token } = this.props
@@ -18,6 +22,13 @@ class Services extends Component {
 			window.scrollTo(0,0)
 		}
 	}
+
+    componentDidMount() {
+        const { dispatch, token } = this.props
+        if (token) {
+            dispatch(getUserInfo())
+        }
+    }
 
 	render() {
 		return (
@@ -39,138 +50,14 @@ class Services extends Component {
                                     </div>
                                     <div className="color-888">
                                         As an active member of <strong>Life In Love</strong>, you can rest assured that we’ll be there to help you through the introductory process. We serve as a liaison between you and your desired mate. Our staff is comprised of residents from the local area, who are knowledgeable about the Ukrainian and Russian cultures. On your own, the culture and language barrier may be an obstacle – but as our client, you can relax in knowing we have a competent staff to guide you in understanding the culture, and our translators will help you communicate effectively with your potential mate.
-                                        Clients sign up with us at different stages in their search for love. Some need a comprehensive plan with step-by-step directions; while others need assistance with one or two services. Whichever scenario applies to you; know that we’ve created our packages with you in mind. Our Membership Program offers a variety of plans. Depending on the benefits you desire, you may choose the Gold, Platinum or VIP Package. Although the packages all have a monthly rate, they’re billed in 3-month increments. 
+                                        Clients sign up with us at different stages in their search for love. Some need a comprehensive plan with step-by-step directions; while others need assistance with one or two services. Whichever scenario applies to you; know that we’ve created our packages with you in mind. Our Membership Program offers a variety of plans. Depending on the benefits you desire, you may choose the Gold, Platinum or VIP Package.
                                         Now that you’re ready to enroll, please review the packages below and choose the plan that’s right for you.
                                     </div>
                                 </div>
                                 <div className="col-sm-12">
-                                    <div className="table-responsive">
-                                        <table className="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Membership Benefits</th>
-                                                    <th>Gold*</th>
-                                                    <th>Platinum*</th>
-                                                    <th>VIP*</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            	<tr>
-                                            		<td><strong>Free Dibs</strong></td>
-                                            		<td><strong>10 dibs per month</strong></td>
-                                            		<td><strong>15 dibs per month</strong></td>
-                                            		<td><strong>25 dibs per month</strong></td>
-                                            	</tr>
-                                                <tr>
-                                                    <td>Expression of Interest</td>
-                                                    <td>Unlimited</td>
-                                                    <td>Unlimited</td>
-                                                    <td>Unlimited</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Send Letter -1st Letter FREE</td>
-                                                    <td>Up to 2 per Day</td>
-                                                    <td>Up to 3 per Day</td>
-                                                    <td>Up to 5 per Day</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>% Discount on ALL dib Packages</td>
-                                                    <td>10% Discount</td>
-                                                    <td>20% Discount</td>
-                                                    <td>30% Discount</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>View Photos in Profiles</td>
-                                                    <td>Unlimited</td>
-                                                    <td>Unlimited</td>
-                                                    <td>Unlimited</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>View Videos in Profiles</td>
-                                                    <td>Unlimited</td>
-                                                    <td>Unlimited</td>
-                                                    <td>Unlimited</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Save Profile Photos</td>
-                                                    <td>3 Included</td>
-                                                    <td>5 Included</td>
-                                                    <td>10 Included</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Accept/Send Private Photos **</td>
-                                                    <td>Up to 10 per month</td>
-                                                    <td>Up to 15 per month</td>
-                                                    <td>Up to 25 per month</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Share Contact Info ***</td>
-                                                    <td>Not Available</td>
-                                                    <td>1 contact (Exludes Trial Membership)</td>
-                                                    <td>3 contacts</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Membership/Package Plans</td>
-                                                    <td>
-                                                        03 Month - $19.99/Month<br />
-                                                        Billed in 1 Payment of $59.97<br />
-                                                        06 Month - $12.99/Month<br />
-                                                        Billed in 1 Payment of $77.94<br />
-                                                        12 Month - $9.99/Month<br />
-                                                        Billed in 1 Payment of $119.88<br />
-                                                    </td>
-                                                    <td>
-                                                        {
-                                                            isNotFinishBlackFriday()
-                                                            ?   <div><strong>Special Black Friday Offer:<br />
-                                                                03 Month - $34.99/Month<br />
-                                                                Billed in 1 Payment of $104.97 + 35 Dibs</strong>
-                                                                <br /><br />
-                                                                </div>
-                                                            :   <div>03 Month - $34.99/Month<br />
-                                                                Billed in 1 Payment of $104.97
-                                                                </div>
-                                                        }
-                                                        
-                                                        06 Month - $22.99/Month<br />
-                                                        Billed in 1 Payment of $137.94<br />
-                                                        12 Month - $14.99/Month<br />
-                                                        Billed in 1 Payment of $179.88<br />
-                                                        <div className="form-group"></div>
-                                                        <strong>Platinum Member SPECIAL OFFER:</strong><br />
-                                                        1-month Trial Membership $24.99<br />
-                                                        May Be Used Once Only.
-                                                    </td>
-                                                    <td>
-                                                    	03 Month - $64.99/Month<br />
-														Billed in 1 Payment of $194.97<br />
-														06 Month - $44.99/Month<br />
-														Billed in 1 Payment of $269.94<br />
-														12 months - $34.99/month<br />
-														Billed in 1 Payment of $419.88<br />
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div className="col-sm-12">
-                                    <div className="form-group text-center">
-                                        <BtnMain
-                                            bsStyle="success"
-                                            text="Choose membership"
-                                            onClick={this.resolveButtons('membership')} />
-                                    </div>
+                                    <SubscribeTable />
                                 </div>
                                 <div className="form-group col-sm-12">
-                                    <div className="service-title-right fs-20">
-                                        Based on our experience we know that some clients prefer to whet their palate, before enjoying the full course benefits of membership. For these clients we offer a Sampler for <strong>$9.99</strong> per use. With this option, you receive the following benefits:
-                                        <ul>
-                                            <li>Access to additional photos/videos in profiles of 5 ladies you chose</li>
-                                            <li>Additional photo you may put to your profile</li>
-                                            <li>1 professionally translated letter for free</li>
-                                        </ul>
-                                    </div>
                                     <div className="color-888">
                                         After trying this Sampler option, many clients decide to enroll in a monthly Membership Plan. If you opt for this route, you may convert to our Gold, Platinum or VIP packages at any time.
                                         Don’t forget you’ve got DIBS on all services we offer. Use your DIBS today! With Memership Plan the price of Dib starts from <strong>ONLY $0.52</strong> for each!
@@ -314,10 +201,8 @@ class Services extends Component {
                         <hr />
                         <div className="color-888 fs-12">
                             Disclosure:<br />
-                            * Packages are billed in 3-Month increments. For example, the monthly rate for the Gold package is $19.99. If you select the Gold Membership package, you will be billed 1 payment of $59.97 for 3 months of service. 
-                            Note: The Platinum Package offers a 1-Month Trial Membership of $24.99 that may be used only once.
-                            ** Client agrees to send and/or receive private photos at his own discretion. Life In Love cannot be responsible for communications transmitted without prior knowledge and/or approval from our organization. 
-                            *** Life In Love respects our clients Right to Privacy. To maintain confidentiality, we encourage you to adhere to all conditions below:
+                            * Client agrees to send and/or receive private photos at his own discretion. Life In Love cannot be responsible for communications transmitted without prior knowledge and/or approval from our organization.
+                            ** Life In Love respects our clients Right to Privacy. To maintain confidentiality, we encourage you to adhere to all conditions below:
                             <ul>
                                 <li>Your potential mate speaks English at the Intermediate, Upper or Advanced Level</li>
                                 <li>The lady agrees to share her credentials</li>
@@ -332,6 +217,6 @@ class Services extends Component {
 	}
 }
 
-const mapStateToProps = ({user: {token}}) => ({token})
+const mapStateToProps = ({user, ui: {modals}}) => ({token: user.token, subscribe: modals.subscribe})
 
 export default connect(mapStateToProps)(Services)

@@ -26,7 +26,12 @@ class Login extends Component {
         }
         store.dispatch(login(data)).then(res => {
             if (res) {
-                window.location.href = '/'
+                const { ui } = store.getState()
+                if (ui.redirect) {
+                    window.location.href = ui.redirect
+                } else {
+                    window.location.href = '/'
+                }
             }
         })
     }

@@ -7,6 +7,7 @@ import { confirmAlert } from 'react-confirm-alert'
 import { PHOTO_PRICE } from '../../config'
 import { buyPhoto } from '../../actions/members'
 import { makeCDN } from '../../utils'
+import { Router } from '../../routes'
 
 const NextArrow = props => {
   const { className, style, onClick } = props;
@@ -76,7 +77,7 @@ class FullScreenSlider extends Component {
                 }, {
                     label: 'Upgrade Membership',
                     onClick: () => {
-                        dispatch(toggleModal(true, 'membership'))
+                        Router.pushRoute('/subscribe')
                     }
                 }
             ]

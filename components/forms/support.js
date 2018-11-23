@@ -10,7 +10,6 @@ import { toggleModal } from '../../actions/ui'
 import store from '../../store'
 
 class Support extends Component {
-
     state = {
             file: {},
             value: '',
