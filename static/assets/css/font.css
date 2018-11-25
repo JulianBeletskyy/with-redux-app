@@ -3,6 +3,8 @@
 	src: url(/static/assets/fonts/bebasneue_regular-webfont.woff);
 }
 
+
+
 @media (max-width: 1199px) {
     .black-friday-text {
         line-height: 1;
@@ -12,6 +14,12 @@
 @media (max-width: 991px) {
     .black-friday-wrap {
         margin-top: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .slider-container {
+        width: 100%;
     }
 }
 

@@ -108,11 +108,19 @@ class FullScreenSlider extends Component {
             initialSlide: this.props.initialSlide,
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />,
+            responsive: [
+                {
+                    breakpoint: 767,
+                    settings: {
+                        arrows: false,
+                    }
+                }
+            ],
             ...this.props.settings
         };
 
 		return 	<div id="backdrop" className="wrap-full-screen-slider" onClick={this.close}>
-					<div className="container">
+					<div className="container slider-container">
 						<div className="wrap-full-screen-list">
 							<Slider {...settings}>
 				                { list.map((item, i) => this.printItems(item, i)) }
