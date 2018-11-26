@@ -25,9 +25,9 @@ class SubscribeTable extends Component {
                     <thead>
                         <tr>
                             <th className="text-left">Membership Benefits</th>
-                            <th className="text-center">Gold*</th>
-                            <th className="text-center">Platinum*</th>
-                            <th className="text-center">VIP*</th>
+                            <th className="text-center">Gold</th>
+                            <th className="text-center">Platinum</th>
+                            <th className="text-center">VIP</th>
                         </tr>
                     </thead>
                     <tbody>
