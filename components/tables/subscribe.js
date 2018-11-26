@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BtnMain from '../../components/buttons/btn_main'
 import { toggleModal, setUiKey } from '../../actions/ui'
-import { isNotFinishBlackFriday } from '../../utils'
 import MainModal from '../../components/modal'
 import Subscribe from '../../components/forms/subscribe'
 
@@ -35,8 +34,8 @@ class SubscribeTable extends Component {
                     	<tr>
                     		<td className="text-left"><strong>Free Dibs</strong></td>
                     		<td><strong>10 dibs per month</strong></td>
-                    		<td><strong>15 dibs per month</strong></td>
-                    		<td><strong>25 dibs per month</strong></td>
+                    		<td><strong>20 dibs per month</strong></td>
+                    		<td><strong>30 dibs per month</strong></td>
                     	</tr>
                         <tr>
                             <td className="text-left">Expression of Interest</td>
@@ -76,9 +75,9 @@ class SubscribeTable extends Component {
                         </tr>
                         <tr>
                             <td className="text-left">Accept/Send Private Photos **</td>
-                            <td>5 photos per month</td>
                             <td>10 photos per month</td>
-                            <td>20 photos per month</td>
+                            <td>15 photos per month</td>
+                            <td>25 photos per month</td>
                         </tr>
                         <tr>
                             <td className="text-left">Share Contact Info **</td>
@@ -89,18 +88,7 @@ class SubscribeTable extends Component {
                         <tr>
                             <td className="text-left">Price</td>
                             <td>$15.99 Monthly</td>
-                            <td>
-                                {
-                                    isNotFinishBlackFriday()
-                                    ?   <div>
-                                            <strong>Special Black Friday Offer:<br />
-                                            3 Month - $34.99/Month<br />
-                                            Billed in 1 Payment of $104.97 + 35 Dibs</strong>
-                                            <br /><br />
-                                        </div>
-                                    :   <div>$29.99 Monthly</div>
-                                }
-                            </td>
+                            <td>$29.99 Monthly</td>
                             <td>$59.99 Monthly</td>
                         </tr>
                         <tr>

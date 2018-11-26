@@ -11,7 +11,6 @@ import { API_URL } from '../../config'
 import { setActiveTab } from '../../actions/ui'
 import SearchForm from '../../components/forms/search_form'
 import BlackFriday from '../../components/banners/black_friday'
-import { isNotFinishBlackFriday } from '../../utils'
 
 class Client extends Component {
 
@@ -56,11 +55,6 @@ class Client extends Component {
         return (
             <Layout>
                 <div className="pt-15">
-	                {
-	                	role === 'client' && isNotFinishBlackFriday()
-	                	? 	<div className="form-group"><BlackFriday /></div>
-	                	: 	null
-	                }
 	                <Row>
 	                    <Col sm={8}>
 	                        <FormGroup className="pt-17">

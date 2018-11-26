@@ -201,7 +201,7 @@ class Services extends Component {
                         <hr />
                         <div className="color-888 fs-12">
                             Disclosure:<br />
-                            * Client agrees to send and/or receive private photos at his own discretion. Life In Love cannot be responsible for communications transmitted without prior knowledge and/or approval from our organization.
+                            * Client agrees to send and/or receive private photos at his own discretion. Life In Love cannot be responsible for communications transmitted without prior knowledge and/or approval from our organization.<br />
                             ** Life In Love respects our clients Right to Privacy. To maintain confidentiality, we encourage you to adhere to all conditions below:
                             <ul>
                                 <li>Your potential mate speaks English at the Intermediate, Upper or Advanced Level</li>
