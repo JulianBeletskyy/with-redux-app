@@ -74,7 +74,7 @@ class SubscribeTable extends Component {
                             <td>10 Included</td>
                         </tr>
                         <tr>
-                            <td className="text-left">Accept/Send Private Photos **</td>
+                            <td className="text-left">Accept/Send Private Photos FREE*</td>
                             <td>10 photos per month</td>
                             <td>15 photos per month</td>
                             <td>25 photos per month</td>
