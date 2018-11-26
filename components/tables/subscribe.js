@@ -38,6 +38,12 @@ class SubscribeTable extends Component {
                     		<td><strong>30 dibs per month</strong></td>
                     	</tr>
                         <tr>
+                            <td className="text-left">Video Call</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>20 minutes per month</td>
+                        </tr>
+                        <tr>
                             <td className="text-left">Expression of Interest</td>
                             <td>+</td>
                             <td>+</td>
