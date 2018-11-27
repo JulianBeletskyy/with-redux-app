@@ -61,6 +61,14 @@ class PublicHeader extends Component {
         Router.pushRoute(link)
     }
 
+    getActiveClass = type => {
+        const { router } = Router
+        if (router && router.pathname.split('/')[1] === type) {
+            return 'active'
+        }
+        return ''
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.userId && nextProps.userId !== this.props.userId) {
             const { dispatch } = this.props
@@ -79,6 +87,7 @@ class PublicHeader extends Component {
     render() {
         const { country } = this.props.signup
         const { token, support, login, recovery, role, unreadMessage, cart, active } = this.props
+        
         return (
             <div>
                 <Navbar className="title" fixedTop collapseOnSelect={true} onToggle={this.setNavExpanded}>
@@ -104,7 +113,7 @@ class PublicHeader extends Component {
                             }
                             { 
                                 (token && active)
-                                ?   <li role="presentation">
+                                ?   <li role="presentation" className={this.getActiveClass('mail')}>
                                         <a href="/mail/incoming" onClick={this.goTo('/mail/incoming')}>Mail</a>
                                         {unreadMessage ? <span className="badge-message">{unreadMessage}</span> : null}
                                     </li>
@@ -143,7 +152,7 @@ class PublicHeader extends Component {
                             }
                             { 
                                 (country !== 'UA' || (token && active))
-                                ?    <li role="presentation"><a href="/blogs" onClick={this.goTo('/blogs')}>Blog</a></li>
+                                ?    <li role="presentation" className={this.getActiveClass('blogs')}><a href="/blogs" onClick={this.goTo('/blogs')}>Blog</a></li>
                                 :   null
                             }
                             { 

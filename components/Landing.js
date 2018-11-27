@@ -141,15 +141,6 @@ class Landing extends Component {
 				btn.classList.remove('active')
             }
 		})
-
-		/*const el = document.getElementById('signup-btn')
-		if (el) {
-			el.setAttribute('onclick', "ga('send', 'event', 'start', 'registraciya'); return true;")
-		}
-        const link = document.getElementById('signup-link')
-        if (link) {
-        	link.setAttribute('onclick', "ga('send', 'event', 'start', 'registraciya'); return true;")
-        }*/
 	}
 
 	render() {

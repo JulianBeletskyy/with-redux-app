@@ -92,3 +92,13 @@ export const makeCDN = link => {
     }
     return link
 }
+
+export const sortByName = (list = []) => {
+    const temp = list.sort((a, b) => {
+        if(a.name === 'Others') { return 1; }
+        if(a.name < b.name) { return -1; }
+        if(a.name > b.name) { return 1; }
+        return 0;
+    })
+    return temp
+}

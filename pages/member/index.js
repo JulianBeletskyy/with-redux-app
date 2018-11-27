@@ -153,7 +153,8 @@ class Member extends Component {
     }
 
 	render() {
-        const { member, role, modal, active, userId } = this.props
+        const { member, role, modal, active, userId, testing } = this.props
+        
 		return (
 			<Layout>
                 <div className="pt-15">
@@ -500,6 +501,7 @@ const mapStateToProps = state =>
         membership: state.user.data.membership,
         active: state.user.data.active,
         userId: state.user.data.id,
+        testing: state.user.testing,
     })
 
 export default connect(mapStateToProps)(Member)

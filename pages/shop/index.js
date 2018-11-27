@@ -6,7 +6,7 @@ import { getCategories, setCart } from '../../actions/shop'
 import BtnMain from '../../components/buttons/btn_main'
 import { Router } from '../../routes'
 import { getUserInfo } from '../../actions/user'
-import { makeCDN } from '../../utils'
+import { makeCDN, sortByName } from '../../utils'
 
 class Shop extends Component {
     constructor(props) {
@@ -109,7 +109,6 @@ class Shop extends Component {
                             <span>{product.description}</span>
                         </FormGroup>
                         <BtnMain
-                            type="button"
                             bsStyle="success"
                             icon={<i className="fas fa-gift"></i>}
                             text="Add to cart"
@@ -121,6 +120,7 @@ class Shop extends Component {
     render() {
     	const { categories } = this.props
     	const { products = [] } = categories.length ? categories[this.state.activeCat] : {products: []}
+
         return (
             <Layout>
             	<div className="pt-15">
@@ -146,6 +146,12 @@ class Shop extends Component {
     }
 }
 
-const mapStateToProps = ({shop, user}) => ({categories: shop.categories,userId: user.data.id})
+const mapStateToProps = ({shop, user}) => 
+    (
+        {
+            categories: sortByName(shop.categories),
+            userId: user.data.id,
+        }
+    )
 
 export default connect(mapStateToProps)(Shop)

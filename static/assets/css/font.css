@@ -3,7 +3,14 @@
 	src: url(/static/assets/fonts/bebasneue_regular-webfont.woff);
 }
 
+.navBar > li.active:after {
+    width: 100%;
+}
 
+.navBar > li.active a {
+    background-color: unset !important;
+    background: transparent;
+}
 
 @media (max-width: 1199px) {
     .black-friday-text {

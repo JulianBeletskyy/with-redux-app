@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 const initialState = {
     token: Cookies.get('token'),
     role: 'client',
+    testing: false,
     openSocket: false,
     timeout: false,
     recoveryHash: '',
@@ -102,6 +103,7 @@ const user = (user = initialState, action = {}) => {
             });
         case types.SET_USER_INFO:
             return Object.assign({}, user, {
+                testing: action.data && action.data.id === 286,
                 data: {...user.data, ...action.data}
             })
         case types.SET_RECOVERY_HASH:
