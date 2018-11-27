@@ -11,6 +11,7 @@ class MembershipInfo extends Component {
 
     render() {
     	const { membership } = this.props
+    	console.log(membership.value.month)
         return (
             <div className="pt-15">
 				<div className="form-group">
@@ -48,7 +49,7 @@ class MembershipInfo extends Component {
 					</div>
 					<div>
 						<span className="font-bebas">Value: </span>
-						<strong>{`${membership.value.month} months - $${membership.value.month_payment} per month (billed in one payment $${membership.value.one_payment})`}</strong>
+						<strong>{`${membership.value.month} months - $${membership.value.month_payment || membership.value.one_payment} per month (billed in one payment $${membership.value.one_payment})`}</strong>
 					</div>
 				</div>
 				<div>
