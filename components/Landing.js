@@ -16,6 +16,7 @@ class Landing extends Component {
 	constructor() {
 		super()
 		this.elements = {}
+		this.mount = false
 		this.state = {
 			type: 'popular',
 			advantagesFirst: false,
@@ -122,6 +123,7 @@ class Landing extends Component {
 	}
 
 	componentDidMount() {
+		this.mount = true
 		const { dispatch } = this.props
 		dispatch(getPublicMembers(this.state.type))
 		dispatch(getStories())
@@ -130,8 +132,10 @@ class Landing extends Component {
 			const el = document.getElementById('advantages')
 			const btn = document.getElementById('scroll-btn')
 			if (el && el.scrollHeight >= document.documentElement.scrollTop && ! this.state.advantagesFirst) {
-                this.setState({advantagesFirst: true})
-                setTimeout(() => {this.setState({advantagesSecond: true})}, 300)
+				if (this.mount) {
+					this.setState({advantagesFirst: true})
+                	setTimeout(() => {this.setState({advantagesSecond: true})}, 300)
+				}
             }
             if (btn && document.documentElement.scrollTop >= 600) {
             	if (!btn.classList.contains('active')) {
@@ -141,6 +145,10 @@ class Landing extends Component {
 				btn.classList.remove('active')
             }
 		})
+	}
+
+	componentWillUnmount() {
+		this.mount = false
 	}
 
 	render() {
@@ -207,13 +215,11 @@ class Landing extends Component {
 			                                        <h2 className="text-white text-center">
 			                                            We are not Gods to predict your future but we have something to make you closer to your dream come true.
 			                                            <br />
-			                                            <a id="signup-link" className="landing-link" onClick={this.getRegistration} href="javascript:;"> Join Now</a>
+			                                            <a className="landing-link" onClick={this.getRegistration} href="javascript:;"> Join Now</a>
 			                                        </h2>
 			                                   </div>
 			                                   <div className="btn-login text-center">
 			                                        <BtnMain
-			                                        	id="signup-btn"
-			                                            bsStyle="success"
 			                                            text="Free Sign Up"
 			                                            onClick={this.getRegistration} />
 			                                    </div>
@@ -301,7 +307,6 @@ class Landing extends Component {
 			                        </h2>
 			                        <FormGroup className="text-center">
 			                            <BtnMain
-			                                bsStyle="success"
 			                                text="Sign Up"
 			                                onClick={this.getRegistration} />
 			                        </FormGroup>
@@ -311,8 +316,7 @@ class Landing extends Component {
 			                    <h2 className="text-center landing-title">
 			                        <span className="underlineText">Success Stories</span>
 			                    </h2>
-
-			                    <div className="{style.carouselWrap}">
+			                    <div>
 			                        <Grid>
 			                            <div className="landing-stoies-title text-center p-15 mb-15">
 			                                <span>So many people found their happiness here. Once made a step for luck. Ready to be Next? Read all successful Stories.</span>
@@ -322,7 +326,6 @@ class Landing extends Component {
 			                            </div>
 			                            <div className="form-group text-center">
 			                                <BtnMain
-			                                    bsStyle="success"
 			                                    text="More stories"
 			                                    onClick={this.goToStories} />
 			                            </div>
@@ -338,7 +341,7 @@ class Landing extends Component {
 			                        <h2 className="text-center">Take 3 Easy Steps to Start Your Story:</h2>
 			                        <div className="landing-steps-wrap">
 			                            <Row>
-			                                <Col xs={4}>
+			                                <Col sm={4}>
 			                                    <div className="landing-step">
 			                                        <div className="text-center">
 			                                            <i className="fas fa-user fa-4x"></i>
@@ -348,7 +351,7 @@ class Landing extends Component {
 			                                        </div>
 			                                    </div>
 			                                </Col>
-			                                <Col xs={4}>
+			                                <Col sm={4}>
 			                                    <div className="landing-step">
 			                                        <div className="text-center">
 			                                            <i className="fas fa-images fa-4x"></i>
@@ -358,7 +361,7 @@ class Landing extends Component {
 			                                        </div>
 			                                    </div>
 			                                </Col>
-			                                <Col xs={4}>
+			                                <Col sm={4}>
 			                                    <div className="landing-step">
 			                                        <div className="text-center">
 			                                            <i className="fas fa-comments fa-4x"></i>
@@ -383,7 +386,6 @@ class Landing extends Component {
 		                            </Row>
 		                            <div className="form-group text-center">
 		                                <BtnMain
-		                                    bsStyle="success"
 		                                    text="More testimonials"
 		                                    onClick={this.goToTestimonials} />
 		                            </div>
@@ -418,15 +420,15 @@ class Landing extends Component {
 	}
 }
 
-const mapStateToProps = state =>
+const mapStateToProps = ({ui, signup, members}) =>
     ({
-        showRegistration: state.ui.showRegistration,
-        step: state.signup.step,
-        publicList: state.members.public,
-        stories: state.ui.stories,
-        testimonials: state.ui.testimonials,
-        testimonialsModal: state.ui.modals.testimonials,
-        country: state.signup.country,
+        country: signup.country,
+        step: signup.step,
+        publicList: members.public,
+        showRegistration: ui.showRegistration,
+        stories: ui.stories,
+        testimonials: ui.testimonials,
+        testimonialsModal: ui.modals.testimonials,
     })
 
 export default connect(mapStateToProps)(Landing)

@@ -11,9 +11,11 @@ class MyApp extends App {
   		const { user: {token} } = reduxStore.getState()
   		const privatePage = ['shop', 'subscribe', 'mail', 'contacts', 'girls']
 		if (token) {
-			fetch(`${API_URL}/login/check`, {headers: {'Authorization': `Bearer ${token}`}}).then(({redirected}) => {
+			fetch(`${API_URL}/login/check`, {headers: {'Authorization': `Bearer ${token}`}})
+			.then(({redirected}) => {
 				if (redirected) {
-					reduxStore.dispatch(logout()).then(res => window.location.href = '/')
+					reduxStore.dispatch(logout())
+					.then(res => window.location.href = '/')
 				}
 			})
 		} else {

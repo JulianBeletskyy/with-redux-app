@@ -10,7 +10,7 @@ import { Router } from '../../routes'
 import Loader from '../../components/loader'
 import Validator from '../../validate'
 import Alert from '../../components/alert'
-import { setActiveTab, toggleModal } from '../../actions/ui'
+import { setActiveTab, toggleModal, setAlert } from '../../actions/ui'
 import { LETTER_PRICE, PHOTO_PRICE } from '../../config'
 import { confirmAlert } from 'react-confirm-alert'
 import FullScreenPreview from '../../components/gallery/full_screen_preview'
@@ -77,11 +77,15 @@ class Message extends Component {
         let error = 1
         error *= Validator.check(this.message.value, ['required'], 'Message')
         if (error) {
-            const { dispatch, attach, newMessage } = this.props
+            const { dispatch, attach, newMessage, testing } = this.props
             const data = {
                 original: this.message.value,
                 receiver_id: this.new ? newMessage.receiver_id : receiver_id,
                 attachment: attach.map(item => item.src ? item.src : item)
+            }
+            if (testing) {
+                dispatch(setAlert('Not available for test user', 'error'))
+                return
             }
             dispatch(saveDraft(data)).then(res => {
                 if (res) {
@@ -95,11 +99,15 @@ class Message extends Component {
         let error = 1
         error *= Validator.check(this.message.value, ['required'], 'Message')
         if (error) {
-            const { dispatch, attach, newMessage } = this.props
+            const { dispatch, attach, newMessage, testing } = this.props
             const data = {
                 original: this.message.value,
                 receiver_id: this.new ? newMessage.receiver_id : receiver_id,
                 attachment: attach.map(item => item.src ? item.src : item)
+            }
+            if (testing) {
+                dispatch(setAlert('Not available for test user', 'error'))
+                return
             }
             dispatch(sendMessage(data)).then(res => {
                 switch (res) {
@@ -353,15 +361,16 @@ class Message extends Component {
     }
 }
 
-const mapStateToProps = state =>
+const mapStateToProps = ({user, message}) =>
     ({
-        role: state.user.data.role,
-        userName: state.user.data.first_name,
-        userId: state.user.data.id,
-        message: state.message.message,
-        newMessage: state.message.newMessage,
-        attach: state.message.attach,
-        userCredits: state.user.data.credits,
+        role: user.data.role,
+        userName: user.data.first_name,
+        userId: user.data.id,
+        message: message.message,
+        newMessage: message.newMessage,
+        attach: message.attach,
+        userCredits: user.data.credits,
+        testing: user.testing,
     })
 
 

@@ -102,8 +102,12 @@ const user = (user = initialState, action = {}) => {
                 token: false
             });
         case types.SET_USER_INFO:
+            let testing = user.testing
+            if (action.data && action.data.id === 286) {
+                testing = true
+            }
             return Object.assign({}, user, {
-                testing: action.data && action.data.id === 286,
+                testing: testing,
                 data: {...user.data, ...action.data}
             })
         case types.SET_RECOVERY_HASH:

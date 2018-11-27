@@ -76,4 +76,3 @@ export default function signup(signup = initialState, action = {}) {
             return signup;
     }
 }
-

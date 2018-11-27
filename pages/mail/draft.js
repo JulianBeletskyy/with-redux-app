@@ -9,7 +9,7 @@ import FullScreenPreview from '../../components/gallery/full_screen_preview'
 import UploadDropdown from '../../components/inputs/upload_dropdown'
 import BtnMain from '../../components/buttons/btn_main'
 import { LETTER_PRICE, PHOTO_PRICE } from '../../config'
-import { setActiveTab, toggleModal } from '../../actions/ui'
+import { setActiveTab, toggleModal, setAlert } from '../../actions/ui'
 import { confirmAlert } from 'react-confirm-alert'
 import Loader from '../../components/loader'
 
@@ -40,12 +40,16 @@ class Draft extends Component {
     getSrc = item => item.src ? item.src : item
 
     send = () => {
-    	const { dispatch, attach, message } = this.props
+    	const { dispatch, attach, message, testing } = this.props
     	const data = {
     		original: this.message.value,
             receiver_id: message.receiver_id,
             attachment: attach.map(item => item.src ? item.src : item)
     	}
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
     	dispatch(sendMessage(data)).then(res => {
             switch (res) {
                 case true:
@@ -95,13 +99,17 @@ class Draft extends Component {
     }
 
     save = () => {
-    	const { dispatch, attach, message, id } = this.props
+    	const { dispatch, attach, message, id, testing } = this.props
     	const data = {
     		original: this.message.value,
             receiver_id: message.receiver_id,
             attachment: attach.map(item => item.src ? item.src : item),
             id: id,
     	}
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
     	dispatch(saveDraft(data)).then(res => {
     		if (res) {
     			Router.pushRoute('/mail/draft')
@@ -110,7 +118,11 @@ class Draft extends Component {
     }
 
     remove = () => {
-        const { dispatch, id } = this.props
+        const { dispatch, id, testing } = this.props
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
         dispatch(removeDraft(id)).then(res => {
             if (res) {
                 Router.pushRoute('/mail/draft')
@@ -161,7 +173,7 @@ class Draft extends Component {
                                             {   draftAttach.map((item, key) => {
                                                     return  <div key={key} className="col-xs-6">
                                                                 <div className="attachmentWrap">
-                                                                { <img onClick={this.showPhoto(item)} className="img-responsive pointer" src={this.getSrc(item)} alt="" /> }
+                                                                    <img onClick={this.showPhoto(item)} className="img-responsive pointer" src={this.getSrc(item)} alt="" />
                                                                 </div>
                                                             </div>
                                                 })
@@ -198,12 +210,13 @@ class Draft extends Component {
     }
 }
 
-const mapStateToProps = state =>
+const mapStateToProps = ({message, user}) =>
 	({
-		message: state.message.message,
-		attach: state.message.attach,
-		draftAttach: state.message.draftAttach,
-        userCredits: state.user.data.credits,
+		message: message.message,
+		attach: message.attach,
+		draftAttach: message.draftAttach,
+        userCredits: user.data.credits,
+        testing: user.testing,
 	})
 
 export default connect(mapStateToProps)(Draft)
