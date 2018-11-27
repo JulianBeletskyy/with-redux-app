@@ -59,8 +59,8 @@ export class ClientMenu extends Component {
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
-						text={`${membership.name} Upgrade`}
-						keyName={`Membership:`}
+						text={` Upgrade`}
+						keyName={<span>Membership: <span className="text-uppercase">{membership.name}</span></span>}
 						link="subscribe"
 						onClick={this.goToSubscribe} />
 				</FormGroup>

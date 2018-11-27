@@ -47,6 +47,9 @@ class Questions extends Component {
                 },{
                     'question': 'Have more questions?',
                     'answer': 'Apply to our support team to get an answer to any questions you may have.'
+                }, {
+                    'question': 'How can I delete my profile?',
+                    'answer': 'To delete your profile, you need to write the request to Support Service using the Send Request form on the site.'
                 }
             ]
 		this.state = {

@@ -137,10 +137,27 @@ class Services extends Component {
                                 <div className="col-sm-4">
                                     <div className="bg-gray service-wrap-title">
                                         <div className="service-number">03.</div>
-                                        <span className="title-service">FACE-TO-FACE MEETING</span>
+                                        <span className="title-service">VIDEO CALLING</span>
                                     </div>
                                 </div>
                                 <div className="col-sm-8">
+                                    <div>
+                                        Connect any lady and enjoy the new level of communication with the function of Video Call. It is the unique Service you can use not only to see your lady online in real time, but to hear as well. VideoCall is the best way to break the wall between you and your potential mate. You will have an opportunity to talk just like you are in the same room. You can look into her eyes which, as everyone knows, is a mirror of any soul. This is a great chance to get to know each other for real before you decide to arrange personal meeting.
+                                    </div>
+                                    <br />
+                                    <div>
+                                        Our Company will make sure you have no language barrier by providing professional interpreter if needed.
+                                    </div>
+                                    <br />
+                                    <div>
+                                        Please note that you need to be a Vip Member to use the VideoCall Service.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <div className="row">
+                                <div className="col-sm-8 hidden-xs">
                                     <div>
                                         Ukraine is a well-kept secret as a beautiful tourist destination. The country is layered in mountains, such as the Carpathian Mountain which is perfect for skiing, fishing and hunting. The landscape is dotted with beautiful vineyards that yield grapes used to produce our native wines, table grapes, raisins and non-alcoholic grape juice.
                                     </div>
@@ -157,28 +174,17 @@ class Services extends Component {
                                         The most exciting aspect of your visit will undoubtedly be your face-to-face meeting with your love. You’ve waited a long time for this moment and everything must be perfect. Once you’ve advised us of your potential interest(s), our team will reach out to her to manage the logistics on our side, and we’ll be sure her availability is synced with your travel itinerary. Sign up for this service and we’ll confirm that every detail of your visit is well orchestrated to ensure a successful connection.
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="form-group">
-                            <div className="row">
-                                <div className="col-sm-8 hidden-xs">
-                                    <div>
-                                        As your relationship becomes more serious, you will need to start thinking about preparing legal documents such as immigration papers, your fiancée visa, other legal papers, etc. Many types of documents will need to be translated. We have assisted many couples with compiling the necessary paperwork to present to the authorities and we’re equipped to assist you as well.
-                                    </div>
-                                    <br />
-                                    <div>
-                                        If you’re a United States resident, one of the most important things to consider is the International Marriage Broker Regulation Act (IMBRA). IMBRA is a US Federal Statute that requires background checks for all Marriage Visa Sponsors. To be sure you’re legally covered before you travel, confirm any fees associated with IMBRA, and/or for further information, please check the US Citizen & Immigration Services site at USCIS.gov.
-                                    </div>
-                                </div>
                                 <div className="col-sm-4">
                                     <div className="bg-gray service-wrap-title">
                                         <div className="service-number">04.</div>
-                                        <span className="title-service">DOCUMENT PREPARATION</span>
+                                        <span className="title-service">FACE-TO-FACE MEETING</span>
                                     </div>
                                 </div>
                                 <div className="col-sm-8 hidden-sm hidden-md hidden-lg">
-                                    As your relationship becomes more serious, you will need to start thinking about preparing legal documents such as immigration papers, your fiancée visa, other legal papers, etc. Many types of documents will need to be translated. We have assisted many couples with compiling the necessary paperwork to present to the authorities and we’re equipped to assist you as well.
-                                    If you’re a United States resident, one of the most important things to consider is the International Marriage Broker Regulation Act (IMBRA). IMBRA is a US Federal Statute that requires background checks for all Marriage Visa Sponsors. To be sure you’re legally covered before you travel, confirm any fees associated with IMBRA, and/or for further information, please check the US Citizen & Immigration Services site at USCIS.gov.
+                                    Ukraine is a well-kept secret as a beautiful tourist destination. The country is layered in mountains, such as the Carpathian Mountain which is perfect for skiing, fishing and hunting. The landscape is dotted with beautiful vineyards that yield grapes used to produce our native wines, table grapes, raisins and non-alcoholic grape juice.
+                                    Your plans to visit Ukraine must include a stop-over in Odessa. Located along the Black Sea, this popular vacation destination is known for its beaches and its shoreline is lined with quaint stores and intimate eateries. There are many other points of interest in Ukraine. Although you can plan the trip on your own, as residents we have the inside track on what to see, where to go, and things to do to ensure you enjoy your visit. When you enroll in this service, <strong>Life In Love</strong> will help with making all your travel arrangements. From reserving your airline tickets to recommending a safe place to stay, we can organize the entire trip on your behalf.
+                                    Our client’s satisfaction is our #1 priority. We can arrange a first-class trip with luxurious accommodations, fine dining restaurants with celebrity chefs and high-end shopping districts. We also organize trips for clients on a more modest budget. Since our services vary depending on the client’s needs, a fixed package price is not available. Please contact our service center directly and a staff member will provide an accurate package quote, based on the services you desire. If you opt to book the trip on your own, let us know when you’re coming, how long your trip will be, and the cities you plan to visit.
+                                    The most exciting aspect of your visit will undoubtedly be your face-to-face meeting with your love. You’ve waited a long time for this moment and everything must be perfect. Once you’ve advised us of your potential interest(s), our team will reach out to her to manage the logistics on our side, and we’ll be sure her availability is synced with your travel itinerary. Sign up for this service and we’ll confirm that every detail of your visit is well orchestrated to ensure a successful connection.
                                 </div>
                             </div>
                         </div>
@@ -187,14 +193,37 @@ class Services extends Component {
                                 <div className="col-sm-4" sm={4}>
                                     <div className="bg-gray service-wrap-title">
                                         <div className="service-number">05.</div>
-                                        <span className="title-service">GIFT GIVING PROGRAM</span>
+                                        <span className="title-service">DOCUMENT PREPARATION</span>
                                     </div>
                                 </div>
                                 <div className="col-sm-8">
+                                    <div>
+                                        As your relationship becomes more serious, you will need to start thinking about preparing legal documents such as immigration papers, your fiancée visa, other legal papers, etc. Many types of documents will need to be translated. We have assisted many couples with compiling the necessary paperwork to present to the authorities and we’re equipped to assist you as well.
+                                    </div>
+                                    <br />
+                                    <div>
+                                        If you’re a United States resident, one of the most important things to consider is the International Marriage Broker Regulation Act (IMBRA). IMBRA is a US Federal Statute that requires background checks for all Marriage Visa Sponsors. To be sure you’re legally covered before you travel, confirm any fees associated with IMBRA, and/or for further information, please check the US Citizen & Immigration Services site at USCIS.gov.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <div className="row">
+                                <div className="col-sm-8 hidden-xs">
+                                    Fact: Ladies love attention and affection. Ukrainian and Russian women are no different. They appreciate receiving flowers and gifts from their lover. Be romantic! Show your potential mate your undivided attention by sending a beautiful bouquet or a considerate gift, with a nice note. <strong>Life In Love</strong> can help with arranging delivery of your gifts to your mate. We can also have a photo taken of her surprise response when she receives the gift. Contact us for other great ideas of how to surprise your love. Let’s plan her surprise today!
+                                </div>
+                                <div className="col-sm-4">
+                                    <div className="bg-gray service-wrap-title">
+                                        <div className="service-number">06.</div>
+                                        <span className="title-service">GIFT GIVING PROGRAM</span>
+                                    </div>
+                                </div>
+                                <div className="hidden-lg hidden-md col-sm-8 hidden-sm">
                                     Fact: Ladies love attention and affection. Ukrainian and Russian women are no different. They appreciate receiving flowers and gifts from their lover. Be romantic! Show your potential mate your undivided attention by sending a beautiful bouquet or a considerate gift, with a nice note. <strong>Life In Love</strong> can help with arranging delivery of your gifts to your mate. We can also have a photo taken of her surprise response when she receives the gift. Contact us for other great ideas of how to surprise your love. Let’s plan her surprise today!
                                 </div>
                             </div>
                         </div>
+
                         <div className="service-title-right form-group">
                             Finding love abroad can be challenging – but it’s not impossible. <strong>Life In Love</strong> will guide you through the process. Sign up for our services and let us help you meet the lady of your dreams today!
                         </div>

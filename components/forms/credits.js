@@ -167,7 +167,7 @@ class Credits extends Component {
                 <div className={`text-center form-group ${!activePackage.id ? ' hidden' : ''}`} id="paypal-button"></div>
                 <div className="text-center">
                 	<strong>
-                		<a href="/subscribe" className="font-bebas fs-16" onClick={this.goToSubscribe}>Upgrade Membership</a>
+                		<a href="/subscribe" className="font-bebas fs-16 main-hover" onClick={this.goToSubscribe}>Upgrade Membership</a>
             		</strong>
                 </div>
             </div>

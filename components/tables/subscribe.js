@@ -101,17 +101,17 @@ class SubscribeTable extends Component {
                             <td></td>
                             <td>
                                <BtnMain
-                                    text="Subscribe"
+                                    text="Details"
                                     onClick={this.openSubscribe('gold')} /> 
                             </td>
                             <td>
                                <BtnMain
-                                    text="Subscribe"
+                                    text="Details"
                                     onClick={this.openSubscribe('platinum')} /> 
                             </td>
                             <td>
                                <BtnMain
-                                    text="Subscribe"
+                                    text="Details"
                                     onClick={this.openSubscribe('vip')} /> 
                             </td>
                         </tr>

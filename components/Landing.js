@@ -121,6 +121,12 @@ class Landing extends Component {
                 </Col>
 	}
 
+	openLogin = e => {
+		e.preventDefault()
+		const { dispatch } = this.props
+		dispatch(toggleModal(true, 'login'))
+	}
+
 	componentDidMount() {
 		this.mount = true
 		const { dispatch } = this.props
@@ -195,6 +201,10 @@ class Landing extends Component {
 													<i className="fas fa-address-card"></i>
 													&nbsp;
 													Free Sign Up
+													&nbsp;
+													Or
+													&nbsp; 
+													<a href="javascript:;" className="pointer" onClick={this.openLogin}> Login</a>
 												</h3>
 											</Panel.Heading>
 											<Panel.Body>
@@ -340,7 +350,7 @@ class Landing extends Component {
 			                            <Row>
 			                                <Col sm={4}>
 			                                    <div className="landing-step">
-			                                        <div className="text-center">
+			                                        <div className="text-center pointer" onClick={this.getRegistration}>
 			                                            <i className="fas fa-user fa-4x"></i>
 			                                            <div className="landing-step-desc">
 			                                                <span className="font-arial">Create your profile, add photos</span>
@@ -350,7 +360,7 @@ class Landing extends Component {
 			                                </Col>
 			                                <Col sm={4}>
 			                                    <div className="landing-step">
-			                                        <div className="text-center">
+			                                        <div className="text-center pointer" onClick={this.goToMembers()}>
 			                                            <i className="fas fa-images fa-4x"></i>
 			                                            <div className="landing-step-desc">
 			                                                <span className="font-arial">Browse our Gallery</span>

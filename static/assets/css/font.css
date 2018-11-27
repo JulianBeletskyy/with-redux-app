@@ -18,6 +18,9 @@
 .story-text {
     line-height: 2;
 }
+.main-hover:hover {
+    color: #27c2d3;
+}
 @media (max-width: 767px) {
     .slider-container {
         width: 100%;
