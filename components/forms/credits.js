@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup } from 'react-bootstrap'
 import { getPackages, setPackage, buyPackage } from '../../actions/membership'
-import { toggleModal, setActiveTab } from '../../actions/ui'
+import { toggleModal, setActiveTab, setAlert } from '../../actions/ui'
 import { setSendingMessage, setBuyingAttach, buyMessage, buyAttach } from '../../actions/message'
 import { confirmAlert } from 'react-confirm-alert'
 import { Router } from '../../routes'
@@ -125,6 +125,13 @@ class Credits extends Component {
 		}
     }
 
+    checkTesting = () => {
+        const { dispatch, testing } = this.props
+        if (testing) {
+            dispatch(setAlert('Not Available for test user', 'error'))
+        }
+    }
+
     componentWillUnmount() {
     	const { dispatch } = this.props
     	dispatch(setPackage({id: 0}))
@@ -137,12 +144,19 @@ class Credits extends Component {
     }
 
     render() {
-    	const { packages, activePackage } = this.props
+    	const { packages, activePackage, testing } = this.props
         return (
             <div>
                 <FormGroup>
                     { packages.map((item, i) => this.printPackages(item, i))}
                 </FormGroup>
+                {
+                	testing
+                	? 	<div className={`${!activePackage.id ? ' hidden' : ''} testing-class`} onClick={this.checkTesting}>
+                            <div>Not Available for test user</div>
+                        </div>
+                	: 	null
+                }
                 <div className={`text-center ${!activePackage.id ? ' hidden' : ''}`} id="paypal-button"></div>
             </div>
         )
@@ -157,6 +171,7 @@ const mapStateToProps = state =>
 	    credits: state.user.data.credits,
 	    sendingMessage: state.message.sendingMessage,
 		buyingAttach: state.message.buyingAttach,
+		testing: state.user.testing,
 	})
 
 export default connect(mapStateToProps)(Credits)

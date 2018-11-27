@@ -3,7 +3,7 @@ import BtnMain from '../buttons/btn_main'
 import { connect } from 'react-redux'
 import { Router } from '../../routes'
 import { removeMessage, restoreMessage, removeDraft, removeMessagePermanent } from '../../actions/message'
-import { setActiveTab } from '../../actions/ui'
+import { setActiveTab, setAlert } from '../../actions/ui'
 import { makeCDN } from '../../utils'
 
 class MailItem extends Component {
@@ -14,17 +14,29 @@ class MailItem extends Component {
     }
 
     removeMessage = () => {
-    	const { dispatch, type, id } = this.props
+    	const { dispatch, type, id, testing } = this.props
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
     	dispatch(removeMessage(id, type))
     }
 
     removePermanent = () => {
-    	const { dispatch, id, type } = this.props
+    	const { dispatch, id, type, testing } = this.props
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
     	dispatch(removeMessagePermanent(id, type))
     }
 
     removeDraft = () => {
-    	const { dispatch, id } = this.props
+    	const { dispatch, id, testing } = this.props
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
     	dispatch(removeDraft(id))
     }
 
@@ -151,6 +163,13 @@ class MailItem extends Component {
     }
 }
 
-const mapStateToProps = ({user: {data}}) => ({role: data.role,userId: data.id})
+const mapStateToProps = ({user}) => 
+    (
+        {
+            role: user.data.role,
+            userId: user.data.id,
+            testing: user.testing,
+        }
+    )
 
 export default connect(mapStateToProps)(MailItem)

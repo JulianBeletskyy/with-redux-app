@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Layout from '../../layouts'
 import { getMember, toggleInterest, toggleFavorite, getContactsDetails, addViewed } from '../../actions/members'
 import { makeCall } from '../../actions/chat'
-import { toggleModal } from '../../actions/ui'
+import { toggleModal, setAlert } from '../../actions/ui'
 import { setReceiverToShop } from '../../actions/shop'
 import { Grid, Row, Col } from 'react-bootstrap'
 import Loader from '../../components/loader'
@@ -63,14 +63,22 @@ class Member extends Component {
     }
 
     toggleInterest = () => {
-        const { dispatch, member } = this.props
+        const { dispatch, member, testing } = this.props
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
         if(!member.interest) {
             dispatch(toggleInterest(member.id, member.interest))
         }
     }
 
     toggleFavorite = () => {
-        const { dispatch, member } = this.props
+        const { dispatch, member, testing } = this.props
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
         dispatch(toggleFavorite(member.id, member.favorite)).then(res => {
             if (res) {
                 dispatch(getMember(member.id))
@@ -79,7 +87,11 @@ class Member extends Component {
     }
 
     getContactsDetails = () => {
-        const { dispatch, member } = this.props
+        const { dispatch, member, testing } = this.props
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
         dispatch(getContactsDetails(member.id))
     }
 
@@ -131,7 +143,11 @@ class Member extends Component {
     }
 
     inviteToChat = () => {
-        const { dispatch, member } = this.props
+        const { dispatch, member, testing } = this.props
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
         dispatch(makeCall(member.id, member.first_name, member.avatar.croped))
     }
 
@@ -153,7 +169,7 @@ class Member extends Component {
     }
 
 	render() {
-        const { member, role, modal, active, userId, testing } = this.props
+        const { member, role, modal, active, userId } = this.props
         
 		return (
 			<Layout>

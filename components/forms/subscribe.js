@@ -4,7 +4,7 @@ import { getMemberships } from '../../actions/membership'
 import { connect } from 'react-redux'
 import BtnMain from '../../components/buttons/btn_main'
 import { Radio } from 'react-bootstrap'
-import { toggleModal, setUiKey } from '../../actions/ui'
+import { toggleModal, setUiKey, setAlert } from '../../actions/ui'
 
 class Subscribe extends Component {
     constructor() {
@@ -34,7 +34,12 @@ class Subscribe extends Component {
     }
 
     subscribe = activePlan => e => {
-        const { userId } = this.props
+        const { userId, testing, dispatch } = this.props
+        if (testing) {
+            dispatch(setAlert('Not available for test user', 'error'))
+            return
+        }
+
         this.setState({
             plan: {
                 ...this.state.plan,
@@ -142,6 +147,7 @@ const mapStateToProps = state =>
 	    membership: state.membership.membership,
 	    userId: state.user.data.id,
         token: state.user.token,
+        testing: state.user.testing,
 	})
 
 export default connect(mapStateToProps)(Subscribe)

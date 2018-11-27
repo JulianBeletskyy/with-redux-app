@@ -4,14 +4,23 @@ import { toggleFavorite } from '../../actions/members'
 import { Router } from '../../routes'
 import OnlineDot from './online_dot'
 import { makeCDN } from '../../utils'
+import { setAlert } from '../../actions/ui'
 
 const testUsers = [221, 286]
 
 class MemberPreview extends Component {
+	state = {
+		ready: false,
+	}
+
 	toggleFavorite = value => e => {
 		e.preventDefault()
 		e.stopPropagation()
-		const { dispatch, member, type } = this.props
+		const { dispatch, member, type, testing } = this.props
+		if (testing) {
+			dispatch(setAlert('Not available for test user', 'error'))
+			return
+		}
 		dispatch(toggleFavorite(member.id, !value, type))
 	}
 
@@ -26,16 +35,26 @@ class MemberPreview extends Component {
 		}
 	}
 
+	componentDidMount() {
+		this.img.onload = () => {
+			this.setState({ready: true})
+		}
+	}
+
     render() {
     	const { member, stars = true, onClickItem = null, token, onlineUsers, userId } = this.props
     	const link = token ?  `/member/${member.id.toString()}` : `/`
+
         return (
             <div className="form-group">
 	            <div className="member-preview-wrap">
                     <a href={link} onClick={this.goTo(link)}>
 	                    <span>
 	    	            	<div className="member-preview-img-wrap">
-	    	                	<img src={makeCDN(member.avatar)} className="member-preview-img" alt="" />
+	    	            		<div className={`member-preview-loader ${this.state.ready ? 'd-none' : ''}`}>
+	    	            			<i className="fas fa-circle-notch fa-spin"></i>
+	    	            		</div>
+	    	            		<img ref={ref => this.img = ref} src={makeCDN(member.avatar)} className={`member-preview-img ${this.state.ready ? '' : 'd-none'}`} alt="" />
 	    	            	</div>
 	    	            	<div className="member-preview-info">
 	    		                <div className="text-center">
@@ -66,6 +85,6 @@ class MemberPreview extends Component {
     }
 }
 
-const mapStateToProps = state => ({token: state.user.token, onlineUsers: state.user.onlineUsers, userId: state.user.data.id})
+const mapStateToProps = state => ({token: state.user.token, onlineUsers: state.user.onlineUsers, userId: state.user.data.id, testing: state.user.testing})
 
 export default connect(mapStateToProps)(MemberPreview)

@@ -7,6 +7,7 @@ import { getShopMembers } from '../../actions/shop'
 import { setCart, setReceiverToShop, buyProducts } from '../../actions/shop'
 import ReceiverInfo from '../../components/block/receiver_info'
 import { makeCDN } from '../../utils'
+import { setAlert } from '../../actions/ui'
 
 class Cart extends Component {
     constructor(props) {
@@ -193,12 +194,19 @@ class Cart extends Component {
         }
     }
 
+    checkTesting = () => {
+        const { dispatch, testing } = this.props
+        if (testing) {
+            dispatch(setAlert('Not Available for test user', 'error'))
+        }
+    }
+
     componentDidMount() {
         this.renderPayPal()
     }
 
     render() {
-    	const { cart, shopMembers, receiver } = this.props
+    	const { cart, shopMembers, receiver, testing } = this.props
     	const hiddenClass = cart.length && receiver.id ? '' : 'hidden'
         return (
             <Layout>
@@ -255,7 +263,14 @@ class Cart extends Component {
 				                            </FormGroup>
 				                        </Col>
 				                        <Col sm={4}>
-				                            <div className={`${hiddenClass} text-center`} id="paypal-button-cart"></div>
+                                            {
+                                                testing
+                                                ?   <div className={`${hiddenClass} testing-class`} onClick={this.checkTesting}>
+                                                        <div>Not Available for test user</div>
+                                                    </div>
+                                                :   null
+                                            }
+                                            <div className={`${hiddenClass} text-center`} id="paypal-button-cart"></div>
 				                        </Col>
 				                    </Row>
 				                </Col>
@@ -275,6 +290,7 @@ const mapStateToProps = ({user, shop}) =>
         cart: shop.cart,
         receiver: shop.receiver,
         shopMembers: shop.shopMembers,
+        testing: user.testing,
     })
 
 export default connect(mapStateToProps)(Cart)
