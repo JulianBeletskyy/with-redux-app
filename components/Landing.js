@@ -42,6 +42,7 @@ class Landing extends Component {
 
 	goToMembers = () => e => {
 		Router.pushRoute('/members')
+		window.scrollTo(0,0)
 	}
 
 	goToStory = id => {
@@ -202,9 +203,10 @@ class Landing extends Component {
 													&nbsp;
 													Free Sign Up
 													&nbsp;
-													Or
-													&nbsp; 
-													<a href="javascript:;" className="pointer" onClick={this.openLogin}> Login</a>
+													<span className="position-relative already-member-wrap">
+														<a href="javascript:;" style={{color: 'rgb(39, 194, 211)', paddingRight: 40}} className="pointer" onClick={this.openLogin}> Log in</a>
+														<span className="already-member">Already a Member?</span>
+													</span>
 												</h3>
 											</Panel.Heading>
 											<Panel.Body>

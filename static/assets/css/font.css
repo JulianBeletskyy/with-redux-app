@@ -21,6 +21,24 @@
 .main-hover:hover {
     color: #27c2d3;
 }
+.already-member-wrap {
+    margin-left: 80px;
+}
+.already-member {
+    position: absolute;
+    text-transform: none;
+    font-family: sans-serif;
+    top: -15px;
+    right: 0;
+    font-size: 14px;
+    opacity: 0.5;
+    white-space: nowrap;
+}
+@media (max-width: 373px) {
+    .already-member-wrap {
+        margin-left: 40px;
+    }
+}
 @media (max-width: 767px) {
     .slider-container {
         width: 100%;
