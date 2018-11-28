@@ -120,7 +120,7 @@ class MailItem extends Component {
 
         return (
            <div className="p-15">
-                <div className={`row ${role} ${!read && type === 'incoming' ? 'unread-message' : ''}`}>
+                <div className={`row ${role} ${!read && (type === 'incoming' || type === 'deleted') ? 'unread-message' : ''}`}>
                     <div className="col-sm-2">
                         <a href={`/member/${data.member_id}`} onClick={this.goToMember(data.member_id)}>
                             <img src={makeCDN(data.avatar)} alt="" className="img-responsive pointer" />

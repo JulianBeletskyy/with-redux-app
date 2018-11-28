@@ -75,6 +75,7 @@ export const removeMessagePermanent = (id, type) => dispatch =>
 	remove(`user/message/${id}/removepermanent`, true).then(({data}) => {
 		if (data) {
 			dispatch(getMail(type))
+			dispatch(getUnreadMessage())
 		}
 	})
 

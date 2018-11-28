@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row, Col, FormGroup, Panel } from 'react-bootstrap'
+import { Row, Col, FormGroup, Panel } from 'react-bootstrap'
 import Registration from './registration'
 import BtnMain from '../components/buttons/btn_main'
 import { setUiKey, getStories, toggleModal } from '../actions/ui'
@@ -15,7 +15,6 @@ import { makeCDN } from '../utils'
 class Landing extends Component {
 	constructor() {
 		super()
-		this.elements = {}
 		this.mount = false
 		this.state = {
 			type: 'popular',
@@ -207,23 +206,21 @@ class Landing extends Component {
 	                            {
 	                            	! showRegistration
 	                            	&& 	<Col md={6} sm={12} className="wrapLogin">
-			                                <div>
-			                                    <div>
-			                                        <h1 className="text-white main">
-			                                            Premier Matchmaking company to Find Your Ukrainian Lady
-			                                        </h1>
-			                                        <h2 className="text-white text-center">
-			                                            We are not Gods to predict your future but we have something to make you closer to your dream come true.
-			                                            <br />
-			                                            <a className="landing-link" onClick={this.getRegistration} href="javascript:;"> Join Now</a>
-			                                        </h2>
-			                                   </div>
-			                                   <div className="btn-login text-center">
-			                                        <BtnMain
-			                                            text="Free Sign Up"
-			                                            onClick={this.getRegistration} />
-			                                    </div>
-			                                </div>
+		                                    <div>
+		                                        <h1 className="text-white main">
+		                                            Premier Matchmaking company to Find Your Ukrainian Lady
+		                                        </h1>
+		                                        <h2 className="text-white text-center">
+		                                            We are not Gods to predict your future but we have something to make you closer to your dream come true.
+		                                            <br />
+		                                            <a className="landing-link" onClick={this.getRegistration} href="javascript:;"> Join Now</a>
+		                                        </h2>
+		                                   </div>
+		                                   <div className="btn-login text-center">
+		                                        <BtnMain
+		                                            text="Free Sign Up"
+		                                            onClick={this.getRegistration} />
+		                                    </div>
 			                            </Col>
 	                            }
 	                        </Row>
@@ -235,60 +232,60 @@ class Landing extends Component {
 					? 	<div>
 							<div id="advantages" className="advantWrap">
 								<h2 className="advantTitle">Competitive <span className="underlineText">Advantages</span></h2>
-								<Row>
-									<Col xs={12} sm={4}>
-										<div ref={ref => this.elements.first = ref} className={`advantItem ${this.state.advantagesFirst ? 'slideInUp animated' : ''}`}>
+								<div className="row">
+									<div className="col-sm-4 col-xs-12">
+										<div className={`advantItem ${this.state.advantagesFirst ? 'slideInUp animated' : ''}`}>
 											<span><i className="fas fa-clipboard-list fa-3x"></i><br />Free registration with full professional service</span>
 										</div>
-									</Col>
-									<Col xs={12} sm={4}>
-										<div ref={ref => this.elements.second = ref} className={`advantItem ${this.state.advantagesFirst ? 'slideInUp animated' : ''}`}>
+									</div>
+									<div className="col-sm-4 col-xs-12">
+										<div className={`advantItem ${this.state.advantagesFirst ? 'slideInUp animated' : ''}`}>
 											<span><i className="fas fa-clipboard-list fa-3x"></i><br />All letters from ladies are free to read</span>
 										</div>
-									</Col>
-									<Col xs={12} sm={4}>
-										<div ref={ref => this.elements.third = ref} className={`advantItem ${this.state.advantagesFirst ? 'slideInUp animated' : ''}`}>
+									</div>
+									<div className="col-sm-4 col-xs-12">
+										<div className={`advantItem ${this.state.advantagesFirst ? 'slideInUp animated' : ''}`}>
 											<span><i className="fas fa-clipboard-list fa-3x"></i><br />All ladies' profiles real and verified</span>
 										</div>
-									</Col>
-									<Col xs={12} sm={4}>
-										<div ref={ref => this.elements.forth = ref} className={`advantItem ${this.state.advantagesSecond ? 'slideInUp animated' : ''}`}>
+									</div>
+									<div className="col-sm-4 col-xs-12">
+										<div className={`advantItem ${this.state.advantagesSecond ? 'slideInUp animated' : ''}`}>
 											<span><i className="fas fa-clipboard-list fa-3x"></i><br />Upgrade your membership and get access to all additional photos and videos of all ladies</span>
 										</div>
-									</Col>
-									<Col xs={12} sm={4}>
-										<div ref={ref => this.elements.fifth = ref} className={`advantItem ${this.state.advantagesSecond ? 'slideInUp animated' : ''}`}>
+									</div>
+									<div className="col-sm-4 col-xs-12">
+										<div className={`advantItem ${this.state.advantagesSecond ? 'slideInUp animated' : ''}`}>
 											<span><i className="fas fa-clipboard-list fa-3x"></i><br />Verify your profile and get opportunity to share direct contact with ladies</span>
 										</div>
-									</Col>
-									<Col xs={12} sm={4}>
-										<div ref={ref => this.elements.sixth = ref} className={`advantItem ${this.state.advantagesSecond ? 'slideInUp animated' : ''}`}>
+									</div>
+									<div className="col-sm-4 col-xs-12">
+										<div className={`advantItem ${this.state.advantagesSecond ? 'slideInUp animated' : ''}`}>
 											<span><i className="fas fa-clipboard-list fa-3x"></i><br />You can find the One among hundreds of beautiful Ukrainian brides</span>
 										</div>
-									</Col>
-								</Row>
+									</div>
+								</div>
 							</div>
 							<div className="landing-member-wrap">
 								<h2 className="landing-title"><span className="underlineText">Ladies</span></h2>
-								<Grid>
-			                        <div className="pb-50">
-			                            <Row>
-			                                <Col xs={4} className="text-center">
+								<div className="container">
+			                        <div className="pb-50 text-center">
+			                            <div className="row">
+			                                <div className="col-xs-4">
 			                                    <div className="landing-switch-members" onClick={this.toggleMembers('new')}>
 			                                        <span className={this.state.type === 'new' ? 'underlineText' : ''}>New</span>
 			                                    </div>
-			                                </Col>
-			                                <Col xs={4} className="text-center">
+			                                </div>
+			                                <div className="col-xs-4">
 			                                    <div className="landing-switch-members" onClick={this.toggleMembers('popular')}>
 			                                        <span className={this.state.type === 'popular' ? 'underlineText' : ''}>Popular</span>
 			                                    </div>
-			                                </Col>
-			                                <Col xs={4} className="text-center">
+			                                </div>
+			                                <div className="col-xs-4">
 			                                    <div className="landing-switch-members" onClick={this.goToMembers()}>
 			                                        <span>Show more</span>
 			                                    </div>
-			                                </Col>
-			                            </Row>
+			                                </div>
+			                            </div>
 			                        </div>
 			                        <MemberBlock 
 			                			list={publicList}
@@ -296,10 +293,10 @@ class Landing extends Component {
 			                			more={false}
 			                			onClickItem={this.getRegistration}
 			                			type="viewed" />
-			                    </Grid>
+			                    </div>
 							</div>
 							<div className="landing-third-wrap">
-			                    <Grid>
+			                    <div className="container">
 			                        <h2 className="text-center">
 			                            Hundreds of real verified profiles of Ukrainian Ladies! Say YES to the only one among many ladies waiting for fiance's confess:)
 			                            <br />
@@ -310,14 +307,14 @@ class Landing extends Component {
 			                                text="Sign Up"
 			                                onClick={this.getRegistration} />
 			                        </FormGroup>
-			                    </Grid>
+			                    </div>
 			                </div>
 			                <div className="landing-stories-wrap">
 			                    <h2 className="text-center landing-title">
 			                        <span className="underlineText">Success Stories</span>
 			                    </h2>
 			                    <div>
-			                        <Grid>
+			                        <div className="container">
 			                            <div className="landing-stoies-title text-center p-15 mb-15">
 			                                <span>So many people found their happiness here. Once made a step for luck. Ready to be Next? Read all successful Stories.</span>
 			                            </div>
@@ -329,11 +326,11 @@ class Landing extends Component {
 			                                    text="More stories"
 			                                    onClick={this.goToStories} />
 			                            </div>
-			                        </Grid>
+			                        </div>
 			                    </div>
 			                </div>
 			                <div className="landing-hiw-wrap">
-			                    <Grid>
+			                    <div className="container">
 				                    <h2 className="text-center landing-title">
 				                        How it <span className="underlineText">works?</span>
 				                    </h2>
@@ -374,11 +371,11 @@ class Landing extends Component {
 			                            </Row>
 			                        </div>
 			                        <h2 className="text-center">Any questions? Apply to Our Friendly Staff</h2>
-			                    </Grid>
+			                    </div>
 			                </div>
 			                <div className="landing-testimonials-wrap">
 		                        <h2 className="landing-title"><span className="underlineText">Testimonials</span></h2>
-		                        <Grid>
+		                        <div className="container">
 		                            <Row className="testimonials-slider form-group">
 		                            	<Slider {...settings}>
 		                                	{ testimonials.map((item, i) => this.printTestimonials(item, i)) }
@@ -389,7 +386,7 @@ class Landing extends Component {
 		                                    text="More testimonials"
 		                                    onClick={this.goToTestimonials} />
 		                            </div>
-		                        </Grid>
+		                        </div>
 			                </div>
 						</div>
 					: 	null

@@ -10,10 +10,8 @@ import { getMembers, seeMoreMembers, searchByProfileId } from '../../actions/mem
 import { API_URL } from '../../config'
 import { setActiveTab } from '../../actions/ui'
 import SearchForm from '../../components/forms/search_form'
-import BlackFriday from '../../components/banners/black_friday'
 
 class Client extends Component {
-
     getMembers = key => {
     	const { dispatch } = this.props
         dispatch(getMembers(key))

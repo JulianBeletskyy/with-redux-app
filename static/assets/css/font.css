@@ -38,6 +38,9 @@
 .accordion__title:focus {
     outline: none;
 }
+.mainPart {
+    min-height: 100%;
+}
 @media (max-width: 1199px) {
     .black-friday-text {
         line-height: 1;
