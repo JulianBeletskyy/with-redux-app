@@ -63,13 +63,13 @@ class SubscribeTable extends Component {
                         </tr>
                         <tr>
                             <td className="text-left">View Photos in Profiles</td>
-                            <td>+</td>
+                            <td>-</td>
                             <td>+</td>
                             <td>+</td>
                         </tr>
                         <tr>
                             <td className="text-left">View Videos in Profiles</td>
-                            <td>+</td>
+                            <td>-</td>
                             <td>+</td>
                             <td>+</td>
                         </tr>
@@ -101,19 +101,16 @@ class SubscribeTable extends Component {
                             <td></td>
                             <td>
                                <BtnMain
-                                    bsStyle="success"
                                     text="Subscribe"
                                     onClick={this.openSubscribe('gold')} /> 
                             </td>
                             <td>
                                <BtnMain
-                                    bsStyle="success"
                                     text="Subscribe"
                                     onClick={this.openSubscribe('platinum')} /> 
                             </td>
                             <td>
                                <BtnMain
-                                    bsStyle="success"
                                     text="Subscribe"
                                     onClick={this.openSubscribe('vip')} /> 
                             </td>

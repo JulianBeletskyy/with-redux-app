@@ -36,7 +36,6 @@ class ContactItem extends Component {
                 </div>
                 <div className="contact-btn">
                     <BtnMain
-                        bsStyle="success"
                         text="Send Message"
                         onClick = {this.getMessage} />
                 </div>

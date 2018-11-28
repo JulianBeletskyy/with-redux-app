@@ -14,7 +14,7 @@ class DibsInfo extends Component {
 				</div>
 				<div>
 					<span className="font-bebas">Current plan: </span>
-					<strong>{`${membership.name} ${membership.value.trial ? `(Trial)` : ``} (${membership.value.month} month)`}</strong>
+					<strong>{`${membership.name} (${membership.value.month} month)`}</strong>
 				</div>
 				<div>
 					<span className="font-bebas">Send 1st free letter to any girl: </span>

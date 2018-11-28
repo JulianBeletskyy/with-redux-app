@@ -41,6 +41,17 @@
 .mainPart {
     min-height: 100%;
 }
+.online-dot span {
+    position: absolute;
+    right: 10px;
+    bottom: -5px;
+}
+.online-dot.online span {
+    color: #34dca2;
+}
+.online-dot.offline span {
+    color: #a8a8a8;
+}
 @media (max-width: 1199px) {
     .black-friday-text {
         line-height: 1;

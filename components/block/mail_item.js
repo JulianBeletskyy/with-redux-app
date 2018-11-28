@@ -139,13 +139,10 @@ class MailItem extends Component {
                             <span id={`description-${this.props.id}`} dangerouslySetInnerHTML={{__html: data.text}} />
                         </div>
                         <BtnMain
-                            bsStyle="success"
                             onClick={this.getMessage}
                             text="Read Message" />
                         &nbsp;
                         <BtnMain
-                            type="submit"
-                            bsStyle="success"
                             onClick={data.removeFunc}
                             text="Remove message" />
                         &nbsp;

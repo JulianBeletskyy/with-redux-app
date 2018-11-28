@@ -5,7 +5,7 @@ class OnlineDot extends Component {
     	const { active } = this.props
     	const activeClass = active ? 'online' : 'offline'
         return (
-           <div className={`online-dot ${activeClass}`}></div> 
+           <div className={`online-dot ${activeClass}`}><span>{activeClass}</span></div>
         )
     }
 }
