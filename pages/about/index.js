@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import Layout from '../../layouts'
 import Slider from 'react-slick'
@@ -34,13 +33,13 @@ class About extends Component {
             backgroundSize: 'cover'
         }
 
-        return  <Col sm={4} key={i} className="pt-10 pb-10">
+        return  <div key={i} className="pt-10 pb-10 col-sm-4">
                     <div className="text-center landing-item-testimonial p-15 pointer box-shadow" onClick={this.openTestimonial(item)}>
 	                    <div style={imgStyle}></div>
 	                    <div className="landing-testimonial-text">{this.getText(item.text)}</div>
 	                    <div className="landing-testimonial-name">{item.name}</div>
 	                </div>
-                </Col>
+                </div>
     }
 
 	render() {
@@ -64,7 +63,7 @@ class About extends Component {
 		return (
 			<Layout>
 				<div className="pt-100" id="about-container">
-	                <Grid>
+	                <div className="container">
 	                    <div className="bg-white p-15">
 	                        <h1 className="font-bebas">About Company</h1>
 	                        <hr />
@@ -80,35 +79,34 @@ class About extends Component {
 	                        </div>
 	                        <hr />
 	                        <div className="pt-50">
-	                            <Row>
-	                                <Col sm={6}>
+	                            <div className="row">
+	                                <div className="col-sm-6">
 	                                    <div className="works-title works-big-title fs-36">
 	                                        <span className="text-uppercase"><span className="underline-text">Life In Love</span> maintains an impressive roster of Ukrainian and Russian women.</span>
 	                                    </div>
 	                                    <div className="color-888 pt-15 fs-18 lh-18 form-group">
 	                                        We’ve often been asked “what’s so special about a Ukrainian or Russian woman?” … The answer? Everything! In addition to their obvious beauty, Ukrainian and Russian women are educated and intelligent. They’re also smart enough to know that family matters. They’re loving mothers, attentive & caring partners and they’re well versed in the domestic, emotional and physical responsibilities of a wife.
 	                                    </div>
-	                                </Col>
-	                                <Col sm={6}>
-	                                    <Row>
-	                                        <Col xs={6}>
+	                                </div>
+	                                <div className="col-sm-6">
+	                                    <div className="row">
+	                                        <div className="col-xs-6">
 	                                            <div className="infoItemImg1"></div>
-	                                        </Col>
-	                                        <Col xs={6}>
+	                                        </div>
+	                                        <div className="col-xs-6">
 	                                            <div className="infoItemImg2"></div>
-	                                        </Col>
-	                                    </Row>
-	                                </Col>
-	                            </Row>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
 	                        </div>
-	                        <div className="pt-50 pb-50">
-	                        </div>
+	                        <div className="pt-50 pb-50"></div>
 	                        <div className="backgroundGrey">
-	                            <Row>
-	                                <Col sm={6}>
-	                                    <img src="/static/assets/img/about-4.jpg" alt="" className="img-responsive" />
-	                                </Col>
-	                                <Col sm={6}>
+	                            <div className="row">
+	                                <div className="col-sm-6">
+	                                    <img src="https://d2etktq4v0899q.cloudfront.net/static/assets/img/about-4.jpg" alt="" className="img-responsive" />
+	                                </div>
+	                                <div className="col-sm-6">
 	                                    <div className="works-title works-big-title pt-50 fs-36">
 	                                        <span className="text-uppercase">If you’re ready to meet the lady of your dreams; we’re ready to connect you!</span>
 	                                    </div>
@@ -117,12 +115,11 @@ class About extends Component {
 	                                    </div>
 	                                    <div className="form-group">
 	                                        <BtnMain
-	                                            bsStyle="success"
 	                                            text="Free Sign Up"
 	                                            onClick={this.getRegistration} />
 	                                    </div>
-	                                </Col>
-	                            </Row>
+	                                </div>
+	                            </div>
 	                        </div>
 	                        <div className="pt-50 pb-50 px-15 testimonials-slider">
 	                            <Slider {...testimonialsSettings}>
@@ -134,7 +131,7 @@ class About extends Component {
 	                            <h1>ARE YOU READY? <a href="javascript:;" onClick={this.getSignUp}>LET’S WORK!</a></h1>
 	                        </div>
 		                </div>
-		            </Grid>
+		            </div>
 	            </div>
 	            <MainModal
                     body={<div><img src={this.testimonialImg} className="img-responsive" alt="" /></div>}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Layout from '../../layouts/private'
-import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import Tabs from '../../components/tabs'
 import TextField from '../../components/inputs/text_field'
 import BtnMain from '../../components/buttons/btn_main'
@@ -53,25 +52,24 @@ class Client extends Component {
         return (
             <Layout>
                 <div className="pt-15">
-	                <Row>
-	                    <Col sm={8}>
-	                        <FormGroup className="pt-17">
+	                <div className="row">
+	                    <div className="col-sm-8">
+	                        <div className="pt-17 form-group">
 	                            <TextField
 	                                placeholder="Profile ID"
 	                                inputRef={ref => { this.profile_id = ref }}
 	                                value={''}
 	                                name="Profile ID" />
-	                        </FormGroup>
-	                    </Col>
-	                    <Col sm={4}>
-	                        <FormGroup className="text-right">
+	                        </div>
+	                    </div>
+	                    <div className="col-sm-4">
+	                        <div className="text-right form-group">
 	                            <BtnMain
-	                                bsStyle="success"
 	                                text="Search by Profile ID"
 	                                onClick={this.getSearch} />
-	                        </FormGroup>
-	                    </Col>
-	                </Row>
+	                        </div>
+	                    </div>
+	                </div>
 	                <Tabs
 	                	onChange={this.getMembers}
 	                	tabKey="main"

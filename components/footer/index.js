@@ -35,7 +35,7 @@ class Footer extends Component {
 	                                token && role === 'client'
 	                                ?   <li>
 	                                        <i className="far fa-user"></i>
-	                                        <a href="/services" onClick={this.goTo('/services')}>Membership</a>
+	                                        <a href="/services" onClick={this.goTo('/subscribe')}>Membership</a>
 	                                    </li>
 	                                :   null 
 	                            }   

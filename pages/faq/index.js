@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Layout from '../../layouts/stories'
-import { Row, Col, FormGroup } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import Questions from './questions'
 import { setUiKey } from '../../actions/ui'
@@ -9,7 +8,6 @@ import { Router } from '../../routes'
 import MemberCarouselSmall from '../../components/block/member_carousel_small'
 
 class Faq extends Component {
-	
     goToRegistration = () => {
         const { dispatch } = this.props
         dispatch(setUiKey('showRegistration', true))
@@ -21,37 +19,36 @@ class Faq extends Component {
         const { token, country } = this.props
 		return (
 			<Layout>
-				<Row>
-            		<Col sm={9}>
+				<div className="row">
+            		<div className="col-sm-9">
 						<h1 className="font-bebas">FAQ</h1>
 			            <hr />
                         <Questions />
-		            </Col>
-		            <Col sm={3}>
-                        <FormGroup>
+		            </div>
+		            <div className="col-sm-3">
+                        <div className="form-group">
                             <img src="https://d2etktq4v0899q.cloudfront.net/static/assets/img/banner.jpg" className="img-responsive" alt="" />
-                        </FormGroup>
+                        </div>
                         {
-                            !token &&   <FormGroup className="text-center">
+                            !token &&   <div className="text-center form-group">
                                             <BtnMain
-                                                bsStyle="success"
                                                 text="Sign Up"
                                                 onClick={this.goToRegistration} />
-                                        </FormGroup>
+                                        </div>
                         }
                         <hr />
                         { country === 'UA' && !token ? null : <MemberCarouselSmall /> }
-                	</Col>
-            	</Row>
+                	</div>
+            	</div>
             </Layout>
 		)
 	}
 }
 
-const mapStateToProps = state =>
+const mapStateToProps = ({signup, user}) =>
     ({
-        country: state.signup.country,
-        token: state.user.token,
+        country: signup.country,
+        token: user.token,
     })
 
 export default connect(mapStateToProps)(Faq)

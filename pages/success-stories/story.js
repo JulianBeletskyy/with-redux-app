@@ -22,10 +22,10 @@ class Story extends Component {
 				<div className="story-list-header">
 					<h1>{story.client_name} & {story.girl_name}</h1>
 				</div>
-				<div>
+				<div className="form-group">
 					<img src={makeCDN(story.image)} alt="" className="img-responsive" />
 				</div>
-				<div dangerouslySetInnerHTML={{__html: html}} />
+				<div className="story-text" dangerouslySetInnerHTML={{__html: html}} />
 			</Layout>
 		)
 	}

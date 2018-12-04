@@ -1,30 +1,7 @@
 @font-face {
 	font-family: bebas_neue;
 	src: url(/static/assets/fonts/bebasneue_regular-webfont.woff);
-}
-.navBar > li.active:after {
-    width: 100%;
-}
-.navBar > li.active a {
-    background-color: unset !important;
-    background: transparent;
-}
-.member-preview-loader {
-    position: relative;
-    height: 200px;
-}
-.member-preview-loader i {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    color: #27c2d3;
-    right: unset;
-    transform: translate(-50%, -50%);
-}
-.d-none {
-    display: none !important;
-}
-.testing-class {
+}.testing-class {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -35,44 +12,14 @@
     top: -20px;
     left: 5px;
 }
-.accordion__title:focus {
-    outline: none;
-}
 .mainPart {
     min-height: 100%;
 }
-.online-dot span {
-    position: absolute;
-    right: 10px;
-    bottom: -5px;
-}
-.online-dot.online span {
-    color: #34dca2;
-}
-.online-dot.offline span {
-    color: #a8a8a8;
-}
-@media (max-width: 1199px) {
-    .black-friday-text {
-        line-height: 1;
-    }
-}
-@media (max-width: 991px) {
-    .black-friday-wrap {
-        margin-top: 15px;
-    }
+.story-text {
+    line-height: 2;
 }
 @media (max-width: 767px) {
     .slider-container {
-        width: 100%;
-    }
-}
-@media (max-width: 630px) {
-    .black-friday-text {
-        position: relative;
-        width: 100%;
-    }
-    .black-friday-img {
         width: 100%;
     }
 }

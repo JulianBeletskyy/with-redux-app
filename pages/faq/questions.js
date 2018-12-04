@@ -6,7 +6,6 @@ import {
     AccordionItemBody,
 } from 'react-accessible-accordion'
 import TextField from '../../components/inputs/text_field'
-import { FormGroup } from 'react-bootstrap'
 
 class Questions extends Component {
     constructor() {
@@ -75,15 +74,13 @@ class Questions extends Component {
     render() {
         return (
         	<div>
-	        	<FormGroup>
+	        	<div className="form-group">
 	                <TextField
 	                    placeholder="Search"
 	                    onChange={this.handleSearch}
 	                    inputRef={ref => { this.search = ref }} />
-	            </FormGroup>
-	           	<Accordion>
-	                { this.state.list.map((item, i) => this.printAccordion(item, i)) }
-	            </Accordion>
+	            </div>
+	           	<Accordion>{ this.state.list.map((item, i) => this.printAccordion(item, i)) }</Accordion>
             </div> 
         )
     }

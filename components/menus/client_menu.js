@@ -59,8 +59,8 @@ export class ClientMenu extends Component {
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
-						text={membership.value.month == 1 && membership.value.trial ? membership.name + ' (Trial)' : membership.name}
-						keyName="Membership:"
+						text={`${membership.name} Upgrade`}
+						keyName={`Membership:`}
 						link="subscribe"
 						onClick={this.goToSubscribe} />
 				</FormGroup>

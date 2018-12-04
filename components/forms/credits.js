@@ -32,6 +32,13 @@ class Credits extends Component {
 	            </div>
 	}
 
+	goToSubscribe = e => {
+		e.preventDefault()
+		const { dispatch } = this.props
+		dispatch(toggleModal(false, 'credits'))
+		Router.pushRoute('/subscribe')
+	}
+
 	checkOut = () => {
 		window.paypal.Button.render({
             env: 'production', // sandbox | production
@@ -157,7 +164,12 @@ class Credits extends Component {
                         </div>
                 	: 	null
                 }
-                <div className={`text-center ${!activePackage.id ? ' hidden' : ''}`} id="paypal-button"></div>
+                <div className={`text-center form-group ${!activePackage.id ? ' hidden' : ''}`} id="paypal-button"></div>
+                <div className="text-center">
+                	<strong>
+                		<a href="/subscribe" className="font-bebas fs-16" onClick={this.goToSubscribe}>Upgrade Membership</a>
+            		</strong>
+                </div>
             </div>
         )
     }

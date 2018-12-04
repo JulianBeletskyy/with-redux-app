@@ -5,7 +5,6 @@ import { getMember, toggleInterest, toggleFavorite, getContactsDetails, addViewe
 import { makeCall } from '../../actions/chat'
 import { toggleModal, setAlert } from '../../actions/ui'
 import { setReceiverToShop } from '../../actions/shop'
-import { Grid, Row, Col } from 'react-bootstrap'
 import Loader from '../../components/loader'
 import { MONTH } from '../../config'
 import LinkIcon from '../../components/list/link_icon'
@@ -175,12 +174,12 @@ class Member extends Component {
 			<Layout>
                 <div className="pt-15">
                     <div className="pt-66 bg-blue">
-                        <Grid className="bg-white pt-15 pb-50">
+                        <div className="bg-white pt-15 pb-50 container">
                             {
                                 ! this.checkRequest()
                                 ?   <Loader />
-                                :   <Row>
-                                        <Col md={3} lg={4}>
+                                :   <div className="row">
+                                        <div className="col-md-3 col-lg-4">
                                             <div className="form-group">
                                                 <AvatarMember
                                                     src={member.avatar.croped} 
@@ -201,8 +200,8 @@ class Member extends Component {
                                                     </div>
                                                 :   null
                                             }
-                                        </Col>
-                                        <Col md={5} lg={4}>
+                                        </div>
+                                        <div className="col-md-5 col-lg-4">
                                             <div>
                                                 <strong className={`font-bebas fs-36 ${member.role}-color`}>{member.first_name}</strong>
                                                 <strong className="fs-18">,&nbsp;{member.age} y.o.</strong>
@@ -407,8 +406,8 @@ class Member extends Component {
                                                     </div>
                                                 :   null
                                             }
-                                        </Col>
-                                        <Col md={4}>
+                                        </div>
+                                        <div className="col-md-4">
                                             <div className="row">
                                                 <div className="col-sm-6 col-lg-6 col-md-12">
                                                     <LinkIcon 
@@ -483,10 +482,10 @@ class Member extends Component {
                                                     </div>
                                                 :   null
                                             }
-                                        </Col>
-                                    </Row>
+                                        </div>
+                                    </div>
                             }
-                        </Grid>
+                        </div>
                     </div>
                 </div>
                 {
