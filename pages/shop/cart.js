@@ -8,11 +8,15 @@ import { setCart, setReceiverToShop, buyProducts } from '../../actions/shop'
 import ReceiverInfo from '../../components/block/receiver_info'
 import { makeCDN } from '../../utils'
 import { setAlert } from '../../actions/ui'
+import * as config from '../../config'
 
 class Cart extends Component {
     constructor(props) {
         super(props)
         const { dispatch } = props
+        
+        this.paypal_id = new Date() * 1;
+
         dispatch(getUserInfo())
         dispatch(getShopMembers())
     }
@@ -38,6 +42,27 @@ class Cart extends Component {
             total += item.product.price * item.count
         })
         return total.toFixed(2)
+    }
+
+    createAttemptPay = () => {
+        let products = "";
+        this.props.cart.map((item, i) => {
+            products += `${item.product.name} (${item.product.price}) `;
+        })
+
+        fetch(config.API_URL + "/client/pay/attempt", {
+            method: "post",
+            credentials: 'same-origin',
+            headers: {
+                'Authorization': `Bearer ${this.props.token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                info: `Products: ${products}`,
+                paypal_id: this.paypal_id
+            })
+        });
     }
 
     removeFromCart = product => e => {
@@ -147,6 +172,7 @@ class Cart extends Component {
                 production: 'AUjZF0corGMnwDfnp4_EGJkFESZn6u96_wnxqVL2XNQ_RCkqnHjLJaNRKSB9j4Ypn4LniWukXuSJ_bF7'
             },
             payment: (data, actions) => {
+                this.createAttemptPay();
                 return actions.payment.create({
                     payment: {
                         transactions: [
@@ -169,7 +195,8 @@ class Cart extends Component {
                     const mas = {
                         girl_id: receiver.id,
                         paypal_id: data.paymentID,
-                        products: temp
+                        products: temp,
+                        attempt: this.paypal_id
                     }
                     dispatch(buyProducts(mas)).then(res => {
                         this.clearCart()
@@ -291,6 +318,7 @@ const mapStateToProps = ({user, shop}) =>
         receiver: shop.receiver,
         shopMembers: shop.shopMembers,
         testing: user.testing,
+        token: user.token
     })
 
 export default connect(mapStateToProps)(Cart)

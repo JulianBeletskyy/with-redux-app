@@ -6,8 +6,14 @@ import { toggleModal, setActiveTab, setAlert } from '../../actions/ui'
 import { setSendingMessage, setBuyingAttach, buyMessage, buyAttach } from '../../actions/message'
 import { confirmAlert } from 'react-confirm-alert'
 import { Router } from '../../routes'
+import * as config from '../../config'
 
 class Credits extends Component {
+	
+	constructor() {
+		super();
+		this.paypal_id = new Date() * 1;
+	}
 
 	setPackage = item => e => {
 		const { dispatch, membership } = this.props
@@ -39,6 +45,22 @@ class Credits extends Component {
 		Router.pushRoute('/subscribe')
 	}
 
+	createAttemptPay = () => {
+        fetch(config.API_URL + "/client/pay/attempt", {
+            method: "post",
+            credentials: 'same-origin',
+            headers: {
+                'Authorization': `Bearer ${this.props.token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                info: `Dibs ${this.props.activePackage.price}`,
+                paypal_id: this.paypal_id
+            })
+        });
+    }
+
 	checkOut = () => {
 		window.paypal.Button.render({
             env: 'production', // sandbox | production
@@ -55,6 +77,7 @@ class Credits extends Component {
                 production: 'AUjZF0corGMnwDfnp4_EGJkFESZn6u96_wnxqVL2XNQ_RCkqnHjLJaNRKSB9j4Ypn4LniWukXuSJ_bF7'
             },
             payment: (data, actions) => {
+				this.createAttemptPay();
                 return actions.payment.create({
                     payment: {
                         transactions: [
@@ -69,7 +92,8 @@ class Credits extends Component {
 
                     const mas = {
                         paypal_id: data.paymentID,
-                        package_id: activePackage.id
+						package_id: activePackage.id,
+						attempt: this.paypal_id
                     }
                     
                     dispatch(buyPackage(mas)).then(res => {
@@ -184,6 +208,7 @@ const mapStateToProps = state =>
 	    sendingMessage: state.message.sendingMessage,
 		buyingAttach: state.message.buyingAttach,
 		testing: state.user.testing,
+		token: state.user.token
 	})
 
 export default connect(mapStateToProps)(Credits)

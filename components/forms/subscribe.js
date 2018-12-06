@@ -5,10 +5,14 @@ import { connect } from 'react-redux'
 import BtnMain from '../../components/buttons/btn_main'
 import { Radio } from 'react-bootstrap'
 import { toggleModal, setUiKey, setAlert } from '../../actions/ui'
+import * as config from '../../config'
 
 class Subscribe extends Component {
     constructor() {
         super()
+
+        this.paypal_id = new Date() * 1;
+
         this.state = {
             plan: {
                 id: 0,
@@ -16,9 +20,10 @@ class Subscribe extends Component {
                 amount: 0.00,
                 period: 0,
                 user_id: 0,
-                value_id: 0
+                value_id: 0,
+                paypal_id: this.paypal_id
             }
-        }
+        }        
     }
 
 	componentDidMount() {
@@ -33,8 +38,27 @@ class Subscribe extends Component {
         dispatch(toggleModal(true, 'login'))
     }
 
+    createAttemptPay = (membership) => {
+        fetch(config.API_URL + "/client/pay/attempt", {
+            method: "post",
+            credentials: 'same-origin',
+            headers: {
+                'Authorization': `Bearer ${this.props.token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                info: `Membership ${membership}`,
+                paypal_id: this.paypal_id
+            })
+        });
+    }
+
     subscribe = activePlan => e => {
         const { userId, testing, dispatch } = this.props
+        
+        this.createAttemptPay(activePlan.name)
+
         if (testing) {
             dispatch(setAlert('Not available for test user', 'error'))
             return
