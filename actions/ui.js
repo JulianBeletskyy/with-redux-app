@@ -36,7 +36,7 @@ export const sendComment = (data, id) => dispatch => {
 }
 
 export const getStories = () => dispatch => {
-	return get('stories').then(res => {
+	return get('stories/success').then(res => {
 		if (res.data) {
 			dispatch(setUiKey('stories', res.data))
 		}
@@ -44,7 +44,7 @@ export const getStories = () => dispatch => {
 }
 
 export const getStory = id => dispatch => {
-	return get(`stories/${id}`).then(res => {
+	return get(`stories/success/${id}`).then(res => {
 		if (res.data) {
 			dispatch(setUiKey('story', res.data))
 		}

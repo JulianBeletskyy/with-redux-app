@@ -3,10 +3,27 @@ import { connect } from 'react-redux'
 import Layout from '../../layouts/stories'
 import { getStory } from '../../actions/ui'
 import { makeCDN } from '../../utils'
+import { TemplateZero, TemplateOne, TemplateTwo, TemplateThree } from '../../components/templates'
+import Loader from '../../components/loader'
 
 class Story extends Component {
 	static async getInitialProps({query}) {
 		return {id: query.slug}
+	}
+
+	getTemplate = story => {
+		switch (story.template) {
+			case 0:
+				return <TemplateZero {...story} />
+			case 1: 
+				return <TemplateOne {...story} />
+			case 2:
+				return <TemplateTwo {...story} />
+			case 3:
+				return <TemplateThree {...story} />
+			default:
+				return null
+		}
 	}
 
 	componentDidMount() {
@@ -16,16 +33,13 @@ class Story extends Component {
 
 	render() {
 		const { story } = this.props
-		const html = story.story ? story.story.replace(/&nbsp;/g, ' ') : ''
 		return (
 			<Layout>
-				<div className="story-list-header">
-					<h1>{story.client_name} & {story.girl_name}</h1>
-				</div>
-				<div className="form-group">
-					<img src={makeCDN(story.image)} alt="" className="img-responsive" />
-				</div>
-				<div className="story-text" dangerouslySetInnerHTML={{__html: html}} />
+				{
+					Object.keys(story).length && this.props.id*1 === story.id
+					? 	this.getTemplate(story)
+					: 	<Loader />
+				}
 			</Layout>
 		)
 	}

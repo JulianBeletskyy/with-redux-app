@@ -34,6 +34,33 @@
     opacity: 0.5;
     white-space: nowrap;
 }
+.px-50 {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.mb-50 {
+    margin-bottom: 50px;
+}
+.pt-50 {
+    padding-top: 50px;
+}
+
+.divider-story {
+    border-bottom: 3px solid #eee;
+    width: 50%;
+    margin: 0 auto;
+}
+.story-list-header h1 {
+    margin-left: -30px;
+    margin-right: -30px;
+}
+.wrap-img-temp-3 {
+    display: flex;
+    align-items: stretch;
+}
+.w-50 {
+    width: 50%;
+}
 @media (min-width: 992px) and (max-width: 1199px) {
     .already-member-wrap {
         margin-left: 24px;
