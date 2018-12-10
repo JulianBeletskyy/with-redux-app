@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { makeCDN } from '../../utils'
 
 class TemplateThree extends Component {
 
 	render() {
 		const { texts, files } = this.props
 		const imageStyle = {
-			backgroundImage: `url('${files[0]}')`,
+			backgroundImage: `url('${makeCDN(files[0])}')`,
 			width: '100%',
 		    height: '100%',
 		    position: 'relative',
@@ -25,7 +26,7 @@ class TemplateThree extends Component {
 					</div>
 					<div className="col-md-5 col-sm-6 px-50">
 						<div style={imageStyle}>
-							<img src={files[0]} style={{opacity: 0, width: '100%'}} />
+							<img src={makeCDN(files[0])} style={{opacity: 0, width: '100%'}} />
 						</div>
 					</div>
 				</div>

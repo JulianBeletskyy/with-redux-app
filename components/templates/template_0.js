@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { makeCDN } from '../../utils'
 
 class TemplateZero extends Component {
 
 	render() {
 		const { texts, files } = this.props
 		const imageStyle = {
-			backgroundImage: `url('${files[0]}')`,
+			backgroundImage: `url('${makeCDN(files[0])}')`,
 			width: '100%',
 		    height: '100%',
 		    position: 'relative',
@@ -16,14 +17,12 @@ class TemplateZero extends Component {
 		}
 
 		const thirdImgStyle = {
-			backgroundImage: `url('${files[2]}')`,
+			backgroundImage: `url('${makeCDN(files[2])}')`,
 			height: '50%',
-			backgroundSize: 'cover',
+			backgroundSize: 'contain',
 			backgroundPosition: '50%',
 			backgroundRepeat: 'no-repeat',
-			border: '15px solid #fff'
 		}
-		console.log(texts)
 		return (
 			<div className="pt-50">
 				<div className="row form-group">
@@ -35,7 +34,7 @@ class TemplateZero extends Component {
 					</div>
 					<div className="col-md-5 col-sm-6 px-50">
 						<div style={imageStyle}>
-							<img src={files[0]} style={{opacity: 0, width: '100%'}} />
+							<img src={makeCDN(files[0])} style={{opacity: 0, width: '100%'}} />
 						</div>
 					</div>
 				</div>
@@ -44,16 +43,15 @@ class TemplateZero extends Component {
 						<div className="divider-story"></div>
 					</div>
 				</div>
-
 				<div className="row mb-50">
 					<div className="col-sm-6 col-md-7 px-50 hidden-xs">
 						<div className="wrap-img-temp-3">
 							<div className="w-50 p-15">
-								<img src={files[1]} className="img-responsive" />
+								<img src={makeCDN(files[1])} className="img-responsive" />
 							</div>
 							<div className="w-50 position-relative">
 								<div style={thirdImgStyle}></div>
-								<div style={{...thirdImgStyle, backgroundImage: `url('${files[3]}')`}}></div>
+								<div style={{...thirdImgStyle, backgroundImage: `url('${makeCDN(files[3])}')`}}></div>
 							</div>
 						</div>
 					</div>
@@ -63,11 +61,11 @@ class TemplateZero extends Component {
 					<div className="col-sm-6 col-md-7 px-50 visible-xs-block">
 						<div className="wrap-img-temp-3">
 							<div className="w-50 p-15">
-								<img src={files[1]} className="img-responsive" />
+								<img src={makeCDN(files[1])} className="img-responsive" />
 							</div>
 							<div className="w-50 position-relative">
 								<div style={thirdImgStyle}></div>
-								<div style={{...thirdImgStyle, backgroundImage: `url('${files[3]}')`}}></div>
+								<div style={{...thirdImgStyle, backgroundImage: `url('${makeCDN(files[3])}')`}}></div>
 							</div>
 						</div>
 					</div>

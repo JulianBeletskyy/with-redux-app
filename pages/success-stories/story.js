@@ -3,8 +3,13 @@ import { connect } from 'react-redux'
 import Layout from '../../layouts/stories'
 import { getStory } from '../../actions/ui'
 import { makeCDN } from '../../utils'
-import { TemplateZero, TemplateOne, TemplateTwo, TemplateThree } from '../../components/templates'
 import Loader from '../../components/loader'
+import loadable from '@loadable/component'
+
+const TemplateZero = loadable(() => import('../../components/templates/template_0'))
+const TemplateOne = loadable(() => import('../../components/templates/template_1'))
+const TemplateTwo = loadable(() => import('../../components/templates/template_2'))
+const TemplateThree = loadable(() => import('../../components/templates/template_3'))
 
 class Story extends Component {
 	static async getInitialProps({query}) {
@@ -33,6 +38,7 @@ class Story extends Component {
 
 	render() {
 		const { story } = this.props
+		console.log(story.template)
 		return (
 			<Layout>
 				{

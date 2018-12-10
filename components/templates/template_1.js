@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { makeCDN } from '../../utils'
 
 class TemplateOne extends Component {
 
 	render() {
 		const { texts, files } = this.props
 		const imageStyle = {
-			backgroundImage: `url('${files[0]}')`,
+			backgroundImage: `url('${makeCDN(files[0])}')`,
 			width: '100%',
 		    height: '100%',
 		    position: 'relative',
@@ -16,7 +17,7 @@ class TemplateOne extends Component {
 		}
 
 		const secondImgStyle = {
-			backgroundImage: `url('${files[1]}')`,
+			backgroundImage: `url('${makeCDN(files[1])}')`,
 			backgroundRepeat: 'no-repeat',
 			backgroundSize: 'cover',
 			width: '80%',
@@ -24,7 +25,7 @@ class TemplateOne extends Component {
 		}
 
 		const thirdImgStyle = {
-			backgroundImage: `url('${files[2]}')`,
+			backgroundImage: `url('${makeCDN(files[2])}')`,
 			backgroundRepeat: 'no-repeat',
 		    backgroundSize: 'cover',
 		    backgroundPosition: '0px 0px',
@@ -45,7 +46,7 @@ class TemplateOne extends Component {
 					</div>
 					<div className="col-md-5 col-sm-6 px-50">
 						<div style={imageStyle}>
-							<img src={files[0]} style={{opacity: 0, width: '100%'}} />
+							<img src={makeCDN(files[0])} style={{opacity: 0, width: '100%'}} />
 						</div>
 					</div>
 				</div>
@@ -57,22 +58,22 @@ class TemplateOne extends Component {
 				<div className="row mb-50">
 					<div className="col-sm-6 col-md-7 px-50">
 						<div style={secondImgStyle}>
-							<img src={files[1]} style={{opacity: 0, width: '100%'}} />
+							<img src={makeCDN(files[1])} style={{opacity: 0, width: '100%'}} />
 						</div>
 						<div style={thirdImgStyle}>
-							<img src={files[2]} style={{opacity: 0, width: '100%'}} />
+							<img src={makeCDN(files[2])} style={{opacity: 0, width: '100%'}} />
 						</div>
 					</div>
 					<div className="clearfix visible-xs-block form-group" ></div>
 					<div className="col-sm-6 col-md-5 px-50">
-						<pre style={{lineHeight: 1.9}}>{ texts[3] }</pre>
+						<pre style={{lineHeight: 1.9}}>{ texts[2] }</pre>
 					</div>
 					
 				</div>
 				
 				<div className="row form-group">
 					<div className="col-sm-12 px-50">
-						<pre style={{lineHeight: 1.9}}>{ texts[4] }</pre>
+						<pre style={{lineHeight: 1.9}}>{ texts[3] }</pre>
 					</div>
 				</div>
 			</div>

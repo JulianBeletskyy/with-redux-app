@@ -24,10 +24,10 @@ class SuccessStories extends Component {
 		return 	<Col key={i} xs={12} md={4}>
 					<div className="form-group story-list-item">
 						<div className="story-list-img-wrap">
-							<img src={item.files[0]} className="img-responsive story-list-img" alt="" />
+							<img src={makeCDN(item.files[0])} className="img-responsive story-list-img" alt="" />
 						</div>
-						<div className="story-list-names">{item.client_name} & {item.girl_name}</div>
-						<div className="story-list-story">{this.getText(item.texts)}</div>
+						<div className="story-list-names">{item.texts[0]}</div>
+						<div className="story-list-story">{this.getText(item.texts[1])}</div>
 						<div className="text-center">
 							<BtnMain text="See More" bsStyle="outline" onClick={this.goToStory(item.id)} />
 						</div>
