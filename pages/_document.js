@@ -47,6 +47,19 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css"/>
           <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/style.css"/>
           <link rel="stylesheet" href="/static/assets/css/font.css"/>
+          <script dangerouslySetInnerHTML={{__html: 
+            `!function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '947607382102096');
+            fbq('track', 'PageView');` }} />
+        <noscript>
+          <img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=947607382102096&ev=PageView&noscript=1" /></noscript>
         </Head>
         <body>
           <noscript>

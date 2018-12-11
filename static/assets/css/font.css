@@ -77,19 +77,8 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     width: 100%;
-    /*display: inline-block;*/
     height: 1.21em;
 }
-/*.text-elipsis:after {
-      content: "...";
-      text-align: right;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 70%;
-      height: 1.2em;
-      
-}*/
 @media (min-width: 992px) and (max-width: 1199px) {
     .already-member-wrap {
         margin-left: 24px;
@@ -103,5 +92,9 @@
 @media (max-width: 767px) {
     .slider-container {
         width: 100%;
+    }
+    .px-50 {
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
