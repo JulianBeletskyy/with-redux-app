@@ -114,10 +114,19 @@ class MailItem extends Component {
     	}
     }
 
+    componentDidMount() {
+        const isFirefox = typeof InstallTrigger !== 'undefined'
+        if (isFirefox) {
+            if (this.elipsis.innerText.length >= 30) {
+                this.elipsis.innerText = this.elipsis.innerText.replace(/\n/g, '').slice(0, 30) + '...'
+            }
+        }
+    }
+
     render() {
     	const { type, role, read } = this.props
     	const data = this.getData()
-
+        
         return (
            <div className="p-15">
                 <div className={`row ${role} ${!read && (type === 'incoming' || type === 'deleted') ? 'unread-message' : ''}`}>
@@ -134,7 +143,7 @@ class MailItem extends Component {
 				                                    <div><strong>Time: </strong>{this.getDate('time')}</div>
 				                                </div>
                         }  
-                        <div className="form-group text-elipsis">
+                        <div ref={ref => this.elipsis = ref} className="form-group text-elipsis">
                             <strong>Message: </strong>
                             <span id={`description-${this.props.id}`} dangerouslySetInnerHTML={{__html: data.text}} />
                         </div>
@@ -148,7 +157,6 @@ class MailItem extends Component {
                         &nbsp;
                         {
                             type === 'deleted' && <BtnMain
-				                                    bsStyle="success"
 				                                    onClick={this.restore}
 				                                    text="Restore message" />
                         }  

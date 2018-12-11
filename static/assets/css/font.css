@@ -68,6 +68,28 @@
 .w-30 {
     width: 30%;
 }
+.text-elipsis {
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    width: 100%;
+    /*display: inline-block;*/
+    height: 1.21em;
+}
+/*.text-elipsis:after {
+      content: "...";
+      text-align: right;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 70%;
+      height: 1.2em;
+      
+}*/
 @media (min-width: 992px) and (max-width: 1199px) {
     .already-member-wrap {
         margin-left: 24px;

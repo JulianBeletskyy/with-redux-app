@@ -85,17 +85,15 @@ class Landing extends Component {
 
 	printStories = (story, i) => {
 		if (i > 2) { return false }
-        const description = story.story.slice(0, 250)
+        const description = story.texts[1].slice(0, 250)
         return  <div className="landing-story-wrap" key={i} onClick={() => this.goToStory(story.id)}>
                     <div className="row">
                         <div className="col-xs-4">
-                            <img src={makeCDN(story.image)} alt={story.client_name} className="img-responsive" />
+                            <img src={makeCDN(story.files[0])} alt="" className="img-responsive" />
                         </div>
                         <div className="col-sm-8">
-                            <h3 className="{style.carouselName}">
-                                <span>{story.client_name}</span>
-                                &nbsp; & &nbsp;
-                                <span>{story.girl_name}</span>
+                            <h3>
+                                <span>{story.texts[0]}</span>
                             </h3>
                             <p>{description}...</p>
                         </div>
