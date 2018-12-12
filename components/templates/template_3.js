@@ -22,7 +22,7 @@ class TemplateThree extends Component {
 						<div className="story-list-header form-group">
 							<h1>{ texts[0] }</h1>
 						</div>
-						<pre style={{lineHeight: 1.9}}>{ texts[1] }</pre>
+						<pre style={{lineHeight: 1.9, overflow: 'hidden'}}>{ texts[1] }</pre>
 					</div>
 					<div className="col-md-5 col-sm-6 px-50">
 						<div style={imageStyle}>
@@ -37,15 +37,15 @@ class TemplateThree extends Component {
 				</div>
 				<div className="row mb-50">
 					<div className="col-sm-7 px-50">
-						<pre style={{lineHeight: 1.9}}>{ texts[2] }</pre>
+						<pre style={{lineHeight: 1.9, overflow: 'hidden'}}>{ texts[2] }</pre>
 					</div>
 					<div className="col-sm-5 px-50">
-						<pre style={{lineHeight: 1.9}}>{ texts[3] }</pre>
+						<pre style={{lineHeight: 1.9, overflow: 'hidden'}}>{ texts[3] }</pre>
 					</div>
 				</div>
 				<div className="row form-group">
 					<div className="col-sm-12 px-50">
-						<pre style={{lineHeight: 1.9}}>{ texts[4] }</pre>
+						<pre style={{lineHeight: 1.9, overflow: 'hidden'}}>{ texts[4] }</pre>
 					</div>
 				</div>
 			</div>

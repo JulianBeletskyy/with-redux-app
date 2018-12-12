@@ -17,11 +17,7 @@ class TemplateZero extends Component {
 		}
 
 		const thirdImgStyle = {
-			backgroundImage: `url('${makeCDN(files[2])}')`,
-			height: '50%',
-			backgroundSize: 'contain',
-			backgroundPosition: '50%',
-			backgroundRepeat: 'no-repeat',
+			marginBottom: 15,
 		}
 		return (
 			<div className="pt-50">
@@ -30,7 +26,7 @@ class TemplateZero extends Component {
 						<div className="story-list-header form-group">
 							<h1>{ texts[0] }</h1>
 						</div>
-						<pre style={{lineHeight: 1.9}}>{ texts[1] }</pre>
+						<pre style={{lineHeight: 1.9, overflow: 'hidden'}}>{ texts[1] }</pre>
 					</div>
 					<div className="col-md-5 col-sm-6 px-50">
 						<div style={imageStyle}>
@@ -49,14 +45,18 @@ class TemplateZero extends Component {
 							<div className="w-50 p-15">
 								<img src={makeCDN(files[1])} className="img-responsive" />
 							</div>
-							<div className="w-50 position-relative">
-								<div style={thirdImgStyle}></div>
-								<div style={{...thirdImgStyle, backgroundImage: `url('${makeCDN(files[3])}')`}}></div>
+							<div className="w-50 position-relative" style={{paddingTop: 15, paddingBottom: 15}}>
+								<div style={thirdImgStyle}>
+									<img src={makeCDN(files[2])} className="img-responsive" />
+								</div>
+								<div style={{...thirdImgStyle}}>
+									<img src={makeCDN(files[3])} className="img-responsive" />
+								</div>
 							</div>
 						</div>
 					</div>
 					<div className="col-sm-6 col-md-5 px-50">
-						<pre style={{lineHeight: 1.9}}>{ texts[2] }</pre>
+						<pre style={{lineHeight: 1.9, overflow: 'hidden'}}>{ texts[2] }</pre>
 					</div>
 					<div className="col-sm-6 col-md-7 px-50 visible-xs-block">
 						<div className="wrap-img-temp-3">
@@ -64,15 +64,19 @@ class TemplateZero extends Component {
 								<img src={makeCDN(files[1])} className="img-responsive" />
 							</div>
 							<div className="w-50 position-relative">
-								<div style={thirdImgStyle}></div>
-								<div style={{...thirdImgStyle, backgroundImage: `url('${makeCDN(files[3])}')`}}></div>
+								<div style={thirdImgStyle}>
+									<img src={makeCDN(files[2])} className="img-responsive" />
+								</div>
+								<div style={{...thirdImgStyle, marginBottom: 0}}>
+									<img src={makeCDN(files[3])} className="img-responsive" />
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className="row form-group">
 					<div className="col-sm-12 px-50">
-						<pre style={{lineHeight: 1.9}}>{ texts[3] }</pre>
+						<pre style={{lineHeight: 1.9, overflow: 'hidden'}}>{ texts[3] }</pre>
 					</div>
 				</div>
 			</div>

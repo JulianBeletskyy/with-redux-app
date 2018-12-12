@@ -24,7 +24,7 @@ class SuccessStories extends Component {
 		return 	<Col key={i} xs={12} md={4}>
 					<div className="form-group story-list-item">
 						<div className="story-list-img-wrap">
-							<img src={makeCDN(item.files[0])} className="img-responsive story-list-img" alt="" />
+							<img src={makeCDN(item.files[0])} onClick={this.goToStory(item.id)} className="img-responsive story-list-img pointer" alt="" />
 						</div>
 						<div className="story-list-names">{item.texts[0]}</div>
 						<div className="story-list-story">{this.getText(item.texts[1])}</div>

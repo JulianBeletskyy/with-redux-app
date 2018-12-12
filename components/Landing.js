@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux'		
 import { Row, Col, FormGroup, Panel } from 'react-bootstrap'
 import Registration from './registration'
 import BtnMain from '../components/buttons/btn_main'
