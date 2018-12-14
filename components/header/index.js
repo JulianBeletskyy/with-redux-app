@@ -148,7 +148,7 @@ class PublicHeader extends Component {
                                 :   null
                             }
                             {
-                                (country !== 'UA' || (token && role === 'client' && active))
+                                token && role === 'client'
                                 ?   <li role="presentation"><a href="/videocall" onClick={this.goTo('/videocall')}>Video Call</a></li>
                                 :   null
                             }

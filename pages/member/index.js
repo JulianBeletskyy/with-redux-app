@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Layout from '../../layouts'
-import { getMember, toggleInterest, toggleFavorite, getContactsDetails, addViewed, sendVideoRequest } from '../../actions/members'
+import { getMember, toggleInterest, toggleFavorite, getContactsDetails, addViewed, sendVideoRequest, getMemberPublic } from '../../actions/members'
 import { makeCall } from '../../actions/chat'
 import { toggleModal, setAlert } from '../../actions/ui'
 import { setReceiverToShop } from '../../actions/shop'
@@ -182,7 +182,11 @@ class Member extends Component {
     sendVideoRequest = e => {
         e.preventDefault()
         e.stopPropagation()
-        const { dispatch, member, membership } = this.props
+        const { dispatch, member, membership, userId } = this.props
+        if (!userId) {
+            dispatch(toggleModal(true, 'login'))
+            return
+        }
         if (membership.name !== 'VIP') {
             dispatch(setAlert('Only for VIP Membership', 'error'))
             return
@@ -197,7 +201,7 @@ class Member extends Component {
     }
 
     componentDidMount() {
-        const { loginHash, dispatch, id } = this.props
+        const { loginHash, dispatch, id, token } = this.props
         if (loginHash) {
             dispatch(loginWithHash(loginHash)).then(res => {
                 if (res) {
@@ -207,6 +211,11 @@ class Member extends Component {
                 }
             })
         } else {
+            if (!token) {
+                dispatch(getMemberPublic(id))
+                return
+            }
+
             dispatch(getMember(id))
             dispatch(getUserInfo())
         }
@@ -563,6 +572,7 @@ const mapStateToProps = state =>
         active: state.user.data.active,
         userId: state.user.data.id,
         testing: state.user.testing,
+        token: state.user.token,
     })
 
 export default connect(mapStateToProps)(Member)

@@ -42,6 +42,14 @@ export const getMember = id => dispatch => {
 	})
 }
 
+export const getMemberPublic = id => dispatch => {
+	return get(`user/member/${id}/offline`).then(res => {
+		if (res.data) {
+			dispatch(setMember(res.data))
+		}
+	})
+}
+
 export const toggleInterest = (id, value) => dispatch => {
 	return get(`user/members/interest/${id}/${!value ? 'add' : 'remove'}`, true).then(res => {
 		if (res.data) {
