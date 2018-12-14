@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Layout from '../../layouts'
-import { getMember, toggleInterest, toggleFavorite, getContactsDetails, addViewed } from '../../actions/members'
+import { getMember, toggleInterest, toggleFavorite, getContactsDetails, addViewed, sendVideoRequest } from '../../actions/members'
 import { makeCall } from '../../actions/chat'
 import { toggleModal, setAlert } from '../../actions/ui'
 import { setReceiverToShop } from '../../actions/shop'
@@ -177,6 +177,23 @@ class Member extends Component {
             return
         }
         dispatch(makeCall(member.id, member.first_name, member.avatar.croped))
+    }
+
+    sendVideoRequest = e => {
+        e.preventDefault()
+        e.stopPropagation()
+        const { dispatch, member, membership } = this.props
+        if (membership.name !== 'VIP') {
+            dispatch(setAlert('Only for VIP Membership', 'error'))
+            return
+        }
+        
+        
+        dispatch(sendVideoRequest(member.id)).then(res => {
+            if (res) {
+                dispatch(toggleModal(true, 'videoRequestMessage'))
+            }
+        })
     }
 
     componentDidMount() {
@@ -461,13 +478,13 @@ class Member extends Component {
                                                         icon="fas fa-envelope" />
                                                 </div>
                                                 {
-                                                    testUsers.includes(userId)
+                                                    role === 'client'
                                                     ?   <div className="col-sm-6 col-lg-6 col-md-12">
                                                             <LinkIcon
                                                                 text="Invite to Video-Chat"
                                                                 icon="fas fa-comment"
                                                                 color="#FF0000"
-                                                                onClick={this.inviteToChat} />
+                                                                onClick={this.sendVideoRequest} />
                                                         </div>
                                                     :   null
                                                 }
