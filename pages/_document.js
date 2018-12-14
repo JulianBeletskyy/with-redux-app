@@ -78,7 +78,7 @@ export default class MyDocument extends Document {
               }(document, 'script', 'facebook-jssdk'));
             window.fbAsyncInit = function() {
                   FB.init({
-                      appId: '266703500400965',
+                      appId: '310176322926692',
                       autoLogAppEvents: true,
                       xfbml: true,
                       version: 'v2.12'
