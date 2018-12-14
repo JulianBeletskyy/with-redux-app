@@ -49,7 +49,7 @@ class TemplateZero extends Component {
 								<div style={thirdImgStyle}>
 									<img src={makeCDN(files[2])} className="img-responsive" />
 								</div>
-								<div style={{...thirdImgStyle}}>
+								<div style={thirdImgStyle}>
 									<img src={makeCDN(files[3])} className="img-responsive" />
 								</div>
 							</div>

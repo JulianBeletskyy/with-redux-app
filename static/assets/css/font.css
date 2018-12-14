@@ -79,6 +79,18 @@
     width: 100%;
     height: 1.4em;
 }
+
+.videocall-link {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    color: #27c2d3;
+    /*font-family: bebas_neue;*/
+    font-size: 14px;
+}
+.videocall-link:hover {
+    font-weight: bold;
+}
 @media (min-width: 992px) and (max-width: 1199px) {
     .already-member-wrap {
         margin-left: 24px;

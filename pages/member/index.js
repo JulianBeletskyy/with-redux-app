@@ -54,6 +54,11 @@ class Member extends Component {
     }
 
     openMemberImages = i => e => {
+        const { dispatch, userId } = this.props
+        if (!userId) {
+            dispatch(toggleModal(true, 'login'))
+            return
+        }
         this.setState({showSlider: true, initialSlide: i+1})
     }
 
@@ -62,7 +67,11 @@ class Member extends Component {
     }
 
     toggleInterest = () => {
-        const { dispatch, member, testing } = this.props
+        const { dispatch, member, testing, userId } = this.props
+        if (!userId) {
+            dispatch(toggleModal(true, 'login'))
+            return
+        }
         if (testing) {
             dispatch(setAlert('Not available for test user', 'error'))
             return
@@ -73,7 +82,11 @@ class Member extends Component {
     }
 
     toggleFavorite = () => {
-        const { dispatch, member, testing } = this.props
+        const { dispatch, member, testing, userId } = this.props
+        if (!userId) {
+            dispatch(toggleModal(true, 'login'))
+            return
+        }
         if (testing) {
             dispatch(setAlert('Not available for test user', 'error'))
             return
@@ -86,7 +99,11 @@ class Member extends Component {
     }
 
     getContactsDetails = () => {
-        const { dispatch, member, testing } = this.props
+        const { dispatch, member, testing, userId } = this.props
+        if (!userId) {
+            dispatch(toggleModal(true, 'login'))
+            return
+        }
         if (testing) {
             dispatch(setAlert('Not available for test user', 'error'))
             return
@@ -95,13 +112,21 @@ class Member extends Component {
     }
 
     goToShop = () => {
-        const { dispatch, member } = this.props
+        const { dispatch, member, userId } = this.props
+        if (!userId) {
+            dispatch(toggleModal(true, 'login'))
+            return
+        }
         dispatch(setReceiverToShop(member))
         Router.pushRoute('/shop')
     }
 
     openModal = () => {
-        const { dispatch } = this.props
+        const { dispatch, userId } = this.props
+        if (!userId) {
+            dispatch(toggleModal(true, 'login'))
+            return
+        }
         dispatch(toggleModal(true, 'message'))
     }
 
@@ -142,7 +167,11 @@ class Member extends Component {
     }
 
     inviteToChat = () => {
-        const { dispatch, member, testing } = this.props
+        const { dispatch, member, testing, userId } = this.props
+        if (!userId) {
+            dispatch(toggleModal(true, 'login'))
+            return
+        }
         if (testing) {
             dispatch(setAlert('Not available for test user', 'error'))
             return

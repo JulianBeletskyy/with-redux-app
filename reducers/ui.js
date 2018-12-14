@@ -54,6 +54,7 @@ const initialState = {
         membership: false,
         paypal: false,
         subscribe: false,
+        videoRequestMessage: false,
     },
     showRegistration: false,
     tab: {

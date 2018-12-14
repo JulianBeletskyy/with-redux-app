@@ -81,7 +81,7 @@ class Services extends Component {
                                                 </tr>
                                                 <tr>
                                                     <td>100 Dibs/$0.89 per Dib. - $89.99</td>
-                                                    <td rowSpan="3"></td>
+                                                    <td rowSpan="3">1 minute of Video Call = 2 Dibs<br />(requires VIP Membership)</td>
                                                 </tr>
                                                  <tr>
                                                     <td>200 Dibs/$0.84 per Dib. - $169.99</td>

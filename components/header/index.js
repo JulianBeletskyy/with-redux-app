@@ -11,6 +11,8 @@ import Recovery from '../forms/recovery'
 import { Router } from '../../routes'
 import { getUnreadMessage } from '../../actions/message'
 import { setCart } from '../../actions/shop'
+import BtnMain from '../buttons/btn_main'
+
 
 class PublicHeader extends Component {
     constructor() {
@@ -69,6 +71,11 @@ class PublicHeader extends Component {
         return ''
     }
 
+    closeModal = () => {
+        const { dispatch } = this.props
+        dispatch(toggleModal(false, 'videoRequestMessage'))
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.userId && nextProps.userId !== this.props.userId) {
             const { dispatch } = this.props
@@ -86,7 +93,7 @@ class PublicHeader extends Component {
 
     render() {
         const { country } = this.props.signup
-        const { token, support, login, recovery, role, unreadMessage, cart, active } = this.props
+        const { token, support, login, recovery, role, unreadMessage, cart, active, videoRequestMessage } = this.props
 
         return (
             <div>
@@ -138,6 +145,11 @@ class PublicHeader extends Component {
                                         <a href="/contacts/favorite" onClick={this.goTo('/contacts/favorite')}>Favorite</a>
                                         <a href="/contacts/interests" onClick={this.goTo('/contacts/interest')}>My interests</a>
                                     </NavDropdown>
+                                :   null
+                            }
+                            {
+                                (country !== 'UA' || (token && role === 'client' && active))
+                                ?   <li role="presentation"><a href="/videocall" onClick={this.goTo('/videocall')}>Video Call</a></li>
                                 :   null
                             }
                             { 
@@ -220,6 +232,18 @@ class PublicHeader extends Component {
                     title="Recovery"
                     show={recovery}
                     keyModal="recovery" />
+                <MainModal
+                    body={  <div>
+                                <div className="form-group">
+                                    We have received your request. You will get the notification as soon as the lady confirms time and date.
+                                </div>
+                                <div className="text-center">
+                                    <BtnMain onClick={this.closeModal} text="OK" />
+                                </div>
+                            </div>}
+                    title="Video Request"
+                    show={videoRequestMessage}
+                    keyModal="videoRequestMessage" />
             </div>
         );
     }
@@ -239,6 +263,7 @@ const mapStateToProps = state =>
         unreadMessage: state.user.data.unread_message,
         cart: state.shop.cart,
         active: state.user.data.active,
+        videoRequestMessage: state.ui.modals.videoRequestMessage,
     })
 
 export default connect(mapStateToProps)(PublicHeader)

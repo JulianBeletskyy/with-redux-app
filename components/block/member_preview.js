@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { toggleFavorite } from '../../actions/members'
+import { toggleFavorite, sendVideoRequest } from '../../actions/members'
 import { Router } from '../../routes'
 import OnlineDot from './online_dot'
 import { makeCDN } from '../../utils'
-import { setAlert } from '../../actions/ui'
+import { setAlert, toggleModal } from '../../actions/ui'
 
 const testUsers = [221, 286]
 
@@ -35,6 +35,23 @@ class MemberPreview extends Component {
 		}
 	}
 
+	sendVideoRequest = e => {
+		e.preventDefault()
+		e.stopPropagation()
+		const { dispatch, member, membership } = this.props
+		if (membership.name !== 'VIP') {
+			dispatch(setAlert('Only for VIP Membership', 'error'))
+			return
+		}
+		
+		
+		dispatch(sendVideoRequest(member.id)).then(res => {
+			if (res) {
+				dispatch(toggleModal(true, 'videoRequestMessage'))
+			}
+		})
+	}
+
 	componentDidMount() {
 		this.img.onload = () => {
 			this.setState({ready: true})
@@ -42,12 +59,12 @@ class MemberPreview extends Component {
 	}
 
     render() {
-    	const { member, stars = true, onClickItem = null, token, onlineUsers, userId } = this.props
+    	const { member, stars = true, onClickItem = null, token, onlineUsers, userId, videocall, videoRequestMessage } = this.props
     	const link = token ?  `/member/${member.id.toString()}` : `/`
-
+    	const additionalStyle = videocall ? {height: 310} : {}
         return (
             <div className="form-group">
-	            <div className="member-preview-wrap">
+	            <div className="member-preview-wrap" style={additionalStyle}>
                     <a href={link} onClick={this.goTo(link)}>
 	                    <span>
 	    	            	<div className="member-preview-img-wrap">
@@ -63,11 +80,19 @@ class MemberPreview extends Component {
 	    		            		</div>
 	    		                	<div>{`${member.age} years`}</div>
 	    		                	<div className="ellipsis">{`${member.country}, ${member.state ? `${member.state}, ` : ''} ${member.city}`}</div>
+	    		                	
 	    		                </div>
 	    	                </div>
 	    	                {
+		                		videocall
+		                		? 	<div className="text-center">
+			                    		<span className="videocall-link" onClick={this.sendVideoRequest}>Request Video Call</span>
+			                        </div>
+		                		: 	null
+		                	}
+	    	                {
 	    	                	testUsers.includes(userId)
-	    	                	? 	<OnlineDot active={onlineUsers.includes(member.id)} />
+	    	                	? 	null //<OnlineDot active={onlineUsers.includes(member.id)} />
 	    	                	: 	null
 	    	                }	    	                
 	                        {
@@ -80,11 +105,19 @@ class MemberPreview extends Component {
                         </span>
                     </a>
 	            </div>
+	            
             </div>
         );
     }
 }
 
-const mapStateToProps = state => ({token: state.user.token, onlineUsers: state.user.onlineUsers, userId: state.user.data.id, testing: state.user.testing})
+const mapStateToProps = state => 
+	({
+		token: state.user.token,
+		onlineUsers: state.user.onlineUsers,
+		userId: state.user.data.id,
+		testing: state.user.testing,
+		membership: state.user.data.membership
+	})
 
 export default connect(mapStateToProps)(MemberPreview)

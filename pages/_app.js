@@ -9,7 +9,7 @@ class MyApp extends App {
   	componentDidMount() {
   		const { reduxStore } = this.props
   		const { user: {token} } = reduxStore.getState()
-  		const privatePage = ['shop', 'subscribe', 'mail', 'contacts', 'girls', 'member']
+  		const privatePage = ['shop', 'subscribe', 'mail', 'contacts', 'girls']
 		if (token) {
 			fetch(`${API_URL}/login/check`, {headers: {'Authorization': `Bearer ${token}`}})
 			.then(({redirected}) => {

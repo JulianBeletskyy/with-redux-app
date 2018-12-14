@@ -16,6 +16,8 @@ routes.add('login', '/login/:loginHash', '/')
 routes.add('girls', '/girls', '/')
 routes.add('men', '/men', '/')
 
+routes.add('videocall', '/videocall', '/videocall')
+
 routes.add('contacts', '/contacts/:slug')
 
 routes.add('member', '/member/:id')

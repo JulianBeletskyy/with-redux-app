@@ -4,6 +4,7 @@ import MemberPreview from './member_preview'
 class MemberBlock extends Component {
 
     printList = (member, i) => {
+        const { videocall } = this.props
         return <div key={i} className="col-sm-3 col-xs-6">
                     <MemberPreview
                         onClickItem={this.props.onClickItem}
@@ -11,6 +12,7 @@ class MemberBlock extends Component {
                         like={this.props.stars}
                         onClick={this.props.onClickItem}
                         type={this.props.type}
+                        videocall={videocall}
                         member={member} />
                 </div>
     }

@@ -12,23 +12,23 @@ class Questions extends Component {
 		super()
         this.list = [
                 {
-                    'question': 'How does the agency work?', 
+                    'question': 'How does the company work?', 
                     'answer': 'First of all we were created for YOU and YOUR LADY with the aim to join your hearts. We make an agreement with each of our clients. We check our clients. We offer a personal free consultation, we pay attention to your expectations and needs.'
                 },{
                     'question': 'How much does it cost me to be the member?',
                     'answer': 'Please, Register for Free and go to Services-Payments to check on Prices.'
                 },{
-                    'question': 'Do I have to buy full membership to be able to use the agency?',
+                    'question': 'Do I have to buy full membership to be able to use the company?',
                     'answer': 'No, you can use the services without a full membership. However different types of Membership give you a lot of privileges and discounts. You can check all the Membership packages on Prices.'
                 },{
-                    'question': 'How can I trust the agency?',
+                    'question': 'How can I trust the company?',
                     'answer': 'Honesty is the main peculiarity of our work. No one here neither demand nor persuade that you give your personal data. All the details of payments are in the agreement that we sign before starting our work.'
                 },{
                     'question': 'How can I be sure to get a high level of professional service?',
                     'answer': 'We are interested in satisfying all of our members. Our aim is to help people to find their happiness. It is in our priority and this is the main target to provide all kind of the highest quality service'
                 },{
-                    'question': 'Who applies to the agency?',
-                    'answer': 'Our agency is ideal for all singles searching for their real life partners. It is ideal for singles who are either too busy to search for dates or do not know where to meet quality singles. We provide a wonderful solution for many singles to find a person of their dreams.'
+                    'question': 'Who applies to the company?',
+                    'answer': 'Our company is ideal for all singles searching for their real life partners. It is ideal for singles who are either too busy to search for dates or do not know where to meet quality singles. We provide a wonderful solution for many singles to find a person of their dreams.'
                 },{
                     'question': 'Why should I search for a Ukrainian lady?',
                     'answer': 'Our ladies are honest, family-oriented, loving, active, attractive women who are motivated to find a partner, and ready to follow their real love. They are sincere, caring, educated and most of them really love cooking. Ukrainian ladies know how to turn one’s house into a real sweet home and how to make a man happy.' 

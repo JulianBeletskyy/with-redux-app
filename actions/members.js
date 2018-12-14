@@ -104,6 +104,15 @@ export const getContactsDetails = id => dispatch => {
 	return get(`client/contacts/${id}`, true)
 }
 
+export const sendVideoRequest = id => dispatch => {
+	console.log(id)
+	return post(`user/video-call`, false, {girl_id: id}).then(res => {
+		if (res.data) {
+			return true
+		}
+	})
+}
+
 export const buyPhoto = (id, memberId) => dispatch => {
 	return post(`gallery/photo/buy`, true, {photo_id: id}).then(res => {
 		if (res.data) {
