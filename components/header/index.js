@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { NavDropdown, Navbar } from 'react-bootstrap'
-import store from '../../store'
 import { connect } from 'react-redux'
 import { toggleModal, MyCountry } from '../../actions/ui'
 import { logout } from '../../actions/auth'
-import MainModal from '../modal'
-import Support from '../forms/support'
-import Login from '../forms/login'
-import Recovery from '../forms/recovery'
 import { Router } from '../../routes'
 import { getUnreadMessage } from '../../actions/message'
 import { setCart } from '../../actions/shop'
 import BtnMain from '../buttons/btn_main'
+import loadable from '@loadable/component'
+
+const MainModal = loadable(() => import('../modal'))
+const Support = loadable(() => import('../forms/support'))
+const Login = loadable(() => import('../forms/login'))
+const Recovery = loadable(() => import('../forms/recovery'))
 
 
 class PublicHeader extends Component {
@@ -37,17 +38,20 @@ class PublicHeader extends Component {
 
     showLogIn = () => e => {
         e.preventDefault()
-        store.dispatch(toggleModal(true, 'login'))
+        const {dispatch} = this.props
+        dispatch(toggleModal(true, 'login'))
     }
 
     showSupport = () => e => {
         e.preventDefault()
-        store.dispatch(toggleModal(true, 'support'))
+        const {dispatch} = this.props
+        dispatch(toggleModal(true, 'support'))
     }
 
     logOut = () => e => {
         e.preventDefault()
-        store.dispatch(logout()).then(res => {
+        const {dispatch} = this.props
+        dispatch(logout()).then(res => {
             if (res) {
                 Router.pushRoute('/')
             }
@@ -217,33 +221,49 @@ class PublicHeader extends Component {
                         </ul>
                     </Navbar.Collapse>
                 </Navbar>
-                <MainModal
-                    body={<Support />}
-                    title="Send Request"
-                    show={support}
-                    keyModal="support" />
-                <MainModal
-                    body={<Login />}
-                    title="Log In"
-                    show={login}
-                    keyModal="login" />
-                <MainModal
-                    body={<Recovery />}
-                    title="Recovery"
-                    show={recovery}
-                    keyModal="recovery" />
-                <MainModal
-                    body={  <div>
-                                <div className="form-group">
-                                    We have received your request. You will get the notification as soon as the lady confirms time and date.
-                                </div>
-                                <div className="text-center">
-                                    <BtnMain onClick={this.closeModal} text="OK" />
-                                </div>
-                            </div>}
-                    title="Video Request"
-                    show={videoRequestMessage}
-                    keyModal="videoRequestMessage" />
+                {
+                    support
+                    ?   <MainModal
+                            body={<Support />}
+                            title="Send Request"
+                            show={support}
+                            keyModal="support" />
+                    :   null
+                }
+                {
+                    login
+                    ?   <MainModal
+                            body={<Login />}
+                            title="Log In"
+                            show={login}
+                            keyModal="login" />
+                    :   null
+                }
+                {
+                    recovery
+                    ?   <MainModal
+                            body={<Recovery />}
+                            title="Recovery"
+                            show={recovery}
+                            keyModal="recovery" />
+                    :   null
+                }
+                {
+                    videoRequestMessage
+                    ?   <MainModal
+                            body={  <div>
+                                        <div className="form-group">
+                                            We have received your request. You will get the notification as soon as the lady confirms time and date.
+                                        </div>
+                                        <div className="text-center">
+                                            <BtnMain onClick={this.closeModal} text="OK" />
+                                        </div>
+                                    </div>}
+                            title="Video Request"
+                            show={videoRequestMessage}
+                            keyModal="videoRequestMessage" />
+                    :   null
+                }
             </div>
         );
     }

@@ -4,18 +4,23 @@ import { activateUser, setRecoveryHash, loginWithHash } from '../actions/auth'
 import Header from '../components/header'
 import Layout from '../layouts'
 import Landing from '../components/Landing'
-import Client from './main/client'
 import { toggleModal } from '../actions/ui'
-import MainModal from '../components/modal'
 import { Router } from '../routes'
+import loadable from '@loadable/component'
+import Loader from '../components/loader'
+
+const MainModal = loadable(() => import('../components/modal'))
+const Client = loadable(() => import('./main/client'), {fallback: <Loader />})
 
 class Index extends Component {
-	static async getInitialProps({query}) {
+	static async getInitialProps({query, req}) {
+		const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
 	    return {
 	    	hash: query.hash,
 	    	recovery: query.recovery,
 	    	redirect: query.paypal,
 	    	loginHash: query.loginHash,
+	    	userAgent: userAgent,
 	    }
   	}
 
@@ -54,17 +59,21 @@ class Index extends Component {
 	}
 
 	render () {
-		const { token, active, paypal } = this.props
+		const { token, active, paypal, userAgent } = this.props
 		return (
 			<div className="App">
-				<Layout>
-					{token ? <Client /> : <Landing />}
+				<Layout userAgent={userAgent}>
+					{token ? <Client /> : <Landing userAgent={userAgent} />}
 				</Layout>
-				<MainModal
-                    body={<div>Dear Sir, your payment is pending. Please, wait until PayPal aproves your purchase. As soon as your payment completed, you will be able to use your Membership and all privilleges it gives.</div>}
-                    title="PayPal"
-                    show={paypal}
-                    keyModal="paypal" />
+				{
+					paypal
+					? 	<MainModal
+		                    body={<div>Dear Sir, your payment is pending. Please, wait until PayPal aproves your purchase. As soon as your payment completed, you will be able to use your Membership and all privilleges it gives.</div>}
+		                    title="PayPal"
+		                    show={paypal}
+		                    keyModal="paypal" />
+					: 	null
+				}
 			</div>
 		)
 	}

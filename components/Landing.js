@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'		
-import { Row, Col, FormGroup, Panel } from 'react-bootstrap'
+import { Panel } from 'react-bootstrap'
 import Registration from './registration'
 import BtnMain from '../components/buttons/btn_main'
 import { setUiKey, getStories, toggleModal } from '../actions/ui'
 import { setSignupKey } from '../actions/signup'
-import MemberBlock from '../components/block/member_block'
 import { Router } from '../routes'
 import { getPublicMembers } from '../actions/members'
-import MainModal from '../components/modal'
 import Slider from 'react-slick'
 import { makeCDN } from '../utils'
+import loadable from '@loadable/component'
+
+const MemberBlock = loadable(() => import('../components/block/member_block'))
+const MainModal = loadable(() => import('../components/modal'))
 
 class Landing extends Component {
 	constructor() {
@@ -103,7 +105,7 @@ class Landing extends Component {
 
 	printTestimonials = (item, i) => {
 		const imgStyle = {
-            backgroundImage: `url(${makeCDN(item.img)})`,
+            backgroundImage: `url(${this.getImage(makeCDN(item.img))})`,
             height: 120,
             backgroundPosition: '50%',
             width: 120,
@@ -111,13 +113,13 @@ class Landing extends Component {
             margin: '0 auto',
             backgroundSize: 'cover'
         }
-		return	<Col sm={4} key={i}>
+		return	<div className="col-sm-4" sm={4} key={i}>
                     <div className="text-center landing-item-testimonial p-15 pointer" onClick={this.openTestimonial(item)}>
 	                    <div style={imgStyle}></div>
 	                    <div className="landing-testimonial-text">{this.getText(item.text)}</div>
 	                    <div className="landing-testimonial-name">{item.name}</div>
 	                </div>
-                </Col>
+                </div>
 	}
 
 	openLogin = e => {
@@ -126,11 +128,28 @@ class Landing extends Component {
 		dispatch(toggleModal(true, 'login'))
 	}
 
+	getImage = link => {
+		const { userAgent } = this.props
+        if( /firefox/i.test(userAgent) )
+          console.log('firefox')
+        else if( /chrome/i.test(userAgent) )
+          return link.replace('jpg', 'webp')
+        else if( /safari/i.test(userAgent) )
+          console.log('safari')
+        else if( /msie/i.test(userAgent) )
+          console.log('msie')
+        else
+          return link
+	}
+
 	componentDidMount() {
 		this.mount = true
 		const { dispatch } = this.props
-		dispatch(getPublicMembers(this.state.type))
-		dispatch(getStories())
+		setTimeout(() => {
+			dispatch(getPublicMembers(this.state.type))
+			dispatch(getStories())
+		}, 500)
+		
 
 		window.addEventListener('scroll', e => {
 			const el = document.getElementById('advantages')
@@ -185,8 +204,8 @@ class Landing extends Component {
 				<div className="pt-100">
 					<div className="mainPart">
 	                    <div className="innerMain container">
-	                        <Row>
-	                            <Col md={col} sm={12} >
+	                        <div className="row">
+	                            <div className={`col-sm-12 col-md-${col}`}>
 	                                <div className={`wrapRegistration ${showRegistration && 'active'}`}>
 	                                	<Panel bsClass="headerPanel panel">
 											<Panel.Heading>
@@ -212,10 +231,10 @@ class Landing extends Component {
 											</Panel.Body>
 										</Panel>
 	                                </div>
-	                            </Col>
+	                            </div>
 	                            {
 	                            	! showRegistration
-	                            	&& 	<Col md={6} sm={12} className="wrapLogin">
+	                            	&& 	<div className="wrapLogin col-sm-12 col-md-6">
 		                                    <div>
 		                                        <h1 className="text-white main">
 		                                            Premier Matchmaking company to Find Your Ukrainian Lady
@@ -231,9 +250,9 @@ class Landing extends Component {
 		                                            text="Free Sign Up"
 		                                            onClick={this.getRegistration} />
 		                                    </div>
-			                            </Col>
+			                            </div>
 	                            }
-	                        </Row>
+	                        </div>
 	                    </div>
 	                </div>
 				</div>
@@ -275,7 +294,7 @@ class Landing extends Component {
 									</div>
 								</div>
 							</div>
-							<div className="landing-member-wrap">
+							<div className="landing-member-wrap" style={{backgroundImage: `url(${this.getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-51.jpg')})`}}>
 								<h2 className="landing-title"><span className="underlineText">Ladies</span></h2>
 								<div className="container">
 			                        <div className="pb-50 text-center">
@@ -297,12 +316,16 @@ class Landing extends Component {
 			                                </div>
 			                            </div>
 			                        </div>
-			                        <MemberBlock 
-			                			list={publicList}
-			                			stars={false}
-			                			more={false}
-			                			onClickItem={this.getRegistration}
-			                			type="viewed" />
+			                        {
+			                        	publicList.length
+			                        	? 	<MemberBlock 
+					                			list={publicList}
+					                			stars={false}
+					                			more={false}
+					                			onClickItem={this.getRegistration}
+					                			type="viewed" />
+			                        	: 	null
+			                        }
 			                    </div>
 							</div>
 							<div className="landing-third-wrap">
@@ -312,14 +335,14 @@ class Landing extends Component {
 			                            <br />
 			                            <a className="landing-link-search" onClick={this.goToMembers()} href="/members"> Search Now!</a>
 			                        </h2>
-			                        <FormGroup className="text-center">
+			                        <div className="text-center form-group">
 			                            <BtnMain
 			                                text="Sign Up"
 			                                onClick={this.getRegistration} />
-			                        </FormGroup>
+			                        </div>
 			                    </div>
 			                </div>
-			                <div className="landing-stories-wrap">
+			                <div className="landing-stories-wrap" style={{backgroundImage: `url(${this.getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-21.jpg')})`}}>
 			                    <h2 className="text-center landing-title">
 			                        <span className="underlineText">Success Stories</span>
 			                    </h2>
@@ -347,8 +370,8 @@ class Landing extends Component {
 			                        <h2 className="text-center">Brick to brick. Step to step. Your choice is made and you feel great:)</h2>
 			                        <h2 className="text-center">Take 3 Easy Steps to Start Your Story:</h2>
 			                        <div className="landing-steps-wrap">
-			                            <Row>
-			                                <Col sm={4}>
+			                            <div className="row">
+			                                <div className="col-sm-4">
 			                                    <div className="landing-step">
 			                                        <div className="text-center pointer" onClick={this.getRegistration}>
 			                                            <i className="fas fa-user fa-4x"></i>
@@ -357,8 +380,8 @@ class Landing extends Component {
 			                                            </div>
 			                                        </div>
 			                                    </div>
-			                                </Col>
-			                                <Col sm={4}>
+			                                </div>
+			                                <div className="col-sm-4">
 			                                    <div className="landing-step">
 			                                        <div className="text-center pointer" onClick={this.goToMembers()}>
 			                                            <i className="fas fa-images fa-4x"></i>
@@ -367,8 +390,8 @@ class Landing extends Component {
 			                                            </div>
 			                                        </div>
 			                                    </div>
-			                                </Col>
-			                                <Col sm={4}>
+			                                </div>
+			                                <div className="col-sm-4">
 			                                    <div className="landing-step">
 			                                        <div className="text-center">
 			                                            <i className="fas fa-comments fa-4x"></i>
@@ -377,20 +400,20 @@ class Landing extends Component {
 			                                            </div>
 			                                        </div>
 			                                    </div>
-			                                </Col>
-			                            </Row>
+			                                </div>
+			                            </div>
 			                        </div>
 			                        <h2 className="text-center">Any questions? Apply to Our Friendly Staff</h2>
 			                    </div>
 			                </div>
-			                <div className="landing-testimonials-wrap">
+			                <div className="landing-testimonials-wrap" style={{backgroundImage: `url(${this.getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-31.jpg')})`}}>
 		                        <h2 className="landing-title"><span className="underlineText">Testimonials</span></h2>
 		                        <div className="container">
-		                            <Row className="testimonials-slider form-group">
+		                            <div className="testimonials-slider form-group row">
 		                            	<Slider {...settings}>
 		                                	{ testimonials.map((item, i) => this.printTestimonials(item, i)) }
 		                                </Slider>
-		                            </Row>
+		                            </div>
 		                            <div className="form-group text-center">
 		                                <BtnMain
 		                                    text="More testimonials"
@@ -411,17 +434,20 @@ class Landing extends Component {
 	                    </div>
 					</div>
 				</div>
-
-                <MainModal
-                    body={<div>
-                            <img src={this.testimonialImg} className="img-responsive" alt="" />
-                            <div className="text-center font-bebas pt-15">
-                            	<a href="/testimonials" onClick={this.goToTestimonials}>View All Testimonials</a>
-                        	</div>
-                        </div>}
-                    title="Testimonials"
-                    show={testimonialsModal}
-                    keyModal="testimonials" />
+				{
+					testimonialsModal
+					? 	<MainModal
+		                    body={<div>
+		                            <img src={this.testimonialImg} className="img-responsive" alt="" />
+		                            <div className="text-center font-bebas pt-15">
+		                            	<a href="/testimonials" onClick={this.goToTestimonials}>View All Testimonials</a>
+		                        	</div>
+		                        </div>}
+		                    title="Testimonials"
+		                    show={testimonialsModal}
+		                    keyModal="testimonials" />
+					: 	null
+				}
 			</div>
 		)
 	}

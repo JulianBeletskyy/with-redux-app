@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Head from 'next/head'
 import {
     Accordion,
     AccordionItem,
@@ -77,6 +78,9 @@ class Questions extends Component {
     render() {
         return (
         	<div>
+                <Head>
+                    <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/accordion.min.css"/>
+                </Head>
 	        	<div className="form-group">
 	                <TextField
 	                    placeholder="Search"

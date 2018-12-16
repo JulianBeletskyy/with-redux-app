@@ -7,7 +7,6 @@ import { getOptions } from '../../actions/ui'
 import { setSignupKey, sendSignUpFour } from '../../actions/signup'
 import BtnSignUp from '../buttons/btn_signup'
 import Block from '../block'
-import ReactGA from 'react-ga'
 
 export class StepThreeClient extends Component {
     constructor(props) {

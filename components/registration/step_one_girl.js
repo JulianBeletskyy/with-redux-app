@@ -7,7 +7,6 @@ import { getArray, heightsArray, weightsArray } from '../../utils'
 import { getOptions } from '../../actions/ui'
 import { sendSignUpOne, setSignupKey } from '../../actions/signup'
 import Validator from '../../validate'
-import ReactGA from 'react-ga'
 
 export class StepOneGirl extends Component {
 	constructor(props) {

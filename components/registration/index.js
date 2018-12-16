@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import StepZero from './step_zero'
-import StepOneClient from './step_one_client'
-import StepTwoClient from './step_two_client'
-import StepThreeClient from './step_three_client'
-import StepAvatar from './step_avatar'
-import StepConfirm from './step_confirm'
-import StepOneGirl from './step_one_girl'
-import StepTwoGirl from './step_two_girl'
-import StepThreeGirl from './step_three_girl'
+import loadable from '@loadable/component'
+
+const StepOneClient = loadable(() => import('./step_one_client'))
+const StepTwoClient = loadable(() => import('./step_two_client'))
+const StepThreeClient = loadable(() => import('./step_three_client'))
+const StepAvatar = loadable(() => import('./step_avatar'))
+const StepConfirm = loadable(() => import('./step_confirm'))
+const StepOneGirl = loadable(() => import('./step_one_girl'))
+const StepTwoGirl = loadable(() => import('./step_two_girl'))
+const StepThreeGirl = loadable(() => import('./step_three_girl'))
 
 class Registration extends Component {
 

@@ -30,7 +30,8 @@ class Login extends Component {
                 if (ui.redirect) {
                     window.location.href = ui.redirect
                 } else {
-                    window.location.href = '/'
+                    Router.pushRoute('/')
+                    //window.location.href = '/'
                 }
             }
         })

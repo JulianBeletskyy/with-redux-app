@@ -6,7 +6,6 @@ import BtnSignUp from '../buttons/btn_signup'
 import { getOptions } from '../../actions/ui'
 import { sendSignUpTwo, skipStep, setSignupKey } from '../../actions/signup'
 import { getArray } from '../../utils'
-import ReactGA from 'react-ga'
 
 let state = {
     languages: [],

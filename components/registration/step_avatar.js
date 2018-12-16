@@ -8,7 +8,6 @@ import BtnGoogle from '../buttons/btn_google'
 import { setSignupKey, skipStep, sendSignUpThree } from '../../actions/signup'
 import { setAlert } from '../../actions/ui'
 import Cropper from 'react-cropper'
-import ReactGA from 'react-ga'
 
 export class StepAvatar extends Component {
 

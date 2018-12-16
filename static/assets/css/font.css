@@ -91,6 +91,9 @@
 .videocall-link:hover {
     font-weight: bold;
 }
+.main-layout {
+    min-height: 100vh;
+}
 @media (min-width: 992px) and (max-width: 1199px) {
     .already-member-wrap {
         margin-left: 24px;

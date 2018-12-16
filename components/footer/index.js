@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row, Col } from 'react-bootstrap'
 import { Router } from '../../routes'
 import { setUiKey, toggleModal } from '../../actions/ui'
 
@@ -27,9 +26,9 @@ class Footer extends Component {
     	const { role, token } = this.props
         return (
             <div className="footer-wrap">
-                <Grid>
-                    <Row>
-                        <Col sm={4}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-4">
                             <ul>
 	                            {
 	                                token && role === 'client'
@@ -48,8 +47,8 @@ class Footer extends Component {
                                     <a href="/faq" onClick={this.goTo('/faq')}>FAQ</a>
                                 </li>
                             </ul>
-                        </Col>
-                        <Col sm={4}>
+                        </div>
+                        <div className="col-sm-4">
                             <ul>
                                 <li>
                                     <i className="fas fa-info-circle"></i>
@@ -64,8 +63,8 @@ class Footer extends Component {
                                     <a href="/blogs" onClick={this.goTo('/blogs')}>Blogs</a>
                                 </li>
                             </ul>
-                        </Col>
-                        <Col sm={4}>
+                        </div>
+                        <div className="col-sm-4">
                         {
                             !token
                             ?   <ul>
@@ -80,12 +79,12 @@ class Footer extends Component {
                                 </ul>
                             :   null
                         }   
-                        </Col>
-                    </Row>
+                        </div>
+                    </div>
                     <div className="footer-bottom">
                         Copyright &copy; Lifeinlove - All Rights Reserved 2018
                     </div>
-                </Grid>
+                </div>
             </div>
         );
     }

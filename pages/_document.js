@@ -5,7 +5,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <script dangerouslySetInnerHTML={{__html: `(function (d, w, c) {
+          <script async defer dangerouslySetInnerHTML={{__html: `(function (d, w, c) {
                 (w[c] = w[c] || []).push(function() {
                     try {
                         w.yaCounter51319102 = new Ya.Metrika2({
@@ -27,8 +27,8 @@ export default class MyDocument extends Document {
                     d.addEventListener("DOMContentLoaded", f, false);
                 } else { f(); }
             })(document, window, "yandex_metrika_callbacks2");`}} />
-          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124514115-1"></script>
-          <script dangerouslySetInnerHTML={{__html: `window.dataLayer = window.dataLayer || [];
+          <script async defer src="https://www.googletagmanager.com/gtag/js?id=UA-124514115-1"></script>
+          <script async defer dangerouslySetInnerHTML={{__html: `window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'UA-124514115-1');`}} />
@@ -36,18 +36,19 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#000000" />
           <title>Lifein.Love</title>
           <link rel="shortcut icon" href="/static/assets/favicon.png" />
-          <link rel="stylesheet" media="all" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossOrigin="anonymous" />
-          <link rel="stylesheet" type="text/css" charSet="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" />
-          <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+          {/*<link rel="stylesheet" media="all" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossOrigin="anonymous" />*/}
+          {/*<link rel="stylesheet" type="text/css" charSet="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />*/}
+          {/*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" />*/}
+          {/*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" />*/}
+          {/*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/regular.css" />*/}
+          {/*<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
           <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/react-confirm-alert.min.css"/>
-          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/accordion.min.css"/>
           <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/animate.min.css"/>
           <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/toastr.css"/>
-          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css"/>
-          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/style.css"/>
+          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css"/>*/}
+          {/*<link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/style.min.css"/>*/}
           <link rel="stylesheet" href="/static/assets/css/font.css"/>
-          <script dangerouslySetInnerHTML={{__html: 
+          <script async defer dangerouslySetInnerHTML={{__html: 
             `!function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -69,7 +70,7 @@ export default class MyDocument extends Document {
           <noscript>
             <div><img src="https://mc.yandex.ru/watch/51319102" style={{position:'absolute', left:'-9999px'}} alt="" /></div>
           </noscript>
-          <script dangerouslySetInnerHTML={{__html: `(function(d, s, id){
+          <script async defer dangerouslySetInnerHTML={{__html: `(function(d, s, id){
                    var js, fjs = d.getElementsByTagName(s)[0];
                    if (d.getElementById(id)) {return;}
                    js = d.createElement(s); js.id = id;
@@ -84,8 +85,29 @@ export default class MyDocument extends Document {
                       version: 'v2.12'
                   });
               };`}} />
-          <script src="https://apis.google.com/js/platform.js"></script>
-          {/*<script type='text/javascript' src='https://api.lifein.love/javascriptspellcheck/include.js'></script>*/}
+          <script async src="https://apis.google.com/js/platform.js"></script>
+          <script async defer dangerouslySetInnerHTML={{__html: `
+            var list = [
+              'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
+              'https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css',
+              'https://d2etktq4v0899q.cloudfront.net/static/assets/css/animate.min.css',
+              'https://d2etktq4v0899q.cloudfront.net/static/assets/css/toastr.css',
+              'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css',
+              'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css',
+              'https://d2etktq4v0899q.cloudfront.net/static/assets/css/react-confirm-alert.min.css',
+              'https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css',
+              'https://use.fontawesome.com/releases/v5.0.8/css/solid.css',
+              'https://use.fontawesome.com/releases/v5.0.8/css/regular.css',
+              'https://d2etktq4v0899q.cloudfront.net/static/assets/css/style.min.css'
+            ];
+            for (var i=0; i<list.length;i++) {
+              var myCSS = document.createElement( "link" );
+              myCSS.rel = "stylesheet";
+              myCSS.href = list[i];
+              document.head.insertBefore( myCSS, document.head.childNodes[ document.head.childNodes.length - 1 ].nextSibling );
+            }
+            `}}>
+          </script>
           <Main />
           <NextScript />
         </body>

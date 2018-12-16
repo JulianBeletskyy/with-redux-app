@@ -7,7 +7,6 @@ import TextField from '../inputs/text_field'
 import { getOptions } from '../../actions/ui'
 import { setSignupKey, sendSignUpOne, skipStep } from '../../actions/signup'
 import { getArray, heightsArray, weightsArray, formatDate, getNumArray } from '../../utils'
-import ReactGA from 'react-ga'
 
 let state = {
     childrens: [],

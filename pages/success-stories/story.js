@@ -38,7 +38,6 @@ class Story extends Component {
 
 	render() {
 		const { story } = this.props
-		console.log(story.template)
 		return (
 			<Layout>
 				{
