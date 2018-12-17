@@ -21,11 +21,6 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        // cache: true,
-        // parallel: true,
-        // sourceMap: true // set to true if you want JS source maps
-      }),
       new OptimizeCSSAssetsPlugin({})
     ]
   },
@@ -36,7 +31,12 @@ module.exports = {
       }
     }),
     new webpack.optimize.DedupePlugin(), //dedupe similar code 
-    new webpack.optimize.UglifyJsPlugin(), //minify everything
+    new webpack.optimize.UglifyJsPlugin(
+      {
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }), //minify everything
     new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
     
     // new CompressionPlugin({
