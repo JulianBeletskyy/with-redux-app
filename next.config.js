@@ -1,6 +1,5 @@
 // const withCSS = require('@zeit/next-css')
 const webpack = require('webpack')
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // const CompressionPlugin = require('compression-webpack-plugin')
 // module.exports = withCSS({
