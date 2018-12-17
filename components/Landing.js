@@ -131,13 +131,13 @@ class Landing extends Component {
 	getImage = link => {
 		const { userAgent } = this.props
         if( /firefox/i.test(userAgent) )
-          console.log('firefox')
+          return link
         else if( /chrome/i.test(userAgent) )
           return link.replace('jpg', 'webp')
         else if( /safari/i.test(userAgent) )
-          console.log('safari')
+          return link
         else if( /msie/i.test(userAgent) )
-          console.log('msie')
+          return link
         else
           return link
 	}
