@@ -9,7 +9,7 @@ import Loader from '../components/loader'
 
 const MainModal = loadable(() => import('../components/modal'))
 const Client = loadable(() => import('./main/client'), {fallback: <Loader />})
-const Landing = loadable(() => import('../components/Landing'), {fallback: <div></div>})
+const Landing = loadable(() => import('../components/Landing'), {fallback: <div style={{minHeight: '100vh'}}></div>})
 
 class Index extends Component {
 	static async getInitialProps({query, req}) {

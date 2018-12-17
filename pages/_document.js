@@ -36,7 +36,6 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#000000" />
           <title>Lifein.Love</title>
           <link rel="shortcut icon" href="/static/assets/favicon.png" />
-          <link rel="stylesheet" href="/static/assets/css/font.css"/>
           <script async defer dangerouslySetInnerHTML={{__html: 
             `!function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -85,7 +84,7 @@ export default class MyDocument extends Document {
               'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css',
               'https://d2etktq4v0899q.cloudfront.net/static/assets/css/react-confirm-alert.min.css',
               'https://use.fontawesome.com/releases/v5.0.4/css/all.css',
-              'https://d2etktq4v0899q.cloudfront.net/static/assets/css/style.min.css'
+              'https://d2etktq4v0899q.cloudfront.net/static/assets/css/main.min.css'
             ];
             for (var i=0; i<list.length;i++) {
               var myCSS = document.createElement( "link" );
