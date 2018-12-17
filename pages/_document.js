@@ -36,17 +36,6 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#000000" />
           <title>Lifein.Love</title>
           <link rel="shortcut icon" href="/static/assets/favicon.png" />
-          {/*<link rel="stylesheet" media="all" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossOrigin="anonymous" />*/}
-          {/*<link rel="stylesheet" type="text/css" charSet="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />*/}
-          {/*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" />*/}
-          {/*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" />*/}
-          {/*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/regular.css" />*/}
-          {/*<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
-          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/react-confirm-alert.min.css"/>
-          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/animate.min.css"/>
-          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/toastr.css"/>
-          <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css"/>*/}
-          {/*<link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/style.min.css"/>*/}
           <link rel="stylesheet" href="/static/assets/css/font.css"/>
           <script async defer dangerouslySetInnerHTML={{__html: 
             `!function(f,b,e,v,n,t,s)
@@ -95,7 +84,7 @@ export default class MyDocument extends Document {
               'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css',
               'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css',
               'https://d2etktq4v0899q.cloudfront.net/static/assets/css/react-confirm-alert.min.css',
-              'https://use.fontawesome.com/releases/v5.0.8/css/all.css',
+              'https://use.fontawesome.com/releases/v5.0.4/css/all.css',
               'https://d2etktq4v0899q.cloudfront.net/static/assets/css/style.min.css'
             ];
             for (var i=0; i<list.length;i++) {

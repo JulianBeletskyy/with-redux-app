@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { activateUser, setRecoveryHash, loginWithHash } from '../actions/auth'
-import Header from '../components/header'
 import Layout from '../layouts'
-import Landing from '../components/Landing'
 import { toggleModal } from '../actions/ui'
 import { Router } from '../routes'
 import loadable from '@loadable/component'
@@ -11,6 +9,7 @@ import Loader from '../components/loader'
 
 const MainModal = loadable(() => import('../components/modal'))
 const Client = loadable(() => import('./main/client'), {fallback: <Loader />})
+const Landing = loadable(() => import('../components/Landing'), {fallback: <div></div>})
 
 class Index extends Component {
 	static async getInitialProps({query, req}) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import StepZero from './step_zero'
+// import StepZero from './step_zero'
 import loadable from '@loadable/component'
 
 const StepOneClient = loadable(() => import('./step_one_client'))
@@ -11,6 +11,7 @@ const StepConfirm = loadable(() => import('./step_confirm'))
 const StepOneGirl = loadable(() => import('./step_one_girl'))
 const StepTwoGirl = loadable(() => import('./step_two_girl'))
 const StepThreeGirl = loadable(() => import('./step_three_girl'))
+const StepZero = loadable(() => import('./step_zero'))
 
 class Registration extends Component {
 

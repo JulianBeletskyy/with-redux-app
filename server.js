@@ -6,12 +6,20 @@ const { join } = require('path')
 const compression = require('compression')
 
 const express = require('express')
+var http = require('http');  
+var https = require('https');
 
+http.globalAgent.maxSockets = Infinity;  
+https.globalAgent.maxSockets = Infinity;
 
 
 app.prepare().then(() => {
 	const server = express();
-    server.use(compression())
+    server.use(compression({level: 9}))
+    server.get('/index.js', function (req, res) {  
+        res.setHeader('Cache-Control', 'public, max-age=86400');
+        res.render('index.js');
+    });
 	server.use('/robots.txt', express.static(join(__dirname, '/static/robots.txt')));
 	server.use('/sitemap.xml', express.static(join(__dirname, '/static/sitemap.xml')));
 	server.use('/google1d28c663b970d3ad.html', express.static(join(__dirname, '/static/google1d28c663b970d3ad.html')));

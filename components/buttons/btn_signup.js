@@ -6,7 +6,7 @@ class BtnSignUp extends Component {
         return (
             <button
                 type={type}
-                className="main button btn-signup"
+                className="main button btn-signup pointer"
                 id={id}
                 onClick={onClick}
                 disabled={disabled} >

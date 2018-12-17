@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
+import { Radio } from 'react-bootstrap'
 import TextField from '../inputs/text_field'
 import SelectField from '../inputs/select_field'
 import Autocomplete from '../inputs/autocomplete'
@@ -228,12 +228,10 @@ export class StepZero extends Component {
             }
         })
         this.googleInit()
-        //this.initGoogleAnalytics()
     }
 
     render() {
-    	const { 
-            isServer,
+    	const {
             role,
             first_name,
             last_name,
@@ -254,9 +252,9 @@ export class StepZero extends Component {
     	const col = showRegistration ? 6 : 12
         return (
             <form noValidate={true}>
-                <Row>
-                    <Col xs={12}>
-                        <FormGroup>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <div className="form-group">
                             <div className="text-center title">
                                 <span className="spanMale">Male</span>
                                 <Radio 
@@ -281,22 +279,22 @@ export class StepZero extends Component {
                                 </Radio>
                                 <span className="spanFemale">Female</span>
                             </div>
-                        </FormGroup>
-                    </Col>
-                    <Col xs={12} md={col}>
-                        <Row>
-                            <Col sm={col}>
-                                <FormGroup>
+                        </div>
+                    </div>
+                    <div className={`col-xs-12 col-md-${col}`}>
+                        <div className="row">
+                            <div className={`col-sm-${col}`}>
+                                <div className="form-group">
                                     <TextField
                                         placeholder="First Name"
                                         inputRef={ref => { this.signup.first_name = ref }}
                                         value={first_name}
                                         name="First Name"
                                         social={this.state.social} />
-                                </FormGroup>
-                            </Col>
-                            <Col sm={col}>
-                                <FormGroup>
+                                </div>
+                            </div>
+                            <div className={`col-sm-${col}`}>
+                                <div className="form-group">
                                     <TextField
                                         placeholder="Last Name"
                                         inputRef={ref => { this.signup.last_name = ref }}
@@ -304,87 +302,87 @@ export class StepZero extends Component {
                                         value={last_name}
                                         social={this.state.social}
                                         description={'* Your last name is not visible.'} />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <FormGroup>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="form-group">
                             <TextField
                                 type="email"
                                 placeholder="Enter email"
                                 inputRef={ref => { this.signup.email = ref }}
                                 social={this.state.social}
                                 value={email} />
-                        </FormGroup>
-                        <FormGroup>
+                        </div>
+                        <div className="form-group">
                             <TextField
                                 type="password"
                                 placeholder="Enter password"
                                 name="password"
                                 inputRef={ref => { this.signup.password = ref }}
                                 value={password} />
-                        </FormGroup>
+                        </div>
                         {
                             this.signup.role === 'girl' 
                             && 	<div>
-                                    <FormGroup>
-                                        <Row>
-                                            <Col sm={4}>
+                                    <div className="form-group">
+                                        <div className="row">
+                                            <div className="col-sm-4">
                                                 <SelectField
                                                     inputRef={ref => { this.signup.birth.month = ref }}
                                                     options={monthArray()}
                                                     value={birth.month} />
-                                            </Col>
-                                            <Col sm={4}>
+                                            </div>
+                                            <div className="col-sm-4">
                                                 <SelectField
                                                     inputRef={ref => { this.signup.birth.day = ref }}
                                                     options={dayArray()}
                                                     value={birth.day} />
-                                            </Col>
-                                            <Col sm={4}>
+                                            </div>
+                                            <div className="col-sm-4">
                                                 <SelectField
                                                     inputRef={ref => { this.signup.birth.year = ref }}
                                                     options={yearArray()}
                                                     value={birth.year} />
-                                            </Col>
-                                        </Row>
-                                    </FormGroup>
-                                    <FormGroup>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
                                         <TextField
                                             placeholder="Phone"
                                             inputRef={ref => { this.signup.mobile = ref }}
                                             value={mobile} />
-                                    </FormGroup>
+                                    </div>
                                 </div>
                         }  
-                    </Col>
-                    <Col xs={12} md={6}>
+                    </div>
+                    <div className="col-xs-12 col-md-6">
                         <div className={`rightPart ${showRegistration && 'active'}`}>
                             {
                                 this.state.gender === 'client'
-                                &&   <FormGroup>
-                                        <Row>
-                                            <Col sm={4}>
+                                &&   <div className="form-group">
+                                        <div className="row">
+                                            <div className="col-sm-4">
                                                 <SelectField
                                                     inputRef={ref => { this.signup.birth.month = ref }}
                                                     options={monthArray()}
                                                     value={birth.month} />
-                                            </Col>
-                                            <Col sm={4}>
+                                            </div>
+                                            <div className="col-sm-4">
                                                 <SelectField
                                                     inputRef={ref => { this.signup.birth.day = ref }}
                                                     options={dayArray()}
                                                     value={birth.day} />
-                                            </Col>
-                                            <Col sm={4}>
+                                            </div>
+                                            <div className="col-sm-4">
                                                 <SelectField
                                                     inputRef={ref => { this.signup.birth.year = ref }}
                                                     options={yearArray()}
                                                     value={birth.year} />
-                                            </Col>
-                                        </Row>
-                                    </FormGroup>
+                                            </div>
+                                        </div>
+                                    </div>
                             }
-                            <FormGroup>
+                            <div className="form-group">
                                 <SelectField
                                     inputRef={ref => { this.signup.country = ref }}
                                     options={this.getArray(countries)}
@@ -392,41 +390,41 @@ export class StepZero extends Component {
                                     name="country"
                                     onChange={this.handleChangeCountry}
                                     city={this.signup.city} />
-                            </FormGroup>
-                            <FormGroup>
+                            </div>
+                            <div className="form-group">
                                 <Autocomplete 
                                     inputRef={ref => { this.signup.city = ref }}
                                     placeholder="City"
                                     country={country}
                                     setUSState={this.setUSState}
                                     value={city} />
-                            </FormGroup>
+                            </div>
                             {
                                 this.signup.role === 'girl'
                                 &&   <div>
-                                        <FormGroup>
+                                        <div className="form-group">
                                             <TextField
                                                 placeholder="Facebook"
                                                 inputRef={ref => { this.signup.facebook = ref }}
                                                 value={facebook} />
-                                        </FormGroup>
-                                        <FormGroup>
+                                        </div>
+                                        <div className="form-group">
                                             <TextField
                                                 placeholder="VK"
                                                 inputRef={ref => { this.signup.vk = ref }}
                                                 value={vk} />
-                                        </FormGroup>
-                                        <FormGroup>
+                                        </div>
+                                        <div className="form-group">
                                             <TextField
                                                 placeholder="Other social media"
                                                 inputRef={ref => { this.signup.other_social = ref }}
                                                 value={other_social} />
-                                        </FormGroup>
+                                        </div>
                                     </div>
                             }
                         </div>
-                    </Col>
-                    <Col xs={12} className="text-center">
+                    </div>
+                    <div className="text-center col-xs-12">
                         {
                             this.signup.role === 'client'
                             &&   <CheckboxField
@@ -434,18 +432,18 @@ export class StepZero extends Component {
                                     text={<span>By clicking "Join Us for Free" above you agree to <a href="/terms" target="_blank">"Terms of Use" & "Privacy Policy"</a></span>}
                                     value={terms} />
                         }
-                        <FormGroup>
+                        <div className="form-group">
                             <BtnSignUp
                                 text="Join Us for Free"
                                 orientation="right"
                                 id="register-btn"
                                 onClick={this.resolveRegistration} />
-                        </FormGroup>
-                        <FormGroup>
-                        </FormGroup>
+                        </div>
+                        <div className="form-group">
+                        </div>
                         {
                             this.signup.role === 'client'
-                            &&   <FormGroup>
+                            &&   <div className="form-group">
                                     <h4 className="">Join With</h4>
                                     <div className="social-button text-center">
                                         <div className="form-group">
@@ -455,10 +453,10 @@ export class StepZero extends Component {
                                             <BtnGoogle id="google-btn" title="Join Up with Google" />
                                         </div>
                                     </div>
-                                </FormGroup>
+                                </div>
                         }
-                    </Col>
-                </Row>
+                    </div>
+                </div>
             </form>
         );
     }
@@ -480,7 +478,6 @@ const mapStateToProps = state =>
         vk: state.signup.data.vk,
         other_social: state.signup.data.other_social,
         showRegistration: state.ui.showRegistration,
-        isServer: state.ui.isServer,
         countries: state.options.countries,
         custom_remember_token: state.signup.custom_remember_token,
 	})

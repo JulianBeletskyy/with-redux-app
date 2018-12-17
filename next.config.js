@@ -1,6 +1,8 @@
 // const withCSS = require('@zeit/next-css')
 const webpack = require('webpack')
-const CompressionPlugin = require('compression-webpack-plugin')
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+// const CompressionPlugin = require('compression-webpack-plugin')
 // module.exports = withCSS({
 //   	cssModules: true,
 //   	cssLoaderOptions: {
@@ -17,6 +19,16 @@ module.exports = {
 
     return config
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  },
   plugins: [
   	new webpack.DefinePlugin({
       'process.env': {
@@ -25,13 +37,14 @@ module.exports = {
     }),
     new webpack.optimize.DedupePlugin(), //dedupe similar code 
     new webpack.optimize.UglifyJsPlugin(), //minify everything
-    new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks 
-    new CompressionPlugin({
-      filename: "[path].gz[query]",
-      algorithm: "gzip",
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8
-    })
+    new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
+    
+    // new CompressionPlugin({
+    //   filename: "[path].gz[query]",
+    //   algorithm: "gzip",
+    //   test: /\.js$|\.css$|\.html$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // })
   ]
 }

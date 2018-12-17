@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'		
-import { Panel } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import Registration from './registration'
 import BtnMain from '../components/buttons/btn_main'
 import { setUiKey, getStories, toggleModal } from '../actions/ui'
 import { setSignupKey } from '../actions/signup'
 import { Router } from '../routes'
 import { getPublicMembers } from '../actions/members'
-import Slider from 'react-slick'
+// import Slider from 'react-slick'
 import { makeCDN } from '../utils'
 import loadable from '@loadable/component'
 
 const MemberBlock = loadable(() => import('../components/block/member_block'))
 const MainModal = loadable(() => import('../components/modal'))
+const Slider = loadable(() => import('react-slick'))
 
 class Landing extends Component {
 	constructor() {
@@ -207,8 +207,8 @@ class Landing extends Component {
 	                        <div className="row">
 	                            <div className={`col-sm-12 col-md-${col}`}>
 	                                <div className={`wrapRegistration ${showRegistration && 'active'}`}>
-	                                	<Panel bsClass="headerPanel panel">
-											<Panel.Heading>
+	                                	<div className="headerPanel panel headerPanel panel-default">
+											<div className="panel-heading">
 												{
 													showRegistration && (step === 0 || step === 4)
 													&& 	<span onClick={this.closeRegistation} className="closeBtn">
@@ -225,11 +225,11 @@ class Landing extends Component {
 														<span className="already-member">Already a Member?</span>
 													</span>
 												</h3>
-											</Panel.Heading>
-											<Panel.Body>
+											</div>
+											<div className="panel-body">
 												<Registration />
-											</Panel.Body>
-										</Panel>
+											</div>
+										</div>
 	                                </div>
 	                            </div>
 	                            {
@@ -410,9 +410,13 @@ class Landing extends Component {
 		                        <h2 className="landing-title"><span className="underlineText">Testimonials</span></h2>
 		                        <div className="container">
 		                            <div className="testimonials-slider form-group row">
-		                            	<Slider {...settings}>
-		                                	{ testimonials.map((item, i) => this.printTestimonials(item, i)) }
-		                                </Slider>
+		                            {
+		                            	testimonials.length
+		                            	? 	<Slider {...settings}>
+			                                	{ testimonials.map((item, i) => this.printTestimonials(item, i)) }
+			                                </Slider>
+		                            	: 	null
+		                            }
 		                            </div>
 		                            <div className="form-group text-center">
 		                                <BtnMain
