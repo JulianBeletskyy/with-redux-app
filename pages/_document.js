@@ -73,7 +73,7 @@ export default class MyDocument extends Document {
                       version: 'v2.12'
                   });
               };`}} />
-          <script async src="https://apis.google.com/js/platform.js"></script>
+          <script src="https://apis.google.com/js/platform.js"></script>
           <script async defer dangerouslySetInnerHTML={{__html: `
             var list = [
               'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',

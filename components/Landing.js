@@ -147,9 +147,12 @@ class Landing extends Component {
 		const { dispatch } = this.props
 		setTimeout(() => {
 			dispatch(getPublicMembers(this.state.type))
-			dispatch(getStories())
+			
 		}, 500)
-		
+
+		setTimeout(() => {
+			dispatch(getStories())
+		}, 1000)
 
 		window.addEventListener('scroll', e => {
 			const el = document.getElementById('advantages')
