@@ -40,7 +40,6 @@
   "devDependencies": {
     "compression-webpack-plugin": "^2.0.0",
     "mini-css-extract-plugin": "^0.5.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "uglifyjs-webpack-plugin": "^2.0.1"
+    "optimize-css-assets-webpack-plugin": "^5.0.1"
   }
 }
