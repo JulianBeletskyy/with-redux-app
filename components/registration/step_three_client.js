@@ -38,7 +38,7 @@ export class StepThreeClient extends Component {
 
     getConfirm = () => {
         gtag('event', 'finish', {'event_category': 'finish', 'event_action': 'registraciya8'}) // google metrics
-        
+        fbq('track', 'CompleteRegistration');
         const { dispatch } = this.props
         const data = {
             about_me: this.signup.about_me.value,

@@ -39,7 +39,7 @@ export class StepThreeGirl extends Component {
 
     getSignUpThree = () => {
         gtag('event', 'finish', {'event_category': 'finish', 'event_action': 'registraciya8'}) // google metrics
-        
+        fbq('track', 'CompleteRegistration');
         const { dispatch } = this.props
         let error = 1
 
