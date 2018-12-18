@@ -1,22 +1,12 @@
-// const withCSS = require('@zeit/next-css')
 const webpack = require('webpack')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-// const CompressionPlugin = require('compression-webpack-plugin')
-// module.exports = withCSS({
-//   	cssModules: true,
-//   	cssLoaderOptions: {
-// 	    importLoaders: 1,
-// 	    localIdentName: "[local]",
-//   	},
-// })
 
 module.exports = {
   webpack: config => {
     config.node = {
       fs: 'empty'
     }
-
     return config
   },
   optimization: {
@@ -35,15 +25,6 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-     //minify everything
-    new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
-    
-    // new CompressionPlugin({
-    //   filename: "[path].gz[query]",
-    //   algorithm: "gzip",
-    //   test: /\.js$|\.css$|\.html$/,
-    //   threshold: 10240,
-    //   minRatio: 0.8
-    // })
+    new webpack.optimize.AggressiveMergingPlugin(),
   ]
 }
