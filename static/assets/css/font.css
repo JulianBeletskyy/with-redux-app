@@ -1,77 +1,69 @@
-.testing-class {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
+.px-65 {
+    padding-left: 65px;
+    padding-right: 65px;
 }
-.testing-class > div {
-    position: absolute;
-    top: -20px;
-    left: 5px;
-}
-.pt-50 {
-    padding-top: 50px;
-}
-
-.divider-story {
-    border-bottom: 3px solid #eee;
-    width: 50%;
-    margin: 0 auto;
-}
-.story-list-header h1 {
-    margin-left: -30px;
-    margin-right: -30px;
-}
-.wrap-img-temp-3 {
+.service-wrap-items {
     display: flex;
-    align-items: stretch;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-bottom: 30px;
 }
-.w-70 {
-    width: 70%;
+.service-wrap-items h1 {
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 30px;
 }
-.w-30 {
-    width: 30%;
-}
-.text-elipsis {
-    position: relative;
+.service-left-item {
+    width: 35%;
+    margin-right: 15px;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    width: 100%;
-    height: 1.4em;
 }
-.videocall-link {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    cursor: pointer;
-    color: #27c2d3;
-    font-size: 14px;
+.service-right-item {
+    width: 65%;
+    padding-left: 15px;
 }
-.videocall-link:hover {
+.service-left-title {
     font-weight: bold;
+    font-size: 30px;
+    position: relative;
 }
-.main-layout {
-    min-height: 100vh;
+.service-left-title:after {
+    content: '';
+    position: absolute;
+    border-right: 1px solid #000;
+    top: 100%;
+    right: 1px;
+    height: 1000px;
 }
-@media (min-width: 992px) and (max-width: 1199px) {
-    .already-member-wrap {
-        margin-left: 24px;
+.service-inner-text {
+    margin-bottom: 60px;
+    line-height: 2.3;
+}
+@media (max-width: 990px) {
+    .service-wrap-header {
+        flex-wrap: wrap;
     }
-}
-@media (max-width: 373px) {
-    .already-member-wrap {
-        margin-left: 40px;
-    }
-}
-@media (max-width: 767px) {
-    .slider-container {
+    .service-wrap-header .service-left-item {
         width: 100%;
     }
-    .px-50 {
+    .service-wrap-header .service-right-item {
+        width: 100%;
+    }
+    .service-wrap-header .service-left-item .text-right div {
+        text-align: center;
+    }
+
+}
+@media (max-width: 767px) {
+    .px-65 {
         padding-left: 15px;
         padding-right: 15px;
+    }
+    .service-wrap-items {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .service-left-item {
+        margin-right: 0px;
     }
 }

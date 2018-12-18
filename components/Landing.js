@@ -6,8 +6,7 @@ import { setUiKey, getStories, toggleModal } from '../actions/ui'
 import { setSignupKey } from '../actions/signup'
 import { Router } from '../routes'
 import { getPublicMembers } from '../actions/members'
-// import Slider from 'react-slick'
-import { makeCDN } from '../utils'
+import { makeCDN, getImage } from '../utils'
 import loadable from '@loadable/component'
 
 const MemberBlock = loadable(() => import('../components/block/member_block'))
@@ -79,7 +78,7 @@ class Landing extends Component {
 		window.scroll({
 	  		top: 0, 
 	  		left: 0, 
-	  		behavior: 'smooth' 
+	  		behavior: 'smooth'
 		})
 	}
 
@@ -104,8 +103,9 @@ class Landing extends Component {
 	}
 
 	printTestimonials = (item, i) => {
+		const { userAgent } = this.props
 		const imgStyle = {
-            backgroundImage: `url(${this.getImage(makeCDN(item.img))})`,
+            backgroundImage: `url(${getImage(makeCDN(item.img), userAgent)})`,
             height: 120,
             backgroundPosition: '50%',
             width: 120,
@@ -126,20 +126,6 @@ class Landing extends Component {
 		e.preventDefault()
 		const { dispatch } = this.props
 		dispatch(toggleModal(true, 'login'))
-	}
-
-	getImage = link => {
-		const { userAgent } = this.props
-        if( /firefox/i.test(userAgent) )
-          return link
-        else if( /chrome/i.test(userAgent) )
-          return link.replace('jpg', 'webp')
-        else if( /safari/i.test(userAgent) )
-          return link
-        else if( /msie/i.test(userAgent) )
-          return link
-        else
-          return link
 	}
 
 	componentDidMount() {
@@ -178,7 +164,7 @@ class Landing extends Component {
 	}
 
 	render() {
-		const { showRegistration, step, publicList, stories, testimonials, testimonialsModal, country } = this.props
+		const { showRegistration, step, publicList, stories, testimonials, testimonialsModal, country, userAgent } = this.props
 
 		let col = 6, active = ''
 		if (showRegistration) {
@@ -297,7 +283,7 @@ class Landing extends Component {
 									</div>
 								</div>
 							</div>
-							<div className="landing-member-wrap" style={{backgroundImage: `url(${this.getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-51.jpg')})`}}>
+							<div className="landing-member-wrap" style={{backgroundImage: `url(${getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-51.jpg', userAgent)})`}}>
 								<h2 className="landing-title"><span className="underlineText">Ladies</span></h2>
 								<div className="container">
 			                        <div className="pb-50 text-center">
@@ -345,7 +331,9 @@ class Landing extends Component {
 			                        </div>
 			                    </div>
 			                </div>
-			                <div className="landing-stories-wrap" style={{backgroundImage: `url(${this.getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-21.jpg')})`}}>
+			                <div
+			                	className="landing-stories-wrap"
+			                	style={{backgroundImage: `url(${getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-21.jpg', userAgent)})`}}>
 			                    <h2 className="text-center landing-title">
 			                        <span className="underlineText">Success Stories</span>
 			                    </h2>
@@ -409,7 +397,9 @@ class Landing extends Component {
 			                        <h2 className="text-center">Any questions? Apply to Our Friendly Staff</h2>
 			                    </div>
 			                </div>
-			                <div className="landing-testimonials-wrap" style={{backgroundImage: `url(${this.getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-31.jpg')})`}}>
+			                <div
+			                	className="landing-testimonials-wrap"
+			                	style={{backgroundImage: `url(${getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image-31.jpg', userAgent)})`}}>
 		                        <h2 className="landing-title"><span className="underlineText">Testimonials</span></h2>
 		                        <div className="container">
 		                            <div className="testimonials-slider form-group row">

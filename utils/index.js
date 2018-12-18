@@ -93,6 +93,19 @@ export const makeCDN = link => {
     return link
 }
 
+export const getImage = (link, userAgent) => {
+    if( /firefox/i.test(userAgent) )
+      return link
+    else if( /chrome/i.test(userAgent) )
+      return link.replace('jpg', 'webp')
+    else if( /safari/i.test(userAgent) )
+      return link
+    else if( /msie/i.test(userAgent) )
+      return link
+    else
+      return link
+}
+
 export const sortByName = (list = []) => {
     const temp = list.sort((a, b) => {
         if(a.name === 'Others') { return 1; }

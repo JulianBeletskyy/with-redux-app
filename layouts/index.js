@@ -4,32 +4,22 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import Alert from '../components/alert'
 import loadable from '@loadable/component'
+import { getImage } from '../utils'
 
 const MainModal = loadable(() => import('../components/modal'))
 const Credits = loadable(() => import('../components/forms/credits'))
 
 class Layout extends Component {
-    getImage = link => {
-        const { userAgent } = this.props
-        if( /firefox/i.test(userAgent) )
-          return link
-        else if( /chrome/i.test(userAgent) )
-          return link.replace('jpg', 'webp')
-        else if( /safari/i.test(userAgent) )
-          return link
-        else if( /msie/i.test(userAgent) )
-          return link
-        else
-          return link
-    }
 	render() {
-		const { children, credits, country, token, active } = this.props
+		const { children, credits, country, token, active, userAgent } = this.props
 		return (
 			<div>
 				<header>
 					<Header />
 			    </header>
-			    <main className="main-layout" style={{backgroundImage: `url(${this.getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image.jpg')})`}}>
+			    <main 
+                    className="main-layout"
+                    style={{backgroundImage: `url(${getImage('https://d2etktq4v0899q.cloudfront.net/static/assets/img/image.jpg', userAgent)})`}}>
 			      { children }
 			    </main>
 			    <footer>

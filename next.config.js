@@ -1,6 +1,7 @@
 // const withCSS = require('@zeit/next-css')
 const webpack = require('webpack')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // const CompressionPlugin = require('compression-webpack-plugin')
 // module.exports = withCSS({
 //   	cssModules: true,
@@ -20,7 +21,12 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new OptimizeCSSAssetsPlugin({})
+      new OptimizeCSSAssetsPlugin({}),
+      new UglifyJsPlugin({
+        cache: true,
+        sourceMap: true,
+        parallel: true,
+      }),
     ]
   },
   plugins: [
@@ -29,12 +35,7 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-    new webpack.optimize.DedupePlugin(), //dedupe similar code 
-    new webpack.optimize.UglifyJsPlugin({
-      cache: true,
-      sourceMap: true,
-      parallel: true,
-    }), //minify everything
+     //minify everything
     new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
     
     // new CompressionPlugin({
