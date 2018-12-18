@@ -77,12 +77,10 @@ export default class MyDocument extends Document {
           <script async defer dangerouslySetInnerHTML={{__html: `
             var list = [
               'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
-              'https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css',
               'https://d2etktq4v0899q.cloudfront.net/static/assets/css/animate.min.css',
               'https://d2etktq4v0899q.cloudfront.net/static/assets/css/toastr.css',
               'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css',
               'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css',
-              'https://d2etktq4v0899q.cloudfront.net/static/assets/css/react-confirm-alert.min.css',
               'https://use.fontawesome.com/releases/v5.0.4/css/all.css',
               'https://d2etktq4v0899q.cloudfront.net/static/assets/css/main.min.css',
               '/static/assets/css/font.css'

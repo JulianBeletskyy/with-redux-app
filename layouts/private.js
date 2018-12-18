@@ -8,6 +8,7 @@ import MobileMenu from '../components/menus/mobile_menu'
 import AvatarGallery from '../components/gallery/avatar_gallery'
 import MainModal from '../components/modal'
 import NotActive from '../components/NotActive'
+import Head from 'next/head'
 
 class Private extends Component {
     constructor(props) {
@@ -20,6 +21,10 @@ class Private extends Component {
     	const { children, role, avatar, active } = this.props
         return (
             <div className="pt-80 bg-blue position-relative">
+                <Head>
+                    <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css"/>
+                    <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/react-confirm-alert.min.css"/>
+                </Head>
                 <Grid id="profile">
                     <Row>
                         <Col md={9} className="bg-white">
