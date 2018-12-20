@@ -8,6 +8,7 @@ import BtnGoogle from '../buttons/btn_google'
 import { setSignupKey, skipStep, sendSignUpThree } from '../../actions/signup'
 import { setAlert } from '../../actions/ui'
 import Cropper from 'react-cropper'
+import Head from 'next/head'
 
 export class StepAvatar extends Component {
 
@@ -121,6 +122,9 @@ export class StepAvatar extends Component {
 
         return (
             <form noValidate={true}>
+                <Head>
+                    <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css"/>
+                </Head>
                 <Row>
                     <Col xs={12} className="text-center">
                         <FormGroup>
