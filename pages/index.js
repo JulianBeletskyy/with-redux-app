@@ -48,6 +48,10 @@ class Index extends Component {
 			Router.push('/')
 			dispatch(toggleModal(true, 'paypal'))
 		}
+		if (redirect === 'login') {
+			Router.push('/')
+			dispatch(toggleModal(true, 'login'))
+		}
 		if (loginHash) {
 			dispatch(loginWithHash(loginHash)).then(res => {
 				if (res) {

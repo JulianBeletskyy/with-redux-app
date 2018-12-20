@@ -25,7 +25,7 @@ class Works extends Component {
         this.setState({type})
     }
 
-    getText = text => text.length > 330 ? text.slice(0, 330) + '...' : text
+    getText = text => text.length > 180 ? text.slice(0, 180) + '...' : text
 
     printTestimonials = (item, i) => {
         if (i === 2) { return false }

@@ -222,6 +222,13 @@ class Message extends Component {
         this.setState({showOriginal: !this.state.showOriginal})
     }
 
+    componentDidMount() {
+        const { token } = this.props
+        if (! token) {
+            Router.push('/redirect/login')
+        }
+    }
+
     componentWillUnmount() {
         const { dispatch } = this.props
         dispatch(clearAttachAll())
@@ -364,6 +371,7 @@ class Message extends Component {
 const mapStateToProps = ({user, message}) =>
     ({
         role: user.data.role,
+        token: user.token,
         userName: user.data.first_name,
         userId: user.data.id,
         message: message.message,

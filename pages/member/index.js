@@ -487,7 +487,7 @@ class Member extends Component {
                                                         icon="fas fa-envelope" />
                                                 </div>
                                                 {
-                                                    role === 'client'
+                                                    member.role === 'client'
                                                     ?   <div className="col-sm-6 col-lg-6 col-md-12">
                                                             <LinkIcon
                                                                 text="Invite to Video-Chat"
@@ -498,7 +498,7 @@ class Member extends Component {
                                                     :   null
                                                 }
                                                 {
-                                                    role === 'client'
+                                                    member.role === 'client'
                                                     ?   <div>
                                                             <div className="col-sm-6 col-lg-6 col-md-12">
                                                                 <LinkIcon 

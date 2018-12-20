@@ -68,7 +68,7 @@ export class StepZero extends Component {
     googleInit = () => {
         window.gapi.load('auth2', () => {
             const auth2 = window.gapi.auth2.init({
-                'client_id': '567378795616-ng6a5sqd13t0ii0a9c5jcv8emrv3fc1g.apps.googleusercontent.com',
+                'client_id': '302424178229-bknqjip1oet2lt421171ck6sl1l9li4o.apps.googleusercontent.com',
                 'cookiepolicy': 'single_host_origin',
                 'scope': 'profile email'
             });
@@ -81,7 +81,7 @@ export class StepZero extends Component {
     googleSignUp = googleUser => {
         gtag('event', 'google', {'event_category': 'google', 'event_action': 'registraciya3'}) // google metrics
         const { dispatch } = this.props
-
+        console.log(googleUser)
         this.signup.first_name.value = googleUser.w3.ofa
         this.signup.last_name.value = googleUser.w3.wea
         this.signup.email.value = googleUser.w3.U3
