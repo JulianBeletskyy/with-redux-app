@@ -223,7 +223,7 @@ class Member extends Component {
     }
 
 	render() {
-        const { member, role, modal, active, userId } = this.props
+        const { member, role, modal, active, userId, token } = this.props
         
 		return (
 			<Layout>
@@ -486,8 +486,9 @@ class Member extends Component {
                                                         color="#27C2D3"
                                                         icon="fas fa-envelope" />
                                                 </div>
+                                                {console.log(role)}
                                                 {
-                                                    member.role === 'client'
+                                                    (token && role === 'client') || (!token && member.role === 'girl')
                                                     ?   <div className="col-sm-6 col-lg-6 col-md-12">
                                                             <LinkIcon
                                                                 text="Invite to Video-Chat"
@@ -498,7 +499,7 @@ class Member extends Component {
                                                     :   null
                                                 }
                                                 {
-                                                    member.role === 'client'
+                                                    (token && role === 'client') || (!token && member.role === 'girl')
                                                     ?   <div>
                                                             <div className="col-sm-6 col-lg-6 col-md-12">
                                                                 <LinkIcon 
