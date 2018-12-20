@@ -486,7 +486,6 @@ class Member extends Component {
                                                         color="#27C2D3"
                                                         icon="fas fa-envelope" />
                                                 </div>
-                                                {console.log(role)}
                                                 {
                                                     (token && role === 'client') || (!token && member.role === 'girl')
                                                     ?   <div className="col-sm-6 col-lg-6 col-md-12">
