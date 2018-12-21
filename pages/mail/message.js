@@ -46,7 +46,7 @@ class Message extends Component {
 
         confirmAlert({
             title: '',
-            message: 'You do not have enough dibs to send message. Click Buy Dibs to chose the package.',
+            message: userCredits >= messagePrice ? 'Use Your Dibs to send message' : 'You do not have enough dibs to send message. Click Buy Dibs to chose the package.',
             buttons: [
                 {
                     label: 'Cancel',

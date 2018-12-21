@@ -19,7 +19,6 @@ import { getUserInfo } from '../../actions/user'
 import { loginWithHash } from '../../actions/auth'
 import VideoSlider from '../../components/gallery/video_slider'
 import NotActive from '../../components/NotActive'
-import Head from 'next/head'
 
 const testUsers = [221, 286]
 
@@ -228,9 +227,6 @@ class Member extends Component {
         
 		return (
 			<Layout>
-                <Head>
-                    <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/react-confirm-alert.min.css"/>
-                </Head>
                 <div className="pt-15">
                     <div className="pt-66 bg-blue">
                         <div className="bg-white pt-15 pb-50 container">

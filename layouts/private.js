@@ -23,7 +23,6 @@ class Private extends Component {
             <div className="pt-80 bg-blue position-relative">
                 <Head>
                     <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/cropper.css"/>
-                    <link rel="stylesheet" href="https://d2etktq4v0899q.cloudfront.net/static/assets/css/react-confirm-alert.min.css"/>
                 </Head>
                 <Grid id="profile">
                     <Row>

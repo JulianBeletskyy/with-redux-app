@@ -22,7 +22,7 @@ export class MessageModal extends Component {
         const messagePrice = LETTER_PRICE + (data.attachment.length * PHOTO_PRICE)
         confirmAlert({
             title: '',
-            message: 'You do not have enough dibs to send message. Click Buy Dibs to chose the package.',
+            message: userCredits >= messagePrice ? 'Use Your Dibs to send message' : 'You do not have enough dibs to send message. Click Buy Dibs to chose the package.',
             buttons: [
                 {
                     label: 'Cancel',
