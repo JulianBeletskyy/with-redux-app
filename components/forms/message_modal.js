@@ -20,7 +20,6 @@ export class MessageModal extends Component {
     showAlert = data => {
         const { dispatch, userCredits } = this.props
         const messagePrice = LETTER_PRICE + (data.attachment.length * PHOTO_PRICE)
-
         confirmAlert({
             title: '',
             message: 'You do not have enough dibs to send message. Click Buy Dibs to chose the package.',
