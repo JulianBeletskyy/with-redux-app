@@ -7,6 +7,7 @@ import { getOptions } from '../../actions/ui'
 import { setSignupKey, sendSignUpFour } from '../../actions/signup'
 import BtnSignUp from '../buttons/btn_signup'
 import Block from '../block'
+import Validator from '../../validate'
 
 export class StepThreeClient extends Component {
     constructor(props) {
@@ -40,14 +41,18 @@ export class StepThreeClient extends Component {
         gtag('event', 'finish', {'event_category': 'finish', 'event_action': 'registraciya8'}) // google metrics
         
         const { dispatch } = this.props
-        const data = {
-            about_me: this.signup.about_me.value,
-            like_to_meet: this.signup.like_to_meet.value,
-            interest_id: this.interests,
-            mobile: this.signup.mobile.value,
-            custom_remember_token: this.props.custom_remember_token
+        let error = 1
+        error *= Validator.check(this.signup.mobile.value, ['required'], 'Phone')
+        if (error) {
+            const data = {
+                about_me: this.signup.about_me.value,
+                like_to_meet: this.signup.like_to_meet.value,
+                interest_id: this.interests,
+                mobile: this.signup.mobile.value,
+                custom_remember_token: this.props.custom_remember_token
+            }
+            dispatch(sendSignUpFour(data))
         }
-        dispatch(sendSignUpFour(data))
     }
 
     componentDidMount() {
