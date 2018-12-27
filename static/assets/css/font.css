@@ -94,6 +94,10 @@
         padding-left: 15px;
         padding-right: 15px;
     }
+    .service-inner-text {
+        margin-bottom: 0px;
+    }
+
     .service-wrap-items {
         padding-left: 0px;
         padding-right: 0px;
@@ -108,5 +112,8 @@
     }
     .table-responsive {
         border: none;
+    }
+    .service-right-item.in-services {
+        width: 100%;
     }
 }
