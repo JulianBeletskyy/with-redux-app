@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Layout from '../../layouts'
 import PrivateLayout from '../../layouts/private'
-import { getMessage, addAttachMessage, addAttachDraft, saveDraft, sendMessage, setSendingMessage, buyMessage, removeDraft, clearAttachAll } from '../../actions/message'
+import { getMessage, addAttachMessage, addAttachDraft, saveDraft, sendMessage, setSendingMessage, buyMessage, removeDraft, clearAttachAll, setMessagesKey } from '../../actions/message'
 import { Router } from '../../routes'
 import Textarea from '../../components/inputs/textarea'
 import FullScreenPreview from '../../components/gallery/full_screen_preview'
@@ -51,23 +51,20 @@ class Draft extends Component {
             return
         }
     	dispatch(sendMessage(data)).then(res => {
-            switch (res) {
-                case true:
-                    this.message.value = ''
-                    dispatch(setActiveTab('outgoing', 'mail'))
-                    Router.pushRoute('/mail/outgoing')
-                    break
-                case 'limit_message':
-                    this.showAlert(data)
-                    break
-                default: return
+            if (res === true) {
+                this.message.value = ''
+                dispatch(setActiveTab('outgoing', 'mail'))
+                Router.pushRoute('/mail/outgoing')
+            } else {
+                dispatch(setMessagesKey('letterPrice', res['_price_message']))
+                this.showAlert(data)
             }
         })
     }
 
     showAlert = data => {
-        const { dispatch, userCredits } = this.props
-        const messagePrice = LETTER_PRICE + (data.attachment.length * PHOTO_PRICE)
+        const { dispatch, userCredits, letterPrice } = this.props
+        //const messagePrice = LETTER_PRICE + (data.attachment.length * PHOTO_PRICE)
 
         confirmAlert({
             title: '',
@@ -79,9 +76,9 @@ class Draft extends Component {
                         dispatch(setSendingMessage({}))
                     }
                 }, {
-                    label: userCredits >= messagePrice ? 'Use Dibs' : 'Buy Dibs',
+                    label: userCredits >= letterPrice ? 'Use Dibs' : 'Buy Dibs',
                     onClick: () => {
-                        if (userCredits >= messagePrice) {
+                        if (userCredits >= letterPrice) {
                             dispatch(buyMessage(data)).then(res => {
                                 if (res) {
                                     dispatch(setActiveTab('outgoing', 'mail'))
@@ -89,7 +86,7 @@ class Draft extends Component {
                                 }
                             })
                         } else {
-                            dispatch(setSendingMessage({...data, messagePrice}))
+                            dispatch(setSendingMessage({...data, letterPrice}))
                             dispatch(toggleModal(true, 'credits'))
                         }
                     }
@@ -217,6 +214,7 @@ const mapStateToProps = ({message, user}) =>
 		draftAttach: message.draftAttach,
         userCredits: user.data.credits,
         testing: user.testing,
+        letterPrice: message.letterPrice,
 	})
 
 export default connect(mapStateToProps)(Draft)
