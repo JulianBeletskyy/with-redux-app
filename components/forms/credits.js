@@ -100,7 +100,7 @@ class Credits extends Component {
 	                    if (res) {
 	                    	if (Object.keys(sendingMessage).length) {
 	                    		const totalCredits = credits + activePackage.credits
-	                    		if (totalCredits >= sendingMessage.messagePrice) {
+	                    		if (totalCredits >= sendingMessage.letterPrice) {
 	                    			dispatch(buyMessage(sendingMessage)).then(res => {
 	                    				if (res) {
 	                    					dispatch(setSendingMessage({}))

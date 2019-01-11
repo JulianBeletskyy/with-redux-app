@@ -26,6 +26,7 @@ const initialState = {
     },
     sendingMessage: {},
     buyingAttach: {},
+    letterPrice: 0,
 }
 
 const message = (message = initialState, action = {}) => {
@@ -70,6 +71,10 @@ const message = (message = initialState, action = {}) => {
         case types.SET_BUYING_ATTACH:
             return Object.assign({}, message, {
                 buyingAttach: action.data
+            })
+        case types.SET_MESSAGES_KEY:
+            return Object.assign({}, message, {
+                [action.key]: action.value
             })
         default:
             return message;

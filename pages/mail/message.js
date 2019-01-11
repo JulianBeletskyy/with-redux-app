@@ -5,7 +5,7 @@ import PrivateLayout from '../../layouts/private'
 import Textarea from '../../components/inputs/textarea'
 import BtnMain from '../../components/buttons/btn_main'
 import UploadDropdown from '../../components/inputs/upload_dropdown'
-import { getMessage, saveDraft, sendMessage, setSendingMessage, buyMessage, showAttach, buyAttach, setBuyingAttach, clearAttachAll } from '../../actions/message'
+import { getMessage, saveDraft, sendMessage, setSendingMessage, buyMessage, showAttach, buyAttach, setBuyingAttach, clearAttachAll, setMessagesKey } from '../../actions/message'
 import { Router } from '../../routes'
 import Loader from '../../components/loader'
 import Validator from '../../validate'
@@ -41,12 +41,12 @@ class Message extends Component {
     }
 
     showAlert = data => {
-        const { dispatch, userCredits } = this.props
-        const messagePrice = LETTER_PRICE + (data.attachment.length * PHOTO_PRICE)
+        const { dispatch, userCredits, letterPrice } = this.props
+        //const messagePrice = LETTER_PRICE + (data.attachment.length * PHOTO_PRICE)
 
         confirmAlert({
             title: '',
-            message: userCredits >= messagePrice ? 'Use Your Dibs to send message' : 'You do not have enough dibs to send message. Click Buy Dibs to chose the package.',
+            message: userCredits >= letterPrice ? 'Use Your Dibs to send message' : 'You do not have enough dibs to send message. Click Buy Dibs to chose the package.',
             buttons: [
                 {
                     label: 'Cancel',
@@ -54,9 +54,9 @@ class Message extends Component {
                         dispatch(setSendingMessage({}))
                     }
                 }, {
-                    label: userCredits >= messagePrice ? 'Use Dibs' : 'Buy Dibs',
+                    label: userCredits >= letterPrice ? 'Use Dibs' : 'Buy Dibs',
                     onClick: () => {
-                        if (userCredits >= messagePrice) {
+                        if (userCredits >= letterPrice) {
                             dispatch(buyMessage(data)).then(res => {
                                 if (res) {
                                     dispatch(setActiveTab('outgoing', 'mail'))
@@ -64,7 +64,7 @@ class Message extends Component {
                                 }
                             })
                         } else {
-                            dispatch(setSendingMessage({...data, messagePrice}))
+                            dispatch(setSendingMessage({...data, letterPrice}))
                             dispatch(toggleModal(true, 'credits'))
                         }
                     }
@@ -110,16 +110,13 @@ class Message extends Component {
                 return
             }
             dispatch(sendMessage(data)).then(res => {
-                switch (res) {
-                    case true:
-                        this.message.value = ''
-                        dispatch(setActiveTab('outgoing', 'mail'))
-                        Router.pushRoute('/mail/outgoing')
-                        break
-                    case 'limit_message':
-                        this.showAlert(data)
-                        break
-                    default: return
+                if (res === true) {
+                    this.message.value = ''
+                    dispatch(setActiveTab('outgoing', 'mail'))
+                    Router.pushRoute('/mail/outgoing')
+                } else {
+                    dispatch(setMessagesKey('letterPrice', res['_price_message']))
+                    this.showAlert(data)
                 }
             })
         }
@@ -379,6 +376,7 @@ const mapStateToProps = ({user, message}) =>
         attach: message.attach,
         userCredits: user.data.credits,
         testing: user.testing,
+        letterPrice: message.letterPrice,
     })
 
 

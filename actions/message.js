@@ -17,7 +17,7 @@ export const sendMessage = data => dispatch => {
 			return true
 		} else if (res.validate) {
 			if (res.validate['_service']) {
-				return res.validate['_service']
+				return res.validate
 			}
 		}
 	})
@@ -127,6 +127,13 @@ export const buyAttach = data => dispatch =>
 			dispatch(setMessage(res.data))
 			dispatch(getUserInfo())
 		}
+	})
+
+export const setMessagesKey = (key, value) =>
+	({
+		type: types.SET_MESSAGES_KEY,
+		key,
+		value,
 	})
 
 export const setBuyingAttach = data =>
