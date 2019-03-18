@@ -35,6 +35,11 @@ const initialState = {
             name: "John",
             img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/John-2.jpg",
             text_img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/John-22.jpg",
+        }, {
+            text: "My trip to Ukraine Kharkiv, was very exciting. I spent great time with my lady and daughter. Translator Karina was great and made for an exciting trip. Also she helped find great compatibility. I was able to see the whole city Kharkiv with my lady. Just an extraordinary amount of fun. James P. USA",
+            name: "James",
+            img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/james-2.png",
+            text_img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/james.png",
         }
     ],
 	messages: [],

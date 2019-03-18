@@ -66,7 +66,7 @@ export const getOptions = key => dispatch => {
 
 export const MyCountry = () => dispatch => {
 	return getMyCountry().then(res => {
-		if (res.country) {
+		if (res && res.country) {
 			dispatch(setSignupDataKey({country: res.country}))
 			dispatch(setSignupKey('country', res.country))
 		}
