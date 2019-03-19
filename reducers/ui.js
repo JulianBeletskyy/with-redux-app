@@ -16,6 +16,11 @@ const initialState = {
     story: {},
     testimonials: [
         {
+            text: "My trip to Ukraine Kharkiv, was very exciting. I spent great time with my lady and daughter. Translator Karina was great and made for an exciting trip. Also she helped find great compatibility. I was able to see the whole city Kharkiv with my lady. Just an extraordinary amount of fun. James P. USA",
+            name: "James",
+            img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/james-2.png",
+            text_img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/james.png",
+        }, {
             text: "Hello! I went to Ukraine to meet my lady in the springtime and it was great. I landed and my translator Marina met me at the airport, and helped me with everything the entire trip. She was great. I got to meet my lady and spend time with her. We seen the city and other cities all over Ukraine. We got to eat at many places trying many new foods all are delicious. All the people are helpful and very friendly. To anyone thinking of going I highly recommend it. It was an experience I will never forget. Duncan from Canada.",
             name: "Duncan",
             img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/Duncan.jpg",
@@ -35,12 +40,7 @@ const initialState = {
             name: "John",
             img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/John-2.jpg",
             text_img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/John-22.jpg",
-        }, {
-            text: "My trip to Ukraine Kharkiv, was very exciting. I spent great time with my lady and daughter. Translator Karina was great and made for an exciting trip. Also she helped find great compatibility. I was able to see the whole city Kharkiv with my lady. Just an extraordinary amount of fun. James P. USA",
-            name: "James",
-            img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/james-2.png",
-            text_img: "https://d2etktq4v0899q.cloudfront.net/static/assets/img/testimonials/james.png",
-        }
+        },
     ],
 	messages: [],
     modals: {
